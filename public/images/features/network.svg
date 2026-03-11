@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Connection lines -->
+  <line x1="60" y1="38" x2="30" y2="76"/>
+  <line x1="60" y1="38" x2="90" y2="76"/>
+  <line x1="30" y1="76" x2="90" y2="76"/>
+  <!-- Top person head -->
+  <circle cx="60" cy="28" r="8"/>
+  <!-- Top person body -->
+  <path d="M48 42 C48 38 52 34 60 34 C68 34 72 38 72 42"/>
+  <!-- Bottom-left person head -->
+  <circle cx="30" cy="66" r="8"/>
+  <!-- Bottom-left person body -->
+  <path d="M18 80 C18 76 22 72 30 72 C38 72 42 76 42 80"/>
+  <!-- Bottom-right person head -->
+  <circle cx="90" cy="66" r="8"/>
+  <!-- Bottom-right person body -->
+  <path d="M78 80 C78 76 82 72 90 72 C98 72 102 76 102 80"/>
+  <!-- Node dots at connections -->
+  <circle cx="60" cy="38" r="3"/>
+  <circle cx="30" cy="76" r="3"/>
+  <circle cx="90" cy="76" r="3"/>
+</svg>

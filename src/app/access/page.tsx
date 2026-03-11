@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 export default function AccessPage() {
   return (
     <>
-      <PageHeader label="ACCESS" title="アクセス" />
+      <PageHeader label="ACCESS" title="アクセス" subtitle="お気軽にお越しください。" />
 
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2">
             {/* Map */}
-            <div className="overflow-hidden rounded border border-slate-200">
-              <div className="flex h-80 items-center justify-center bg-santo-gray text-sm font-bold text-slate-400 lg:h-full lg:min-h-[400px]">
+            <div className="overflow-hidden rounded-xl border border-slate-200">
+              <div className="flex h-80 items-center justify-center rounded-xl bg-santo-sky text-sm font-bold text-slate-400 lg:h-full lg:min-h-[400px]">
                 Google Maps
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function AccessPage() {
                 ))}
               </div>
 
-              <div className="mt-8 rounded bg-santo-navy p-6">
+              <div className="mt-8 rounded-xl bg-santo-navy p-6">
                 <div className="flex items-center gap-3 mb-2">
                   <Clock className="h-4 w-4 text-santo-accent" />
                   <p className="text-[11px] font-black tracking-[0.15em] text-santo-accent">

@@ -23,7 +23,7 @@ const companyInfo = [
 export default function AboutPage() {
   return (
     <>
-      <PageHeader label="COMPANY" title="会社概要" />
+      <PageHeader label="COMPANY" title="会社概要" subtitle="信頼と実績で、人と企業の架け橋となります。" />
 
       {/* 代表挨拶 */}
       <section className="py-20 sm:py-28">
@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* 企業理念 */}
-      <section className="border-t border-b border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="bg-[#dce8f5] py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
             PHILOSOPHY
@@ -92,7 +92,7 @@ export default function AboutPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             会社情報
           </h2>
-          <div className="overflow-hidden rounded border border-slate-200">
+          <div className="overflow-hidden rounded-xl border border-slate-200">
             <table className="w-full">
               <tbody>
                 {companyInfo.map((item, i) => (
@@ -117,7 +117,7 @@ export default function AboutPage() {
       </section>
 
       {/* 沿革 */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="bg-santo-sky py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
             HISTORY

@@ -74,7 +74,7 @@ const strengths = [
 export default function EmployersPage() {
   return (
     <>
-      <PageHeader label="FOR EMPLOYERS" title="人材をお探しの企業様" />
+      <PageHeader label="FOR EMPLOYERS" title="人材をお探しの企業様" subtitle="貴社に最適な人材を、迅速にご提案いたします。" />
 
       {/* Lead */}
       <section className="py-20 sm:py-28">
@@ -99,14 +99,14 @@ export default function EmployersPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             サントーの強み
           </h2>
-          <div className="grid gap-0 overflow-hidden rounded border border-slate-200 bg-white sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {strengths.map((s, i) => (
               <div
                 key={s.title}
-                className="border-b border-r border-slate-200 p-7 last:border-b-0 sm:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-last-child(-n+3)]:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-last-child(-n+2)]:border-b"
+                className="rounded-xl border border-slate-200 bg-white p-7 transition-shadow duration-300 hover:shadow-lg"
               >
                 <div className="mb-3 flex items-center gap-2">
-                  <CheckSquare className="h-4 w-4 text-santo-light" />
+                  <CheckSquare className="h-4 w-4 text-santo-blue" />
                   <h3 className="text-[13px] font-black tracking-wider text-santo-navy">
                     {s.title}
                   </h3>
@@ -133,7 +133,7 @@ export default function EmployersPage() {
             {steps.map((step) => (
               <div
                 key={step.title}
-                className="rounded border border-slate-200 bg-white p-6"
+                className="rounded-xl border border-slate-200 bg-white p-6 transition-shadow duration-300 hover:shadow-lg"
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span className="text-3xl font-black tracking-tighter text-santo-navy/15">
@@ -173,9 +173,9 @@ export default function EmployersPage() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 rounded border border-slate-200 bg-white px-5 py-4"
+                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-5 py-4 transition-shadow duration-300 hover:shadow-md"
               >
-                <span className="h-2 w-2 shrink-0 bg-santo-navy" />
+                <span className="h-2 w-2 shrink-0 rounded-full bg-santo-blue" />
                 <span className="text-[13px] font-bold tracking-wide text-slate-700">
                   {item}
                 </span>
@@ -186,33 +186,33 @@ export default function EmployersPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-santo-navy py-20 sm:py-28">
+      <section className="bg-[#dce8f5] py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
-          <p className="mb-3 text-[11px] font-black tracking-[0.25em] text-santo-accent">
+          <p className="mb-3 text-[11px] font-black tracking-[0.25em] text-santo-blue">
             CONTACT
           </p>
-          <h2 className="mb-4 text-2xl font-black tracking-wider text-white sm:text-3xl">
+          <h2 className="mb-4 text-2xl font-black tracking-wider text-slate-800 sm:text-3xl">
             人材に関するご相談はお気軽にどうぞ
           </h2>
-          <p className="mx-auto mb-10 max-w-md text-[13px] leading-[1.9] text-slate-400">
+          <p className="mx-auto mb-10 max-w-md text-[13px] leading-[1.9] text-slate-500">
             まずは貴社の課題をお聞かせください。最適なプランをご提案いたします。
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <LinkButton
               href="/contact"
               size="xl"
-              className="bg-white text-santo-navy hover:bg-slate-100"
+              className="bg-santo-navy text-white hover:bg-santo-blue"
             >
               お問い合わせ
               <ArrowRight className="h-4 w-4" />
             </LinkButton>
             <div className="flex flex-col items-center">
-              <p className="text-[10px] font-bold tracking-widest text-slate-500">
+              <p className="text-[10px] font-bold tracking-widest text-slate-400">
                 TEL
               </p>
               <a
                 href="tel:000-000-0000"
-                className="flex items-center gap-2 text-2xl font-black tracking-wider text-white"
+                className="flex items-center gap-2 text-2xl font-black tracking-wider text-slate-800"
               >
                 000-000-0000
               </a>

@@ -3,9 +3,9 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-santo-navy text-white">
+    <footer className="bg-[#2a7ac7] text-white">
       {/* Main Footer */}
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-12">
           {/* Company Info */}
           <div className="lg:col-span-4">

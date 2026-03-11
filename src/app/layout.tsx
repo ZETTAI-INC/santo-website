@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
-import { Zen_Kaku_Gothic_New, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-
-const zenKaku = Zen_Kaku_Gothic_New({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${zenKaku.variable} ${inter.variable} antialiased`}>
+      <body className="antialiased">
         <Header />
         <main>{children}</main>
         <Footer />
