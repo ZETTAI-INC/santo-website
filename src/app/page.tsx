@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { FeatureCards } from "@/components/FeatureCards";
+import { NewsScroller } from "@/components/NewsScroller";
 
 export default function Home() {
   return (
@@ -244,85 +245,71 @@ export default function Home() {
       {/* News */}
       <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-10 flex items-end justify-between">
-            <div>
-              <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
-                NEWS
-              </p>
-              <h2 className="text-2xl font-black tracking-wider text-slate-900">
-                お知らせ
-              </h2>
-            </div>
+          <div className="mb-12 text-center">
+            <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
+              NEWS
+            </p>
+            <h2 className="text-2xl font-black tracking-wider text-slate-900 sm:text-3xl">
+              お知らせ
+            </h2>
+            <div className="mx-auto mt-4 h-0.5 w-12 bg-santo-navy" />
           </div>
-          <div className="overflow-hidden rounded border border-slate-200 bg-white">
-            {[
-              {
-                date: "2026.03.01",
-                cat: "お知らせ",
-                title: "ホームページをリニューアルしました",
-              },
-              {
-                date: "2026.02.15",
-                cat: "求人",
-                title: "新規求人情報を更新しました",
-              },
-              {
-                date: "2026.01.10",
-                cat: "お知らせ",
-                title: "年末年始休業のお知らせ",
-              },
-            ].map((news, i) => (
-              <a
-                key={i}
-                href="#"
-                className="flex flex-col gap-2 border-b border-slate-100 px-6 py-5 transition-colors last:border-b-0 hover:bg-santo-sky/50 sm:flex-row sm:items-center sm:gap-5"
-              >
-                <time className="text-[13px] font-bold tracking-wider text-slate-400">
-                  {news.date}
-                </time>
-                <span className="inline-flex w-fit bg-santo-navy px-2.5 py-0.5 text-[10px] font-black tracking-wider text-white">
-                  {news.cat}
-                </span>
-                <span className="text-[13px] font-bold text-slate-700">
-                  {news.title}
-                </span>
-              </a>
-            ))}
-          </div>
+          <NewsScroller />
         </div>
       </section>
 
       {/* Contact CTA */}
-      <section className="bg-[#dce8f5] py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
-          <p className="mb-3 text-[11px] font-black tracking-[0.25em] text-santo-blue">
+      <section className="relative overflow-hidden bg-gradient-to-br from-santo-navy via-santo-blue to-santo-light py-20 sm:py-28">
+        {/* 浮遊する装飾パターン */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -right-16 -top-16 h-72 w-72 animate-float-slow rounded-full bg-white" />
+          <div className="absolute -bottom-10 -left-10 h-56 w-56 animate-float-medium rounded-full bg-white" />
+          <div className="absolute left-1/3 top-1/2 h-36 w-36 animate-float-fast rounded-full bg-white" />
+          <div className="absolute right-1/4 bottom-1/4 h-20 w-20 animate-float-medium rounded-full bg-white" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
+          <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             CONTACT
           </p>
-          <h2 className="mb-4 text-2xl font-black tracking-wider text-slate-800 sm:text-3xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl">
             まずはお気軽にご相談ください
           </h2>
-          <p className="mx-auto mb-10 max-w-md text-[13px] leading-[1.9] text-slate-500">
+          <p className="mx-auto mb-10 max-w-md text-[14px] leading-[1.9] text-white/70">
             お仕事探し・人材のご相談、どちらもお気軽にお問い合わせください。
           </p>
-          <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
+          <div className="flex flex-col items-center gap-6">
             <LinkButton
               href="/contact"
               size="xl"
-              className="bg-santo-navy text-white hover:bg-santo-blue"
+              className="animate-shimmer relative overflow-hidden bg-white px-12 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100"
             >
               お問い合わせはこちら
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-5 w-5" />
             </LinkButton>
-            <div className="flex flex-col items-center">
-              <p className="text-[10px] font-bold tracking-widest text-slate-400">
-                TEL
-              </p>
-              <a
-                href="tel:000-000-0000"
-                className="text-2xl font-black tracking-wider text-slate-800"
-              >
-                000-000-0000
-              </a>
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+              <div className="flex flex-col items-center">
+                <p className="text-[10px] font-bold tracking-widest text-white/60">
+                  TEL
+                </p>
+                <a
+                  href="tel:000-000-0000"
+                  className="text-2xl font-black tracking-wider text-white"
+                >
+                  000-000-0000
+                </a>
+              </div>
+              <div className="hidden h-10 w-px bg-white/30 sm:block" />
+              <div className="flex flex-col items-center">
+                <p className="text-[10px] font-bold tracking-widest text-white/60">
+                  MAIL
+                </p>
+                <a
+                  href="mailto:info@santo-hp.co.jp"
+                  className="text-lg font-black tracking-wider text-white"
+                >
+                  info@santo-hp.co.jp
+                </a>
+              </div>
             </div>
           </div>
         </div>

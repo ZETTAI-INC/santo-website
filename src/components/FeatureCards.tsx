@@ -4,26 +4,29 @@ import { useEffect, useRef, useState } from "react";
 
 const features = [
   {
-    label: "01",
+    problem: "派遣が初めてで不安…\n仕事についていけるか心配",
+    problemImg: "/images/features/problem01.svg",
     title: "きめ細やかなサポート",
-    desc: "就業前から就業中まで、専任の担当者が一人ひとりに寄り添い丁寧にフォロー。不安や悩みもすぐに相談できる体制を整えています。",
+    solution: "就業前から就業中まで、専任の担当者が一人ひとりに寄り添い丁寧にフォロー。不安や悩みもすぐに相談できる体制を整えています。",
     img: "/images/features/support_illustration.svg",
   },
   {
-    label: "02",
+    problem: "急に人手が必要になった…\nすぐに対応してもらえる？",
+    problemImg: "/images/features/problem02.svg",
     title: "迅速な対応",
-    desc: "お客様のご要望に素早くお応えし、最適な人材を速やかにご提案。急な人員ニーズにも柔軟に対応いたします。",
+    solution: "お客様のご要望に素早くお応えし、最適な人材を速やかにご提案。急な人員ニーズにも柔軟に対応いたします。",
     img: "/images/features/quick_response.svg",
   },
   {
-    label: "03",
+    problem: "求めるスキルの人材が\nなかなか見つからない…",
+    problemImg: "/images/features/problem03.svg",
     title: "豊富な人材ネットワーク",
-    desc: "製造・物流・事務など幅広い職種に対応できる多様な人材を確保。企業様のニーズにぴったりの人材をご紹介します。",
+    solution: "製造・物流・事務など幅広い職種に対応できる多様な人材を確保。企業様のニーズにぴったりの人材をご紹介します。",
     img: "/images/features/talent_network.svg",
   },
 ];
 
-function FeatureCard({
+function FeatureRow({
   feature,
   index,
 }: {
@@ -37,7 +40,6 @@ function FeatureCard({
     const el = ref.current;
     if (!el) return;
 
-    // 少し遅延させてから監視開始（ページロード時に即発火しないように）
     const timer = setTimeout(() => {
       const observer = new IntersectionObserver(
         ([entry]) => {
@@ -61,74 +63,101 @@ function FeatureCard({
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.7s cubic-bezier(0.4,0,0.2,1) ${index * 120}ms, transform 0.7s cubic-bezier(0.4,0,0.2,1) ${index * 120}ms`,
+        transition: `opacity 0.7s cubic-bezier(0.4,0,0.2,1) ${index * 150}ms, transform 0.7s cubic-bezier(0.4,0,0.2,1) ${index * 150}ms`,
       }}
     >
-      <div
-        className="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-slate-200 bg-white px-6 pb-10 pt-8 text-center"
-        style={{
-          transition: "transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "translateY(-8px)";
-          e.currentTarget.style.boxShadow =
-            "0 20px 40px -12px rgba(15, 43, 74, 0.15)";
-          e.currentTarget.style.backgroundColor = "#eef7ff";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "none";
-          e.currentTarget.style.backgroundColor = "#ffffff";
-        }}
-      >
-        {/* 上部アクセントボーダー */}
-        <div
-          className="absolute left-0 top-0 h-1 w-full origin-left bg-santo-blue"
-          style={{
-            transform: "scaleX(0)",
-            transition: "transform 0.4s ease",
-          }}
-          ref={(el) => {
-            const parent = el?.parentElement;
-            if (!parent || !el) return;
-            parent.addEventListener("mouseenter", () => {
-              el.style.transform = "scaleX(1)";
-            });
-            parent.addEventListener("mouseleave", () => {
-              el.style.transform = "scaleX(0)";
-            });
-          }}
-        />
-        {/* タイトル */}
-        <h3 className="mb-6 text-xl font-black tracking-wider text-slate-900">
-          {feature.title}
-        </h3>
-        {/* イラスト画像 */}
-        <div
-          className="mb-6"
-          style={{ transition: "transform 0.4s ease" }}
-          ref={(el) => {
-            const parent = el?.closest("[class*='group']");
-            if (!parent || !el) return;
-            parent.addEventListener("mouseenter", () => {
-              el.style.transform = "scale(1.1)";
-            });
-            parent.addEventListener("mouseleave", () => {
-              el.style.transform = "scale(1)";
-            });
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={feature.img}
-            alt={feature.title}
-            className="h-40 w-40 object-contain"
-          />
+      {/* モバイル: 縦並び */}
+      <div className="flex flex-col md:hidden">
+        <div className="rounded-t-2xl bg-slate-100 border-2 border-b-0 border-slate-800 px-4 py-2">
+          <div className="flex justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/extracted_curly_line_straight.png" alt="お悩み" className="h-16 w-16 object-contain" />
+          </div>
+          <p className="whitespace-pre-line text-center text-[17px] font-bold leading-[1.7] text-slate-700">
+            {feature.problem}
+          </p>
         </div>
-        {/* 説明文 */}
-        <p className="text-[13px] leading-[2] text-slate-500">
-          {feature.desc}
-        </p>
+        <div className="rounded-b-2xl border-2 border-t-0 border-slate-800 bg-[#7baed4] p-8">
+          <div className="mb-4 flex justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={feature.img} alt={feature.title} className="h-32 w-32 object-contain" />
+          </div>
+          <h3 className="mb-2 text-center text-xl font-black tracking-wider text-slate-900">
+            {feature.title}
+          </h3>
+          <p className="text-center text-[15px] leading-[2] text-slate-800">
+            {feature.solution}
+          </p>
+        </div>
+      </div>
+
+      {/* デスクトップ: くの字型 */}
+      <div className="relative hidden md:block" style={{ minHeight: 200 }}>
+        <div className="flex items-stretch">
+          {/* 左: 悩み（右がくの字に尖る） */}
+          <div
+            className="relative z-10 flex items-center"
+            style={{
+              flex: "0 0 calc(40% + 30px)",
+              clipPath: "polygon(0 0, calc(100% - 50px) 0, 100% 50%, calc(100% - 50px) 100%, 0 100%)",
+            }}
+          >
+            {/* 枠線用背景 */}
+            <div className="absolute inset-0 bg-slate-800" />
+            <div
+              className="absolute bg-slate-100"
+              style={{
+                inset: "2px",
+                clipPath: "polygon(0 0, calc(100% - 48px) 0, 100% 50%, calc(100% - 48px) 100%, 0 100%)",
+              }}
+            />
+            <div className="relative flex w-full items-center gap-3 py-2 pl-5 pr-14">
+              <div className="shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/extracted_curly_line_straight.png" alt="お悩み" className="h-20 w-20 object-contain" />
+              </div>
+              <div>
+                <p className="whitespace-pre-line text-[18px] font-bold leading-[1.7] text-slate-700">
+                  {feature.problem}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 右: 解決（左がくの字に凹んでピッタリ噛み合う） */}
+          <div
+            className="relative flex items-center"
+            style={{
+              flex: "0 0 calc(60% + 20px)",
+              marginLeft: "-50px",
+              clipPath: "polygon(50px 0, 100% 0, 100% 100%, 50px 100%, 0 50%)",
+            }}
+          >
+            {/* 枠線用背景 */}
+            <div className="absolute inset-0 bg-slate-800" />
+            <div
+              className="absolute bg-[#7baed4]"
+              style={{
+                inset: "2px",
+                clipPath: "polygon(48px 0, 100% 0, 100% 100%, 48px 100%, 0 50%)",
+              }}
+            />
+            <div className="relative flex w-full items-center gap-6 py-10 pl-20 pr-10">
+              <div className="shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={feature.img} alt={feature.title} className="h-36 w-36 object-contain" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-black tracking-wider text-slate-900">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-[2] text-slate-800">
+                  {feature.solution}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -136,9 +165,9 @@ function FeatureCard({
 
 export function FeatureCards() {
   return (
-    <div className="grid gap-6 grid-cols-1 sm:grid-cols-3">
+    <div className="space-y-10">
       {features.map((feature, i) => (
-        <FeatureCard key={feature.title} feature={feature} index={i} />
+        <FeatureRow key={feature.title} feature={feature} index={i} />
       ))}
     </div>
   );

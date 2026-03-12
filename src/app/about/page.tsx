@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* 企業理念 */}
-      <section className="bg-[#dce8f5] py-20 sm:py-28">
+      <section className="relative bg-[#dce8f5] py-20 sm:py-28 bg-cover bg-center" style={{ backgroundImage: "url('/images/philosophy_bg_geometric.png')" }}>
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
             PHILOSOPHY
@@ -70,7 +70,7 @@ export default function AboutPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             企業理念
           </h2>
-          <div className="mx-auto max-w-2xl border-l-4 border-r-4 border-santo-navy/20 py-8">
+          <div className="mx-auto max-w-2xl py-8">
             <p className="text-xl font-black leading-[2] tracking-wider text-santo-navy sm:text-2xl">
               人と企業の架け橋となり、
               <br />
