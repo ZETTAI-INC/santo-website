@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  CheckCircle,
   ArrowRight,
   ClipboardList,
   MessageSquare,
@@ -13,6 +12,8 @@ import {
 import { LinkButton } from "@/components/LinkButton";
 import { CountUpStats } from "@/components/CountUpStats";
 import { PageHeader } from "@/components/PageHeader";
+import { HexMerits } from "@/components/HexMerits";
+import { JobCategories } from "@/components/JobCategories";
 import {
   Accordion,
   AccordionContent,
@@ -101,58 +102,43 @@ export default function JobseekersPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             サントーで働くメリット
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "あなたの希望に合ったお仕事をご紹介",
-                desc: "勤務地・時間・職種など、あなたのご希望をしっかりヒアリングし、最適なお仕事をご提案します。",
-              },
-              {
-                title: "就業前の職場見学が可能",
-                desc: "実際の職場の雰囲気を事前に確認できるので、安心してお仕事をスタートできます。",
-              },
-              {
-                title: "専任担当者による手厚いフォロー",
-                desc: "就業中の悩みや不安も、専任の担当者がいつでも相談に乗ります。",
-              },
-              {
-                title: "社会保険・有給休暇完備",
-                desc: "健康保険・厚生年金・雇用保険に加え、有給休暇もしっかり取得いただけます。",
-              },
-              {
-                title: "未経験OKのお仕事も多数",
-                desc: "初めての方でも安心して働ける研修制度やサポート体制が整っています。",
-              },
-              {
-                title: "多言語対応で外国籍の方も安心",
-                desc: "外国籍スタッフへの多言語サポートを行っており、言葉の不安なく働けます。",
-              },
-            ].map((merit) => (
-              <div
-                key={merit.title}
-                className="flex items-start gap-3 border-l-2 border-santo-light bg-santo-sky/50 p-5"
-              >
-                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-santo-light" />
-                <div>
-                  <p className="text-[13px] font-bold tracking-wide text-slate-700">
-                    {merit.title}
-                  </p>
-                  <p className="mt-1.5 text-[12px] leading-[1.8] text-slate-500">
-                    {merit.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <HexMerits />
         </div>
       </section>
 
       {/* Numbers */}
-      <section className="bg-santo-navy py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-10 text-center text-[11px] font-black tracking-[0.25em] text-santo-accent">
-            NUMBERS
-          </p>
+      <section className="relative py-24 sm:py-32 overflow-hidden">
+        {/* 上波 */}
+        <div className="absolute -top-px left-0 w-full">
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none" style={{ height: 80 }}>
+            <path fill="#dceefb">
+              <animate attributeName="d" dur="6s" repeatCount="indefinite" values="
+                M0,0 L1440,0 L1440,60 Q1080,30 720,60 Q360,80 0,55 Z;
+                M0,0 L1440,0 L1440,45 Q1080,75 720,45 Q360,15 0,60 Z;
+                M0,0 L1440,0 L1440,60 Q1080,30 720,60 Q360,80 0,55 Z
+              " />
+            </path>
+          </svg>
+        </div>
+        {/* 下波 */}
+        <div className="absolute -bottom-px left-0 w-full">
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none" style={{ height: 80 }}>
+            <path fill="#dceefb">
+              <animate attributeName="d" dur="6s" repeatCount="indefinite" values="
+                M0,55 Q360,80 720,55 Q1080,30 1440,60 L1440,80 L0,80 Z;
+                M0,60 Q360,25 720,55 Q1080,75 1440,45 L1440,80 L0,80 Z;
+                M0,55 Q360,80 720,55 Q1080,30 1440,60 L1440,80 L0,80 Z
+              " />
+            </path>
+          </svg>
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="mb-14 flex flex-col items-center">
+            <h2 className="text-2xl font-black tracking-wider text-slate-900 sm:text-3xl">
+              数字で見るサントー
+            </h2>
+            <div className="numbers-line mt-4 h-[2px] bg-slate-900" />
+          </div>
           <CountUpStats />
         </div>
       </section>
@@ -232,31 +218,7 @@ export default function JobseekersPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             取り扱い職種
           </h2>
-          <div className="grid gap-5 sm:grid-cols-3">
-            {jobs.map((job) => (
-              <div
-                key={job.category}
-                className="rounded border border-slate-200 bg-white"
-              >
-                <div className="border-b border-slate-200 bg-santo-navy px-6 py-3.5">
-                  <h3 className="text-[13px] font-black tracking-wider text-white">
-                    {job.category}
-                  </h3>
-                </div>
-                <ul className="p-6 space-y-3">
-                  {job.examples.map((ex) => (
-                    <li
-                      key={ex}
-                      className="flex items-center gap-2.5 text-[13px] text-slate-600"
-                    >
-                      <span className="h-1.5 w-1.5 shrink-0 bg-santo-light" />
-                      {ex}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <JobCategories />
         </div>
       </section>
 

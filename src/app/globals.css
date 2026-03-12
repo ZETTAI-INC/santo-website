@@ -196,3 +196,74 @@
   background: linear-gradient(90deg, transparent, rgba(29, 111, 181, 0.12), transparent);
   animation: shimmer 3s ease-in-out infinite;
 }
+
+/* 職種タブ切り替えアニメーション */
+@keyframes jobFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Numbers 見出し線アニメーション */
+.numbers-line {
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.numbers-line.is-visible {
+  width: 10em;
+}
+
+/* 階段タイムライン */
+.stair-step {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.stair-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stair-step:hover .stair-block {
+  background-color: #f1f5f9;
+}
+
+.stair-card::after {
+  content: '';
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 3px solid #3b82f6;
+  z-index: 11;
+}
+
+.stair-card::before {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 20px;
+  background-color: #3b82f6;
+  opacity: 0.5;
+}
+
+@media (max-width: 767px) {
+  .stair-card::after,
+  .stair-card::before {
+    display: none;
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+import { StairsTimeline } from "@/components/StairsTimeline";
 
 export const metadata: Metadata = {
   title: "会社概要",
@@ -117,32 +118,18 @@ export default function AboutPage() {
       </section>
 
       {/* 沿革 */}
-      <section className="bg-santo-sky py-20 sm:py-28">
+      <section className="bg-[#f8fafc] py-20 sm:py-28 overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
-            HISTORY
-          </p>
-          <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
-            沿革
-          </h2>
-          <div className="space-y-0 border-l-2 border-santo-navy/20 pl-8">
-            {[
-              { year: "○○○○年", event: "株式会社サントー設立" },
-              { year: "○○○○年", event: "一般労働者派遣事業許可取得" },
-              { year: "○○○○年", event: "事業拡大に伴い移転" },
-              { year: "○○○○年", event: "ホームページリニューアル" },
-            ].map((item, i) => (
-              <div key={i} className="relative pb-8 last:pb-0">
-                <div className="absolute -left-[calc(2rem+5px)] top-1 h-2.5 w-2.5 rounded-full bg-santo-navy" />
-                <p className="text-[13px] font-black tracking-wider text-santo-navy">
-                  {item.year}
-                </p>
-                <p className="mt-1 text-[13px] text-slate-600">
-                  {item.event}
-                </p>
-              </div>
-            ))}
+          <div className="text-center mb-16">
+            <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-[#3b82f6]">
+              HISTORY
+            </p>
+            <h2 className="text-[32px] font-bold tracking-wider text-[#1e3a8a] relative inline-block">
+              沿革
+              <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-10 h-[3px] bg-[#3b82f6]" />
+            </h2>
           </div>
+          <StairsTimeline />
         </div>
       </section>
     </>
