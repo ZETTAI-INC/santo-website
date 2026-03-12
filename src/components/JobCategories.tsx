@@ -143,35 +143,23 @@ export function JobCategories() {
           </div>
         </div>
 
-        {/* 右: 人物画像エリア */}
-        <div className="relative order-1 min-h-[240px] overflow-hidden rounded-2xl bg-gradient-to-br from-santo-sky via-[#d4eaf9] to-[#b8d9f0] lg:order-2 lg:min-h-[520px] lg:rounded-l-none lg:rounded-r-2xl">
-          {/* 装飾サークル */}
-          <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white/10" />
-          <div className="absolute -bottom-16 -left-16 h-60 w-60 rounded-full bg-santo-navy/5" />
-
-          {/* プレースホルダー人物画像 */}
-          <div className="absolute inset-0 flex items-end justify-center">
-            <div className="relative flex h-full w-full items-center justify-center">
-              <div className="flex flex-col items-center gap-3 text-center">
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm sm:h-32 sm:w-32">
-                  <svg className="h-12 w-12 text-santo-navy/40 sm:h-16 sm:w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1}>
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
-                </div>
-                <p className="text-[13px] font-bold tracking-wider text-santo-navy/30">
-                  人物写真をここに配置
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* 右: 写真エリア */}
+        <div className="relative order-1 min-h-[240px] overflow-hidden rounded-2xl lg:order-2 lg:min-h-[520px] lg:rounded-l-none lg:rounded-r-2xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/job_types_mixed_photo.png"
+            alt="さまざまな職種"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          {/* オーバーレイ */}
+          <div className="absolute inset-0 bg-gradient-to-t from-santo-navy/60 via-transparent to-transparent" />
 
           {/* キャッチコピー */}
           <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8">
-            <p className="text-[11px] font-black tracking-[0.25em] text-santo-navy/40">
+            <p className="text-[11px] font-black tracking-[0.25em] text-white/70">
               YOUR CAREER
             </p>
-            <p className="mt-1 text-lg font-black tracking-wider text-santo-navy/60 sm:text-xl">
+            <p className="mt-1 text-lg font-black tracking-wider text-white sm:text-xl">
               あなたに合った働き方を
             </p>
           </div>

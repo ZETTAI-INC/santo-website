@@ -24,7 +24,7 @@ const companyInfo = [
 export default function AboutPage() {
   return (
     <>
-      <PageHeader label="COMPANY" title="会社概要" subtitle="信頼と実績で、人と企業の架け橋となります。" />
+      <PageHeader label="COMPANY" title="会社概要" subtitle="信頼と実績で、人と企業の架け橋となります。" image="/images/company_hero_factory_people.png" />
 
       {/* 代表挨拶 */}
       <section className="py-20 sm:py-28">
@@ -71,14 +71,14 @@ export default function AboutPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             企業理念
           </h2>
-          <div className="mx-auto max-w-2xl py-8">
-            <p className="text-xl font-black leading-[2] tracking-wider text-santo-navy sm:text-2xl">
+          <div className="mx-auto max-w-3xl py-12 sm:py-16">
+            <p className="text-3xl font-black leading-[1.8] tracking-[0.1em] text-santo-navy sm:text-4xl lg:text-5xl">
               人と企業の架け橋となり、
               <br />
               地域社会の発展に貢献する
             </p>
           </div>
-          <p className="mt-8 mx-auto max-w-lg text-[13px] leading-[2] text-slate-500">
+          <p className="mx-auto max-w-lg text-[14px] leading-[2] text-slate-500">
             私たちは、働く人の可能性を信じ、一人ひとりに寄り添ったサポートを通じて、企業と人材の最適なマッチングを追求します。
           </p>
         </div>

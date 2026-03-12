@@ -5,11 +5,10 @@ import {
   FileSearch,
   Handshake,
   UserCheck,
-  HeadphonesIcon,
-  CheckSquare,
 } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { PageHeader } from "@/components/PageHeader";
+import { StrengthTimeline } from "@/components/StrengthTimeline";
 
 export const metadata: Metadata = {
   title: "人材をお探しの企業様",
@@ -44,37 +43,11 @@ const steps = [
   },
 ];
 
-const strengths = [
-  {
-    title: "迅速な人材提案",
-    desc: "お問い合わせから最短で人材をご提案。急な人員ニーズにもお応えします。",
-  },
-  {
-    title: "丁寧なマッチング",
-    desc: "スキル・経験だけでなく、人柄や職場との相性も考慮した人選を行います。",
-  },
-  {
-    title: "充実のフォロー体制",
-    desc: "派遣スタッフへの定期的なフォローにより、安定した就業をサポートします。",
-  },
-  {
-    title: "コスト削減",
-    desc: "採用にかかる時間とコストを大幅に削減。必要な時に必要な人材を確保できます。",
-  },
-  {
-    title: "多様な人材",
-    desc: "製造・物流・事務など幅広い職種に対応できる人材ネットワークを保有しています。",
-  },
-  {
-    title: "コンプライアンス遵守",
-    desc: "労働関係法令を遵守し、安心してご利用いただけるサービスを提供します。",
-  },
-];
 
 export default function EmployersPage() {
   return (
     <>
-      <PageHeader label="FOR EMPLOYERS" title="人材をお探しの企業様" subtitle="貴社に最適な人材を、迅速にご提案いたします。" />
+      <PageHeader label="FOR EMPLOYERS" title="人材をお探しの企業様" subtitle="貴社に最適な人材を、迅速にご提案いたします。" image="/images/employers_factory_boss_wide.png" />
 
       {/* Lead */}
       <section className="py-20 sm:py-28">
@@ -99,29 +72,39 @@ export default function EmployersPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             サントーの強み
           </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {strengths.map((s, i) => (
-              <div
-                key={s.title}
-                className="rounded-xl border border-slate-200 bg-white p-7 transition-shadow duration-300 hover:shadow-lg"
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <CheckSquare className="h-4 w-4 text-santo-blue" />
-                  <h3 className="text-[13px] font-black tracking-wider text-santo-navy">
-                    {s.title}
-                  </h3>
-                </div>
-                <p className="text-[12px] leading-[1.9] text-slate-500">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
+          <StrengthTimeline />
+        </div>
+      </section>
+
+      {/* フルワイド写真セクション */}
+      <section className="relative h-[360px] overflow-hidden sm:h-[440px] lg:h-[500px]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/employers_factory_boss_wide.png"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/80 via-santo-navy/50 to-transparent" />
+        <div className="relative flex h-full items-center">
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+            <p className="mb-3 text-[11px] font-black tracking-[0.3em] text-santo-accent">
+              PARTNER
+            </p>
+            <h2 className="max-w-lg text-3xl font-black leading-[1.6] tracking-wider text-white sm:text-4xl lg:text-5xl">
+              貴社の成長を、
+              <br />
+              人材の力で支える。
+            </h2>
+            <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
+            <p className="mt-6 max-w-md text-[14px] leading-[2] text-white/70">
+              必要な時に、必要な人材を。サントーは企業様のパートナーとして最適な人材ソリューションを提供します。
+            </p>
           </div>
         </div>
       </section>
 
       {/* Flow */}
-      <section className="py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p className="mb-2 text-[11px] font-black tracking-[0.25em] text-santo-light">
             FLOW
@@ -129,26 +112,60 @@ export default function EmployersPage() {
           <h2 className="mb-10 text-2xl font-black tracking-wider text-slate-900">
             ご利用の流れ
           </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* モバイル: 縦並び */}
+          <div className="flex flex-col gap-4 lg:hidden">
             {steps.map((step) => (
-              <div
-                key={step.title}
-                className="rounded-xl border border-slate-200 bg-white p-6 transition-shadow duration-300 hover:shadow-lg"
-              >
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="text-3xl font-black tracking-tighter text-santo-navy/15">
-                    {step.num}
-                  </span>
-                  <step.icon className="h-6 w-6 text-santo-blue" strokeWidth={1.5} />
-                </div>
-                <h3 className="mb-2 text-[13px] font-black tracking-wider text-slate-900">
+              <div key={step.title} className="flex flex-col rounded-xl bg-white p-7">
+                <span className="text-[38px] font-light leading-none text-santo-navy/20">
+                  {step.num}
+                </span>
+                <h3 className="mt-2 text-[15px] font-black tracking-wider text-slate-900">
                   {step.title}
                 </h3>
-                <p className="text-[12px] leading-[1.9] text-slate-500">
+                <p className="mt-2 text-[12px] leading-[1.9] text-slate-500">
                   {step.desc}
                 </p>
+                <div className="mt-auto flex justify-end pt-4">
+                  <step.icon className="h-14 w-14 text-slate-300" strokeWidth={1} />
+                </div>
               </div>
             ))}
+          </div>
+          {/* デスクトップ: 矢印型横並び */}
+          <div className="hidden lg:flex">
+            {steps.map((step, i) => {
+              const isFirst = i === 0;
+              const isLast = i === steps.length - 1;
+              const clip = isFirst
+                ? "polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%)"
+                : isLast
+                  ? "polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 50%)"
+                  : "polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%)";
+              return (
+                <div
+                  key={step.title}
+                  className="flex flex-1 flex-col bg-white px-8 py-7"
+                  style={{
+                    clipPath: clip,
+                    marginLeft: isFirst ? 0 : -10,
+                    paddingLeft: isFirst ? 32 : 40,
+                  }}
+                >
+                  <span className="text-[38px] font-light leading-none text-santo-navy/20">
+                    {step.num}
+                  </span>
+                  <h3 className="mt-2 text-[15px] font-black tracking-wider text-slate-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-[12px] leading-[1.9] text-slate-500">
+                    {step.desc}
+                  </p>
+                  <div className="mt-auto flex justify-end pt-4">
+                    <step.icon className="h-14 w-14 text-slate-300" strokeWidth={1} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

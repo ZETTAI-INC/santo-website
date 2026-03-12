@@ -107,8 +107,8 @@ export function HexMerits() {
           >
             <defs>
               <linearGradient id="hexGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#1a2e4a" />
-                <stop offset="100%" stopColor="#3b6fa0" />
+                <stop offset="0%" stopColor="#e8f4fd" />
+                <stop offset="100%" stopColor="#c8e2f5" />
               </linearGradient>
             </defs>
 
@@ -116,9 +116,9 @@ export function HexMerits() {
             <polygon
               points={vertices.map((v) => `${v.x},${v.y}`).join(" ")}
               fill="none"
-              stroke="#1a2e4a"
+              stroke="#b0d4ed"
               strokeWidth="2"
-              opacity="0.1"
+              opacity="0.4"
               transform={`translate(0, 0) scale(1.08)`}
               style={{ transformOrigin: `${hexCx}px ${hexCy}px` }}
             />
@@ -127,9 +127,8 @@ export function HexMerits() {
             <polygon
               points={vertices.map((v) => `${v.x},${v.y}`).join(" ")}
               fill="url(#hexGrad)"
-              stroke="#1a2e4a"
+              stroke="#a8cfe8"
               strokeWidth="2"
-              opacity="0.95"
             />
 
             {/* 中央テキスト */}
@@ -137,7 +136,7 @@ export function HexMerits() {
               x={hexCx}
               y={hexCy - 16}
               textAnchor="middle"
-              className="fill-santo-accent text-[13px] font-black"
+              className="fill-santo-blue text-[13px] font-black"
               style={{ letterSpacing: "0.3em" }}
             >
               MERIT
@@ -146,7 +145,7 @@ export function HexMerits() {
               x={hexCx}
               y={hexCy + 20}
               textAnchor="middle"
-              className="fill-white text-[26px] font-black"
+              className="fill-santo-navy text-[26px] font-black"
               style={{ letterSpacing: "0.1em" }}
             >
               6つの強み

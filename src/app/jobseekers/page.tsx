@@ -91,7 +91,7 @@ const faqs = [
 export default function JobseekersPage() {
   return (
     <>
-      <PageHeader label="FOR JOB SEEKERS" title="仕事をお探しの方" subtitle="あなたにぴったりのお仕事を、一緒に見つけましょう。" />
+      <PageHeader label="FOR JOB SEEKERS" title="仕事をお探しの方" subtitle="あなたにぴったりのお仕事を、一緒に見つけましょう。" image="/images/jobseekers_hero.png" />
 
       {/* Merits */}
       <section className="py-20 sm:py-28">

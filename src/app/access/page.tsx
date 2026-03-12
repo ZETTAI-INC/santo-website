@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function AccessPage() {
   return (
     <>
-      <PageHeader label="ACCESS" title="アクセス" subtitle="お気軽にお越しください。" />
+      <PageHeader label="ACCESS" title="アクセス" subtitle="お気軽にお越しください。" image="/images/access_map_illustration.png" />
 
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">

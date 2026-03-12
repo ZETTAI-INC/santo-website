@@ -2,31 +2,70 @@ type PageHeaderProps = {
   label: string;
   title: string;
   subtitle?: string;
+  image?: string;
+  imagePosition?: string;
+  imageLayout?: "background" | "right";
 };
 
-export function PageHeader({ label, title, subtitle }: PageHeaderProps) {
+export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background" }: PageHeaderProps) {
+  const hasBackgroundImage = image && imageLayout === "background";
+  const hasRightImage = image && imageLayout === "right";
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-santo-navy via-santo-blue to-santo-light">
-      {/* 装飾パターン */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white" />
-        <div className="absolute -bottom-10 -left-10 h-60 w-60 rounded-full bg-white" />
-        <div className="absolute right-1/4 top-1/2 h-40 w-40 rounded-full bg-white" />
-      </div>
+    <section className={`relative overflow-hidden bg-gradient-to-br from-santo-navy via-santo-blue to-santo-light ${hasBackgroundImage ? "min-h-[320px] sm:min-h-[380px] lg:min-h-[420px]" : ""}`}>
+      {/* 背景画像（backgroundモード） */}
+      {hasBackgroundImage && (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-no-repeat"
+            style={{ backgroundImage: `url('${image}')`, backgroundPosition: `center ${imagePosition}` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/85 via-santo-navy/50 to-transparent" />
+        </>
+      )}
+
+      {/* 装飾パターン（背景画像がない場合のみ表示） */}
+      {!hasBackgroundImage && (
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-white" />
+          <div className="absolute -bottom-10 -left-10 h-60 w-60 rounded-full bg-white" />
+          <div className="absolute right-1/4 top-1/2 h-40 w-40 rounded-full bg-white" />
+        </div>
+      )}
+
       <div className="absolute bottom-0 left-0 right-0 h-px bg-white/20" />
-      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-        <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
-          {label}
-        </p>
-        <h1 className="text-4xl font-black tracking-wider text-white sm:text-5xl">
-          {title}
-        </h1>
-        <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
-        {subtitle && (
-          <p className="mt-5 max-w-lg text-[14px] leading-[2] text-white/70">
-            {subtitle}
-          </p>
-        )}
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div className={`flex items-center ${hasRightImage ? "justify-between gap-8" : ""}`}>
+          {/* テキスト */}
+          <div className="py-16 sm:py-24 lg:py-28">
+            <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
+              {label}
+            </p>
+            <h1 className="text-4xl font-black tracking-wider text-white sm:text-5xl">
+              {title}
+            </h1>
+            <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
+            {subtitle && (
+              <p className="mt-5 max-w-lg text-[14px] leading-[2] text-white/70">
+                {subtitle}
+              </p>
+            )}
+          </div>
+
+          {/* 右側画像（rightモード） */}
+          {hasRightImage && (
+            <div className="hidden lg:block shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={image}
+                alt=""
+                className="h-60 w-72 rounded-xl object-cover shadow-2xl xl:h-72 xl:w-80"
+                style={{ objectPosition: imagePosition }}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

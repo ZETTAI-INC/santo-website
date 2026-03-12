@@ -18,7 +18,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader label="CONTACT" title="お問い合わせ" subtitle="お仕事探し・人材のご相談、何でもお気軽にどうぞ。" />
+      <PageHeader label="CONTACT" title="お問い合わせ" subtitle="お仕事探し・人材のご相談、何でもお気軽にどうぞ。" image="/images/contact_hero.png" />
 
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
