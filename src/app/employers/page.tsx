@@ -228,10 +228,10 @@ export default function EmployersPage() {
                 TEL
               </p>
               <a
-                href="tel:000-000-0000"
+                href="tel:0463-24-1722"
                 className="flex items-center gap-2 text-2xl font-black tracking-wider text-slate-800"
               >
-                000-000-0000
+                0463-24-1722
               </a>
             </div>
           </div>

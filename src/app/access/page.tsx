@@ -17,9 +17,15 @@ export default function AccessPage() {
           <div className="grid gap-10 lg:grid-cols-2">
             {/* Map */}
             <div className="overflow-hidden rounded-xl border border-slate-200">
-              <div className="flex h-80 items-center justify-center rounded-xl bg-santo-sky text-sm font-bold text-slate-400 lg:h-full lg:min-h-[400px]">
-                Google Maps
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3258.123!2d139.3488!3d35.3297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z44CSMjU0LTA4MDcg56We5aWI5bed55yM5bmz5aGa5biC5Luj5a6Y55S677yX4oCP77yS77yZ!5e0!3m2!1sja!2sjp!4v1710000000000"
+                className="h-80 w-full lg:h-full lg:min-h-[400px]"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="株式会社サントー所在地"
+              />
             </div>
 
             {/* Info */}
@@ -33,17 +39,17 @@ export default function AccessPage() {
                   {
                     icon: MapPin,
                     label: "所在地",
-                    content: "〒000-0000\n○○県○○市○○ ○-○-○",
+                    content: "〒254-0807\n神奈川県平塚市代官町7-29",
                   },
                   {
                     icon: Train,
                     label: "電車でお越しの方",
-                    content: '○○線「○○駅」より徒歩○分',
+                    content: 'JR東海道線「平塚駅」より徒歩3分',
                   },
                   {
                     icon: Car,
                     label: "お車でお越しの方",
-                    content: "○○ICより約○分\n駐車場あり（○台分）",
+                    content: "小田原厚木道路「平塚IC」より約10分",
                   },
                 ].map((item) => (
                   <div
@@ -65,19 +71,21 @@ export default function AccessPage() {
                 ))}
               </div>
 
-              <div className="mt-8 rounded-xl bg-santo-navy p-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <Clock className="h-4 w-4 text-santo-accent" />
-                  <p className="text-[11px] font-black tracking-[0.15em] text-santo-accent">
-                    営業時間
-                  </p>
+              <div className="mt-8 rounded-xl bg-slate-100 px-6 py-5">
+                <div className="flex items-center gap-4">
+                  <Clock className="h-6 w-6 shrink-0 text-santo-navy" />
+                  <div>
+                    <p className="text-[11px] font-black tracking-[0.15em] text-slate-400">
+                      営業時間
+                    </p>
+                    <p className="mt-1 text-[17px] font-bold tracking-wide text-slate-800">
+                      月曜日〜金曜日 9:00〜18:00
+                    </p>
+                    <p className="mt-1 text-[12px] text-slate-400">
+                      ※土日祝日はお休みをいただいております
+                    </p>
+                  </div>
                 </div>
-                <p className="text-[15px] font-bold text-white">
-                  月曜日〜金曜日 9:00〜18:00
-                </p>
-                <p className="mt-1.5 text-[11px] text-slate-400">
-                  ※土日祝日はお休みをいただいております
-                </p>
               </div>
             </div>
           </div>

@@ -79,7 +79,7 @@ export default function SpanishPage() {
                   { label: "Nombre", value: "SANTO Co., Ltd." },
                   { label: "Negocio", value: "Servicios de Personal / Empleo Temporal" },
                   { label: "Dirección", value: "Japón (detalles disponibles bajo solicitud)" },
-                  { label: "Teléfono", value: "000-000-0000" },
+                  { label: "Teléfono", value: "0463-24-1722" },
                 ].map((item, i) => (
                   <tr key={item.label} className={i % 2 === 0 ? "bg-white" : "bg-santo-gray"}>
                     <th className="w-44 border-r border-slate-200 px-6 py-4 text-left text-[13px] font-black tracking-wider text-santo-navy">
@@ -108,7 +108,7 @@ export default function SpanishPage() {
             </LinkButton>
             <div className="flex flex-col items-center">
               <p className="text-[10px] font-bold tracking-widest text-slate-500">TEL</p>
-              <a href="tel:000-000-0000" className="text-2xl font-black tracking-wider text-white">000-000-0000</a>
+              <a href="tel:0463-24-1722" className="text-2xl font-black tracking-wider text-white">0463-24-1722</a>
             </div>
           </div>
         </div>

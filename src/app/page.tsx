@@ -10,51 +10,18 @@ import {
   Star,
   FileText,
   ChevronRight,
+  Phone,
 } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { FeatureCards } from "@/components/FeatureCards";
 import { NewsScroller } from "@/components/NewsScroller";
+import { HeroSection } from "@/components/HeroSection";
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-santo-navy">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/hero-bg.png')" }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/50 via-santo-navy/25 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-santo-accent/20" />
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
-          <div className="max-w-3xl">
-            <h1 className="mb-6 text-4xl font-black leading-[1.3] tracking-wider text-white sm:text-5xl lg:text-6xl">
-              人と企業をつなぎ、
-              <br />
-              未来をつくる。
-            </h1>
-            <p className="mb-10 max-w-xl text-[15px] leading-[2] text-slate-300">
-              株式会社サントーは、求職者の皆様と企業の皆様を結ぶ人材派遣サービスを提供しています。一人ひとりに寄り添い、最適なマッチングを実現します。
-            </p>
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-              <LinkButton
-                href="/jobseekers"
-                size="xl"
-                className="bg-white text-santo-navy hover:bg-slate-100"
-              >
-                <Briefcase className="h-5 w-5" />
-                仕事をお探しの方
-              </LinkButton>
-              <LinkButton
-                href="/employers"
-                variant="outline"
-                size="xl"
-                className="text-white"
-              >
-                <Building2 className="h-5 w-5" />
-                人材をお探しの企業様
-              </LinkButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Features */}
       <section className="bg-santo-gray py-24 sm:py-32">
@@ -292,10 +259,10 @@ export default function Home() {
                   TEL
                 </p>
                 <a
-                  href="tel:000-000-0000"
+                  href="tel:0463-24-1722"
                   className="text-2xl font-black tracking-wider text-white"
                 >
-                  000-000-0000
+                  0463-24-1722
                 </a>
               </div>
               <div className="hidden h-10 w-px bg-white/30 sm:block" />

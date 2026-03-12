@@ -69,7 +69,7 @@ function TimelineItem({
               transition: `opacity 0.7s ease ${index * 120 + 200}ms, transform 0.7s ease ${index * 120 + 200}ms`,
             }}
           >
-            <span className="text-[52px] font-extralight leading-none text-santo-navy/10">
+            <span className="text-[52px] font-extralight leading-none text-santo-navy/30">
               {num}
             </span>
             <h3 className="mt-2 text-[22px] font-black tracking-wider text-santo-navy">
@@ -132,7 +132,7 @@ function TimelineItem({
               transition: `opacity 0.7s ease ${index * 120 + 200}ms, transform 0.7s ease ${index * 120 + 200}ms`,
             }}
           >
-            <span className="text-[52px] font-extralight leading-none text-santo-navy/10">
+            <span className="text-[52px] font-extralight leading-none text-santo-navy/30">
               {num}
             </span>
             <h3 className="mt-2 text-[22px] font-black tracking-wider text-santo-navy">
@@ -203,7 +203,7 @@ function MobileTimelineItem({
           transition: `opacity 0.6s ease ${index * 100 + 100}ms, transform 0.6s ease ${index * 100 + 100}ms`,
         }}
       >
-        <span className="text-[36px] font-extralight leading-none text-santo-navy/10">
+        <span className="text-[36px] font-extralight leading-none text-santo-navy/30">
           {num}
         </span>
         <h3 className="mt-1 text-[18px] font-black tracking-wider text-santo-navy">

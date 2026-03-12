@@ -33,8 +33,8 @@ export default function ContactPage() {
                   {
                     icon: Phone,
                     label: "お電話",
-                    value: "000-000-0000",
-                    href: "tel:000-000-0000",
+                    value: "0463-24-1722",
+                    href: "tel:0463-24-1722",
                     large: true,
                   },
                   {

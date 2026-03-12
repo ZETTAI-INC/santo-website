@@ -41,11 +41,11 @@ export function Header() {
             ))}
           </div>
           <a
-            href="tel:000-000-0000"
+            href="tel:0463-24-1722"
             className="flex items-center gap-1.5 text-[11px] font-bold tracking-wider text-white"
           >
             <Phone className="h-3 w-3" />
-            000-000-0000
+            0463-24-1722
           </a>
         </div>
       </div>
@@ -125,11 +125,11 @@ export function Header() {
                   ))}
                 </div>
                 <a
-                  href="tel:000-000-0000"
+                  href="tel:0463-24-1722"
                   className="mt-4 flex items-center gap-2 text-sm font-black text-santo-navy"
                 >
                   <Phone className="h-4 w-4" />
-                  000-000-0000
+                  0463-24-1722
                 </a>
               </div>
             </div>

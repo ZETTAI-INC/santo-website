@@ -16,9 +16,9 @@ const companyInfo = [
   { label: "資本金", value: "○○万円" },
   { label: "事業内容", value: "一般労働者派遣事業" },
   { label: "許可番号", value: "派○○-○○○○○○" },
-  { label: "所在地", value: "〒000-0000 ○○県○○市○○ ○-○-○" },
-  { label: "TEL", value: "000-000-0000" },
-  { label: "FAX", value: "000-000-0000" },
+  { label: "所在地", value: "〒254-0807 神奈川県平塚市代官町7-29" },
+  { label: "TEL", value: "0463-24-1722" },
+  { label: "FAX", value: "0463-24-1722" },
 ];
 
 export default function AboutPage() {

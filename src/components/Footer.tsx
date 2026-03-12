@@ -25,11 +25,11 @@ export function Footer() {
             <div className="space-y-2.5 text-[13px] text-slate-300">
               <p className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-santo-accent" />
-                〒000-0000 所在地をここに記載
+                〒254-0807 神奈川県平塚市代官町7-29
               </p>
               <p className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-santo-accent" />
-                TEL: 000-000-0000
+                TEL: 0463-24-1722
               </p>
               <p className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-santo-accent" />
