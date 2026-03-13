@@ -15,16 +15,16 @@ export default async function AboutPage() {
   const isJa = locale === "ja";
 
   const companyInfo = [
-    { label: t("infoCompanyNameLabel"), value: t("infoCompanyNameValue") },
-    { label: t("infoEnglishNameLabel"), value: t("infoEnglishNameValue") },
-    { label: t("infoRepresentativeLabel"), value: t("infoRepresentativeValue") },
-    { label: t("infoEstablishedLabel"), value: t("infoEstablishedValue") },
-    { label: t("infoCapitalLabel"), value: t("infoCapitalValue") },
-    { label: t("infoBusinessLabel"), value: t("infoBusinessValue") },
-    { label: t("infoLicenseLabel"), value: t("infoLicenseValue") },
-    { label: t("infoAddressLabel"), value: t("infoAddressValue") },
-    { label: t("infoTelLabel"), value: t("infoTelValue") },
-    { label: t("infoFaxLabel"), value: t("infoFaxValue") },
+    { label: t("infoCompanyName"), value: t("infoCompanyNameValue") },
+    { label: t("infoEnName"), value: t("infoEnNameValue") },
+    { label: t("infoCeo"), value: t("infoCeoValue") },
+    { label: t("infoFounded"), value: t("infoFoundedValue") },
+    { label: t("infoCapital"), value: t("infoCapitalValue") },
+    { label: t("infoBusiness"), value: t("infoBusinessValue") },
+    { label: t("infoLicense"), value: t("infoLicenseValue") },
+    { label: t("infoAddress"), value: t("infoAddressValue") },
+    { label: t("infoTel"), value: t("infoTelValue") },
+    { label: t("infoFax"), value: t("infoFaxValue") },
   ];
 
   return (
