@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
 import {
   Zap,
   Users,
@@ -10,47 +11,29 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-const strengths = [
-  {
-    icon: Zap,
-    title: "迅速な人材提案",
-    desc: "お問い合わせから最短で人材をご提案。急な人員ニーズにもお応えします。",
-  },
-  {
-    icon: Users,
-    title: "丁寧なマッチング",
-    desc: "スキル・経験だけでなく、人柄や職場との相性も考慮した人選を行います。",
-  },
-  {
-    icon: HeadphonesIcon,
-    title: "充実のフォロー体制",
-    desc: "派遣スタッフへの定期的なフォローにより、安定した就業をサポートします。",
-  },
-  {
-    icon: PiggyBank,
-    title: "コスト削減",
-    desc: "採用にかかる時間とコストを大幅に削減。必要な時に必要な人材を確保できます。",
-  },
-  {
-    icon: Network,
-    title: "多様な人材",
-    desc: "製造・物流・事務など幅広い職種に対応できる人材ネットワークを保有しています。",
-  },
-  {
-    icon: ShieldCheck,
-    title: "コンプライアンス遵守",
-    desc: "労働関係法令を遵守し、安心してご利用いただけるサービスを提供します。",
-  },
-];
+/* タイトル内の強調 */
+function TitleAccent({ children }: { children: ReactNode }) {
+  return (
+    <span className="text-[1.3em]">{children}</span>
+  );
+}
+
+interface StrengthItem {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { strokeWidth?: number }>;
+  title: ReactNode;
+  desc: ReactNode;
+}
 
 function TimelineItem({
   item,
   index,
   visible,
+  totalCount,
 }: {
-  item: (typeof strengths)[number];
+  item: StrengthItem;
   index: number;
   visible: boolean;
+  totalCount: number;
 }) {
   const Icon = item.icon;
   const isLeft = index % 2 === 0;
@@ -72,10 +55,10 @@ function TimelineItem({
             <span className="text-[52px] font-extralight leading-none text-santo-navy/30">
               {num}
             </span>
-            <h3 className="mt-2 text-[22px] font-black tracking-wider text-santo-navy">
+            <h3 className="mt-2 text-[26px] font-black tracking-wider text-slate-900">
               {item.title}
             </h3>
-            <p className="mt-3 text-[15px] leading-[2] text-slate-800">
+            <p className="mt-3 text-[18px] leading-[2] text-slate-600">
               {item.desc}
             </p>
           </div>
@@ -108,7 +91,7 @@ function TimelineItem({
           <Icon className="h-6 w-6 text-santo-navy" strokeWidth={1.5} />
         </div>
         {/* 下のライン */}
-        {index < strengths.length - 1 && (
+        {index < totalCount - 1 && (
           <div
             className="w-px bg-santo-navy/15"
             style={{
@@ -118,7 +101,7 @@ function TimelineItem({
             }}
           />
         )}
-        {index === strengths.length - 1 && <div style={{ height: 40 }} />}
+        {index === totalCount - 1 && <div style={{ height: 40 }} />}
       </div>
 
       {/* 右側コンテンツ（奇数） or 空 */}
@@ -135,10 +118,10 @@ function TimelineItem({
             <span className="text-[52px] font-extralight leading-none text-santo-navy/30">
               {num}
             </span>
-            <h3 className="mt-2 text-[22px] font-black tracking-wider text-santo-navy">
+            <h3 className="mt-2 text-[26px] font-black tracking-wider text-slate-900">
               {item.title}
             </h3>
-            <p className="mt-3 text-[15px] leading-[2] text-slate-800">
+            <p className="mt-3 text-[18px] leading-[2] text-slate-600">
               {item.desc}
             </p>
           </div>
@@ -153,10 +136,12 @@ function MobileTimelineItem({
   item,
   index,
   visible,
+  totalCount,
 }: {
-  item: (typeof strengths)[number];
+  item: StrengthItem;
   index: number;
   visible: boolean;
+  totalCount: number;
 }) {
   const Icon = item.icon;
   const num = String(index + 1).padStart(2, "0");
@@ -186,7 +171,7 @@ function MobileTimelineItem({
         </div>
         {/* 下のライン */}
         <div
-          className={`w-px flex-1 ${index === strengths.length - 1 ? "bg-transparent" : "bg-santo-navy/15"}`}
+          className={`w-px flex-1 ${index === totalCount - 1 ? "bg-transparent" : "bg-santo-navy/15"}`}
           style={{
             opacity: visible ? 1 : 0,
             transition: `opacity 0.4s ease ${index * 100 + 100}ms`,
@@ -206,10 +191,10 @@ function MobileTimelineItem({
         <span className="text-[36px] font-extralight leading-none text-santo-navy/30">
           {num}
         </span>
-        <h3 className="mt-1 text-[18px] font-black tracking-wider text-santo-navy">
+        <h3 className="mt-1 text-[18px] font-black tracking-wider text-slate-900">
           {item.title}
         </h3>
-        <p className="mt-2 text-[14px] leading-[1.9] text-slate-800">
+        <p className="mt-2 text-[14px] leading-[1.9] text-slate-600">
           {item.desc}
         </p>
       </div>
@@ -218,8 +203,66 @@ function MobileTimelineItem({
 }
 
 export function StrengthTimeline() {
+  const t = useTranslations("StrengthTimeline");
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+
+  const strengths: StrengthItem[] = [
+    {
+      icon: Zap,
+      title: (
+        <>
+          <TitleAccent>{t("title1Accent")}</TitleAccent>{t("title1Rest")}
+        </>
+      ),
+      desc: t("desc1"),
+    },
+    {
+      icon: Users,
+      title: (
+        <>
+          <TitleAccent>{t("title2Accent")}</TitleAccent>{t("title2Rest")}
+        </>
+      ),
+      desc: t("desc2"),
+    },
+    {
+      icon: HeadphonesIcon,
+      title: (
+        <>
+          {t("title3Pre")}<TitleAccent>{t("title3Accent")}</TitleAccent>
+        </>
+      ),
+      desc: t("desc3"),
+    },
+    {
+      icon: PiggyBank,
+      title: (
+        <>
+          <TitleAccent>{t("title4Accent")}</TitleAccent>{t("title4Rest")}
+        </>
+      ),
+      desc: t("desc4"),
+    },
+    {
+      icon: Network,
+      title: (
+        <>
+          <TitleAccent>{t("title5Accent")}</TitleAccent>{t("title5Rest")}
+        </>
+      ),
+      desc: t("desc5"),
+    },
+    {
+      icon: ShieldCheck,
+      title: (
+        <>
+          <TitleAccent>{t("title6Accent")}</TitleAccent>{t("title6Rest")}
+        </>
+      ),
+      desc: t("desc6"),
+    },
+  ];
 
   useEffect(() => {
     const el = ref.current;
@@ -240,16 +283,71 @@ export function StrengthTimeline() {
   return (
     <div ref={ref}>
       {/* デスクトップ: 左右交互 */}
-      <div className="hidden md:block">
-        {strengths.map((item, i) => (
-          <TimelineItem key={item.title} item={item} index={i} visible={visible} />
-        ))}
+      <div className="relative hidden md:block">
+        {/* 背景シルエット画像 */}
+        {/* Step01付近: 左外側 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/bg_silhouette_1.png"
+          alt=""
+          className="pointer-events-none absolute hidden lg:block"
+          style={{
+            top: "-2%",
+            left: "-8%",
+            height: 560,
+            width: "auto",
+            opacity: visible ? 0.22 : 0,
+            filter: "grayscale(100%) blur(2px) contrast(1.1)",
+            zIndex: 0,
+            transition: "opacity 1.2s ease 0.3s",
+          }}
+        />
+        {/* Step02付近: 右外側 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/bg_silhouette_2.png"
+          alt=""
+          className="pointer-events-none absolute hidden lg:block"
+          style={{
+            top: "30%",
+            right: "-8%",
+            height: 560,
+            width: "auto",
+            opacity: visible ? 0.22 : 0,
+            filter: "grayscale(100%) blur(2px) contrast(1.1)",
+            zIndex: 0,
+            transition: "opacity 1.2s ease 0.6s",
+          }}
+        />
+        {/* Step03付近: 左外側 */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/bg_silhouette_3.png"
+          alt=""
+          className="pointer-events-none absolute hidden lg:block"
+          style={{
+            top: "62%",
+            left: "-8%",
+            height: 560,
+            width: "auto",
+            opacity: visible ? 0.22 : 0,
+            filter: "grayscale(100%) blur(2px) contrast(1.1)",
+            zIndex: 0,
+            transition: "opacity 1.2s ease 0.9s",
+          }}
+        />
+
+        <div className="relative z-[1]">
+          {strengths.map((item, i) => (
+            <TimelineItem key={i} item={item} index={i} visible={visible} totalCount={strengths.length} />
+          ))}
+        </div>
       </div>
 
-      {/* モバイル: 左ライン */}
+      {/* モバイル: 左ライン（シルエット非表示） */}
       <div className="md:hidden">
         {strengths.map((item, i) => (
-          <MobileTimelineItem key={item.title} item={item} index={i} visible={visible} />
+          <MobileTimelineItem key={i} item={item} index={i} visible={visible} totalCount={strengths.length} />
         ))}
       </div>
     </div>

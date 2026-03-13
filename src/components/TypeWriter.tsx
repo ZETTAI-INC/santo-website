@@ -20,8 +20,8 @@ export function TypeWriter({
 
   useEffect(() => {
     if (currentLine >= texts.length) {
-      setDone(true);
-      return;
+      const timer = setTimeout(() => setDone(true), 0);
+      return () => clearTimeout(timer);
     }
 
     const line = texts[currentLine];
@@ -47,16 +47,27 @@ export function TypeWriter({
   }, [currentLine, currentChar, texts]);
 
   return (
-    <span className={className}>
-      {displayLines.map((line, i) => (
-        <span key={i} className={`block ${lineClasses?.[i] ?? ""}`}>
-          {line}
-          {/* カーソル（現在入力中の行のみ表示） */}
-          {!done && i === currentLine && (
-            <span className="inline-block w-[3px] h-[1em] bg-white/80 align-middle ml-0.5 animate-pulse" />
-          )}
-        </span>
-      ))}
-    </span>
+    <div className={className}>
+      {/* 不可視の全テキストで最終状態の高さを確保 */}
+      <div className="invisible" aria-hidden="true">
+        {texts.map((text, i) => (
+          <div key={i} className={`block ${lineClasses?.[i] ?? ""}`}>
+            {text}
+          </div>
+        ))}
+      </div>
+      {/* 実際のタイプライターテキストをabsoluteで重ねる */}
+      <div className="absolute top-0 left-0 w-full">
+        {displayLines.map((line, i) => (
+          <div key={i} className={`block ${lineClasses?.[i] ?? ""}`}>
+            {line}
+            {/* カーソル（現在入力中の行のみ表示） */}
+            {!done && i === currentLine && (
+              <span className="inline-block w-[3px] h-[1em] bg-white/80 align-middle ml-0.5 animate-pulse" />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

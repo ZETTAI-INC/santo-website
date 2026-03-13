@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import { Briefcase, Building2, ChevronDown } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { TypeWriter } from "@/components/TypeWriter";
+import { useTranslations, useLocale } from "next-intl";
 
 export function HeroSection() {
+  const t = useTranslations("Home");
+  const locale = useLocale();
+  const localePath = (path: string) => locale === "ja" ? path : `/${locale}${path}`;
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
@@ -20,16 +24,16 @@ export function HeroSection() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/images/hero-bg.png')" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/50 via-santo-navy/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/70 via-santo-navy/50 to-santo-navy/30" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-santo-accent/20" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
         <div>
           <div className="max-w-3xl">
             {/* タイプライターキャッチコピー */}
-            <h1 className="mb-6 font-black leading-[1.2] tracking-wider text-white">
+            <h1 className="relative mb-6 font-black leading-[1.2] tracking-wider text-white drop-shadow-lg">
               <TypeWriter
-                texts={["人と企業をつなぎ、", "未来をつくる。"]}
+                texts={[t("heroLine1"), t("heroLine2")]}
                 lineClasses={[
                   "text-2xl sm:text-3xl lg:text-4xl text-white/80",
                   "text-5xl sm:text-6xl lg:text-8xl",
@@ -56,13 +60,12 @@ export function HeroSection() {
               }}
             >
               <div className="w-[3px] shrink-0 rounded-full bg-santo-accent" />
-              <p className="text-[18px] leading-[2.2] text-white/60">
-                求職者と企業の皆様を結ぶ
+              <p className="text-[22px] leading-[1.8] text-white" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
+                <span className="whitespace-nowrap">{t("heroSub1")}</span>
                 <br />
-                <span className="font-bold text-white">人材派遣サービス</span>を提供しています。
+                <span className="whitespace-nowrap"><span className="text-[26px] font-bold" style={{ color: "#0a2e5c", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
                 <br />
-                一人ひとりに寄り添い、
-                <span className="font-bold text-white">最適なマッチング</span>を実現します。
+                <span className="whitespace-nowrap">{t("heroSub4")}</span>
               </p>
             </div>
 
@@ -76,21 +79,21 @@ export function HeroSection() {
               }}
             >
               <LinkButton
-                href="/jobseekers"
+                href={localePath("/jobseekers")}
                 size="xl"
                 className="bg-white text-santo-navy hover:bg-slate-100"
               >
                 <Briefcase className="h-5 w-5" />
-                仕事をお探しの方
+                {t("forJobseekers")}
               </LinkButton>
               <LinkButton
-                href="/employers"
+                href={localePath("/employers")}
                 variant="outline"
                 size="xl"
                 className="text-white"
               >
                 <Building2 className="h-5 w-5" />
-                人材をお探しの企業様
+                {t("forEmployers")}
               </LinkButton>
             </div>
           </div>

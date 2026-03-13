@@ -1,36 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const features = [
-  {
-    problem: "派遣が初めてで不安…\n仕事についていけるか心配",
-    problemImg: "/images/features/problem01.svg",
-    title: "きめ細やかなサポート",
-    solution: "就業前から就業中まで、専任の担当者が一人ひとりに寄り添い丁寧にフォロー。不安や悩みもすぐに相談できる体制を整えています。",
-    img: "/images/features/support_illustration.svg",
-  },
-  {
-    problem: "急に人手が必要になった…\nすぐに対応してもらえる？",
-    problemImg: "/images/features/problem02.svg",
-    title: "迅速な対応",
-    solution: "お客様のご要望に素早くお応えし、最適な人材を速やかにご提案。急な人員ニーズにも柔軟に対応いたします。",
-    img: "/images/features/quick_response.svg",
-  },
-  {
-    problem: "求めるスキルの人材が\nなかなか見つからない…",
-    problemImg: "/images/features/problem03.svg",
-    title: "豊富な人材ネットワーク",
-    solution: "製造・物流・事務など幅広い職種に対応できる多様な人材を確保。企業様のニーズにぴったりの人材をご紹介します。",
-    img: "/images/features/talent_network.svg",
-  },
-];
+import { useTranslations } from "next-intl";
 
 function FeatureRow({
   feature,
   index,
 }: {
-  feature: (typeof features)[number];
+  feature: {
+    problem: string;
+    problemImg: string;
+    title: string;
+    solution: string;
+    img: string;
+  };
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -85,7 +68,7 @@ function FeatureRow({
           <h3 className="mb-2 text-center text-xl font-black tracking-wider text-santo-navy">
             {feature.title}
           </h3>
-          <p className="text-center text-[15px] leading-[2] text-slate-600">
+          <p className="text-center text-[18px] leading-[2] text-slate-600">
             {feature.solution}
           </p>
         </div>
@@ -128,7 +111,7 @@ function FeatureRow({
               <h3 className="text-2xl font-black tracking-wider text-santo-navy">
                 {feature.title}
               </h3>
-              <p className="mt-2 text-[15px] leading-[2] text-slate-600">
+              <p className="mt-2 text-[18px] leading-[2] text-slate-600">
                 {feature.solution}
               </p>
             </div>
@@ -140,6 +123,32 @@ function FeatureRow({
 }
 
 export function FeatureCards() {
+  const t = useTranslations("FeatureCards");
+
+  const features = [
+    {
+      problem: t("problem1"),
+      problemImg: "/images/features/problem01.svg",
+      title: t("solution1Title"),
+      solution: t("solution1Desc"),
+      img: "/images/features/support_illustration.svg",
+    },
+    {
+      problem: t("problem2"),
+      problemImg: "/images/features/problem02.svg",
+      title: t("solution2Title"),
+      solution: t("solution2Desc"),
+      img: "/images/features/quick_response.svg",
+    },
+    {
+      problem: t("problem3"),
+      problemImg: "/images/features/problem03.svg",
+      title: t("solution3Title"),
+      solution: t("solution3Desc"),
+      img: "/images/features/talent_network.svg",
+    },
+  ];
+
   return (
     <div className="space-y-10">
       {features.map((feature, i) => (

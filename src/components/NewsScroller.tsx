@@ -2,33 +2,42 @@
 
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-const newsList = [
-  {
-    date: "2026.03.01",
-    cat: "お知らせ",
-    title: "ホームページをリニューアルしました",
-    desc: "株式会社サントーのホームページを全面リニューアルいたしました。より見やすく、使いやすいデザインに生まれ変わりました。",
-    img: "/images/news/news01.png",
-  },
-  {
-    date: "2026.02.15",
-    cat: "求人",
-    title: "新規求人情報を更新しました",
-    desc: "製造・物流・事務など、新しい求人情報を多数掲載しました。ぜひご覧ください。",
-    img: "/images/news/news02.png",
-  },
-  {
-    date: "2026.01.10",
-    cat: "お知らせ",
-    title: "年末年始休業のお知らせ",
-    desc: "誠に勝手ながら、年末年始の休業期間についてご案内いたします。ご不便をおかけしますがご了承ください。",
-    img: "/images/news/news03.png",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function NewsScroller() {
+  const t = useTranslations("NewsScroller");
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const newsList = [
+    {
+      date: "2026.03.01",
+      cat: t("news1Tag"),
+      title: t("news1Title"),
+      desc: t("news1Desc"),
+      img: "/images/news/news01.png",
+    },
+    {
+      date: "2026.02.20",
+      cat: t("news2Tag"),
+      title: t("news2Title"),
+      desc: t("news2Desc"),
+      img: "/images/news/news02.png",
+    },
+    {
+      date: "2026.02.10",
+      cat: t("news3Tag"),
+      title: t("news3Title"),
+      desc: t("news3Desc"),
+      img: "/images/news/news03.png",
+    },
+    {
+      date: "2026.01.10",
+      cat: t("news4Tag"),
+      title: t("news4Title"),
+      desc: t("news4Desc"),
+      img: "/images/news/news04.png",
+    },
+  ];
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;

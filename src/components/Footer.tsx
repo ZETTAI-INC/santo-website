@@ -1,7 +1,33 @@
+"use client";
+
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Phone, Mail, MapPin, Globe } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+
+const languages = [
+  { code: "ja", label: "日本語" },
+  { code: "en", label: "English" },
+  { code: "zh", label: "中文" },
+];
 
 export function Footer() {
+  const t = useTranslations("Footer");
+  const tHeader = useTranslations("Header");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh)/, "") || "/";
+
+  const localePath = (path: string) => {
+    if (locale === "ja") return path;
+    return `/${locale}${path}`;
+  };
+
+  function switchLocaleHref(targetLocale: string) {
+    return `/${targetLocale}${pathWithoutLocale}`;
+  }
+
   return (
     <footer className="bg-[#2a7ac7] text-white">
       {/* Main Footer */}
@@ -10,12 +36,11 @@ export function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-4">
             <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center bg-white text-base font-black text-santo-navy">
-                S
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/santo_logo_square.jpg" alt="Santo" className="h-12 w-12 object-cover lg:h-14 lg:w-14" />
               <div>
                 <p className="text-base font-black tracking-wider">
-                  株式会社サントー
+                  {t("companyName")}
                 </p>
                 <p className="text-[10px] font-bold tracking-[0.15em] text-slate-400">
                   SANTO CO., LTD.
@@ -25,7 +50,7 @@ export function Footer() {
             <div className="space-y-2.5 text-[13px] text-slate-300">
               <p className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-santo-accent" />
-                〒254-0807 神奈川県平塚市代官町7-29
+                {t("address")}
               </p>
               <p className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-santo-accent" />
@@ -45,14 +70,14 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {[
-                { name: "ホーム", href: "/" },
-                { name: "会社概要", href: "/about" },
-                { name: "仕事をお探しの方", href: "/jobseekers" },
-                { name: "企業様へ", href: "/employers" },
+                { name: tHeader("home"), href: "/" },
+                { name: tHeader("about"), href: "/about" },
+                { name: tHeader("jobseekers"), href: "/jobseekers" },
+                { name: tHeader("employers"), href: "/employers" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={localePath(item.href)}
                     className="text-[13px] text-slate-300 transition-colors hover:text-white"
                   >
                     {item.name}
@@ -69,14 +94,12 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {[
-                { name: "アクセス", href: "/access" },
-                { name: "お問い合わせ", href: "/contact" },
-                { name: "労働者派遣事業に係る情報公開", href: "#" },
-                { name: "プライバシーポリシー", href: "#" },
+                { name: tHeader("access"), href: "/access" },
+                { name: tHeader("contact"), href: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href}
+                    href={item.href === "#" ? item.href : localePath(item.href)}
                     className="text-[13px] text-slate-300 transition-colors hover:text-white"
                   >
                     {item.name}
@@ -91,18 +114,19 @@ export function Footer() {
             <h3 className="mb-4 text-[10px] font-black tracking-[0.2em] text-slate-400">
               LANGUAGE
             </h3>
-            <div className="flex flex-wrap gap-2">
-              {[
-                { name: "English", href: "/en" },
-                { name: "Português", href: "/pt" },
-                { name: "Español", href: "/es" },
-              ].map((item) => (
+            <div className="flex items-center gap-2 flex-nowrap">
+              <Globe className="h-4 w-4 shrink-0 text-slate-400" />
+              {languages.map((lang) => (
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded bg-white/10 px-3.5 py-1.5 text-xs font-bold text-slate-300 transition-colors hover:bg-white/20 hover:text-white"
+                  key={lang.code}
+                  href={switchLocaleHref(lang.code)}
+                  className={`rounded px-3 py-1.5 text-xs font-bold whitespace-nowrap transition-colors ${
+                    locale === lang.code
+                      ? "bg-white text-santo-navy"
+                      : "bg-white/10 text-slate-300 hover:bg-white/20 hover:text-white"
+                  }`}
                 >
-                  {item.name}
+                  {lang.label}
                 </Link>
               ))}
             </div>
@@ -114,8 +138,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
           <p className="text-center text-[11px] font-bold tracking-wider text-slate-500">
-            &copy; {new Date().getFullYear()} SANTO CO., LTD. All Rights
-            Reserved.
+            {t("copyright")}
           </p>
         </div>
       </div>

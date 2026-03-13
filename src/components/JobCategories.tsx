@@ -1,49 +1,51 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Wrench, Monitor, Package, ChevronRight } from "lucide-react";
 
-const categories = [
-  {
-    id: "manufacturing",
-    label: "製造・軽作業",
-    icon: Wrench,
-    jobs: [
-      { title: "組立作業", desc: "部品の組み立て・加工作業" },
-      { title: "検品・梱包", desc: "製品の品質チェック・梱包作業" },
-      { title: "フォークリフト", desc: "倉庫内での荷物運搬作業" },
-      { title: "機械オペレーター", desc: "製造機械の操作・管理" },
-    ],
-  },
-  {
-    id: "office",
-    label: "事務・オフィスワーク",
-    icon: Monitor,
-    jobs: [
-      { title: "一般事務", desc: "書類作成・電話対応・庶務業務" },
-      { title: "データ入力", desc: "各種データの入力・集計作業" },
-      { title: "経理事務", desc: "経理・会計関連の事務処理" },
-      { title: "受付", desc: "来客対応・電話応対業務" },
-    ],
-  },
-  {
-    id: "logistics",
-    label: "物流・倉庫",
-    icon: Package,
-    jobs: [
-      { title: "ピッキング", desc: "指示書に基づく商品の取り出し" },
-      { title: "仕分け", desc: "商品の分類・整理作業" },
-      { title: "入出荷作業", desc: "商品の入荷・出荷処理" },
-      { title: "在庫管理", desc: "在庫数の管理・棚卸し作業" },
-    ],
-  },
-];
-
 export function JobCategories() {
+  const t = useTranslations("JobCategories");
   const [active, setActive] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+
+  const categories = [
+    {
+      id: "manufacturing",
+      label: t("cat1"),
+      icon: Wrench,
+      jobs: [
+        { title: t("cat1_job1"), desc: t("cat1_job1Desc") },
+        { title: t("cat1_job2"), desc: t("cat1_job2Desc") },
+        { title: t("cat1_job3"), desc: t("cat1_job3Desc") },
+        { title: t("cat1_job4"), desc: t("cat1_job4Desc") },
+      ],
+    },
+    {
+      id: "office",
+      label: t("cat2"),
+      icon: Monitor,
+      jobs: [
+        { title: t("cat2_job1"), desc: t("cat2_job1Desc") },
+        { title: t("cat2_job2"), desc: t("cat2_job2Desc") },
+        { title: t("cat2_job3"), desc: t("cat2_job3Desc") },
+        { title: t("cat2_job4"), desc: t("cat2_job4Desc") },
+      ],
+    },
+    {
+      id: "logistics",
+      label: t("cat3"),
+      icon: Package,
+      jobs: [
+        { title: t("cat3_job1"), desc: t("cat3_job1Desc") },
+        { title: t("cat3_job2"), desc: t("cat3_job2Desc") },
+        { title: t("cat3_job3"), desc: t("cat3_job3Desc") },
+        { title: t("cat3_job4"), desc: t("cat3_job4Desc") },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const el = ref.current;
@@ -148,7 +150,7 @@ export function JobCategories() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/job_types_mixed_photo.png"
-            alt="さまざまな職種"
+            alt={t("cta")}
             className="absolute inset-0 h-full w-full object-cover"
           />
           {/* オーバーレイ */}
@@ -160,7 +162,7 @@ export function JobCategories() {
               YOUR CAREER
             </p>
             <p className="mt-1 text-lg font-black tracking-wider text-white sm:text-xl">
-              あなたに合った働き方を
+              {t("cta")}
             </p>
           </div>
         </div>

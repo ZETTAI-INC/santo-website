@@ -5,9 +5,11 @@ type PageHeaderProps = {
   image?: string;
   imagePosition?: string;
   imageLayout?: "background" | "right";
+  tall?: boolean;
+  largeSubtitle?: boolean;
 };
 
-export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background" }: PageHeaderProps) {
+export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", tall = false, largeSubtitle = false }: PageHeaderProps) {
   const hasBackgroundImage = image && imageLayout === "background";
   const hasRightImage = image && imageLayout === "right";
 
@@ -20,7 +22,7 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
             className="absolute inset-0 bg-cover bg-no-repeat"
             style={{ backgroundImage: `url('${image}')`, backgroundPosition: `center ${imagePosition}` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/85 via-santo-navy/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/90 via-santo-navy/65 to-santo-navy/30" />
         </>
       )}
 
@@ -38,16 +40,16 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <div className={`flex items-center ${hasRightImage ? "justify-between gap-8" : ""}`}>
           {/* テキスト */}
-          <div className="py-16 sm:py-24 lg:py-28">
-            <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
+          <div className={tall ? "py-24 sm:py-32 lg:py-40" : "py-16 sm:py-24 lg:py-28"}>
+            <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-white/70">
               {label}
             </p>
-            <h1 className="text-4xl font-black tracking-wider text-white sm:text-5xl">
+            <h1 className="text-5xl font-black tracking-wider text-white drop-shadow-lg sm:text-6xl">
               {title}
             </h1>
             <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
             {subtitle && (
-              <p className="mt-5 max-w-lg text-[14px] leading-[2] text-white/70">
+              <p className={`mt-5 max-w-lg leading-[2] text-white/70 drop-shadow-md ${largeSubtitle ? "text-[22px] sm:text-[24px]" : "text-[18px]"}`}>
                 {subtitle}
               </p>
             )}

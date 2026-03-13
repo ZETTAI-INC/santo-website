@@ -1,18 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const stats = [
-  { value: 500, suffix: "+", label: "累計紹介実績", unit: "件", desc: "これまでに多くの求職者様を企業様へご紹介してまいりました。" },
-  { value: 150, suffix: "+", label: "取引企業数", unit: "社", desc: "製造・物流・事務など幅広い業種の企業様とお取引しています。" },
-  { value: 98, suffix: "", label: "スタッフ満足度", unit: "%", desc: "就業中のフォロー体制が評価され、高い満足度を維持しています。" },
-  { value: 24, suffix: "", label: "平均マッチング", unit: "時間", desc: "お問い合わせから最短24時間以内にお仕事をご提案いたします。" },
-];
-
-// 棒グラフのダミーデータ（年次推移）
-const barData = [30, 45, 65, 80, 100, 130, 170, 220, 300, 400, 500];
-// エリアチャートのダミーデータ
-const areaData = [10, 20, 35, 50, 65, 80, 95, 110, 125, 140, 150];
+import { Users, Building2, Star, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 function useCountUp(target: number, duration: number, start: boolean) {
   const [count, setCount] = useState(0);
@@ -39,247 +29,60 @@ function useCountUp(target: number, duration: number, start: boolean) {
   return count;
 }
 
-/* ── 棒グラフ（累計紹介実績） ── */
-function BarChart({ started }: { started: boolean }) {
-  const max = Math.max(...barData);
-  const w = 200;
-  const h = 80;
-  const barW = w / barData.length - 3;
-
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-full">
-      {barData.map((v, i) => {
-        const barH = (v / max) * (h - 4);
-        return (
-          <rect
-            key={i}
-            x={i * (barW + 3) + 1}
-            y={h - barH}
-            width={barW}
-            height={barH}
-            rx={2}
-            fill={i === barData.length - 1 ? "#1d6fb5" : "#c8dff2"}
-            style={{
-              opacity: started ? 1 : 0,
-              transform: started ? "scaleY(1)" : "scaleY(0)",
-              transformOrigin: "bottom",
-              transition: `transform 0.6s cubic-bezier(0.25,1,0.5,1) ${i * 60 + 300}ms, opacity 0.4s ${i * 60 + 300}ms`,
-            }}
-          />
-        );
-      })}
-    </svg>
-  );
-}
-
-/* ── エリアチャート（取引企業数） ── */
-function AreaChart({ started }: { started: boolean }) {
-  const max = Math.max(...areaData);
-  const w = 200;
-  const h = 80;
-  const points = areaData.map((v, i) => ({
-    x: (i / (areaData.length - 1)) * w,
-    y: h - (v / max) * (h - 8),
-  }));
-
-  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ");
-  const areaPath = `${linePath} L${w},${h} L0,${h} Z`;
-
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-full">
-      <defs>
-        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1d6fb5" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#1d6fb5" stopOpacity="0.03" />
-        </linearGradient>
-      </defs>
-      <path
-        d={areaPath}
-        fill="url(#areaGrad)"
-        style={{
-          opacity: started ? 1 : 0,
-          transition: "opacity 0.8s ease 0.4s",
-        }}
-      />
-      <path
-        d={linePath}
-        fill="none"
-        stroke="#1d6fb5"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{
-          strokeDasharray: 600,
-          strokeDashoffset: started ? 0 : 600,
-          transition: "stroke-dashoffset 1.5s cubic-bezier(0.25,1,0.5,1) 0.3s",
-        }}
-      />
-      {/* 最終点のドット */}
-      <circle
-        cx={points[points.length - 1].x}
-        cy={points[points.length - 1].y}
-        r="4"
-        fill="#1d6fb5"
-        style={{
-          opacity: started ? 1 : 0,
-          transition: "opacity 0.4s ease 1.6s",
-        }}
-      />
-    </svg>
-  );
-}
-
-/* ── ドーナツグラフ（スタッフ満足度） ── */
-function DonutChart({ started, value }: { started: boolean; value: number }) {
-  const r = 36;
-  const circumference = 2 * Math.PI * r;
-  const offset = circumference - (value / 100) * circumference;
-
-  return (
-    <svg viewBox="0 0 100 100" className="w-full h-full">
-      {/* 背景リング */}
-      <circle cx="50" cy="50" r={r} fill="none" stroke="#e8eff7" strokeWidth="8" />
-      {/* 進捗リング */}
-      <circle
-        cx="50"
-        cy="50"
-        r={r}
-        fill="none"
-        stroke="#1d6fb5"
-        strokeWidth="8"
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        strokeDashoffset={started ? offset : circumference}
-        style={{
-          transition: "stroke-dashoffset 1.8s cubic-bezier(0.25,1,0.5,1) 0.4s",
-          transform: "rotate(-90deg)",
-          transformOrigin: "50% 50%",
-        }}
-      />
-    </svg>
-  );
-}
-
-/* ── ゲージ（平均マッチング） ── */
-function GaugeChart({ started }: { started: boolean }) {
-  const r = 36;
-  const circumference = Math.PI * r; // 半円
-  const fillRatio = 24 / 48; // 24時間 / 48時間スケール
-  const offset = circumference - fillRatio * circumference;
-
-  return (
-    <svg viewBox="0 0 100 60" className="w-full h-full">
-      {/* 背景半円 */}
-      <path
-        d="M 14,55 A 36,36 0 0,1 86,55"
-        fill="none"
-        stroke="#e8eff7"
-        strokeWidth="8"
-        strokeLinecap="round"
-      />
-      {/* 進捗半円 */}
-      <path
-        d="M 14,55 A 36,36 0 0,1 86,55"
-        fill="none"
-        stroke="#1d6fb5"
-        strokeWidth="8"
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        strokeDashoffset={started ? offset : circumference}
-        style={{
-          transition: "stroke-dashoffset 1.5s cubic-bezier(0.25,1,0.5,1) 0.4s",
-        }}
-      />
-      {/* 目盛り */}
-      {[0, 12, 24, 36, 48].map((h, i) => {
-        const angle = Math.PI - (i / 4) * Math.PI;
-        const x1 = 50 + 42 * Math.cos(angle);
-        const y1 = 55 - 42 * Math.sin(angle);
-        return (
-          <text
-            key={h}
-            x={x1}
-            y={y1}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            className="fill-slate-400"
-            fontSize="6"
-          >
-            {h}h
-          </text>
-        );
-      })}
-    </svg>
-  );
-}
-
-/* ── 統合カード ── */
 function StatCard({
-  value,
-  suffix,
-  label,
-  unit,
-  desc,
+  stat,
   started,
   delay,
-  index,
 }: {
-  value: number;
-  suffix: string;
-  label: string;
-  unit: string;
-  desc: string;
+  stat: {
+    value: number;
+    suffix: string;
+    label: string;
+    unit: string;
+    desc: string;
+    icon: typeof Users;
+    color: string;
+    borderColor: string;
+  };
   started: boolean;
   delay: number;
-  index: number;
 }) {
-  const count = useCountUp(value, 2200, started);
-
-  const chartMap: Record<number, React.ReactNode> = {
-    0: <BarChart started={started} />,
-    1: <AreaChart started={started} />,
-    2: <DonutChart started={started} value={value} />,
-    3: <GaugeChart started={started} />,
-  };
+  const count = useCountUp(stat.value, 2000, started);
+  const Icon = stat.icon;
 
   return (
     <div
-      className="flex flex-col rounded-2xl border border-slate-200 bg-white px-6 py-7 sm:px-7 sm:py-8"
+      className="bg-white px-6 py-7 shadow-sm transition-all duration-300 hover:shadow-md"
       style={{
         opacity: started ? 1 : 0,
-        transform: started ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.9s cubic-bezier(0.25,1,0.5,1) ${delay}ms, transform 0.9s cubic-bezier(0.25,1,0.5,1) ${delay}ms`,
+        transform: started ? "translateY(0)" : "translateY(30px)",
+        transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
       }}
     >
-      {/* ラベル */}
-      <p className="text-[13px] font-bold tracking-wider text-slate-900">
-        {label}
-      </p>
-
-      {/* 数字 */}
-      <div className="mt-2 flex items-baseline">
-        <span className="text-5xl font-extralight tabular-nums tracking-tight text-santo-navy sm:text-6xl">
+      <div className="mb-5 flex items-center gap-3">
+        <Icon className={`h-7 w-7 ${stat.color}`} />
+        <p className="text-[22px] font-black tracking-wider text-slate-800">
+          {stat.label}
+        </p>
+      </div>
+      <div className="flex items-baseline">
+        <span className="text-6xl font-black tabular-nums tracking-tight text-slate-900 sm:text-7xl">
           {count}
         </span>
-        <span className="ml-1 text-lg font-medium text-santo-navy">
-          {unit}{suffix}
+        <span className="ml-1.5 text-xl font-bold text-slate-500">
+          {stat.unit}
+          {stat.suffix}
         </span>
       </div>
-
-      {/* グラフ */}
-      <div className={`mt-4 ${index === 2 ? "mx-auto w-24 h-24" : index === 3 ? "mx-auto w-32 h-16" : "w-full h-20"}`}>
-        {chartMap[index]}
-      </div>
-
-      {/* 説明文 */}
-      <p className="mt-3 text-[11px] leading-[1.8] text-slate-500">
-        {desc}
+      <p className="mt-4 text-[17px] leading-[1.9] text-slate-500">
+        {stat.desc}
       </p>
     </div>
   );
 }
 
 export function CountUpStats() {
+  const t = useTranslations("CountUpStats");
   const ref = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
 
@@ -291,7 +94,6 @@ export function CountUpStats() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setStarted(true);
-          document.querySelector(".numbers-line")?.classList.add("is-visible");
           observer.unobserve(el);
         }
       },
@@ -302,14 +104,88 @@ export function CountUpStats() {
     return () => observer.disconnect();
   }, []);
 
+  const stats = [
+    {
+      value: 500,
+      suffix: "+",
+      label: t("stat1Label"),
+      unit: t("stat1Unit"),
+      desc: t("stat1Desc"),
+      icon: Users,
+      color: "text-blue-400",
+      borderColor: "border-l-blue-400",
+    },
+    {
+      value: 150,
+      suffix: "+",
+      label: t("stat2Label"),
+      unit: t("stat2Unit"),
+      desc: t("stat2Desc"),
+      icon: Building2,
+      color: "text-blue-500",
+      borderColor: "border-l-blue-500",
+    },
+    {
+      value: 98,
+      suffix: "",
+      label: t("stat3Label"),
+      unit: t("stat3Unit"),
+      desc: t("stat3Desc"),
+      icon: Star,
+      color: "text-blue-600",
+      borderColor: "border-l-blue-600",
+    },
+    {
+      value: 24,
+      suffix: "",
+      label: t("stat4Label"),
+      unit: t("stat4Unit"),
+      desc: t("stat4Desc"),
+      icon: Zap,
+      color: "text-blue-800",
+      borderColor: "border-l-blue-800",
+    },
+  ];
+
   return (
-    <div
-      ref={ref}
-      className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4"
-    >
-      {stats.map((stat, i) => (
-        <StatCard key={stat.label} {...stat} started={started} delay={i * 150} index={i} />
-      ))}
+    <div ref={ref} className="flex flex-col gap-10 lg:flex-row lg:gap-16">
+      {/* 左: タイトル（PCではsticky） */}
+      <div className="lg:w-[380px] lg:shrink-0">
+        <div className="lg:sticky lg:top-32">
+          <p className="mb-4 text-[14px] font-black tracking-[0.3em] text-santo-light">
+            {t("label")}
+          </p>
+          <h2 className="whitespace-nowrap text-[2.3rem] font-black tracking-wider text-slate-900">
+            {t("title")}
+          </h2>
+          <div className="mt-6 h-1 w-16 rounded-full bg-santo-navy" />
+          <p className="mt-8 text-[17px] leading-[2.2] text-slate-500">
+            <span className="whitespace-nowrap">{t("desc1")}</span>
+            <br />
+            <span className="whitespace-nowrap">{t("desc2")}</span>
+            <br />
+            <span className="whitespace-nowrap">{t("desc3")}</span>
+          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/illust_numbers_growth.png"
+            alt=""
+            className="mt-8 ml-8 hidden h-auto w-72 opacity-80 lg:block"
+          />
+        </div>
+      </div>
+
+      {/* 右: 2x2 グリッド */}
+      <div className="grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2">
+        {stats.map((stat, i) => (
+          <StatCard
+            key={stat.label}
+            stat={stat}
+            started={started}
+            delay={i * 200}
+          />
+        ))}
+      </div>
     </div>
   );
 }

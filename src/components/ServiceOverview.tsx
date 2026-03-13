@@ -1,0 +1,167 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+
+function ServiceRow({
+  service,
+  index,
+}: {
+  service: {
+    img: string;
+    label: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    bg: string;
+  };
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const isEven = index % 2 === 0;
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section className={`${service.bg} relative overflow-hidden`}>
+      {/* 背景の大きな番号 */}
+      <div
+        className={`pointer-events-none absolute top-1/2 -translate-y-1/2 text-[280px] font-black leading-none text-santo-navy/[0.03] sm:text-[360px] ${
+          isEven ? "right-8" : "left-8"
+        }`}
+      >
+        {service.label}
+      </div>
+
+      <div
+        ref={ref}
+        className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible
+            ? "translateX(0)"
+            : isEven
+              ? "translateX(-60px)"
+              : "translateX(60px)",
+          transition: "opacity 0.8s ease, transform 0.8s ease",
+        }}
+      >
+        <div
+          className={`flex flex-col items-center gap-12 lg:gap-20 ${
+            isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+          }`}
+        >
+          {/* 図 */}
+          <div className="flex w-full items-center justify-center lg:w-[55%]">
+            <div className="w-full max-w-[560px] rounded-2xl bg-white p-6 shadow-[0_8px_40px_rgba(0,0,0,0.12)] ring-1 ring-slate-200/40 sm:p-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={service.img}
+                alt={service.title}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+
+          {/* テキスト */}
+          <div className="w-full lg:w-[45%]">
+            <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+              {service.subtitle.toUpperCase()}
+            </p>
+            <div className="mb-5 flex items-baseline gap-4">
+              <span className="text-7xl font-black leading-none text-santo-navy/10 sm:text-8xl">
+                {service.label}
+              </span>
+              <h3 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl">
+                {service.title}
+              </h3>
+            </div>
+            <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
+            <p className="text-[18px] leading-[2.2] text-slate-600">
+              {service.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ServiceOverview() {
+  const t = useTranslations("ServiceOverview");
+  const locale = useLocale();
+  const imgSuffix = locale === "ja" ? "" : locale === "zh" ? "_zh" : "_en";
+  const imgExt = locale === "ja" ? ".png" : ".jpg";
+
+  const services = [
+    {
+      img: `/images/services/dispatch_structure${imgSuffix}${imgExt}`,
+      label: "01",
+      title: t("diagramTitle"),
+      subtitle: "Staffing Structure",
+      description: t("diagramDesc"),
+      bg: "bg-white",
+    },
+    {
+      img: `/images/services/dispatch_service${imgSuffix}${imgExt}`,
+      label: "02",
+      title: t("dispatchTitle"),
+      subtitle: "Staffing Service",
+      description: t("dispatchDesc"),
+      bg: "bg-[#f4f7fb]",
+    },
+    {
+      img: `/images/services/outsourcing_service${imgSuffix}${imgExt}`,
+      label: "03",
+      title: t("outsourcingTitle"),
+      subtitle: "Outsourcing Service",
+      description: t("outsourcingDesc"),
+      bg: "bg-white",
+    },
+  ];
+
+  return (
+    <div>
+      {/* セクションヘッダー */}
+      <section className="bg-white pb-0 pt-28 sm:pt-36">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="text-center">
+            <p className="mb-3 text-[13px] font-black tracking-[0.25em] text-santo-light">
+              {t("label")}
+            </p>
+            <h2 className="text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+              {t("title")}
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-santo-navy" />
+            <p className="mx-auto mt-6 max-w-md text-[18px] leading-[1.9] text-slate-500">
+              {t("subtitle")}
+              <br />
+              {t("subtitle2")}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ジグザグレイアウト */}
+      {services.map((service, i) => (
+        <ServiceRow key={service.title} service={service} index={i} />
+      ))}
+    </div>
+  );
+}

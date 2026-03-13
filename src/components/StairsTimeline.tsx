@@ -28,11 +28,9 @@ const historyItems = [
 function StairStep({
   item,
   index,
-  total,
 }: {
   item: (typeof historyItems)[number];
   index: number;
-  total: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -88,7 +86,7 @@ export function StairsTimeline() {
       {/* デスクトップ: 階段レイアウト */}
       <div className="hidden md:flex items-end justify-center w-full pt-24">
         {historyItems.map((item, i) => (
-          <StairStep key={i} item={item} index={i} total={historyItems.length} />
+          <StairStep key={i} item={item} index={i} />
         ))}
       </div>
 
