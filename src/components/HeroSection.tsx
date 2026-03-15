@@ -21,13 +21,12 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-santo-navy">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+        className="hero-bg absolute inset-0 bg-no-repeat"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/70 via-santo-navy/50 to-santo-navy/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/90 via-santo-navy/70 to-santo-navy/30 sm:from-santo-navy/70 sm:via-santo-navy/50" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-santo-accent/20" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
+      <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-32 lg:py-40">
         <div>
           <div className="max-w-3xl">
             {/* タイプライターキャッチコピー */}
@@ -60,12 +59,12 @@ export function HeroSection() {
               }}
             >
               <div className="w-[3px] shrink-0 rounded-full bg-santo-accent" />
-              <p className="text-[22px] leading-[1.8] text-white" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
-                <span className="whitespace-nowrap">{t("heroSub1")}</span>
+              <p className="text-[16px] leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
+                <span className="sm:whitespace-nowrap">{t("heroSub1")}</span>
                 <br />
-                <span className="whitespace-nowrap"><span className="text-[26px] font-bold" style={{ color: "#0a2e5c", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
+                <span className="sm:whitespace-nowrap"><span className="text-[20px] font-bold sm:text-[26px]" style={{ color: "#0a2e5c", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
                 <br />
-                <span className="whitespace-nowrap">{t("heroSub4")}</span>
+                <span className="sm:whitespace-nowrap">{t("heroSub4")}</span>
               </p>
             </div>
 

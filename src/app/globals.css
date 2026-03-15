@@ -105,6 +105,19 @@
   }
 }
 
+/* ヒーロー背景: モバイルは右寄り、PCは中央 */
+.hero-bg {
+  background-image: url('/images/hero-bg.png');
+  background-size: cover;
+  background-position: right center;
+}
+
+@media (min-width: 640px) {
+  .hero-bg {
+    background-position: center;
+  }
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0);

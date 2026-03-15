@@ -56,19 +56,19 @@ function FeatureRow({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/extracted_curly_line_straight.png" alt="お悩み" className="h-16 w-16 object-contain" />
           </div>
-          <p className="whitespace-pre-line text-center text-[20px] font-bold leading-[1.7] text-slate-700">
+          <p className="whitespace-pre-line text-center text-[16px] font-bold leading-[1.7] text-slate-700 sm:text-[20px]">
             {feature.problem}
           </p>
         </div>
-        <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-white p-8 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-santo-navy before:rounded-bl-2xl">
+        <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-white p-5 sm:p-8 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-santo-navy before:rounded-bl-2xl">
           <div className="mb-4 flex justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={feature.img} alt={feature.title} className="h-32 w-32 object-contain" />
+            <img src={feature.img} alt={feature.title} className="h-24 w-24 object-contain sm:h-32 sm:w-32" />
           </div>
-          <h3 className="mb-2 text-center text-xl font-black tracking-wider text-santo-navy">
+          <h3 className="mb-2 text-center text-lg font-black tracking-wider text-santo-navy sm:text-xl">
             {feature.title}
           </h3>
-          <p className="text-center text-[18px] leading-[2] text-slate-600">
+          <p className="text-center text-[15px] leading-[2] text-slate-600 sm:text-[18px]">
             {feature.solution}
           </p>
         </div>

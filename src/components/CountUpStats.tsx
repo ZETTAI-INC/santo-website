@@ -66,7 +66,7 @@ function StatCard({
         </p>
       </div>
       <div className="flex items-baseline">
-        <span className="text-6xl font-black tabular-nums tracking-tight text-slate-900 sm:text-7xl">
+        <span className="text-5xl font-black tabular-nums tracking-tight text-slate-900 sm:text-7xl">
           {count}
         </span>
         <span className="ml-1.5 text-xl font-bold text-slate-500">
@@ -155,16 +155,16 @@ export function CountUpStats() {
           <p className="mb-4 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("label")}
           </p>
-          <h2 className="whitespace-nowrap text-[2.3rem] font-black tracking-wider text-slate-900">
+          <h2 className="text-[1.7rem] font-black tracking-wider text-slate-900 sm:text-[2.3rem] sm:whitespace-nowrap">
             {t("title")}
           </h2>
           <div className="mt-6 h-1 w-16 rounded-full bg-santo-navy" />
-          <p className="mt-8 text-[17px] leading-[2.2] text-slate-500">
-            <span className="whitespace-nowrap">{t("desc1")}</span>
+          <p className="mt-8 text-[15px] leading-[2.2] text-slate-500 sm:text-[17px]">
+            <span className="sm:whitespace-nowrap">{t("desc1")}</span>
             <br />
-            <span className="whitespace-nowrap">{t("desc2")}</span>
+            <span className="sm:whitespace-nowrap">{t("desc2")}</span>
             <br />
-            <span className="whitespace-nowrap">{t("desc3")}</span>
+            <span className="sm:whitespace-nowrap">{t("desc3")}</span>
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

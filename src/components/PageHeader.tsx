@@ -44,12 +44,12 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-white/70">
               {label}
             </p>
-            <h1 className="text-5xl font-black tracking-wider text-white drop-shadow-lg sm:text-6xl">
+            <h1 className="text-3xl font-black tracking-wider text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
               {title}
             </h1>
             <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
             {subtitle && (
-              <p className={`mt-5 max-w-lg leading-[2] text-white/70 drop-shadow-md ${largeSubtitle ? "text-[22px] sm:text-[24px]" : "text-[18px]"}`}>
+              <p className={`mt-5 max-w-lg leading-[2] text-white/70 drop-shadow-md ${largeSubtitle ? "text-[16px] sm:text-[22px] lg:text-[24px]" : "text-[15px] sm:text-[18px]"}`}>
                 {subtitle}
               </p>
             )}

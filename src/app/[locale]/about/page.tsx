@@ -37,7 +37,7 @@ export default async function AboutPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("messageLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("messageTitle")}
           </h2>
           <div className="grid gap-10 lg:grid-cols-5">
@@ -68,24 +68,24 @@ export default async function AboutPage() {
       </section>
 
       {/* 企業理念 */}
-      <section className="relative min-h-[520px] overflow-hidden bg-cover py-28 sm:py-36 lg:py-44" style={{ backgroundImage: "url('/images/philosophy_bg_sky.png')", backgroundPosition: "center 20%" }}>
+      <section className="relative min-h-[400px] overflow-hidden bg-cover py-16 sm:min-h-[520px] sm:py-36 lg:py-44" style={{ backgroundImage: "url('/images/philosophy_bg_sky.png')", backgroundPosition: "center 20%" }}>
         <div className="absolute inset-0 bg-santo-navy/25" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-slate-500">
             {t("philosophyLabel")}
           </p>
-          <h2 className="mb-8 text-3xl font-black tracking-wider text-slate-800 drop-shadow-md sm:text-4xl">
+          <h2 className="mb-8 text-2xl font-black tracking-wider text-slate-800 drop-shadow-md sm:text-3xl lg:text-4xl">
             {t("philosophyTitle")}
           </h2>
           <div className="mx-auto h-1 w-14 rounded-full bg-slate-800/30" />
           <div className="mx-auto max-w-4xl py-12 sm:py-16">
-            <p className={`font-black leading-[1.8] text-slate-800 drop-shadow-lg ${isJa ? "text-4xl tracking-[0.1em] sm:text-5xl lg:text-6xl" : "text-2xl tracking-wide sm:text-3xl lg:text-4xl"}`}>
+            <p className={`font-black leading-[1.8] text-slate-800 drop-shadow-lg ${isJa ? "text-2xl tracking-[0.1em] sm:text-4xl lg:text-6xl" : "text-xl tracking-wide sm:text-3xl lg:text-4xl"}`}>
               {t("philosophyText1")}<span className="text-santo-blue">{t("philosophyHighlight1")}</span>{t("philosophyText2")}
               <br />
               {t("philosophyText3")}<span className="text-santo-blue">{t("philosophyHighlight2")}</span>{t("philosophyText4")}<span className="text-santo-blue">{t("philosophyHighlight3")}</span>{t("philosophyText5")}
             </p>
           </div>
-          <p className="mx-auto max-w-lg text-[17px] leading-[2] text-slate-600">
+          <p className="mx-auto max-w-lg text-[14px] leading-[2] text-slate-600 sm:text-[17px]">
             {t("philosophyDesc")}
           </p>
         </div>
@@ -97,7 +97,7 @@ export default async function AboutPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("overviewLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("overviewTitle")}
           </h2>
           <div className="overflow-hidden rounded-xl border border-slate-200">
@@ -110,10 +110,10 @@ export default async function AboutPage() {
                       i % 2 === 0 ? "bg-white" : "bg-santo-gray"
                     }
                   >
-                    <th className="w-40 border-r border-slate-200 px-6 py-5 text-left text-[16px] font-black tracking-wider text-santo-navy sm:w-52">
+                    <th className="w-28 border-r border-slate-200 px-3 py-4 text-left text-[13px] font-black tracking-wider text-santo-navy sm:w-52 sm:px-6 sm:py-5 sm:text-[16px]">
                       {item.label}
                     </th>
-                    <td className="px-6 py-5 text-[16px] text-slate-600">
+                    <td className="px-3 py-4 text-[13px] text-slate-600 sm:px-6 sm:py-5 sm:text-[16px]">
                       {item.value}
                     </td>
                   </tr>
@@ -131,7 +131,7 @@ export default async function AboutPage() {
             <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-santo-light">
               {t("historyLabel")}
             </p>
-            <h2 className="text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("historyTitle")}
             </h2>
             <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-santo-navy" />

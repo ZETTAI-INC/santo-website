@@ -67,11 +67,11 @@ export default async function EmployersPage() {
               <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
                 {t("leadLabel")}
               </p>
-              <h2 className="mb-6 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+              <h2 className="mb-6 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
                 {t("leadTitle1")}<br /><span className="text-santo-blue">{t("leadTitle2")}</span>{t("leadTitle3")}
               </h2>
               <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
-              <p className="text-[17px] leading-[2.2] text-slate-600">
+              <p className="text-[15px] leading-[2.2] text-slate-600 sm:text-[17px]">
                 {t("leadDesc")}
               </p>
               <div className="mt-8 flex justify-center">
@@ -136,7 +136,7 @@ export default async function EmployersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("strengthLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("strengthTitle")}
           </h2>
           <StrengthTimeline />
@@ -148,7 +148,7 @@ export default async function EmployersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("flowLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("flowTitle")}
           </h2>
           {/* モバイル: 縦並び */}
@@ -243,7 +243,7 @@ export default async function EmployersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("industryLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("industryTitle")}
           </h2>
           <EmployerIndustries />
@@ -251,7 +251,7 @@ export default async function EmployersPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative overflow-hidden py-20 sm:py-28 min-h-[480px] lg:min-h-[560px]">
+      <section className="relative overflow-hidden py-16 sm:py-28 min-h-[380px] sm:min-h-[480px] lg:min-h-[560px]">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{ backgroundImage: "url('/images/trustworthy_woman_blurred_man.png')", backgroundPosition: "center 30%" }}
@@ -261,10 +261,10 @@ export default async function EmployersPage() {
           <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             {t("ctaLabel")}
           </p>
-          <h2 className="mb-4 text-2xl font-black tracking-wider text-white sm:text-3xl">
+          <h2 className="mb-4 text-xl font-black tracking-wider text-white sm:text-2xl lg:text-3xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-10 max-w-md text-[14px] leading-[1.9] text-white/70">
+          <p className="mx-auto mb-8 max-w-md text-[13px] leading-[1.9] text-white/70 sm:mb-10 sm:text-[14px]">
             {t("ctaDesc")}
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">

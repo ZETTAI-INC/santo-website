@@ -84,16 +84,16 @@ function ServiceRow({
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
               {service.subtitle.toUpperCase()}
             </p>
-            <div className="mb-5 flex items-baseline gap-4">
-              <span className="text-7xl font-black leading-none text-santo-navy/10 sm:text-8xl">
+            <div className="mb-5 flex items-baseline gap-3 sm:gap-4">
+              <span className="text-5xl font-black leading-none text-santo-navy/10 sm:text-7xl lg:text-8xl">
                 {service.label}
               </span>
-              <h3 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl">
+              <h3 className="text-2xl font-black tracking-wider text-slate-900 sm:text-3xl lg:text-4xl">
                 {service.title}
               </h3>
             </div>
             <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="text-[18px] leading-[2.2] text-slate-600">
+            <p className="text-[15px] leading-[2.2] text-slate-600 sm:text-[18px]">
               {service.description}
             </p>
           </div>
@@ -139,17 +139,17 @@ export function ServiceOverview() {
   return (
     <div>
       {/* セクションヘッダー */}
-      <section className="bg-white pb-0 pt-28 sm:pt-36">
+      <section className="bg-white pb-0 pt-16 sm:pt-28 lg:pt-36">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center">
             <p className="mb-3 text-[13px] font-black tracking-[0.25em] text-santo-light">
               {t("label")}
             </p>
-            <h2 className="text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("title")}
             </h2>
             <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="mx-auto mt-6 max-w-md text-[18px] leading-[1.9] text-slate-500">
+            <p className="mx-auto mt-6 max-w-md text-[15px] leading-[1.9] text-slate-500 sm:text-[18px]">
               {t("subtitle")}
               <br />
               {t("subtitle2")}

@@ -77,17 +77,17 @@ export default async function JobseekersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("meritLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl lg:text-6xl">
+          <h2 className="mb-4 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-6xl">
             {t("meritTitle1")}<span className="relative inline-block text-santo-blue" style={{ backgroundImage: "linear-gradient(transparent 70%, #bfdbfe 70%)", backgroundRepeat: "no-repeat" }}>{t("meritTitle2")}</span>
           </h2>
           <div className="mt-5 h-1 w-14 rounded-full bg-santo-navy" />
-          <p className="mt-5 mb-12 whitespace-nowrap text-[34px] font-bold leading-[1.8] tracking-wide text-slate-500">
+          <p className="mt-5 mb-12 text-[18px] font-bold leading-[1.8] tracking-wide text-slate-500 sm:text-[26px] lg:text-[34px] lg:whitespace-nowrap">
             {t("meritDesc")}
           </p>
           <HexMerits />
           <div className="mt-14 flex flex-col items-center text-center">
             <div className="h-[2px] w-12 rounded-full bg-santo-blue" />
-            <p className="mt-5 whitespace-nowrap text-[24px] font-bold leading-[1.8] tracking-wide text-slate-700 sm:text-[34px] lg:text-[40px]">
+            <p className="mt-5 text-[20px] font-bold leading-[1.8] tracking-wide text-slate-700 sm:text-[34px] lg:whitespace-nowrap lg:text-[40px]">
               {t("meritCta1")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight1")}</span>{t("meritCta2")}<br />{t("meritCta3")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight2")}</span>{t("meritCta4")}
             </p>
           </div>
@@ -107,7 +107,7 @@ export default async function JobseekersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("flowLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("flowTitle")}
           </h2>
           {/* モバイル: 縦並び / デスクトップ: 矢印型横並び */}
@@ -201,7 +201,7 @@ export default async function JobseekersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("jobTypeLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("jobTypeTitle")}
           </h2>
           <JobCategories />
@@ -214,7 +214,7 @@ export default async function JobseekersPage() {
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("faqLabel")}
           </p>
-          <h2 className="mb-4 text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("faqTitle")}
           </h2>
           <Accordion className="space-y-3">

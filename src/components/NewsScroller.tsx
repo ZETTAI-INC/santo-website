@@ -53,13 +53,13 @@ export function NewsScroller() {
       {/* 左右ボタン */}
       <button
         onClick={() => scroll("left")}
-        className="absolute -left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition-all hover:bg-santo-sky hover:shadow-lg"
+        className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition-all hover:bg-santo-sky hover:shadow-lg sm:-left-4"
       >
         <ChevronLeft className="h-5 w-5 text-santo-navy" />
       </button>
       <button
         onClick={() => scroll("right")}
-        className="absolute -right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition-all hover:bg-santo-sky hover:shadow-lg"
+        className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition-all hover:bg-santo-sky hover:shadow-lg sm:-right-4"
       >
         <ChevronRight className="h-5 w-5 text-santo-navy" />
       </button>

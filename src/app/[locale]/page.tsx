@@ -20,13 +20,13 @@ export default async function Home() {
       <ServiceOverview />
 
       {/* Features */}
-      <section className="bg-santo-gray py-24 sm:py-32">
+      <section className="bg-santo-gray py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-14 text-center sm:mb-20">
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
               {t("whySantoLabel")}
             </p>
-            <h2 className="text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("whySantoTitle")}
             </h2>
             <div className="mx-auto mt-4 h-0.5 w-12 bg-santo-navy" />
@@ -43,7 +43,7 @@ export default async function Home() {
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
               {t("partnersLabel")}
             </p>
-            <h2 className="text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("partnersTitle")}
             </h2>
             <p className="mx-auto mt-3 max-w-md text-[13px] leading-[1.8] text-slate-500">
@@ -115,17 +115,17 @@ export default async function Home() {
       {/* CTA Section */}
       <section className="relative overflow-hidden">
         {/* 背景画像エリア */}
-        <div className="relative px-4 pb-40 pt-20 sm:px-6 sm:pb-48 sm:pt-28">
+        <div className="relative px-5 pb-32 pt-16 sm:px-6 sm:pb-48 sm:pt-28">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('/images/cta-bg-v2.png')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/70 via-santo-navy/50 to-santo-navy/30" />
           <div className="relative mx-auto max-w-4xl text-center">
-            <h2 className="text-4xl font-black leading-[1.5] tracking-wider text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+            <h2 className="text-2xl font-black leading-[1.5] tracking-wider text-white drop-shadow-lg sm:text-4xl lg:text-6xl">
               {t("ctaTitle")}
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-[22px] leading-[2] text-white drop-shadow-md">
+            <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-[2] text-white drop-shadow-md sm:text-[22px]">
               {t("ctaDesc")}
             </p>
           </div>
@@ -214,7 +214,7 @@ export default async function Home() {
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
               {t("newsLabel")}
             </p>
-            <h2 className="text-4xl font-black tracking-wider text-slate-900 sm:text-5xl">
+            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("newsTitle")}
             </h2>
             <div className="mx-auto mt-4 h-0.5 w-12 bg-santo-navy" />
@@ -224,7 +224,7 @@ export default async function Home() {
       </section>
 
       {/* Contact CTA */}
-      <section className="relative overflow-hidden py-28 sm:py-36 lg:py-44 min-h-[520px] lg:min-h-[600px]">
+      <section className="relative overflow-hidden py-20 sm:py-36 lg:py-44 min-h-[420px] sm:min-h-[520px] lg:min-h-[600px]">
         {/* 背景画像 */}
         <div
           className="absolute inset-0 bg-cover bg-no-repeat"
@@ -235,10 +235,10 @@ export default async function Home() {
           <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             {t("contactLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl">
+          <h2 className="mb-4 text-2xl font-black tracking-wider text-white sm:text-3xl lg:text-4xl">
             {t("contactTitle")}
           </h2>
-          <p className="mx-auto mb-10 max-w-md text-[14px] leading-[1.9] text-white/70">
+          <p className="mx-auto mb-8 max-w-md text-[13px] leading-[1.9] text-white/70 sm:mb-10 sm:text-[14px]">
             {t("contactDesc")}
           </p>
           <div className="flex flex-col items-center gap-6">
