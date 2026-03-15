@@ -20,7 +20,6 @@ export function Footer() {
   const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh)/, "") || "/";
 
   const localePath = (path: string) => {
-    if (locale === "ja") return path;
     return `/${locale}${path}`;
   };
 

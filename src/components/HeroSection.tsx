@@ -9,7 +9,7 @@ import { useTranslations, useLocale } from "next-intl";
 export function HeroSection() {
   const t = useTranslations("Home");
   const locale = useLocale();
-  const localePath = (path: string) => locale === "ja" ? path : `/${locale}${path}`;
+  const localePath = (path: string) => `/${locale}${path}`;
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {

@@ -34,7 +34,6 @@ export function Header() {
   const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh)/, "") || "/";
 
   function getLocalizedHref(path: string) {
-    if (locale === "ja") return path;
     return `/${locale}${path}`;
   }
 
