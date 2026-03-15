@@ -94,7 +94,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   { name: "旭ファイバーグラス株式会社", logo: "/images/partners/asahi_fiberglass.png" },
                   { name: "高周波工業株式会社", logo: "/images/partners/koshuha_kogyo.png" },
                   { name: "ファインツール・ジャパン株式会社", logo: "/images/partners/finetool_japan.png" },
-                  { name: "旭興業株式会社", logo: null },
                   { name: "三洋興産株式会社", logo: "/images/partners/sanyo_kosan.png" },
                 ].map((partner, i) => (
                   <div
