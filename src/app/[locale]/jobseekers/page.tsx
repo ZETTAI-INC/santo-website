@@ -250,7 +250,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
             {t("ctaDesc")}
           </p>
           <LinkButton
-            href="/contact"
+            href={`/${locale}/contact`}
             size="xl"
             className="bg-santo-navy text-white hover:bg-santo-blue"
           >

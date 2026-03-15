@@ -78,7 +78,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               </p>
               <div className="mt-8 flex justify-center">
                 <LinkButton
-                  href="/contact"
+                  href={`/${locale}/contact`}
                   size="xl"
                   className="bg-santo-navy px-14 text-white hover:bg-santo-blue"
                 >
@@ -271,7 +271,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <LinkButton
-              href="/contact"
+              href={`/${locale}/contact`}
               size="xl"
               className="animate-shimmer relative overflow-hidden bg-white px-12 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100"
             >

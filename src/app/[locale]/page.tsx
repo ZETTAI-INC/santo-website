@@ -137,7 +137,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="relative -mt-24 px-4 pb-20 sm:px-6 sm:pb-28">
           <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2">
             {/* 求職者向け */}
-            <div className="flex flex-col rounded-xl bg-white p-8 shadow-xl sm:p-10">
+            <div className="flex flex-col rounded-xl bg-white p-6 shadow-xl sm:p-10">
               <span className="inline-block rounded-full bg-santo-sky px-4 py-1.5 text-[13px] font-black tracking-wider text-santo-blue">
                 {t("ctaJobseekersTitle")}
               </span>
@@ -161,7 +161,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   {t("ctaJobseekersPrompt")}
                 </p>
                 <LinkButton
-                  href="/jobseekers"
+                  href={`/${locale}/jobseekers`}
                   size="xl"
                   className="mt-2 w-full justify-center bg-santo-navy text-white hover:bg-santo-blue"
                 >
@@ -172,7 +172,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </div>
 
             {/* 企業向け */}
-            <div className="flex flex-col rounded-xl bg-white p-8 shadow-xl sm:p-10">
+            <div className="flex flex-col rounded-xl bg-white p-6 shadow-xl sm:p-10">
               <span className="inline-block rounded-full bg-santo-navy/5 px-4 py-1.5 text-[13px] font-black tracking-wider text-santo-navy">
                 {t("ctaEmployersTitle")}
               </span>
@@ -196,7 +196,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   {t("ctaEmployersPrompt")}
                 </p>
                 <LinkButton
-                  href="/employers"
+                  href={`/${locale}/employers`}
                   size="xl"
                   className="mt-2 w-full justify-center bg-slate-800 text-white hover:bg-slate-700"
                 >
@@ -245,9 +245,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </p>
           <div className="flex flex-col items-center gap-6">
             <LinkButton
-              href="/contact"
+              href={`/${locale}/contact`}
               size="xl"
-              className="animate-shimmer relative overflow-hidden bg-white px-12 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100"
+              className="animate-shimmer relative overflow-hidden bg-white px-8 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:px-12"
             >
               {t("contactButton")}
               <ArrowRight className="h-5 w-5" />

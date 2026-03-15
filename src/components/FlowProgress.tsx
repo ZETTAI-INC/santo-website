@@ -66,9 +66,9 @@ export function FlowProgress() {
         }}
       >
         <CheckCircle className="h-6 w-6 shrink-0 text-santo-accent" />
-        <p className="text-[16px] font-black tracking-wider text-white">
-          <span className="whitespace-nowrap">{t("completeTitle")}</span>
-          <span className="ml-2 whitespace-nowrap text-[14px] font-bold text-white/70">
+        <p className="text-[14px] font-black tracking-wider text-white sm:text-[16px]">
+          <span className="sm:whitespace-nowrap">{t("completeTitle")}</span>
+          <span className="ml-2 text-[12px] font-bold text-white/70 sm:whitespace-nowrap sm:text-[14px]">
             {t("completeDesc")}
           </span>
         </p>

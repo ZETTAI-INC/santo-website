@@ -35,7 +35,7 @@ export function HeroSection() {
                 texts={[t("heroLine1"), t("heroLine2")]}
                 lineClasses={[
                   "text-2xl sm:text-3xl lg:text-4xl text-white/80",
-                  "text-5xl sm:text-6xl lg:text-8xl",
+                  "text-3xl sm:text-6xl lg:text-8xl",
                 ]}
               />
             </h1>

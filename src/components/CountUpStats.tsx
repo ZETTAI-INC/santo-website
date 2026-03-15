@@ -61,7 +61,7 @@ function StatCard({
     >
       <div className="mb-5 flex items-center gap-3">
         <Icon className={`h-7 w-7 ${stat.color}`} />
-        <p className="text-[22px] font-black tracking-wider text-slate-800">
+        <p className="text-[18px] font-black tracking-wider text-slate-800 sm:text-[22px]">
           {stat.label}
         </p>
       </div>
@@ -74,7 +74,7 @@ function StatCard({
           {stat.suffix}
         </span>
       </div>
-      <p className="mt-4 text-[17px] leading-[1.9] text-slate-500">
+      <p className="mt-4 text-[14px] leading-[1.9] text-slate-500 sm:text-[17px]">
         {stat.desc}
       </p>
     </div>
