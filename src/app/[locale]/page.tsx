@@ -68,7 +68,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   { name: "日本クラウンコルク株式会社", logo: "/images/partners/nippon_crown_cork.png" },
                   { name: "多田プレス工業株式会社", logo: "/images/partners/tada_press.png" },
                   { name: "株式会社武部鉄工所", logo: "/images/partners/takebe_tekko.png" },
-                  { name: "森工業株式会社", logo: "/images/partners/mori_kogyo.png" },
+                  { name: "森工業株式会社", logo: "/images/partners/mori_kogyo.svg" },
                   { name: "キョーラク株式会社", logo: "/images/partners/kyoraku.png" },
                   { name: "英宝総合株式会社", logo: "/images/partners/eiho_sogo.png" },
                 ].map((partner, i) => (
@@ -107,7 +107,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         <img src={partner.logo} alt={partner.name} className="h-10 max-w-[140px] object-contain" />
                       </>
                     ) : (
-                      <span className="text-[11px] font-bold leading-tight text-slate-400 text-center">
+                      <span className="text-[12px] font-black leading-tight tracking-wider text-slate-600 text-center">
                         {partner.name}
                       </span>
                     )}
