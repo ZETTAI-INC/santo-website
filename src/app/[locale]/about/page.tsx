@@ -25,6 +25,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     { label: t("infoAddress"), value: t("infoAddressValue") },
     { label: t("infoTel"), value: t("infoTelValue") },
     { label: t("infoFax"), value: t("infoFaxValue") },
+    { label: t("infoEmployees"), value: t("infoEmployeesValue") },
   ];
 
   return (
