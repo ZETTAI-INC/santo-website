@@ -10,7 +10,7 @@ import { LinkButton } from "@/components/LinkButton";
 import { PageHeader } from "@/components/PageHeader";
 import { StrengthTimeline } from "@/components/StrengthTimeline";
 import { EmployerIndustries } from "@/components/EmployerIndustries";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "人材をお探しの企業様",
@@ -18,7 +18,9 @@ export const metadata: Metadata = {
     "株式会社サントーの人材派遣サービスのご案内。貴社のニーズに合った最適な人材をご提案いたします。",
 };
 
-export default async function EmployersPage() {
+export default async function EmployersPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Employers");
 
   const steps = [

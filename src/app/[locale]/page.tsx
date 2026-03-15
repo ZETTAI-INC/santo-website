@@ -6,9 +6,11 @@ import { FeatureCards } from "@/components/FeatureCards";
 import { NewsScroller } from "@/components/NewsScroller";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceOverview } from "@/components/ServiceOverview";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Home");
 
   return (

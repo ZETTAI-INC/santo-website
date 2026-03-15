@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
-import { getTranslations } from "next-intl/server";
-import { getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "会社概要",
@@ -9,9 +8,10 @@ export const metadata: Metadata = {
     "株式会社サントーの会社概要、企業理念、代表挨拶、沿革をご紹介します。",
 };
 
-export default async function AboutPage() {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("About");
-  const locale = await getLocale();
   const isJa = locale === "ja";
 
   const companyInfo = [

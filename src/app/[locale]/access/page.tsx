@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { MapPin, Train, Car, Clock } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "アクセス",
   description: "株式会社サントーへのアクセス方法をご案内します。",
 };
 
-export default async function AccessPage() {
+export default async function AccessPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("Access");
 
   return (
