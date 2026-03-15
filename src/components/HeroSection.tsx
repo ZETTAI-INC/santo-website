@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Briefcase, Building2, ChevronDown } from "lucide-react";
+import { Briefcase, Building2 } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { TypeWriter } from "@/components/TypeWriter";
 import { useTranslations, useLocale } from "next-intl";
@@ -59,10 +59,10 @@ export function HeroSection() {
               }}
             >
               <div className="w-[3px] shrink-0 rounded-full bg-santo-accent" />
-              <p className="text-[16px] leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
+              <p className="text-[13px] leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
                 <span className="sm:whitespace-nowrap">{t("heroSub1")}</span>
                 <br />
-                <span className="sm:whitespace-nowrap"><span className="text-[20px] font-bold sm:text-[26px]" style={{ color: "#0a2e5c", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
+                <span className="sm:whitespace-nowrap"><span className="text-[15px] font-bold sm:text-[26px]" style={{ color: "#0a2e5c", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
                 <br />
                 <span className="sm:whitespace-nowrap">{t("heroSub4")}</span>
               </p>
@@ -98,19 +98,6 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* スクロールダウン矢印 */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-          style={{
-            opacity: showContent ? 1 : 0,
-            transition: "opacity 1s ease 0.8s",
-          }}
-        >
-          <p className="text-[9px] font-bold tracking-[0.2em] text-white/40">
-            SCROLL
-          </p>
-          <ChevronDown className="h-4 w-4 animate-bounce text-white/40" />
-        </div>
       </div>
     </section>
   );

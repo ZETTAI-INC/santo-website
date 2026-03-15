@@ -63,22 +63,21 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {[...Array(3)].map((_, setIdx) => (
               <div key={setIdx} className="flex shrink-0 gap-10">
                 {[
-                  "パートナー企業A",
-                  "パートナー企業B",
-                  "パートナー企業C",
-                  "パートナー企業D",
-                  "パートナー企業E",
-                  "パートナー企業F",
-                  "パートナー企業G",
-                  "パートナー企業H",
-                ].map((name, i) => (
+                  { name: "日本エアー・フィルター株式会社", logo: "/images/partners/nippon_air_filter.png" },
+                  { name: "南関東日立物流サービス株式会社", logo: "/images/partners/minami_kanto_hitachi.png" },
+                  { name: "日本クラウンコルク株式会社", logo: "/images/partners/nippon_crown_cork.png" },
+                  { name: "多田プレス工業株式会社", logo: "/images/partners/tada_press.png" },
+                  { name: "株式会社武部鉄工所", logo: "/images/partners/takebe_tekko.png" },
+                  { name: "森工業株式会社", logo: "/images/partners/mori_kogyo.png" },
+                  { name: "キョーラク株式会社", logo: "/images/partners/kyoraku.png" },
+                  { name: "英宝総合株式会社", logo: "/images/partners/eiho_sogo.png" },
+                ].map((partner, i) => (
                   <div
                     key={`${setIdx}-${i}`}
-                    className="flex h-16 w-36 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4"
+                    className="flex h-16 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4"
                   >
-                    <span className="text-[13px] font-bold text-slate-400">
-                      {name}
-                    </span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={partner.logo} alt={partner.name} className="h-10 max-w-[140px] object-contain" />
                   </div>
                 ))}
               </div>
@@ -90,22 +89,28 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {[...Array(3)].map((_, setIdx) => (
               <div key={setIdx} className="flex shrink-0 gap-10">
                 {[
-                  "パートナー企業I",
-                  "パートナー企業J",
-                  "パートナー企業K",
-                  "パートナー企業L",
-                  "パートナー企業M",
-                  "パートナー企業N",
-                  "パートナー企業O",
-                  "パートナー企業P",
-                ].map((name, i) => (
+                  { name: "日産車体マニュファクチュアリング株式会社", logo: "/images/partners/nissan_shatai_mfg.png" },
+                  { name: "平塚金属工業株式会社", logo: "/images/partners/hiratsuka_kinzoku.png" },
+                  { name: "旭ファイバーグラス株式会社", logo: "/images/partners/asahi_fiberglass.png" },
+                  { name: "高周波工業株式会社", logo: "/images/partners/koshuha_kogyo.png" },
+                  { name: "ファインツール・ジャパン株式会社", logo: "/images/partners/finetool_japan.png" },
+                  { name: "旭興業株式会社", logo: null },
+                  { name: "三洋興産株式会社", logo: "/images/partners/sanyo_kosan.png" },
+                ].map((partner, i) => (
                   <div
                     key={`${setIdx}-${i}`}
-                    className="flex h-16 w-36 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4"
+                    className="flex h-16 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4"
                   >
-                    <span className="text-[13px] font-bold text-slate-400">
-                      {name}
-                    </span>
+                    {partner.logo ? (
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={partner.logo} alt={partner.name} className="h-10 max-w-[140px] object-contain" />
+                      </>
+                    ) : (
+                      <span className="text-[11px] font-bold leading-tight text-slate-400 text-center">
+                        {partner.name}
+                      </span>
+                    )}
                   </div>
                 ))}
               </div>
