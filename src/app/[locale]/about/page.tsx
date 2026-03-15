@@ -68,7 +68,7 @@ export default async function AboutPage() {
       </section>
 
       {/* 企業理念 */}
-      <section className="relative min-h-[520px] overflow-hidden bg-cover py-28 sm:py-36 lg:py-44" style={{ backgroundImage: "url('/images/philosophy_bg_sky.png')", backgroundPosition: "center bottom" }}>
+      <section className="relative min-h-[520px] overflow-hidden bg-cover py-28 sm:py-36 lg:py-44" style={{ backgroundImage: "url('/images/philosophy_bg_sky.png')", backgroundPosition: "center 20%" }}>
         <div className="absolute inset-0 bg-santo-navy/25" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-slate-500">
