@@ -123,13 +123,13 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% / 3));
+    transform: translateX(-25%);
   }
 }
 
 @keyframes scroll-right {
   0% {
-    transform: translateX(calc(-100% / 3));
+    transform: translateX(-25%);
   }
   100% {
     transform: translateX(0);
@@ -137,17 +137,22 @@
 }
 
 .animate-scroll-left {
-  animation: scroll-left 20s linear infinite;
+  animation: scroll-left 10s linear infinite;
 }
 
 .animate-scroll-right {
-  animation: scroll-right 20s linear infinite;
+  animation: scroll-right 10s linear infinite;
 }
 
-.animate-scroll-left:hover,
-.animate-scroll-right:hover {
-  animation-play-state: paused;
+@media (min-width: 640px) {
+  .animate-scroll-left {
+    animation-duration: 20s;
+  }
+  .animate-scroll-right {
+    animation-duration: 20s;
+  }
 }
+
 
 @keyframes float-slow {
   0%, 100% { transform: translateY(0); }

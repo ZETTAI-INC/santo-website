@@ -59,8 +59,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-white to-transparent" />
 
           {/* 上段: 左スクロール */}
-          <div className="flex animate-scroll-left gap-10">
-            {[...Array(3)].map((_, setIdx) => (
+          <div className="pointer-events-none flex animate-scroll-left gap-10 will-change-transform">
+            {[...Array(4)].map((_, setIdx) => (
               <div key={setIdx} className="flex shrink-0 gap-10">
                 {[
                   { name: "日本エアー・フィルター株式会社", logo: "/images/partners/nippon_air_filter.png" },
@@ -85,8 +85,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
 
           {/* 下段: 右スクロール */}
-          <div className="flex animate-scroll-right gap-10">
-            {[...Array(3)].map((_, setIdx) => (
+          <div className="pointer-events-none flex animate-scroll-right gap-10 will-change-transform">
+            {[...Array(4)].map((_, setIdx) => (
               <div key={setIdx} className="flex shrink-0 gap-10">
                 {[
                   { name: "日産車体マニュファクチュアリング株式会社", logo: "/images/partners/nissan_shatai_mfg.png" },
