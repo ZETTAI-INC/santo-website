@@ -227,6 +227,14 @@
   }
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Numbers 見出し線アニメーション */
 .numbers-line {
   width: 0;

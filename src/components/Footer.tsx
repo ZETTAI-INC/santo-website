@@ -30,11 +30,11 @@ export function Footer() {
   return (
     <footer className="bg-[#2a7ac7] text-white">
       {/* Main Footer */}
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-12">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+        <div className="grid gap-6 lg:grid-cols-12">
           {/* Company Info */}
           <div className="lg:col-span-4">
-            <div className="mb-5 flex items-center gap-3">
+            <div className="mb-3 flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/santo_logo_square.jpg" alt="Santo" className="h-12 w-12 object-cover lg:h-14 lg:w-14" />
               <div>
@@ -46,7 +46,7 @@ export function Footer() {
                 </p>
               </div>
             </div>
-            <div className="space-y-2.5 text-[13px] text-slate-300">
+            <div className="space-y-1.5 text-[13px] text-slate-300">
               <p className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-santo-accent" />
                 {t("address")}
@@ -64,10 +64,10 @@ export function Footer() {
 
           {/* Navigation */}
           <div className="lg:col-span-2">
-            <h3 className="mb-4 text-[10px] font-black tracking-[0.2em] text-slate-400">
+            <h3 className="mb-2 text-[10px] font-black tracking-[0.2em] text-slate-400">
               MENU
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5">
               {[
                 { name: tHeader("home"), href: "/" },
                 { name: tHeader("about"), href: "/about" },
@@ -88,13 +88,14 @@ export function Footer() {
 
           {/* Other Links */}
           <div className="lg:col-span-3">
-            <h3 className="mb-4 text-[10px] font-black tracking-[0.2em] text-slate-400">
+            <h3 className="mb-2 text-[10px] font-black tracking-[0.2em] text-slate-400">
               OTHER
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-1.5">
               {[
                 { name: tHeader("access"), href: "/access" },
                 { name: tHeader("contact"), href: "/contact" },
+                { name: t("laborInfo"), href: "/labor-info" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link
@@ -110,7 +111,7 @@ export function Footer() {
 
           {/* Language */}
           <div className="lg:col-span-3">
-            <h3 className="mb-4 text-[10px] font-black tracking-[0.2em] text-slate-400">
+            <h3 className="mb-2 text-[10px] font-black tracking-[0.2em] text-slate-400">
               LANGUAGE
             </h3>
             <div className="flex items-center gap-2 flex-nowrap">
@@ -135,7 +136,7 @@ export function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6">
+        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
           <p className="text-center text-[11px] font-bold tracking-wider text-slate-500">
             {t("copyright")}
           </p>

@@ -33,26 +33,26 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/company_hero_factory_people.png" largeSubtitle />
 
       {/* 代表挨拶 */}
-      <section className="py-20 sm:py-28">
+      <section className="py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-2 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("messageLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
             {t("messageTitle")}
           </h2>
-          <div className="grid gap-10 lg:grid-cols-5">
-            <div className="flex h-72 items-center justify-center bg-santo-gray text-sm font-bold text-slate-400 lg:col-span-2 lg:h-auto">
+          <div className="grid gap-6 lg:grid-cols-5">
+            <div className="flex h-56 items-center justify-center bg-santo-gray text-sm font-bold text-slate-400 lg:col-span-2 lg:h-auto">
               {t("messagePhoto")}
             </div>
             <div className="lg:col-span-3">
-              <p className="mb-5 text-[15px] leading-[2.2] text-slate-600">
+              <p className="mb-3 text-[15px] leading-[2] text-slate-600">
                 {t("messageP1")}
               </p>
-              <p className="mb-5 text-[15px] leading-[2.2] text-slate-600">
+              <p className="mb-3 text-[15px] leading-[2] text-slate-600">
                 {t("messageP2")}
               </p>
-              <p className="mb-8 text-[15px] leading-[2.2] text-slate-600">
+              <p className="mb-5 text-[15px] leading-[2] text-slate-600">
                 {t("messageP3")}
               </p>
               <div className="border-l-2 border-santo-navy pl-5">
@@ -70,7 +70,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       {/* 企業理念 */}
       <section className="relative min-h-[400px] overflow-hidden bg-cover py-16 sm:min-h-[520px] sm:py-36 lg:py-44" style={{ backgroundImage: "url('/images/philosophy_bg_sky.png')", backgroundPosition: "center 20%" }}>
-        <div className="absolute inset-0 bg-santo-navy/25" />
+        <div className="absolute inset-0 bg-white/40" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-slate-500">
             {t("philosophyLabel")}
@@ -126,17 +126,17 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* 沿革 */}
-      <section className="border-t border-slate-200 bg-[#d4e3ea] py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-[#d4e3ea] py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-12 text-center">
-            <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-santo-light">
+          <div className="mb-6 text-center">
+            <p className="mb-2 text-[12px] font-black tracking-[0.3em] text-santo-light">
               {t("historyLabel")}
             </p>
             <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("historyTitle")}
             </h2>
-            <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="mx-auto mt-5 max-w-md text-[15px] leading-[1.9] text-slate-500">
+            <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-santo-navy" />
+            <p className="mx-auto mt-3 max-w-md text-[15px] leading-[1.9] text-slate-500">
               {t("historyDesc")}
             </p>
           </div>

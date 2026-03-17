@@ -51,7 +51,7 @@ function ServiceRow({
 
       <div
         ref={ref}
-        className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32"
+        className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:py-14"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible
@@ -63,7 +63,7 @@ function ServiceRow({
         }}
       >
         <div
-          className={`flex flex-col items-center gap-12 lg:gap-20 ${
+          className={`flex flex-col items-center gap-6 lg:gap-10 ${
             isEven ? "lg:flex-row" : "lg:flex-row-reverse"
           }`}
         >
@@ -84,7 +84,7 @@ function ServiceRow({
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
               {service.subtitle.toUpperCase()}
             </p>
-            <div className="mb-5 flex items-baseline gap-3 sm:gap-4">
+            <div className="mb-3 flex items-baseline gap-3 sm:gap-4">
               <span className="text-5xl font-black leading-none text-santo-navy/10 sm:text-7xl lg:text-8xl">
                 {service.label}
               </span>
@@ -92,8 +92,8 @@ function ServiceRow({
                 {service.title}
               </h3>
             </div>
-            <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="text-[15px] leading-[2.2] text-slate-600 sm:text-[18px]">
+            <div className="mb-3 h-1 w-14 rounded-full bg-santo-navy" />
+            <p className="text-[16px] font-bold leading-[2.2] text-slate-600 sm:text-[20px]">
               {service.description}
             </p>
           </div>
@@ -139,7 +139,7 @@ export function ServiceOverview() {
   return (
     <div>
       {/* セクションヘッダー */}
-      <section className="bg-white pb-0 pt-16 sm:pt-28 lg:pt-36">
+      <section className="bg-white pb-0 pt-10 sm:pt-14 lg:pt-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center">
             <p className="mb-3 text-[13px] font-black tracking-[0.25em] text-santo-light">
@@ -148,20 +148,53 @@ export function ServiceOverview() {
             <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("title")}
             </h2>
-            <div className="mx-auto mt-5 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="mx-auto mt-6 max-w-md text-[15px] leading-[1.9] text-slate-500 sm:text-[18px]">
-              {t("subtitle")}
-              <br />
-              {t("subtitle2")}
+            <div className="mx-auto mt-2 h-1 rounded-full bg-santo-navy" style={{ width: "557px", maxWidth: "100%" }} />
+            <p className="mx-auto mt-4 max-w-3xl text-[15px] leading-[1.9] text-slate-500 sm:text-[18px]">
+              {t("subtitlePre1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight1")}</span>{t("subtitleMid1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight2")}</span>{t("subtitleMid2")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-navy">{t("subtitleHighlight3")}</span>{t("subtitlePost1")}{t("subtitle2Pre")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight1")}</span>{t("subtitle2Mid")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight2")}</span>{t("subtitle2Post")}
             </p>
           </div>
         </div>
       </section>
 
-      {/* ジグザグレイアウト */}
-      {services.map((service, i) => (
-        <ServiceRow key={service.title} service={service} index={i} />
-      ))}
+      {/* モバイル: 横スクロールカード */}
+      <div className="md:hidden -mx-0 px-4 pt-8 pb-4">
+        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+          {services.map((service) => (
+            <div key={service.title} className="w-[280px] shrink-0 snap-start">
+              {/* 図 */}
+              <div className="rounded-t-2xl border border-b-0 border-slate-200 bg-white p-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={service.img} alt={service.title} className="h-auto w-full object-contain" />
+              </div>
+              {/* テキスト */}
+              <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-slate-50 p-4">
+                <p className="mb-1 text-[11px] font-black tracking-[0.2em] text-santo-light">
+                  {service.subtitle.toUpperCase()}
+                </p>
+                <div className="mb-2 flex items-baseline gap-2">
+                  <span className="text-3xl font-black leading-none text-santo-navy/10">
+                    {service.label}
+                  </span>
+                  <h3 className="text-[16px] font-black tracking-wider text-slate-900">
+                    {service.title}
+                  </h3>
+                </div>
+                <div className="mb-2 h-[3px] w-10 rounded-full bg-santo-navy" />
+                <p className="text-[13px] font-bold leading-[1.9] text-slate-600">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* デスクトップ: ジグザグレイアウト */}
+      <div className="hidden md:block">
+        {services.map((service, i) => (
+          <ServiceRow key={service.title} service={service} index={i} />
+        ))}
+      </div>
     </div>
   );
 }

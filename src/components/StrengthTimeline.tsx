@@ -58,7 +58,7 @@ function TimelineItem({
             <h3 className="mt-2 text-[26px] font-black tracking-wider text-slate-900">
               {item.title}
             </h3>
-            <p className="mt-3 text-[18px] leading-[2] text-slate-600">
+            <p className="mt-3 text-[18px] font-bold leading-[2] text-slate-600">
               {item.desc}
             </p>
           </div>
@@ -121,7 +121,7 @@ function TimelineItem({
             <h3 className="mt-2 text-[26px] font-black tracking-wider text-slate-900">
               {item.title}
             </h3>
-            <p className="mt-3 text-[18px] leading-[2] text-slate-600">
+            <p className="mt-3 text-[18px] font-bold leading-[2] text-slate-600">
               {item.desc}
             </p>
           </div>
@@ -147,10 +147,9 @@ function MobileTimelineItem({
   const num = String(index + 1).padStart(2, "0");
 
   return (
-    <div className="relative flex gap-5">
+    <div className="relative flex gap-3 sm:gap-5">
       {/* 左: ライン + ドット */}
       <div className="relative flex flex-col items-center">
-        {/* 上のライン */}
         <div
           className={`w-px flex-1 ${index === 0 ? "bg-transparent" : "bg-santo-navy/15"}`}
           style={{
@@ -158,18 +157,16 @@ function MobileTimelineItem({
             transition: `opacity 0.4s ease ${index * 100}ms`,
           }}
         />
-        {/* アイコンドット */}
         <div
-          className="relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-santo-navy bg-white shadow-md"
+          className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-santo-navy bg-white shadow-md sm:h-11 sm:w-11"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "scale(1)" : "scale(0.5)",
             transition: `opacity 0.4s ease ${index * 100 + 50}ms, transform 0.4s cubic-bezier(0.34,1.56,0.64,1) ${index * 100 + 50}ms`,
           }}
         >
-          <Icon className="h-5 w-5 text-santo-navy" strokeWidth={1.5} />
+          <Icon className="h-4 w-4 text-santo-navy sm:h-5 sm:w-5" strokeWidth={1.5} />
         </div>
-        {/* 下のライン */}
         <div
           className={`w-px flex-1 ${index === totalCount - 1 ? "bg-transparent" : "bg-santo-navy/15"}`}
           style={{
@@ -181,20 +178,20 @@ function MobileTimelineItem({
 
       {/* 右: コンテンツ */}
       <div
-        className="pb-8"
+        className="pb-4 sm:pb-8"
         style={{
           opacity: visible ? 1 : 0,
           transform: visible ? "translateX(0)" : "translateX(20px)",
           transition: `opacity 0.6s ease ${index * 100 + 100}ms, transform 0.6s ease ${index * 100 + 100}ms`,
         }}
       >
-        <span className="text-[36px] font-extralight leading-none text-santo-navy/30">
+        <span className="text-[28px] font-extralight leading-none text-santo-navy/30 sm:text-[36px]">
           {num}
         </span>
-        <h3 className="mt-1 text-[18px] font-black tracking-wider text-slate-900">
+        <h3 className="mt-0.5 text-[15px] font-black tracking-wider text-slate-900 sm:mt-1 sm:text-[18px]">
           {item.title}
         </h3>
-        <p className="mt-2 text-[14px] leading-[1.9] text-slate-600">
+        <p className="mt-1 text-[13px] font-bold leading-[1.7] text-slate-600 sm:mt-2 sm:text-[14px] sm:leading-[1.9]">
           {item.desc}
         </p>
       </div>

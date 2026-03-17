@@ -49,7 +49,7 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
             </h1>
             <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
             {subtitle && (
-              <p className={`mt-5 max-w-lg leading-[2] text-white/70 drop-shadow-md ${largeSubtitle ? "text-[16px] sm:text-[22px] lg:text-[24px]" : "text-[15px] sm:text-[18px]"}`}>
+              <p className={`mt-5 max-w-lg font-bold leading-[2] text-white/70 drop-shadow-md ${largeSubtitle ? "text-[16px] sm:text-[22px] lg:text-[24px]" : "text-[15px] sm:text-[18px]"}`}>
                 {subtitle}
               </p>
             )}

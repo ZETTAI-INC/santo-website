@@ -10,7 +10,7 @@ import { LinkButton } from "@/components/LinkButton";
 import { CountUpStats } from "@/components/CountUpStats";
 import { PageHeader } from "@/components/PageHeader";
 import { HexMerits } from "@/components/HexMerits";
-import { JobCategories } from "@/components/JobCategories";
+import { JobSearchForm } from "@/components/JobSearchForm";
 import {
   Accordion,
   AccordionContent,
@@ -73,8 +73,21 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
     <>
       <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/jobseekers_hero.png" tall largeSubtitle />
 
+      {/* Job Categories */}
+      <section className="py-6 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
+            {t("jobTypeLabel")}
+          </p>
+          <h2 className="mb-3 text-2xl font-black tracking-wider text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
+            {t("jobTypeTitle")}
+          </h2>
+          <JobSearchForm />
+        </div>
+      </section>
+
       {/* Merits */}
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
             {t("meritLabel")}
@@ -83,11 +96,11 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
             {t("meritTitle1")}<span className="relative inline-block text-santo-blue" style={{ backgroundImage: "linear-gradient(transparent 70%, #bfdbfe 70%)", backgroundRepeat: "no-repeat" }}>{t("meritTitle2")}</span>
           </h2>
           <div className="mt-5 h-1 w-14 rounded-full bg-santo-navy" />
-          <p className="mt-5 mb-12 text-[18px] font-bold leading-[1.8] tracking-wide text-slate-500 sm:text-[26px] lg:text-[34px] lg:whitespace-nowrap">
+          <p className="mt-5 mb-8 text-[18px] font-bold leading-[1.8] tracking-wide text-slate-500 sm:text-[26px] lg:text-[34px] lg:whitespace-nowrap">
             {t("meritDesc")}
           </p>
           <HexMerits />
-          <div className="mt-14 flex flex-col items-center text-center">
+          <div className="mt-10 flex flex-col items-center text-center">
             <div className="h-[2px] w-12 rounded-full bg-santo-blue" />
             <p className="mt-5 text-[20px] font-bold leading-[1.8] tracking-wide text-slate-700 sm:text-[34px] lg:whitespace-nowrap lg:text-[40px]">
               {t("meritCta1")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight1")}</span>{t("meritCta2")}<br />{t("meritCta3")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight2")}</span>{t("meritCta4")}
@@ -97,39 +110,41 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
       </section>
 
       {/* Numbers */}
-      <section className="bg-[#f4f7fb] py-24 sm:py-32">
+      <section className="bg-[#f4f7fb] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <CountUpStats />
         </div>
       </section>
 
       {/* Flow */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-santo-gray py-6 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
             {t("flowLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-2xl font-black tracking-wider text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
             {t("flowTitle")}
           </h2>
-          {/* モバイル: 縦並び / デスクトップ: 矢印型横並び */}
-          <div className="flex flex-col gap-4 lg:hidden">
-            {steps.map((step) => (
-              <div key={step.title} className="flex flex-col rounded-xl bg-white p-7">
-                <span className="text-[38px] font-light leading-none text-santo-navy/20">
-                  {step.num}
-                </span>
-                <h3 className="mt-2 whitespace-nowrap text-[18px] font-black tracking-wider text-slate-900">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-[1.9] text-slate-500">
-                  {step.desc}
-                </p>
-                <div className="mt-auto flex justify-end pt-4">
-                  <step.icon className="h-14 w-14 text-slate-300" strokeWidth={1} />
+          {/* モバイル: 横スクロール */}
+          <div className="-mx-4 px-4 lg:hidden">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+              {steps.map((step) => (
+                <div key={step.title} className="flex w-[200px] shrink-0 snap-start flex-col rounded-xl bg-white p-4">
+                  <span className="text-[28px] font-light leading-none text-santo-navy/20">
+                    {step.num}
+                  </span>
+                  <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-[12px] leading-[1.7] text-slate-500">
+                    {step.desc}
+                  </p>
+                  <div className="mt-auto flex justify-end pt-2">
+                    <step.icon className="h-8 w-8 text-slate-300" strokeWidth={1} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="hidden lg:flex items-stretch">
             {steps.map((step, i) => {
@@ -197,38 +212,25 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
         </div>
       </section>
 
-      {/* Job Categories */}
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
-            {t("jobTypeLabel")}
-          </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-            {t("jobTypeTitle")}
-          </h2>
-          <JobCategories />
-        </div>
-      </section>
-
       {/* FAQ */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-santo-gray py-6 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
             {t("faqLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-2xl font-black tracking-wider text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
             {t("faqTitle")}
           </h2>
-          <Accordion className="space-y-3">
+          <Accordion className="space-y-1.5 sm:space-y-3">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
                 className="rounded border border-slate-200 bg-white"
               >
-                <AccordionTrigger className="px-6 py-4 text-left text-[13px] font-bold tracking-wide">
+                <AccordionTrigger className="px-4 py-2.5 text-left text-[12px] font-bold tracking-wide sm:px-6 sm:py-4 sm:text-[13px]">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-5 text-[13px] leading-[1.9] text-slate-600">
+                <AccordionContent className="px-4 pb-3 text-[12px] leading-[1.8] text-slate-600 sm:px-6 sm:pb-5 sm:text-[13px] sm:leading-[1.9]">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -238,7 +240,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
       </section>
 
       {/* CTA */}
-      <section className="bg-[#dce8f5] py-20 sm:py-28">
+      <section className="bg-[#dce8f5] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-3 text-[11px] font-black tracking-[0.25em] text-santo-blue">
             {t("ctaLabel")}

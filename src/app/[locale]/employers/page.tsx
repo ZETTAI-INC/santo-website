@@ -88,8 +88,17 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               </div>
             </div>
 
-            {/* 右: 数字カード + イラスト */}
+            {/* 右: イラスト + 数字カード */}
             <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-stretch lg:gap-6">
+              {/* イラスト */}
+              <div className="flex flex-1 items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/illust_handshake_transparent.png"
+                  alt=""
+                  className="h-auto w-64 opacity-90 lg:w-72"
+                />
+              </div>
               {/* 数字カード */}
               <div className="flex w-full flex-col gap-3 lg:w-[280px] lg:shrink-0">
                 {stats.map((stat) => (
@@ -118,59 +127,52 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                   </div>
                 ))}
               </div>
-              {/* イラスト */}
-              <div className="flex flex-1 items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/illust_handshake_transparent.png"
-                  alt=""
-                  className="h-auto w-64 opacity-90 lg:w-72"
-                />
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Strengths */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-santo-gray py-6 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
             {t("strengthLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-2xl font-black tracking-wider text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
             {t("strengthTitle")}
           </h2>
           <StrengthTimeline />
         </div>
       </section>
       {/* Flow */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-santo-gray py-6 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
             {t("flowLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-2xl font-black tracking-wider text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
             {t("flowTitle")}
           </h2>
-          {/* モバイル: 縦並び */}
-          <div className="flex flex-col gap-4 lg:hidden">
-            {steps.map((step) => (
-              <div key={step.title} className="flex flex-col rounded-xl bg-white p-7">
-                <span className="text-[38px] font-light leading-none text-santo-navy/20">
-                  {step.num}
-                </span>
-                <h3 className="mt-2 whitespace-nowrap text-[18px] font-black tracking-wider text-slate-900">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-[1.9] text-slate-500">
-                  {step.desc}
-                </p>
-                <div className="mt-auto flex justify-end pt-4">
-                  <step.icon className="h-14 w-14 text-slate-300" strokeWidth={1} />
+          {/* モバイル: 横スクロール */}
+          <div className="-mx-4 px-4 lg:hidden">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
+              {steps.map((step) => (
+                <div key={step.title} className="flex w-[200px] shrink-0 snap-start flex-col rounded-xl bg-white p-4">
+                  <span className="text-[28px] font-light leading-none text-santo-navy/20">
+                    {step.num}
+                  </span>
+                  <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-[12px] leading-[1.7] text-slate-500">
+                    {step.desc}
+                  </p>
+                  <div className="mt-auto flex justify-end pt-2">
+                    <step.icon className="h-8 w-8 text-slate-300" strokeWidth={1} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           {/* デスクトップ: 矢印型横並び */}
           <div className="hidden lg:flex items-stretch">

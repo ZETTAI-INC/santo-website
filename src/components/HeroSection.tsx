@@ -59,10 +59,10 @@ export function HeroSection() {
               }}
             >
               <div className="w-[3px] shrink-0 rounded-full bg-santo-accent" />
-              <p className="text-[13px] leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
+              <p className="text-[13px] font-black leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
                 <span className="sm:whitespace-nowrap">{t("heroSub1")}</span>
                 <br />
-                <span className="sm:whitespace-nowrap"><span className="text-[15px] font-bold sm:text-[26px]" style={{ color: "#0a2e5c", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
+                <span className="sm:whitespace-nowrap"><span className="text-[15px] font-black sm:text-[26px]" style={{ color: "#0a1628", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
                 <br />
                 <span className="sm:whitespace-nowrap">{t("heroSub4")}</span>
               </p>
@@ -70,30 +70,29 @@ export function HeroSection() {
 
             {/* ボタン（フェードイン） */}
             <div
-              className="flex flex-col gap-3 sm:flex-row sm:gap-4"
+              className="flex flex-col gap-4 sm:flex-row sm:gap-5"
               style={{
                 opacity: showContent ? 1 : 0,
                 transform: showContent ? "translateY(0)" : "translateY(20px)",
                 transition: "opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s",
               }}
             >
-              <LinkButton
+              <a
                 href={localePath("/jobseekers")}
-                size="xl"
-                className="bg-white text-santo-navy hover:bg-slate-100"
+                className="group flex items-center gap-3 rounded-xl bg-white px-7 py-4 text-[16px] font-black tracking-wider text-santo-navy transition-all duration-300 hover:-translate-y-1 hover:bg-santo-navy hover:text-white sm:px-9 sm:py-5 sm:text-[18px]"
+                style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.35)" }}
               >
-                <Briefcase className="h-5 w-5" />
+                <Briefcase className="h-6 w-6 transition group-hover:scale-110" />
                 {t("forJobseekers")}
-              </LinkButton>
-              <LinkButton
+              </a>
+              <a
                 href={localePath("/employers")}
-                variant="outline"
-                size="xl"
-                className="text-white"
+                className="group flex items-center gap-3 rounded-xl bg-white px-7 py-4 text-[16px] font-black tracking-wider text-santo-navy transition-all duration-300 hover:-translate-y-1 hover:bg-santo-navy hover:text-white sm:px-9 sm:py-5 sm:text-[18px]"
+                style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.35)" }}
               >
-                <Building2 className="h-5 w-5" />
+                <Building2 className="h-6 w-6 transition group-hover:scale-110" />
                 {t("forEmployers")}
-              </LinkButton>
+              </a>
             </div>
           </div>
         </div>

@@ -52,29 +52,29 @@ function StatCard({
 
   return (
     <div
-      className="bg-white px-6 py-7 shadow-sm transition-all duration-300 hover:shadow-md"
+      className="bg-white px-3 py-3 shadow-sm transition-all duration-300 hover:shadow-md sm:px-6 sm:py-7"
       style={{
         opacity: started ? 1 : 0,
         transform: started ? "translateY(0)" : "translateY(30px)",
         transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
       }}
     >
-      <div className="mb-5 flex items-center gap-3">
-        <Icon className={`h-7 w-7 ${stat.color}`} />
-        <p className="text-[18px] font-black tracking-wider text-slate-800 sm:text-[22px]">
+      <div className="mb-2 flex items-center gap-2 sm:mb-5 sm:gap-3">
+        <Icon className={`h-5 w-5 sm:h-7 sm:w-7 ${stat.color}`} />
+        <p className="text-[13px] font-black tracking-wider text-slate-800 sm:text-[22px]">
           {stat.label}
         </p>
       </div>
       <div className="flex items-baseline">
-        <span className="text-5xl font-black tabular-nums tracking-tight text-slate-900 sm:text-7xl">
+        <span className="text-3xl font-black tabular-nums tracking-tight text-slate-900 sm:text-7xl">
           {count}
         </span>
-        <span className="ml-1.5 text-xl font-bold text-slate-500">
+        <span className="ml-1 text-sm font-bold text-slate-500 sm:ml-1.5 sm:text-xl">
           {stat.unit}
           {stat.suffix}
         </span>
       </div>
-      <p className="mt-4 text-[14px] leading-[1.9] text-slate-500 sm:text-[17px]">
+      <p className="mt-2 hidden text-[14px] leading-[1.9] text-slate-500 sm:mt-4 sm:block sm:text-[17px]">
         {stat.desc}
       </p>
     </div>
@@ -148,22 +148,22 @@ export function CountUpStats() {
   ];
 
   return (
-    <div ref={ref} className="flex flex-col gap-10 lg:flex-row lg:gap-16">
+    <div ref={ref} className="flex flex-col gap-5 lg:flex-row lg:gap-16">
       {/* 左: タイトル（PCではsticky） */}
       <div className="lg:w-[380px] lg:shrink-0">
         <div className="lg:sticky lg:top-32">
-          <p className="mb-4 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-2 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-4">
             {t("label")}
           </p>
           <h2 className="text-[1.7rem] font-black tracking-wider text-slate-900 sm:text-[2.3rem] sm:whitespace-nowrap">
             {t("title")}
           </h2>
-          <div className="mt-6 h-1 w-16 rounded-full bg-santo-navy" />
-          <p className="mt-8 text-[15px] leading-[2.2] text-slate-500 sm:text-[17px]">
+          <div className="mt-3 h-1 w-16 rounded-full bg-santo-navy sm:mt-6" />
+          <p className="mt-3 text-[13px] leading-[1.9] text-slate-500 sm:mt-8 sm:text-[17px] sm:leading-[2.2]">
             <span className="sm:whitespace-nowrap">{t("desc1")}</span>
-            <br />
+            <br className="hidden sm:block" />
             <span className="sm:whitespace-nowrap">{t("desc2")}</span>
-            <br />
+            <br className="hidden sm:block" />
             <span className="sm:whitespace-nowrap">{t("desc3")}</span>
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -176,7 +176,7 @@ export function CountUpStats() {
       </div>
 
       {/* 右: 2x2 グリッド */}
-      <div className="grid flex-1 grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="grid flex-1 grid-cols-2 gap-2 sm:gap-5 sm:grid-cols-2">
         {stats.map((stat, i) => (
           <StatCard
             key={stat.label}

@@ -150,10 +150,47 @@ export function FeatureCards() {
   ];
 
   return (
-    <div className="space-y-10">
-      {features.map((feature, i) => (
-        <FeatureRow key={feature.title} feature={feature} index={i} />
-      ))}
-    </div>
+    <>
+      {/* モバイル: 横スクロール */}
+      <div className="md:hidden -mx-4 px-4">
+        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="w-[280px] shrink-0 snap-start"
+            >
+              <div className="rounded-t-2xl border border-b-0 border-slate-200 bg-slate-100 px-4 py-2">
+                <div className="flex justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/extracted_curly_line_straight.png" alt="" className="h-12 w-12 object-contain" />
+                </div>
+                <p className="whitespace-pre-line text-center text-[14px] font-bold leading-[1.6] text-slate-700">
+                  {feature.problem}
+                </p>
+              </div>
+              <div className="relative rounded-b-2xl border border-t-0 border-slate-200 bg-white p-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-1 before:rounded-bl-2xl before:bg-santo-navy">
+                <div className="mb-3 flex justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={feature.img} alt={feature.title} className="h-20 w-20 object-contain" />
+                </div>
+                <h3 className="mb-1 text-center text-[15px] font-black tracking-wider text-santo-navy">
+                  {feature.title}
+                </h3>
+                <p className="text-center text-[13px] leading-[1.8] text-slate-600">
+                  {feature.solution}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* デスクトップ: 従来の縦並び */}
+      <div className="hidden md:block space-y-10">
+        {features.map((feature, i) => (
+          <FeatureRow key={feature.title} feature={feature} index={i} />
+        ))}
+      </div>
+    </>
   );
 }

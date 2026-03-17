@@ -13,6 +13,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale);
   const t = await getTranslations("Home");
 
+
   return (
     <>
       {/* Hero */}
@@ -22,16 +23,19 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <ServiceOverview />
 
       {/* Features */}
-      <section className="bg-santo-gray py-16 sm:py-24 lg:py-32">
+      <section className="bg-santo-gray py-6 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-14 text-center sm:mb-20">
-            <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <div className="mb-5 text-center sm:mb-14">
+            <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
               {t("whySantoLabel")}
             </p>
-            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+            <h2 className="text-2xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("whySantoTitle")}
             </h2>
-            <div className="mx-auto mt-4 h-0.5 w-12 bg-santo-navy" />
+            <div className="mx-auto mt-1.5 h-1 bg-santo-navy" style={{ width: "555px", maxWidth: "100%" }} />
+            <p className="mx-auto mt-2 max-w-2xl text-[13px] leading-[1.7] text-slate-500 sm:mt-4 sm:text-[18px] sm:leading-[1.9]">
+              {t("whySantoDescPre1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("whySantoDescHighlight1")}</span>{t("whySantoDescMid1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-navy">{t("whySantoDescHighlight2")}</span>{t("whySantoDescMid2")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("whySantoDescHighlight3")}</span>{t("whySantoDescPost")}
+            </p>
           </div>
 
           <FeatureCards />
@@ -39,7 +43,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* Partners */}
-      <section className="overflow-hidden py-20 sm:py-28">
+      <section className="overflow-hidden py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-12 text-center">
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
@@ -48,7 +52,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("partnersTitle")}
             </h2>
-            <p className="mx-auto mt-3 max-w-md text-[13px] leading-[1.8] text-slate-500">
+            <div className="mx-auto mt-1.5 h-1 bg-santo-navy" style={{ width: "252px", maxWidth: "100%" }} />
+            <p className="mx-auto mt-3 max-w-md text-[15px] leading-[1.8] text-slate-500 sm:text-[18px]">
               {t("partnersDesc")}
             </p>
           </div>
@@ -114,6 +119,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 ))}
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* 信頼の紹介 */}
+        <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 sm:pt-16">
+          <p className="mb-8 text-center text-[18px] font-bold leading-[1.8] text-slate-700 sm:text-[24px] lg:text-[28px]">
+            <span className="mr-2 text-slate-800">＼</span>
+            {t("trustedDesc1")}
+            <span className="text-[1.15em] font-black text-santo-blue">{t("trustedDescHighlight")}</span>
+            {t("trustedDesc2")}
+            <span className="ml-2 text-slate-800">／</span>
+          </p>
+          <div className="mx-auto max-w-3xl">
+            <div className="flex h-[250px] items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 sm:h-[350px]">
+              <span className="text-[14px] text-slate-400">{t("trustedImagePlaceholder")}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -214,7 +235,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       </section>
 
       {/* News */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
+      <section className="border-t border-slate-200 bg-santo-gray py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="mb-12 text-center">
             <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
@@ -223,7 +244,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
               {t("newsTitle")}
             </h2>
-            <div className="mx-auto mt-4 h-0.5 w-12 bg-santo-navy" />
+            <div className="mx-auto mt-1.5 h-1 bg-santo-navy" style={{ width: "202px", maxWidth: "100%" }} />
           </div>
           <NewsScroller />
         </div>
