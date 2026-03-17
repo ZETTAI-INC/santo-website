@@ -46,13 +46,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {t("messagePhoto")}
             </div>
             <div className="lg:col-span-3">
-              <p className="mb-3 text-[15px] leading-[2] text-slate-600">
+              <p className="mb-3 text-[15px] font-bold leading-[2] text-slate-600">
                 {t("messageP1")}
               </p>
-              <p className="mb-3 text-[15px] leading-[2] text-slate-600">
+              <p className="mb-3 text-[15px] font-bold leading-[2] text-slate-600">
                 {t("messageP2")}
               </p>
-              <p className="mb-5 text-[15px] leading-[2] text-slate-600">
+              <p className="mb-5 text-[15px] font-bold leading-[2] text-slate-600">
                 {t("messageP3")}
               </p>
               <div className="border-l-2 border-santo-navy pl-5">
@@ -86,7 +86,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {t("philosophyText3")}<span className="text-santo-blue">{t("philosophyHighlight2")}</span>{t("philosophyText4")}<span className="text-santo-blue">{t("philosophyHighlight3")}</span>{t("philosophyText5")}
             </p>
           </div>
-          <p className="mx-auto max-w-lg text-[14px] leading-[2] text-slate-600 sm:text-[17px]">
+          <p className="mx-auto max-w-2xl text-[16px] font-bold leading-[2] text-slate-600 sm:text-[20px] lg:text-[22px]">
             {t("philosophyDesc")}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     <th className="w-28 border-r border-slate-200 px-3 py-4 text-left text-[13px] font-black tracking-wider text-santo-navy sm:w-52 sm:px-6 sm:py-5 sm:text-[16px]">
                       {item.label}
                     </th>
-                    <td className="px-3 py-4 text-[13px] text-slate-600 sm:px-6 sm:py-5 sm:text-[16px]">
+                    <td className="px-3 py-4 text-[13px] font-bold text-slate-600 sm:px-6 sm:py-5 sm:text-[16px]">
                       {item.value}
                     </td>
                   </tr>
@@ -136,7 +136,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {t("historyTitle")}
             </h2>
             <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="mx-auto mt-3 max-w-md text-[15px] leading-[1.9] text-slate-500">
+            <p className="mx-auto mt-3 max-w-md text-[15px] font-bold leading-[1.9] text-slate-500">
               {t("historyDesc")}
             </p>
           </div>

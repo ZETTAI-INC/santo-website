@@ -68,7 +68,7 @@ function FeatureRow({
           <h3 className="mb-2 text-center text-lg font-black tracking-wider text-santo-navy sm:text-xl">
             {feature.title}
           </h3>
-          <p className="text-center text-[15px] leading-[2] text-slate-600 sm:text-[18px]">
+          <p className="text-center text-[15px] font-bold leading-[2] text-slate-600 sm:text-[18px]">
             {feature.solution}
           </p>
         </div>
@@ -111,7 +111,7 @@ function FeatureRow({
               <h3 className="text-2xl font-black tracking-wider text-santo-navy">
                 {feature.title}
               </h3>
-              <p className="mt-2 text-[18px] leading-[2] text-slate-600">
+              <p className="mt-2 text-[18px] font-bold leading-[2] text-slate-600">
                 {feature.solution}
               </p>
             </div>
@@ -176,7 +176,7 @@ export function FeatureCards() {
                 <h3 className="mb-1 text-center text-[15px] font-black tracking-wider text-santo-navy">
                   {feature.title}
                 </h3>
-                <p className="text-center text-[13px] leading-[1.8] text-slate-600">
+                <p className="text-center text-[13px] font-bold leading-[1.8] text-slate-600">
                   {feature.solution}
                 </p>
               </div>

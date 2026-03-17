@@ -152,7 +152,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <h2 className="text-2xl font-black leading-[1.5] tracking-wider text-white drop-shadow-lg sm:text-4xl lg:text-6xl">
               {t("ctaTitle")}
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-[2] text-white drop-shadow-md sm:text-[22px]">
+            <p className="mx-auto mt-6 max-w-2xl text-[16px] font-bold leading-[2] text-white drop-shadow-md sm:text-[24px]">
               {t("ctaDesc")}
             </p>
           </div>
@@ -166,7 +166,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <span className="inline-block rounded-full bg-santo-sky px-4 py-1.5 text-[13px] font-black tracking-wider text-santo-blue">
                 {t("ctaJobseekersTitle")}
               </span>
-              <h3 className="mt-4 text-2xl font-black tracking-wider text-slate-900">
+              <h3 className="mt-4 text-2xl font-black tracking-wider text-slate-900 sm:text-3xl">
                 {t("ctaJobseekersDesc")}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -175,7 +175,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   t("ctaJobseekersBullet2"),
                   t("ctaJobseekersBullet3"),
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[15px] leading-[1.8] text-slate-600">
+                  <li key={item} className="flex items-start gap-2 text-[16px] font-bold leading-[1.8] text-slate-600">
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-santo-blue" />
                     {item}
                   </li>
@@ -201,7 +201,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <span className="inline-block rounded-full bg-santo-navy/5 px-4 py-1.5 text-[13px] font-black tracking-wider text-santo-navy">
                 {t("ctaEmployersTitle")}
               </span>
-              <h3 className="mt-4 text-2xl font-black tracking-wider text-slate-900">
+              <h3 className="mt-4 text-2xl font-black tracking-wider text-slate-900 sm:text-3xl">
                 {t("ctaEmployersDesc")}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -210,7 +210,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   t("ctaEmployersBullet2"),
                   t("ctaEmployersBullet3"),
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[15px] leading-[1.8] text-slate-600">
+                  <li key={item} className="flex items-start gap-2 text-[16px] font-bold leading-[1.8] text-slate-600">
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-santo-navy" />
                     {item}
                   </li>
@@ -262,10 +262,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             {t("contactLabel")}
           </p>
-          <h2 className="mb-4 text-2xl font-black tracking-wider text-white sm:text-3xl lg:text-4xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl lg:text-5xl">
             {t("contactTitle")}
           </h2>
-          <p className="mx-auto mb-8 max-w-md text-[13px] leading-[1.9] text-white/70 sm:mb-10 sm:text-[14px]">
+          <p className="mx-auto mb-8 max-w-md text-[13px] font-bold leading-[1.9] text-white/70 sm:mb-10 sm:text-[14px]">
             {t("contactDesc")}
           </p>
           <div className="flex flex-col items-center gap-6">

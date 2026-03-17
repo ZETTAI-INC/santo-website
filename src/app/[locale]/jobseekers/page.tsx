@@ -136,7 +136,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
                   <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-[12px] leading-[1.7] text-slate-500">
+                  <p className="mt-1 text-[12px] font-bold leading-[1.7] text-slate-500">
                     {step.desc}
                   </p>
                   <div className="mt-auto flex justify-end pt-2">
@@ -188,7 +188,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
                     <h3 className="mt-2 whitespace-nowrap text-[18px] font-black tracking-wider text-slate-900">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-[15px] leading-[1.9] text-slate-500">
+                    <p className="mt-2 text-[15px] font-bold leading-[1.9] text-slate-500">
                       {step.desc}
                     </p>
                     <div className="mt-auto flex justify-end pt-4">
@@ -230,7 +230,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
                 <AccordionTrigger className="px-4 py-2.5 text-left text-[12px] font-bold tracking-wide sm:px-6 sm:py-4 sm:text-[13px]">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="px-4 pb-3 text-[12px] leading-[1.8] text-slate-600 sm:px-6 sm:pb-5 sm:text-[13px] sm:leading-[1.9]">
+                <AccordionContent className="px-4 pb-3 text-[12px] font-bold leading-[1.8] text-slate-600 sm:px-6 sm:pb-5 sm:text-[13px] sm:leading-[1.9]">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -248,7 +248,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
           <h2 className="mb-4 text-2xl font-black tracking-wider text-slate-800 sm:text-3xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-10 max-w-md text-[13px] leading-[1.9] text-slate-500">
+          <p className="mx-auto mb-10 max-w-md text-[13px] font-bold leading-[1.9] text-slate-500">
             {t("ctaDesc")}
           </p>
           <LinkButton

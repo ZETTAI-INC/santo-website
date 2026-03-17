@@ -74,7 +74,7 @@ function StatCard({
           {stat.suffix}
         </span>
       </div>
-      <p className="mt-2 hidden text-[14px] leading-[1.9] text-slate-500 sm:mt-4 sm:block sm:text-[17px]">
+      <p className="mt-2 hidden text-[14px] font-bold leading-[1.9] text-slate-500 sm:mt-4 sm:block sm:text-[17px]">
         {stat.desc}
       </p>
     </div>
@@ -159,7 +159,7 @@ export function CountUpStats() {
             {t("title")}
           </h2>
           <div className="mt-3 h-1 w-16 rounded-full bg-santo-navy sm:mt-6" />
-          <p className="mt-3 text-[13px] leading-[1.9] text-slate-500 sm:mt-8 sm:text-[17px] sm:leading-[2.2]">
+          <p className="mt-3 text-[13px] font-bold leading-[1.9] text-slate-500 sm:mt-8 sm:text-[17px] sm:leading-[2.2]">
             <span className="sm:whitespace-nowrap">{t("desc1")}</span>
             <br className="hidden sm:block" />
             <span className="sm:whitespace-nowrap">{t("desc2")}</span>

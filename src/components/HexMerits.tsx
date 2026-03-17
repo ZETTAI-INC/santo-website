@@ -38,7 +38,7 @@ function MobileCard({ merit }: { merit: { iconImg: string; title: string; desc: 
         <p className="text-[15px] font-black tracking-wider text-slate-800">
           {merit.title}
         </p>
-        <p className="mt-1 text-[13px] leading-[1.8] text-slate-500">
+        <p className="mt-1 text-[13px] font-bold leading-[1.8] text-slate-500">
           {merit.desc}
         </p>
       </div>
@@ -348,7 +348,7 @@ export function HexMerits() {
                         className={`absolute -bottom-1 ${isRight ? "right-0" : "left-0"} h-0.5 w-8 bg-slate-300 transition-all duration-300 group-hover:w-full group-hover:bg-blue-500`}
                       />
                     </h3>
-                    <p className="text-[12.5px] leading-[1.6] text-slate-500">
+                    <p className="text-[12.5px] font-bold leading-[1.6] text-slate-500">
                       {merit.desc}
                     </p>
                   </div>

@@ -68,7 +68,7 @@ export default async function AccessPage({ params }: { params: Promise<{ locale:
                       <p className="mb-1 text-[11px] font-black tracking-[0.15em] text-santo-light">
                         {item.label}
                       </p>
-                      <p className="text-[13px] leading-[1.9] text-slate-600 whitespace-pre-line">
+                      <p className="text-[13px] font-bold leading-[1.9] text-slate-600 whitespace-pre-line">
                         {item.content}
                       </p>
                     </div>
@@ -86,7 +86,7 @@ export default async function AccessPage({ params }: { params: Promise<{ locale:
                     <p className="mt-1 text-[17px] font-bold tracking-wide text-slate-800">
                       {t("hoursValue")}
                     </p>
-                    <p className="mt-1 text-[12px] text-slate-400">
+                    <p className="mt-1 text-[12px] font-bold text-slate-400">
                       {t("hoursNote")}
                     </p>
                   </div>

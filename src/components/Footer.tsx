@@ -46,7 +46,7 @@ export function Footer() {
                 </p>
               </div>
             </div>
-            <div className="space-y-1.5 text-[13px] text-slate-300">
+            <div className="space-y-1.5 text-[13px] font-bold text-slate-300">
               <p className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-santo-accent" />
                 {t("address")}
@@ -77,7 +77,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={localePath(item.href)}
-                    className="text-[13px] text-slate-300 transition-colors hover:text-white"
+                    className="text-[13px] font-bold text-slate-300 transition-colors hover:text-white"
                   >
                     {item.name}
                   </Link>
@@ -100,7 +100,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href === "#" ? item.href : localePath(item.href)}
-                    className="text-[13px] text-slate-300 transition-colors hover:text-white"
+                    className="text-[13px] font-bold text-slate-300 transition-colors hover:text-white"
                   >
                     {item.name}
                   </Link>

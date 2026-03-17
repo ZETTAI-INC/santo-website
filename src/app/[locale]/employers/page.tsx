@@ -51,9 +51,9 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
   ];
 
   const stats = [
-    { num: t("stat1Num"), suffix: t("stat1Suffix"), label: t("stat1Label"), desc: t("stat1Desc") },
-    { num: t("stat2Num"), suffix: t("stat2Suffix"), label: t("stat2Label"), desc: t("stat2Desc") },
-    { num: t("stat3Num"), suffix: t("stat3Suffix"), label: t("stat3Label"), desc: t("stat3Desc") },
+    { num: t("stat1Num"), suffix: t("stat1Suffix"), label: t("stat1Label"), desc: t("stat1Desc"), img: "/images/illustration_kizuna.png" },
+    { num: t("stat2Num"), suffix: t("stat2Suffix"), label: t("stat2Label"), desc: t("stat2Desc"), img: "/images/illustration_satisfaction.png" },
+    { num: t("stat3Num"), suffix: t("stat3Suffix"), label: t("stat3Label"), desc: t("stat3Desc"), img: "/images/illustration_kizuna.png" },
   ];
 
   return (
@@ -70,10 +70,10 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                 {t("leadLabel")}
               </p>
               <h2 className="mb-6 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-                {t("leadTitle1")}<br /><span className="text-santo-blue">{t("leadTitle2")}</span>{t("leadTitle3")}
+                {t("leadTitle1")}<span className="text-santo-blue">{t("leadTitle2")}</span><br />{t("leadTitle3")}
               </h2>
               <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
-              <p className="text-[15px] leading-[2.2] text-slate-600 sm:text-[17px]">
+              <p className="text-[15px] font-bold leading-[2.2] text-slate-600 sm:text-[17px]">
                 {t("leadDesc")}
               </p>
               <div className="mt-8 flex justify-center">
@@ -88,42 +88,53 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               </div>
             </div>
 
-            {/* 右: イラスト + 数字カード */}
-            <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-stretch lg:gap-6">
-              {/* イラスト */}
-              <div className="flex flex-1 items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/illust_handshake_transparent.png"
-                  alt=""
-                  className="h-auto w-64 opacity-90 lg:w-72"
-                />
-              </div>
-              {/* 数字カード */}
-              <div className="flex w-full flex-col gap-3 lg:w-[280px] lg:shrink-0">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="flex items-center gap-4 rounded-2xl bg-gradient-to-br from-[#e0f0fa] to-[#f0f7fc] px-4 py-4"
-                  >
-                    {/* 円形数字 */}
-                    <div className="relative flex h-[88px] w-[88px] shrink-0 flex-col items-center justify-center rounded-full bg-gradient-to-br from-santo-blue to-[#0ea5e9] shadow-md">
-                      <span className="text-[10px] font-bold tracking-wider text-white/80">
-                        {stat.label}
+            {/* 右: ピラミッド型カード */}
+            <div className="flex flex-col items-center gap-4">
+              {/* 1段目: 1つ（頂上） */}
+              <div className="flex justify-center">
+                <div className="flex w-[320px] items-center gap-4 overflow-hidden rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                  <div className="flex-1">
+                    <p className="text-[18px] font-black tracking-wider text-santo-navy">
+                      {stats[0].label}
+                    </p>
+                    <div className="flex items-baseline">
+                      <span className="text-[46px] font-black leading-none tabular-nums text-santo-navy">
+                        {stats[0].num}
                       </span>
+                      <span className="ml-1 text-[16px] font-bold text-slate-500">
+                        {stats[0].suffix}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-[14px] font-bold leading-[1.6] text-slate-500">
+                      {stats[0].desc}
+                    </p>
+                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={stats[0].img} alt="" className="h-[100px] w-[100px] shrink-0 object-contain" />
+                </div>
+              </div>
+              {/* 2段目: 2つ（底辺） */}
+              <div className="flex justify-center gap-4">
+                {stats.slice(1).map((stat) => (
+                  <div key={stat.label} className="flex w-[260px] items-center gap-4 overflow-hidden rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                    <div className="flex-1">
+                      <p className="text-[17px] font-black tracking-wider text-santo-navy">
+                        {stat.label}
+                      </p>
                       <div className="flex items-baseline">
-                        <span className="text-[30px] font-black leading-none tabular-nums text-white">
+                        <span className="text-[44px] font-black leading-none tabular-nums text-santo-navy">
                           {stat.num}
                         </span>
-                        <span className="text-[12px] font-bold text-white/80">
+                        <span className="ml-1 text-[15px] font-bold text-slate-500">
                           {stat.suffix}
                         </span>
                       </div>
+                      <p className="mt-1 text-[14px] font-bold leading-[1.6] text-slate-500">
+                        {stat.desc}
+                      </p>
                     </div>
-                    {/* テキスト */}
-                    <p className="text-[13px] font-bold leading-[1.7] tracking-wider text-slate-600">
-                      {stat.desc}
-                    </p>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={stat.img} alt="" className="h-[100px] w-[100px] shrink-0 object-contain" />
                   </div>
                 ))}
               </div>
@@ -164,7 +175,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                   <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-[12px] leading-[1.7] text-slate-500">
+                  <p className="mt-1 text-[12px] font-bold leading-[1.7] text-slate-500">
                     {step.desc}
                   </p>
                   <div className="mt-auto flex justify-end pt-2">
@@ -217,7 +228,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                     <h3 className="mt-2 whitespace-nowrap text-[18px] font-black tracking-wider text-slate-900">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-[15px] leading-[1.9] text-slate-500">
+                    <p className="mt-2 text-[15px] font-bold leading-[1.9] text-slate-500">
                       {step.desc}
                     </p>
                     <div className="mt-auto flex justify-end pt-4">
