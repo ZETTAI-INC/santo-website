@@ -131,10 +131,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {t("trustedDesc2")}
             <span className="ml-2 text-slate-800">／</span>
           </p>
-          <div className="mx-auto max-w-3xl">
-            <div className="flex h-[250px] items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 sm:h-[350px]">
-              <span className="text-[14px] text-slate-400">{t("trustedImagePlaceholder")}</span>
-            </div>
+          <div className="mx-auto max-w-7xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/trusted_media.jpg"
+              alt=""
+              className="w-full rounded-xl object-cover shadow-sm"
+            />
           </div>
         </div>
       </section>

@@ -93,12 +93,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* 会社情報テーブル */}
-      <section className="py-20 sm:py-28">
+      <section className="py-8 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
+          <p className="mb-1 text-[14px] font-black tracking-[0.3em] text-santo-light sm:mb-3">
             {t("overviewLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
+          <h2 className="mb-3 text-2xl font-black tracking-wider text-slate-900 sm:mb-4 sm:text-4xl lg:text-5xl">
             {t("overviewTitle")}
           </h2>
           <div className="overflow-hidden rounded-xl border border-slate-200">
@@ -111,10 +111,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                       i % 2 === 0 ? "bg-white" : "bg-santo-gray"
                     }
                   >
-                    <th className="w-28 border-r border-slate-200 px-3 py-4 text-left text-[13px] font-black tracking-wider text-santo-navy sm:w-52 sm:px-6 sm:py-5 sm:text-[16px]">
+                    <th className="w-28 border-r border-slate-200 px-3 py-2.5 text-left text-[12px] font-black tracking-wider text-santo-navy sm:w-52 sm:px-6 sm:py-3.5 sm:text-[16px]">
                       {item.label}
                     </th>
-                    <td className="px-3 py-4 text-[13px] font-bold text-slate-600 sm:px-6 sm:py-5 sm:text-[16px]">
+                    <td className="px-3 py-2.5 text-[12px] font-bold text-slate-600 sm:px-6 sm:py-3.5 sm:text-[16px]">
                       {item.value}
                     </td>
                   </tr>

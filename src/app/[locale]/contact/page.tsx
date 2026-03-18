@@ -22,12 +22,12 @@ export default function ContactPage() {
     <>
       <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/contact_hero.png" largeSubtitle />
 
-      <section className="py-20 sm:py-28">
+      <section className="py-8 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid gap-12 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
             {/* Contact Info */}
             <div>
-              <p className="mb-6 text-[11px] font-black tracking-[0.25em] text-santo-light">
+              <p className="mb-3 text-[11px] font-black tracking-[0.25em] text-santo-light sm:mb-6">
                 INFO
               </p>
               <div className="space-y-0">
@@ -53,7 +53,7 @@ export default function ContactPage() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="flex items-start gap-4 border-b border-slate-100 py-5 last:border-0"
+                    className="flex items-start gap-3 border-b border-slate-100 py-3 last:border-0 sm:gap-4 sm:py-5"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-santo-sky">
                       <item.icon className="h-5 w-5 text-santo-blue" />
@@ -97,14 +97,14 @@ export default function ContactPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <p className="text-[13px] text-slate-500">
                     {t("formIntro")}
                     <span className="font-bold text-red-500"> *</span>
                     {t("required")}
                   </p>
 
-                  <div className="grid gap-6 sm:grid-cols-2">
+                  <div className="grid gap-3 sm:gap-6 sm:grid-cols-2">
                     <div>
                       <Label
                         htmlFor="name"
@@ -137,7 +137,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="grid gap-6 sm:grid-cols-2">
+                  <div className="grid gap-3 sm:gap-6 sm:grid-cols-2">
                     <div>
                       <Label
                         htmlFor="email"
@@ -210,7 +210,7 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div className="rounded bg-santo-gray p-5">
+                  <div className="rounded bg-santo-gray p-3 sm:p-5">
                     <label className="flex items-start gap-3 text-[13px] text-slate-600">
                       <input
                         type="checkbox"

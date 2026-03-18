@@ -7,9 +7,10 @@ type PageHeaderProps = {
   imageLayout?: "background" | "right";
   tall?: boolean;
   largeSubtitle?: boolean;
+  children?: React.ReactNode;
 };
 
-export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", tall = false, largeSubtitle = false }: PageHeaderProps) {
+export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", tall = false, largeSubtitle = false, children }: PageHeaderProps) {
   const hasBackgroundImage = image && imageLayout === "background";
   const hasRightImage = image && imageLayout === "right";
 
@@ -53,6 +54,7 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
                 {subtitle}
               </p>
             )}
+            {children}
           </div>
 
           {/* 右側画像（rightモード） */}

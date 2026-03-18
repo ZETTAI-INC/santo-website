@@ -51,19 +51,30 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
   ];
 
   const stats = [
-    { num: t("stat1Num"), suffix: t("stat1Suffix"), label: t("stat1Label"), desc: t("stat1Desc"), img: "/images/illustration_kizuna.png" },
-    { num: t("stat2Num"), suffix: t("stat2Suffix"), label: t("stat2Label"), desc: t("stat2Desc"), img: "/images/illustration_satisfaction.png" },
-    { num: t("stat3Num"), suffix: t("stat3Suffix"), label: t("stat3Label"), desc: t("stat3Desc"), img: "/images/illustration_kizuna.png" },
+    { num: t("stat1Num"), suffix: t("stat1Suffix"), label: t("stat1Label"), desc: t("stat1Desc"), img: "/images/illustration_kizuna_v2.png" },
+    { num: t("stat2Num"), suffix: t("stat2Suffix"), label: t("stat2Label"), desc: t("stat2Desc"), img: "/images/illustration_satisfaction_v2.png" },
+    { num: t("stat3Num"), suffix: t("stat3Suffix"), label: t("stat3Label"), desc: t("stat3Desc"), img: "/images/illustration_handshake.png" },
   ];
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/employers_factory_boss_wide.png" largeSubtitle />
+      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/employers_factory_boss_wide.png" largeSubtitle>
+        <div className="mt-8">
+          <LinkButton
+            href={`/${locale}/contact`}
+            size="xl"
+            className="bg-white text-santo-navy shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:bg-slate-100"
+          >
+            {t("leadButton")}
+            <ArrowRight className="h-5 w-5" />
+          </LinkButton>
+        </div>
+      </PageHeader>
 
       {/* Lead */}
-      <section className="py-20 sm:py-28">
+      <section className="py-8 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             {/* 左: テキスト */}
             <div>
               <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
@@ -88,55 +99,82 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               </div>
             </div>
 
-            {/* 右: ピラミッド型カード */}
-            <div className="flex flex-col items-center gap-4">
-              {/* 1段目: 1つ（頂上） */}
-              <div className="flex justify-center">
-                <div className="flex w-[320px] items-center gap-4 overflow-hidden rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-                  <div className="flex-1">
-                    <p className="text-[18px] font-black tracking-wider text-santo-navy">
-                      {stats[0].label}
-                    </p>
-                    <div className="flex items-baseline">
-                      <span className="text-[46px] font-black leading-none tabular-nums text-santo-navy">
-                        {stats[0].num}
-                      </span>
-                      <span className="ml-1 text-[16px] font-bold text-slate-500">
-                        {stats[0].suffix}
-                      </span>
-                    </div>
-                    <p className="mt-1 text-[14px] font-bold leading-[1.6] text-slate-500">
-                      {stats[0].desc}
-                    </p>
-                  </div>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={stats[0].img} alt="" className="h-[100px] w-[100px] shrink-0 object-contain" />
-                </div>
-              </div>
-              {/* 2段目: 2つ（底辺） */}
-              <div className="flex justify-center gap-4">
-                {stats.slice(1).map((stat) => (
-                  <div key={stat.label} className="flex w-[260px] items-center gap-4 overflow-hidden rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-                    <div className="flex-1">
-                      <p className="text-[17px] font-black tracking-wider text-santo-navy">
+            {/* 右: 実績カード */}
+            <div>
+              {/* モバイル: 縦並び */}
+              <div className="flex flex-col gap-2 lg:hidden">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                    <div className="min-w-0 flex-1 text-center">
+                      <p className="text-[14px] font-black tracking-wider text-santo-navy">
                         {stat.label}
                       </p>
-                      <div className="flex items-baseline">
-                        <span className="text-[44px] font-black leading-none tabular-nums text-santo-navy">
+                      <div className="flex items-baseline justify-center">
+                        <span className="text-[32px] font-black leading-none tabular-nums text-santo-navy">
                           {stat.num}
                         </span>
-                        <span className="ml-1 text-[15px] font-bold text-slate-500">
+                        <span className="ml-1 text-[12px] font-bold text-slate-500">
                           {stat.suffix}
                         </span>
                       </div>
-                      <p className="mt-1 text-[14px] font-bold leading-[1.6] text-slate-500">
+                      <p className="mt-0.5 text-[11px] font-bold leading-[1.5] text-slate-500">
                         {stat.desc}
                       </p>
                     </div>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={stat.img} alt="" className="h-[100px] w-[100px] shrink-0 object-contain" />
+                    <img src={stat.img} alt="" className="h-[70px] w-[70px] shrink-0 object-contain" />
                   </div>
                 ))}
+              </div>
+
+              {/* デスクトップ: ピラミッド型 */}
+              <div className="hidden lg:flex lg:flex-col lg:items-center lg:gap-4">
+                <div className="flex justify-center">
+                  <div className="flex w-[320px] items-center gap-4 rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                    <div className="flex-1">
+                      <p className="text-[18px] font-black tracking-wider text-santo-navy">
+                        {stats[0].label}
+                      </p>
+                      <div className="flex items-baseline">
+                        <span className="text-[46px] font-black leading-none tabular-nums text-santo-navy">
+                          {stats[0].num}
+                        </span>
+                        <span className="ml-1 text-[16px] font-bold text-slate-500">
+                          {stats[0].suffix}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-[14px] font-bold leading-[1.6] text-slate-500">
+                        {stats[0].desc}
+                      </p>
+                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={stats[0].img} alt="" className="h-[130px] w-[130px] shrink-0 object-contain" />
+                  </div>
+                </div>
+                <div className="flex justify-center gap-4">
+                  {stats.slice(1).map((stat) => (
+                    <div key={stat.label} className="flex w-[330px] items-center gap-4 rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                      <div className="flex-1">
+                        <p className="whitespace-nowrap text-[17px] font-black tracking-wider text-santo-navy">
+                          {stat.label}
+                        </p>
+                        <div className="flex items-baseline">
+                          <span className="text-[44px] font-black leading-none tabular-nums text-santo-navy">
+                            {stat.num}
+                          </span>
+                          <span className="ml-1 text-[15px] font-bold text-slate-500">
+                            {stat.suffix}
+                          </span>
+                        </div>
+                        <p className="mt-1 whitespace-nowrap text-[14px] font-bold leading-[1.6] text-slate-500">
+                          {stat.desc}
+                        </p>
+                      </div>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={stat.img} alt="" className="h-[130px] w-[130px] shrink-0 object-contain" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -276,10 +314,10 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
           <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             {t("ctaLabel")}
           </p>
-          <h2 className="mb-4 text-xl font-black tracking-wider text-white sm:text-2xl lg:text-3xl">
+          <h2 className="mb-4 text-2xl font-black tracking-wider text-white sm:text-3xl lg:text-4xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-8 max-w-md text-[13px] leading-[1.9] text-white/70 sm:mb-10 sm:text-[14px]">
+          <p className="mx-auto mb-8 max-w-md text-[15px] font-bold leading-[1.9] text-white/80 sm:mb-10 sm:text-[18px]">
             {t("ctaDesc")}
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">

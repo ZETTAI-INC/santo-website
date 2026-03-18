@@ -72,13 +72,13 @@ function TimelineItem({
           <div
             className="w-px bg-santo-navy/15"
             style={{
-              height: 40,
+              height: 16,
               opacity: visible ? 1 : 0,
               transition: `opacity 0.5s ease ${index * 120}ms`,
             }}
           />
         )}
-        {index === 0 && <div style={{ height: 40 }} />}
+        {index === 0 && <div style={{ height: 16 }} />}
         {/* アイコンドット */}
         <div
           className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-santo-navy bg-white shadow-md"
@@ -95,13 +95,13 @@ function TimelineItem({
           <div
             className="w-px bg-santo-navy/15"
             style={{
-              height: 40,
+              height: 16,
               opacity: visible ? 1 : 0,
               transition: `opacity 0.5s ease ${index * 120 + 200}ms`,
             }}
           />
         )}
-        {index === totalCount - 1 && <div style={{ height: 40 }} />}
+        {index === totalCount - 1 && <div style={{ height: 16 }} />}
       </div>
 
       {/* 右側コンテンツ（奇数） or 空 */}

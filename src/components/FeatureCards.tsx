@@ -168,7 +168,7 @@ export function FeatureCards() {
                   {feature.problem}
                 </p>
               </div>
-              <div className="relative rounded-b-2xl border border-t-0 border-slate-200 bg-white p-4 before:absolute before:bottom-0 before:left-0 before:top-0 before:w-1 before:rounded-bl-2xl before:bg-santo-navy">
+              <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-white p-4">
                 <div className="mb-3 flex justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={feature.img} alt={feature.title} className="h-20 w-20 object-contain" />
