@@ -83,7 +83,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   CHECK!
                 </span>
                 <p className="text-center text-[12px] leading-[1.3] tracking-wider text-santo-navy sm:text-[22px] sm:leading-[1.4] lg:text-[28px]" style={{ fontWeight: 900, WebkitTextStroke: "0.5px currentColor" }}>
-                  多数サイトの<br />人材派遣会社<br />ランキングに<br />掲載されました！
+                  {t("trustedCheckText").split("\n").map((line, i, arr) => (
+                    <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                  ))}
                 </p>
               </div>
 
@@ -110,7 +112,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-santo-navy px-8 py-4 text-[15px] font-bold tracking-wide text-white shadow-sm transition hover:bg-santo-blue sm:px-10 sm:text-[17px]"
             >
-              派遣マッチングで見る
+              {t("trustedButtonMatching")}
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
@@ -119,7 +121,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-[#e89b0c] px-8 py-4 text-[15px] font-bold tracking-wide text-white shadow-sm transition hover:bg-[#d08a0a] sm:px-10 sm:text-[17px]"
             >
-              #就職しようで見る
+              {t("trustedButtonShushoku")}
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
