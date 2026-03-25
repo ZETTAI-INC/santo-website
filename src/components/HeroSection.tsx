@@ -23,7 +23,7 @@ export function HeroSection() {
       <div
         className="hero-bg absolute inset-0 bg-no-repeat"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/95 via-santo-navy/70 to-transparent" />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(29,111,181,0.95) 0%, rgba(29,111,181,0.85) 25%, rgba(29,111,181,0.4) 45%, transparent 55%)" }} />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-santo-accent/20" />
 
       <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-32 lg:py-40">

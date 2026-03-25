@@ -8,10 +8,11 @@ type PageHeaderProps = {
   imageFit?: "cover" | "contain";
   tall?: boolean;
   largeSubtitle?: boolean;
+  wideGradient?: boolean;
   children?: React.ReactNode;
 };
 
-export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", imageFit = "cover", tall = false, largeSubtitle = false, children }: PageHeaderProps) {
+export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", imageFit = "cover", tall = false, largeSubtitle = false, wideGradient = false, children }: PageHeaderProps) {
   const hasBackgroundImage = image && imageLayout === "background";
   const hasRightImage = image && imageLayout === "right";
 
@@ -24,7 +25,10 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
             className={`absolute inset-0 bg-no-repeat ${imageFit === "contain" ? "bg-contain" : "bg-cover"}`}
             style={{ backgroundImage: `url('${image}')`, backgroundPosition: imageFit === "contain" ? "right center" : imagePosition.includes(" ") ? imagePosition : `center ${imagePosition}` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/95 via-santo-navy/70 to-transparent" />
+          <div className="absolute inset-0" style={{ background: wideGradient
+            ? "linear-gradient(to right, rgba(29,111,181,0.95) 0%, rgba(29,111,181,0.9) 20%, rgba(29,111,181,0.7) 35%, rgba(29,111,181,0.4) 48%, rgba(29,111,181,0.15) 58%, transparent 68%)"
+            : "linear-gradient(to right, rgba(29,111,181,0.95) 0%, rgba(29,111,181,0.85) 25%, rgba(29,111,181,0.4) 45%, transparent 55%)"
+          }} />
         </>
       )}
 

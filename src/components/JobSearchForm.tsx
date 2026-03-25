@@ -200,8 +200,6 @@ export function JobSearchForm() {
     { key: "no_preference", label: t("salaryNoPreference") },
     { key: "long", label: t("wpLong") },
     { key: "medium", label: t("wpMedium") },
-    { key: "short", label: t("wpShort") },
-    { key: "single", label: t("wpSingle") },
   ];
 
   const featureOptions = [

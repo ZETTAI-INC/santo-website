@@ -70,7 +70,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/office_warehouse_split_lightwork.png" imagePosition="80% center" tall largeSubtitle />
+      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/jobseekers_hero_office_factory.jpg" imagePosition="80% center" tall largeSubtitle wideGradient />
 
       {/* Job Categories */}
       <section className="py-6 sm:py-16">
