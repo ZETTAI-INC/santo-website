@@ -5,12 +5,13 @@ type PageHeaderProps = {
   image?: string;
   imagePosition?: string;
   imageLayout?: "background" | "right";
+  imageFit?: "cover" | "contain";
   tall?: boolean;
   largeSubtitle?: boolean;
   children?: React.ReactNode;
 };
 
-export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", tall = false, largeSubtitle = false, children }: PageHeaderProps) {
+export function PageHeader({ label, title, subtitle, image, imagePosition = "center", imageLayout = "background", imageFit = "cover", tall = false, largeSubtitle = false, children }: PageHeaderProps) {
   const hasBackgroundImage = image && imageLayout === "background";
   const hasRightImage = image && imageLayout === "right";
 
@@ -20,10 +21,10 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
       {hasBackgroundImage && (
         <>
           <div
-            className="absolute inset-0 bg-cover bg-no-repeat"
-            style={{ backgroundImage: `url('${image}')`, backgroundPosition: `center ${imagePosition}` }}
+            className={`absolute inset-0 bg-no-repeat ${imageFit === "contain" ? "bg-contain" : "bg-cover"}`}
+            style={{ backgroundImage: `url('${image}')`, backgroundPosition: imageFit === "contain" ? "right center" : imagePosition.includes(" ") ? imagePosition : `center ${imagePosition}` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/90 via-santo-navy/65 to-santo-navy/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/95 via-santo-navy/70 to-transparent" />
         </>
       )}
 

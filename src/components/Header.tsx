@@ -10,9 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const languages = [
-  { code: "ja", label: "日本語" },
-  { code: "en", label: "English" },
-  { code: "zh", label: "中文" },
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "zh", label: "中文", flag: "🇨🇳" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "pt", label: "Português", flag: "🇧🇷" },
 ];
 
 export function Header() {
@@ -31,7 +33,7 @@ export function Header() {
   ];
 
   // Strip locale prefix from pathname for active detection
-  const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh)/, "") || "/";
+  const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh|es|pt)/, "") || "/";
 
   function getLocalizedHref(path: string) {
     return `/${locale}${path}`;
@@ -82,18 +84,18 @@ export function Header() {
           </nav>
           {/* Language Switcher */}
           <div className="ml-2 flex items-center gap-1 border-l border-slate-200 pl-3">
-            <Globe className="h-4 w-4 text-slate-400" />
             {languages.map((lang) => (
               <Link
                 key={lang.code}
                 href={switchLocaleHref(lang.code)}
-                className={`rounded px-2 py-1 text-[11px] font-bold whitespace-nowrap transition-colors ${
+                className={`flex flex-col items-center rounded px-2 py-1 transition-colors ${
                   locale === lang.code
                     ? "bg-santo-navy text-white"
                     : "text-slate-500 hover:bg-slate-100 hover:text-santo-navy"
                 }`}
               >
-                {lang.label}
+                <span className="text-[11px] font-bold whitespace-nowrap">{lang.label}</span>
+                <span className="text-[28px] leading-none">{lang.flag}</span>
               </Link>
             ))}
           </div>
@@ -138,19 +140,20 @@ export function Header() {
                 <p className="mb-2 text-[10px] font-bold tracking-widest text-slate-400">
                   {t("language")}
                 </p>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {languages.map((lang) => (
                     <Link
                       key={lang.code}
                       href={switchLocaleHref(lang.code)}
                       onClick={() => setOpen(false)}
-                      className={`rounded px-3 py-1.5 text-xs font-bold ${
+                      className={`flex flex-col items-center rounded px-3 py-1.5 ${
                         locale === lang.code
                           ? "bg-santo-navy text-white"
                           : "bg-slate-100 text-slate-600 hover:bg-santo-sky hover:text-santo-navy"
                       }`}
                     >
-                      {lang.label}
+                      <span className="text-xs font-bold">{lang.label}</span>
+                      <span className="text-[30px] leading-none">{lang.flag}</span>
                     </Link>
                   ))}
                 </div>

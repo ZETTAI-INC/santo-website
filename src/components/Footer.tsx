@@ -10,6 +10,8 @@ const languages = [
   { code: "ja", label: "日本語" },
   { code: "en", label: "English" },
   { code: "zh", label: "中文" },
+  { code: "es", label: "Español" },
+  { code: "pt", label: "Português" },
 ];
 
 export function Footer() {
@@ -17,7 +19,7 @@ export function Footer() {
   const tHeader = useTranslations("Header");
   const locale = useLocale();
   const pathname = usePathname();
-  const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh)/, "") || "/";
+  const pathWithoutLocale = pathname.replace(/^\/(ja|en|zh|es|pt)/, "") || "/";
 
   const localePath = (path: string) => {
     return `/${locale}${path}`;

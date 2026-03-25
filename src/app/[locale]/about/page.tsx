@@ -30,7 +30,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/company_hero_factory_people.png" largeSubtitle />
+      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/jobseekers_hero.png" imagePosition="35%" tall largeSubtitle />
 
       {/* 代表挨拶 */}
       <section className="py-10 sm:py-14">
@@ -125,29 +125,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      {/* 沿革 */}
-      <section className="border-t border-slate-200 bg-[#d4e3ea] py-10 sm:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-6 text-center">
-            <p className="mb-2 text-[12px] font-black tracking-[0.3em] text-santo-light">
-              {t("historyLabel")}
-            </p>
-            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-              {t("historyTitle")}
-            </h2>
-            <div className="mx-auto mt-3 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="mx-auto mt-3 max-w-md text-[15px] font-bold leading-[1.9] text-slate-500">
-              {t("historyDesc")}
-            </p>
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={isJa ? "/images/history_stairs_v3.jpg" : locale === "zh" ? "/images/history_stairs_v3_zh.jpg" : "/images/history_stairs_v3_en.jpg"}
-            alt={t("historyTitle")}
-            className="w-full h-auto rounded-xl"
-          />
-        </div>
-      </section>
     </>
   );
 }

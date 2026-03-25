@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Train, Car, Clock } from "lucide-react";
+import { MapPin, Train, Car, Clock, Phone } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -45,6 +45,11 @@ export default async function AccessPage({ params }: { params: Promise<{ locale:
                     icon: MapPin,
                     label: t("addressLabel"),
                     content: t("addressValue"),
+                  },
+                  {
+                    icon: Phone,
+                    label: t("telLabel"),
+                    content: t("telValue"),
                   },
                   {
                     icon: Train,

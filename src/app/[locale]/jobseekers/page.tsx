@@ -63,7 +63,6 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
     { q: t("faq3Q"), a: t("faq3A") },
     { q: t("faq4Q"), a: t("faq4A") },
     { q: t("faq5Q"), a: t("faq5A") },
-    { q: t("faq6Q"), a: t("faq6A") },
     { q: t("faq7Q"), a: t("faq7A") },
     { q: t("faq8Q"), a: t("faq8A") },
     { q: t("faq9Q"), a: t("faq9A") },
@@ -71,7 +70,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/jobseekers_hero.png" tall largeSubtitle />
+      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/office_warehouse_split_lightwork.png" imagePosition="80% center" tall largeSubtitle />
 
       {/* Job Categories */}
       <section className="py-6 sm:py-16">

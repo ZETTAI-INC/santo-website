@@ -475,8 +475,10 @@
     "trainValue": "JR東海道線「平塚駅」より徒歩3分",
     "carLabel": "お車でお越しの方",
     "carValue": "小田原厚木道路「平塚IC」より約10分",
+    "telLabel": "電話番号",
+    "telValue": "0463-24-1722",
     "hoursLabel": "営業時間",
-    "hoursValue": "月曜日〜金曜日 9:00〜18:00",
+    "hoursValue": "月曜日〜金曜日 8:00〜17:00",
     "hoursNote": "※土日祝日はお休みをいただいております"
   },
   "Contact": {
@@ -488,7 +490,7 @@
     "emailLabel": "メール",
     "emailValue": "info@santo-hp.co.jp",
     "hoursLabel": "営業時間",
-    "hoursValue": "月〜金 9:00〜18:00",
+    "hoursValue": "月〜金 8:00〜17:00",
     "hoursNote": "※土日祝日休み",
     "thankYouTitle": "送信ありがとうございます",
     "thankYouDesc": "お問い合わせを受け付けました。担当者より折り返しご連絡いたします。",

@@ -475,8 +475,10 @@
     "trainValue": "从JR东海道线「平冢站」步行3分钟",
     "carLabel": "驾车出行",
     "carValue": "从小田原�的木道路「平冢IC」约10分钟",
+    "telLabel": "电话",
+    "telValue": "0463-24-1722",
     "hoursLabel": "营业时间",
-    "hoursValue": "周一至周五 9:00〜18:00",
+    "hoursValue": "周一至周五 8:00〜17:00",
     "hoursNote": "※周末及节假日休息"
   },
   "Contact": {
@@ -488,7 +490,7 @@
     "emailLabel": "邮箱",
     "emailValue": "info@santo-hp.co.jp",
     "hoursLabel": "营业时间",
-    "hoursValue": "周一至周五 9:00〜18:00",
+    "hoursValue": "周一至周五 8:00〜17:00",
     "hoursNote": "※周末及节假日休息",
     "thankYouTitle": "感谢您的来信",
     "thankYouDesc": "我们已收到您的咨询，负责人将尽快与您联系。",

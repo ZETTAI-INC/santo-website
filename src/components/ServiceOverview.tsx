@@ -106,7 +106,7 @@ function ServiceRow({
 export function ServiceOverview() {
   const t = useTranslations("ServiceOverview");
   const locale = useLocale();
-  const imgSuffix = locale === "ja" ? "" : locale === "zh" ? "_zh" : "_en";
+  const imgSuffix = locale === "ja" ? "" : locale === "zh" ? "_zh" : locale === "es" ? "_es" : locale === "pt" ? "_pt" : "_en";
   const imgExt = locale === "ja" ? ".png" : ".jpg";
 
   const services = [
@@ -127,7 +127,7 @@ export function ServiceOverview() {
       bg: "bg-[#f4f7fb]",
     },
     {
-      img: `/images/services/outsourcing_service${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v2.png` : `/images/services/outsourcing_service${imgSuffix}${imgExt}`,
       label: "03",
       title: t("outsourcingTitle"),
       subtitle: "Outsourcing Service",
@@ -139,7 +139,7 @@ export function ServiceOverview() {
   return (
     <div>
       {/* セクションヘッダー */}
-      <section className="bg-white pb-0 pt-10 sm:pt-14 lg:pt-16">
+      <section className="hidden bg-white pb-0 pt-10 sm:block sm:pt-14 lg:pt-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="text-center">
             <p className="mb-3 text-[13px] font-black tracking-[0.25em] text-santo-light">
@@ -155,39 +155,6 @@ export function ServiceOverview() {
           </div>
         </div>
       </section>
-
-      {/* モバイル: 横スクロールカード */}
-      <div className="md:hidden -mx-0 px-4 pt-8 pb-4">
-        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-          {services.map((service) => (
-            <div key={service.title} className="w-[280px] shrink-0 snap-start">
-              {/* 図 */}
-              <div className="rounded-t-2xl border border-b-0 border-slate-200 bg-white p-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={service.img} alt={service.title} className="h-auto w-full object-contain" />
-              </div>
-              {/* テキスト */}
-              <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-slate-50 p-4">
-                <p className="mb-1 text-[11px] font-black tracking-[0.2em] text-santo-light">
-                  {service.subtitle.toUpperCase()}
-                </p>
-                <div className="mb-2 flex items-baseline gap-2">
-                  <span className="text-3xl font-black leading-none text-santo-navy/10">
-                    {service.label}
-                  </span>
-                  <h3 className="text-[16px] font-black tracking-wider text-slate-900">
-                    {service.title}
-                  </h3>
-                </div>
-                <div className="mb-2 h-[3px] w-10 rounded-full bg-santo-navy" />
-                <p className="text-[13px] font-bold leading-[1.9] text-slate-600">
-                  {service.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* デスクトップ: ジグザグレイアウト */}
       <div className="hidden md:block">

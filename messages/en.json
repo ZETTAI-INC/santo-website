@@ -475,8 +475,10 @@
     "trainValue": "3-minute walk from Hiratsuka Station (JR Tokaido Line)",
     "carLabel": "By Car",
     "carValue": "Approx. 10 minutes from Hiratsuka IC (Odawara-Atsugi Expressway)",
+    "telLabel": "Phone",
+    "telValue": "0463-24-1722",
     "hoursLabel": "Business Hours",
-    "hoursValue": "Monday – Friday 9:00 – 18:00",
+    "hoursValue": "Monday – Friday 8:00 – 17:00",
     "hoursNote": "* Closed on weekends and public holidays"
   },
   "Contact": {
@@ -488,7 +490,7 @@
     "emailLabel": "Email",
     "emailValue": "info@santo-hp.co.jp",
     "hoursLabel": "Business Hours",
-    "hoursValue": "Mon–Fri 9:00–18:00",
+    "hoursValue": "Mon–Fri 8:00–17:00",
     "hoursNote": "* Closed on weekends & holidays",
     "thankYouTitle": "Thank you for your message",
     "thankYouDesc": "We have received your inquiry. A representative will contact you shortly.",

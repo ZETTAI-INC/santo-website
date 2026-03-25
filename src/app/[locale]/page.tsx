@@ -3,6 +3,7 @@ import {
 } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { FeatureCards } from "@/components/FeatureCards";
+import { CountUpStats } from "@/components/CountUpStats";
 import { NewsScroller } from "@/components/NewsScroller";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceOverview } from "@/components/ServiceOverview";
@@ -42,102 +43,85 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
-      {/* Partners */}
-      <section className="overflow-hidden py-12 sm:py-16">
+      {/* Numbers */}
+      <section className="bg-[#f4f7fb] py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mb-12 text-center">
-            <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
-              {t("partnersLabel")}
-            </p>
-            <h2 className="text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-              {t("partnersTitle")}
-            </h2>
-            <div className="mx-auto mt-1.5 h-1 bg-santo-navy" style={{ width: "252px", maxWidth: "100%" }} />
-            <p className="mx-auto mt-3 max-w-md text-[15px] leading-[1.8] text-slate-500 sm:text-[18px]">
-              {t("partnersDesc")}
-            </p>
-          </div>
+          <CountUpStats />
         </div>
-        {/* ロゴスクロール 2段 - 全幅 */}
-        <div className="relative space-y-4">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-white to-transparent" />
+      </section>
 
-          {/* 上段: 左スクロール */}
-          <div className="pointer-events-none flex animate-scroll-left gap-10 will-change-transform">
-            {[...Array(4)].map((_, setIdx) => (
-              <div key={setIdx} className="flex shrink-0 gap-10">
-                {[
-                  { name: "日本エアー・フィルター株式会社", logo: "/images/partners/nippon_air_filter.png" },
-                  { name: "南関東日立物流サービス株式会社", logo: "/images/partners/minami_kanto_hitachi.png" },
-                  { name: "日本クラウンコルク株式会社", logo: "/images/partners/nippon_crown_cork.png" },
-                  { name: "多田プレス工業株式会社", logo: "/images/partners/tada_press.png" },
-                  { name: "株式会社武部鉄工所", logo: "/images/partners/takebe_tekko.png" },
-                  { name: "森工業株式会社", logo: "/images/partners/mori_kogyo.png" },
-                  { name: "キョーラク株式会社", logo: "/images/partners/kyoraku.png" },
-                  { name: "英宝総合株式会社", logo: "/images/partners/eiho_sogo.png" },
-                ].map((partner, i) => (
-                  <div
-                    key={`${setIdx}-${i}`}
-                    className="flex h-16 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={partner.logo} alt={partner.name} className="h-10 max-w-[140px] object-contain" />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          {/* 下段: 右スクロール */}
-          <div className="pointer-events-none flex animate-scroll-right gap-10 will-change-transform">
-            {[...Array(4)].map((_, setIdx) => (
-              <div key={setIdx} className="flex shrink-0 gap-10">
-                {[
-                  { name: "日産車体マニュファクチュアリング株式会社", logo: "/images/partners/nissan_shatai_mfg.png" },
-                  { name: "平塚金属工業株式会社", logo: "/images/partners/hiratsuka_kinzoku.png" },
-                  { name: "旭ファイバーグラス株式会社", logo: "/images/partners/asahi_fiberglass.png" },
-                  { name: "高周波工業株式会社", logo: "/images/partners/koshuha_kogyo.png" },
-                  { name: "ファインツール・ジャパン株式会社", logo: "/images/partners/finetool_japan.png" },
-                  { name: "三洋興産株式会社", logo: "/images/partners/sanyo_kosan.png" },
-                ].map((partner, i) => (
-                  <div
-                    key={`${setIdx}-${i}`}
-                    className="flex h-16 w-44 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-white px-4"
-                  >
-                    {partner.logo ? (
-                      <>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={partner.logo} alt={partner.name} className="h-10 max-w-[140px] object-contain" />
-                      </>
-                    ) : (
-                      <span className="text-[12px] font-black leading-tight tracking-wider text-slate-600 text-center">
-                        {partner.name}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 信頼の紹介 */}
-        <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 sm:pt-16">
-          <p className="mb-8 text-center text-[18px] font-bold leading-[1.8] text-slate-700 sm:text-[24px] lg:text-[28px]">
-            <span className="mr-2 text-slate-800">＼</span>
-            {t("trustedDesc1")}
+      {/* 信頼の紹介 */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <p className="mb-8 text-center text-[15px] font-bold leading-[1.6] text-slate-700 sm:text-[24px] lg:text-[28px]">
+            <span className="mr-2 hidden text-slate-800 sm:inline">＼</span>
+            {t("trustedDesc1")}<br className="sm:hidden" />
             <span className="text-[1.15em] font-black text-santo-blue">{t("trustedDescHighlight")}</span>
             {t("trustedDesc2")}
-            <span className="ml-2 text-slate-800">／</span>
+            <span className="ml-2 hidden text-slate-800 sm:inline">／</span>
           </p>
-          <div className="mx-auto max-w-7xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/trusted_media.jpg"
-              alt=""
-              className="w-full rounded-xl object-cover shadow-sm"
-            />
+          <div className="-mx-4 overflow-visible bg-[#5ba3d9] sm:mx-auto sm:max-w-5xl sm:overflow-hidden sm:rounded-2xl">
+            <div className="relative flex items-center justify-center px-4 py-4 sm:py-5 lg:py-6">
+              {/* 左カード */}
+              <a
+                href="https://haken-matching.jp/haken-comparison/kanagawa/196/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute left-[2%] z-30 w-[35%] -rotate-6 overflow-hidden rounded-xl shadow-2xl transition-all duration-300 hover:scale-[1.15] hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] sm:left-[1%] sm:w-[37%] sm:hover:scale-110"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/hojin_haken_matching_ranking.png"
+                  alt="神奈川の人材派遣会社おすすめランキング"
+                  className="w-full"
+                />
+              </a>
+
+              {/* 中央テキスト（丸い破線枠） */}
+              <div className="relative z-10 flex flex-col items-center rounded-full border-[2px] border-dashed border-white bg-white/95 px-3 py-2.5 shadow-lg sm:border-[3px] sm:px-10 sm:py-6 lg:px-14 lg:py-8">
+                <span className="mb-1 inline-block rounded-md bg-[#f5c518] px-2 py-0.5 text-[8px] font-black tracking-widest text-slate-900 shadow-sm sm:mb-2 sm:px-5 sm:py-1 sm:text-[14px]">
+                  CHECK!
+                </span>
+                <p className="text-center text-[12px] leading-[1.3] tracking-wider text-santo-navy sm:text-[22px] sm:leading-[1.4] lg:text-[28px]" style={{ fontWeight: 900, WebkitTextStroke: "0.5px currentColor" }}>
+                  多数サイトの<br />人材派遣会社<br />ランキングに<br />掲載されました！
+                </p>
+              </div>
+
+              {/* 右カード */}
+              <a
+                href="https://find-bestwork.com/chiiki/kanagawa/100006/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute right-[2%] z-30 w-[33%] rotate-6 overflow-hidden rounded-xl shadow-2xl transition-all duration-300 hover:scale-[1.15] hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)] sm:right-[1%] sm:w-[35%] sm:hover:scale-110"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/hashtag_shushoku_expanded_v2.png"
+                  alt="#就職しよう"
+                  className="w-full"
+                />
+              </a>
+            </div>
+          </div>
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <a
+              href="https://haken-matching.jp/haken-comparison/kanagawa/196/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-santo-navy px-8 py-4 text-[15px] font-bold tracking-wide text-white shadow-sm transition hover:bg-santo-blue sm:px-10 sm:text-[17px]"
+            >
+              派遣マッチングで見る
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://find-bestwork.com/chiiki/kanagawa/100006/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#e89b0c] px-8 py-4 text-[15px] font-bold tracking-wide text-white shadow-sm transition hover:bg-[#d08a0a] sm:px-10 sm:text-[17px]"
+            >
+              #就職しようで見る
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
