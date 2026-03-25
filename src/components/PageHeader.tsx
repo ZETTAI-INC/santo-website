@@ -25,7 +25,13 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
             className={`absolute inset-0 bg-no-repeat ${imageFit === "contain" ? "bg-contain" : "bg-cover"}`}
             style={{ backgroundImage: `url('${image}')`, backgroundPosition: imageFit === "contain" ? "right center" : imagePosition.includes(" ") ? imagePosition : `center ${imagePosition}` }}
           />
-          <div className="absolute inset-0" style={{ background: wideGradient
+          {/* モバイル用グラデーション */}
+          <div className="absolute inset-0 sm:hidden" style={{ background: wideGradient
+            ? "linear-gradient(to right, rgba(29,111,181,1) 0%, rgba(29,111,181,1) 50%, rgba(29,111,181,0.7) 70%, transparent 90%)"
+            : "linear-gradient(to right, rgba(29,111,181,0.95) 0%, rgba(29,111,181,0.85) 25%, rgba(29,111,181,0.4) 45%, transparent 55%)"
+          }} />
+          {/* デスクトップ用グラデーション */}
+          <div className="absolute inset-0 hidden sm:block" style={{ background: wideGradient
             ? "linear-gradient(to right, rgba(29,111,181,0.95) 0%, rgba(29,111,181,0.9) 20%, rgba(29,111,181,0.7) 35%, rgba(29,111,181,0.4) 48%, rgba(29,111,181,0.15) 58%, transparent 68%)"
             : "linear-gradient(to right, rgba(29,111,181,0.95) 0%, rgba(29,111,181,0.85) 25%, rgba(29,111,181,0.4) 45%, transparent 55%)"
           }} />

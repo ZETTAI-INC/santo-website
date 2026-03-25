@@ -116,7 +116,7 @@ export function Footer() {
             <h3 className="mb-2 text-[10px] font-black tracking-[0.2em] text-slate-400">
               LANGUAGE
             </h3>
-            <div className="flex items-center gap-2 flex-nowrap">
+            <div className="flex flex-wrap items-center gap-2">
               <Globe className="h-4 w-4 shrink-0 text-slate-400" />
               {languages.map((lang) => (
                 <Link

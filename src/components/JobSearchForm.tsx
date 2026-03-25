@@ -325,7 +325,7 @@ export function JobSearchForm() {
               {t("freeword")}
             </span>
           </div>
-          <div className="flex min-w-0 flex-1 items-center gap-3 px-5 py-2 sm:px-6">
+          <div className="flex min-w-0 flex-1 flex-col gap-2 px-5 py-2 sm:flex-row sm:items-center sm:gap-3 sm:px-6">
             <input
               type="text"
               value={freeword}
