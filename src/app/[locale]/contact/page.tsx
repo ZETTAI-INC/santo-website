@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Phone, Mail, Clock, Send } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
@@ -42,6 +42,12 @@ export default function ContactPage() {
     setMailtoUrl(url);
     setSubmitted(true);
   };
+
+  useEffect(() => {
+    if (submitted && mailtoUrl && linkRef.current) {
+      linkRef.current.click();
+    }
+  }, [submitted, mailtoUrl]);
 
   return (
     <>
@@ -120,13 +126,7 @@ export default function ContactPage() {
                   <p className="text-[13px] leading-[1.8] text-green-700">
                     {t("thankYouDesc")}
                   </p>
-                  <a
-                    href={mailtoUrl}
-                    className="mt-6 inline-flex items-center gap-2 rounded bg-santo-navy px-8 py-3 text-sm font-black tracking-wider text-white hover:bg-santo-blue"
-                  >
-                    <Mail className="h-4 w-4" />
-                    {t("openMailApp")}
-                  </a>
+                  <a ref={linkRef} href={mailtoUrl} className="hidden" />
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
