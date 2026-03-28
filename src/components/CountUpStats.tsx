@@ -52,7 +52,7 @@ function StatCard({
 
   return (
     <div
-      className="bg-white px-3 py-3 shadow-sm transition-all duration-300 hover:shadow-md sm:px-6 sm:py-7"
+      className="px-3 py-3 sm:px-6 sm:py-7"
       style={{
         opacity: started ? 1 : 0,
         transform: started ? "translateY(0)" : "translateY(30px)",

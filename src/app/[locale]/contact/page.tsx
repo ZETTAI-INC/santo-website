@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Phone, Mail, Clock, Send } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
@@ -12,9 +12,34 @@ import { useTranslations } from "next-intl";
 export default function ContactPage() {
   const t = useTranslations("Contact");
   const [submitted, setSubmitted] = useState(false);
+  const [mailtoUrl, setMailtoUrl] = useState("");
+  const linkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = data.get("name") as string;
+    const company = data.get("company") as string;
+    const phone = data.get("phone") as string;
+    const type = data.get("type") as string;
+    const message = data.get("message") as string;
+
+    const subject = t("mailSubject", { type });
+    const body = [
+      `${t("nameLabel")}: ${name}`,
+      company ? `${t("companyLabel")}: ${company}` : "",
+      phone ? `${t("phoneFormLabel")}: ${phone}` : "",
+      `${t("typeLabel")}: ${type}`,
+      "",
+      `${t("messageLabel")}:`,
+      message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const url = `mailto:s-mitsuhashi@santo-hp.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setMailtoUrl(url);
     setSubmitted(true);
   };
 
@@ -95,6 +120,13 @@ export default function ContactPage() {
                   <p className="text-[13px] leading-[1.8] text-green-700">
                     {t("thankYouDesc")}
                   </p>
+                  <a
+                    href={mailtoUrl}
+                    className="mt-6 inline-flex items-center gap-2 rounded bg-santo-navy px-8 py-3 text-sm font-black tracking-wider text-white hover:bg-santo-blue"
+                  >
+                    <Mail className="h-4 w-4" />
+                    {t("openMailApp")}
+                  </a>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">

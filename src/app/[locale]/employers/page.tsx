@@ -104,7 +104,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               {/* モバイル: 縦並び */}
               <div className="flex flex-col gap-2 lg:hidden">
                 {stats.map((stat) => (
-                  <div key={stat.label} className="flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                  <div key={stat.label} className="flex w-full items-center gap-3 px-4 py-3">
                     <div className="min-w-0 flex-1 text-center">
                       <p className="text-[14px] font-black tracking-wider text-santo-navy">
                         {stat.label}
@@ -130,7 +130,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               {/* デスクトップ: ピラミッド型 */}
               <div className="hidden lg:flex lg:flex-col lg:items-center lg:gap-4">
                 <div className="flex justify-center">
-                  <div className="flex w-[320px] items-center gap-4 rounded-xl border border-slate-200 bg-white px-6 py-5 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                  <div className="flex w-[320px] items-center gap-4 px-6 py-5">
                     <div className="flex-1">
                       <p className="text-[18px] font-black tracking-wider text-santo-navy">
                         {stats[0].label}
@@ -153,7 +153,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                 </div>
                 <div className="flex justify-center gap-4">
                   {stats.slice(1).map((stat) => (
-                    <div key={stat.label} className="flex w-[330px] items-center gap-4 rounded-xl border border-slate-200 bg-white px-6 py-6 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+                    <div key={stat.label} className="flex w-[330px] items-center gap-4 px-6 py-6">
                       <div className="flex-1">
                         <p className="whitespace-nowrap text-[17px] font-black tracking-wider text-santo-navy">
                           {stat.label}

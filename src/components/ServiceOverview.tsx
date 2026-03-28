@@ -69,7 +69,7 @@ function ServiceRow({
         >
           {/* 図 */}
           <div className="flex w-full items-center justify-center lg:w-[55%]">
-            <div className="w-full max-w-[560px] rounded-2xl bg-white p-6 shadow-[0_8px_40px_rgba(0,0,0,0.12)] ring-1 ring-slate-200/40 sm:p-8">
+            <div className="w-full max-w-[560px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={service.img}
@@ -111,7 +111,7 @@ export function ServiceOverview() {
 
   const services = [
     {
-      img: `/images/services/dispatch_structure${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg` : `/images/services/dispatch_structure${imgSuffix}${imgExt}`,
       label: "01",
       title: t("diagramTitle"),
       subtitle: "Staffing Structure",
@@ -119,7 +119,7 @@ export function ServiceOverview() {
       bg: "bg-white",
     },
     {
-      img: `/images/services/dispatch_service${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/dispatch_service_v3.jpg` : `/images/services/dispatch_service${imgSuffix}${imgExt}`,
       label: "02",
       title: t("dispatchTitle"),
       subtitle: "Staffing Service",

@@ -516,6 +516,8 @@
     "messagePlaceholder": "Please enter your message",
     "privacyLink": "Privacy Policy",
     "privacyConsent": " and submit.",
+    "mailSubject": "Contact Inquiry - {type}",
+    "openMailApp": "Open Mail App",
     "submitButton": "Submit"
   },
   "Jobs": {

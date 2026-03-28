@@ -516,6 +516,8 @@
     "messagePlaceholder": "Por favor ingrese su mensaje",
     "privacyLink": "Política de Privacidad",
     "privacyConsent": " y enviar.",
+    "mailSubject": "Consulta - {type}",
+    "openMailApp": "Abrir correo",
     "submitButton": "Enviar"
   },
   "Jobs": {

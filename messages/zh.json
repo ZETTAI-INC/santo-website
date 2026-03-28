@@ -68,7 +68,7 @@
     "trustedImagePlaceholder": "图片",
     "trustedCheckText": "在多个网站的\n人才派遣公司\n排名中\n被推荐！",
     "trustedButtonMatching": "在派遣匹配网站查看",
-    "trustedButtonShushoku": "在#就职しよう查看",
+    "trustedButtonShushoku": "在#Shushoku Shiyo查看",
     "ctaJobseekersBullet1": "制造、物流、行政等多种岗位",
     "ctaJobseekersBullet2": "无经验可，细致的支持",
     "ctaJobseekersBullet3": "社会保险·带薪休假完备",
@@ -516,6 +516,8 @@
     "messagePlaceholder": "请输入咨询内容",
     "privacyLink": "隐私政策",
     "privacyConsent": "后提交。",
+    "mailSubject": "咨询 - {type}",
+    "openMailApp": "打开邮件应用",
     "submitButton": "提交"
   },
   "Jobs": {

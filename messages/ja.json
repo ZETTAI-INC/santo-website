@@ -516,6 +516,8 @@
     "messagePlaceholder": "お問い合わせ内容をご記入ください",
     "privacyLink": "プライバシーポリシー",
     "privacyConsent": "に同意の上、送信してください。",
+    "mailSubject": "【お問い合わせ】{type}",
+    "openMailApp": "メールアプリを開く",
     "submitButton": "送信する"
   },
   "Jobs": {
