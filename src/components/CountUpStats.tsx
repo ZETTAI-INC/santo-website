@@ -40,7 +40,7 @@ function StatCard({
     label: string;
     unit: string;
     desc: string;
-    icon: typeof Users;
+    icon: typeof RefreshCw;
     color: string;
     borderColor: string;
   };
