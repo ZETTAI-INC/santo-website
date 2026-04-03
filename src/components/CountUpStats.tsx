@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Users, Building2, Star, Zap } from "lucide-react";
+import { RefreshCw, Star, MessageCircle, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 function useCountUp(target: number, duration: number, start: boolean) {
@@ -106,32 +106,32 @@ export function CountUpStats() {
 
   const stats = [
     {
-      value: 500,
-      suffix: "+",
+      value: 95,
+      suffix: "",
       label: t("stat1Label"),
       unit: t("stat1Unit"),
       desc: t("stat1Desc"),
-      icon: Users,
+      icon: RefreshCw,
       color: "text-blue-400",
       borderColor: "border-l-blue-400",
     },
     {
-      value: 150,
-      suffix: "+",
+      value: 98,
+      suffix: "",
       label: t("stat2Label"),
       unit: t("stat2Unit"),
       desc: t("stat2Desc"),
-      icon: Building2,
+      icon: Star,
       color: "text-blue-500",
       borderColor: "border-l-blue-500",
     },
     {
-      value: 98,
+      value: 24,
       suffix: "",
       label: t("stat3Label"),
       unit: t("stat3Unit"),
       desc: t("stat3Desc"),
-      icon: Star,
+      icon: MessageCircle,
       color: "text-blue-600",
       borderColor: "border-l-blue-600",
     },

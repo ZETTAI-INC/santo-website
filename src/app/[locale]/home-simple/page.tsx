@@ -4,10 +4,9 @@ import {
 import { LinkButton } from "@/components/LinkButton";
 import { FeatureCards } from "@/components/FeatureCards";
 import { HeroSection } from "@/components/HeroSection";
-import { ServiceOverview } from "@/components/ServiceOverview";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+export default async function HomeSimple({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
@@ -17,9 +16,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <>
       {/* Hero */}
       <HeroSection />
-
-      {/* Service Overview */}
-      <ServiceOverview />
 
       {/* Features */}
       <section className="bg-santo-gray py-6 sm:py-16 lg:py-20">
@@ -40,7 +36,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <FeatureCards />
         </div>
       </section>
-
 
       {/* 信頼の紹介 */}
       <section className="py-12 sm:py-16">
@@ -214,7 +209,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
         </div>
       </section>
-
 
       {/* Contact CTA */}
       <section className="relative overflow-hidden py-20 sm:py-36 lg:py-44 min-h-[420px] sm:min-h-[520px] lg:min-h-[600px]">

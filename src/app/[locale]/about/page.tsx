@@ -42,8 +42,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             {t("messageTitle")}
           </h2>
           <div className="grid gap-6 lg:grid-cols-5">
-            <div className="flex h-56 items-center justify-center bg-santo-gray text-sm font-bold text-slate-400 lg:col-span-2 lg:h-auto">
-              {t("messagePhoto")}
+            <div className="lg:col-span-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/ceo_photo.png"
+                alt={t("messageName")}
+                className="h-auto w-full object-cover"
+              />
             </div>
             <div className="lg:col-span-3">
               <p className="mb-3 text-[15px] font-bold leading-[2] text-slate-600">

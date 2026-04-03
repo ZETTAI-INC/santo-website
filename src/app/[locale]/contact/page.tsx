@@ -38,7 +38,7 @@ export default function ContactPage() {
       .filter(Boolean)
       .join("\n");
 
-    const url = `mailto:s-mitsuhashi@santo-hp.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const url = `mailto:santo@santo-hp.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setMailtoUrl(url);
     setSubmitted(true);
   };
