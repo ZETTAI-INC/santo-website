@@ -42,13 +42,15 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             {t("messageTitle")}
           </h2>
           <div className="grid gap-6 lg:grid-cols-5">
-            <div className="lg:col-span-2">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/ceo_photo.png"
-                alt={t("messageName")}
-                className="h-auto w-full object-cover"
-              />
+            <div className="flex items-start justify-center lg:col-span-2">
+              <div className="h-64 w-64 shrink-0 overflow-hidden rounded-full sm:h-72 sm:w-72">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/ceo_photo_face.png"
+                  alt={t("messageName")}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
             </div>
             <div className="lg:col-span-3">
               <p className="mb-3 text-[15px] font-bold leading-[2] text-slate-600">

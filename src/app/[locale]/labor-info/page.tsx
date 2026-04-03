@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "労働者派遣事業に係る情報公開",
+  title: "改正派遣法に基づくマージン率の公開",
   description:
-    "労働者派遣法第23条第5項に基づく情報提供。マージン率、教育訓練、キャリアコンサルティング等の情報を公開しています。",
+    "労働者派遣法第23条5項に基づく情報提供。マージン率、教育訓練、キャリアコンサルティング等の情報を公開しています。",
 };
 
 export default async function LaborInfoPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -12,47 +12,36 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
   setRequestLocale(locale);
   const t = await getTranslations("LaborInfo");
 
+  const trainingRows = [1, 2, 3, 4, 5, 6, 7] as const;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <h1 className="mb-2 text-xl font-bold text-slate-900 sm:text-2xl">
         {t("pageTitle")}
       </h1>
-      <p className="mb-10 text-xs text-slate-500">
+      <p className="mb-4 text-sm text-slate-600">
         {t("pageSubtitle")}
+      </p>
+      <p className="mb-10 text-sm text-slate-600">
+        {t("targetPeriod")}：{t("targetPeriodValue")}
       </p>
 
       <hr className="mb-8 border-slate-300" />
 
-      {/* 1. 派遣元事業主の情報 */}
+      {/* マージン率の計算式 */}
       <section className="mb-10">
-        <h2 className="mb-4 text-base font-bold text-slate-800">
-          {t("businessInfoTitle")}
+        <h2 className="mb-3 text-base font-bold text-slate-800">
+          {t("marginFormulaTitle")}
         </h2>
-        <table className="w-full border-collapse border border-slate-300 text-sm">
-          <tbody>
-            <tr className="border-b border-slate-300">
-              <th className="w-2/5 border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
-                {t("companyName")}
-              </th>
-              <td className="px-4 py-3 text-slate-600">{t("companyName")}</td>
-            </tr>
-            <tr className="border-b border-slate-300">
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
-                {t("license")}
-              </th>
-              <td className="px-4 py-3 text-slate-600">{t("licenseValue")}</td>
-            </tr>
-            <tr>
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
-                {t("validPeriod")}
-              </th>
-              <td className="px-4 py-3 text-slate-600">{t("validPeriodValue")}</td>
-            </tr>
-          </tbody>
-        </table>
+        <p className="mb-3 rounded bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700">
+          {t("marginFormulaDesc")}
+        </p>
+        <p className="text-xs text-slate-500">
+          ※ {t("marginNote")}
+        </p>
       </section>
 
-      {/* 2. 労働者派遣事業の状況 */}
+      {/* 派遣事業の状況 */}
       <section className="mb-10">
         <h2 className="mb-4 text-base font-bold text-slate-800">
           {t("dispatchInfoTitle")}
@@ -60,101 +49,102 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
         <table className="w-full border-collapse border border-slate-300 text-sm">
           <tbody>
             <tr className="border-b border-slate-300">
-              <th className="w-2/5 border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
-                {t("fiscalYear")}
-              </th>
-              <td className="px-4 py-3 text-slate-600">{t("fiscalYearValue")}</td>
-            </tr>
-            <tr className="border-b border-slate-300">
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="w-3/5 border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
                 {t("dispatchWorkers")}
               </th>
-              <td className="px-4 py-3 text-slate-600">{t("dispatchWorkersValue")}</td>
+              <td className="px-4 py-3 text-right text-slate-600">{t("dispatchWorkersValue")}</td>
             </tr>
-            <tr>
+            <tr className="border-b border-slate-300">
               <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
                 {t("dispatchDestinations")}
               </th>
-              <td className="px-4 py-3 text-slate-600">{t("dispatchDestinationsValue")}</td>
+              <td className="px-4 py-3 text-right text-slate-600">{t("dispatchDestinationsValue")}</td>
             </tr>
-          </tbody>
-        </table>
-      </section>
-
-      {/* 3. マージン率等 */}
-      <section className="mb-10">
-        <h2 className="mb-4 text-base font-bold text-slate-800">
-          {t("marginTitle")}
-        </h2>
-        <table className="w-full border-collapse border border-slate-300 text-sm">
-          <tbody>
             <tr className="border-b border-slate-300">
-              <th className="w-2/5 border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
                 {t("avgFee")}
+                <span className="block text-xs font-normal text-slate-500">{t("avgFeeNote")}</span>
               </th>
-              <td className="px-4 py-3 text-slate-600">{t("avgFeeValue")}</td>
+              <td className="px-4 py-3 text-right text-slate-600">{t("avgFeeValue")}</td>
             </tr>
             <tr className="border-b border-slate-300">
               <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
                 {t("avgWage")}
+                <span className="block text-xs font-normal text-slate-500">{t("avgWageNote")}</span>
               </th>
-              <td className="px-4 py-3 text-slate-600">{t("avgWageValue")}</td>
+              <td className="px-4 py-3 text-right text-slate-600">{t("avgWageValue")}</td>
+            </tr>
+            <tr className="border-b border-slate-300">
+              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+                {t("marginRate")}
+                <span className="block text-xs font-normal text-slate-500">{t("marginRateDesc")}</span>
+              </th>
+              <td className="px-4 py-3 text-right font-bold text-slate-800">{t("marginRateValue")}</td>
             </tr>
             <tr>
               <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
-                {t("marginRate")}
+                {t("careerContact")}
               </th>
-              <td className="px-4 py-3 text-slate-600">{t("marginRateValue")}</td>
+              <td className="px-4 py-3 text-right text-slate-600">{t("careerContactValue")}</td>
             </tr>
           </tbody>
         </table>
-        <p className="mt-3 text-xs text-slate-500">
-          ※ {t("marginNote")}
-        </p>
       </section>
 
-      {/* 4. 教育訓練 */}
+      {/* 教育訓練 */}
       <section className="mb-10">
-        <h2 className="mb-3 text-base font-bold text-slate-800">
+        <h2 className="mb-4 text-base font-bold text-slate-800">
           {t("trainingTitle")}
         </h2>
-        <p className="mb-3 text-sm text-slate-600">{t("trainingDesc")}</p>
-        <ul className="list-disc pl-6 text-sm text-slate-600 space-y-1">
-          <li>{t("trainingItem1")}</li>
-          <li>{t("trainingItem2")}</li>
-          <li>{t("trainingItem3")}</li>
-        </ul>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-slate-300 text-sm">
+            <thead>
+              <tr className="bg-slate-100">
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColTarget")}</th>
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColContent")}</th>
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColMethod")}</th>
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColProvider")}</th>
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColCost")}</th>
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColWage")}</th>
+                <th className="border border-slate-300 px-3 py-2 text-left font-semibold text-slate-700">{t("trainingColHours")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {trainingRows.map((i) => (
+                <tr key={i} className="border-b border-slate-300">
+                  <td className="border-r border-slate-300 px-3 py-2 text-slate-600">{t(`trainingRow${i}Target`)}</td>
+                  <td className="border-r border-slate-300 px-3 py-2 text-slate-600">{t(`trainingRow${i}Content`)}</td>
+                  <td className="border-r border-slate-300 px-3 py-2 text-slate-600">{t(`trainingRow${i}Method`)}</td>
+                  <td className="border-r border-slate-300 px-3 py-2 text-slate-600">{t(`trainingRow${i}Provider`)}</td>
+                  <td className="border-r border-slate-300 px-3 py-2 text-slate-600">{t(`trainingRow${i}Cost`)}</td>
+                  <td className="border-r border-slate-300 px-3 py-2 text-slate-600">{t(`trainingRow${i}Wage`)}</td>
+                  <td className="px-3 py-2 text-slate-600">{t(`trainingRow${i}Hours`)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
-      {/* 5. キャリアコンサルティング */}
+      {/* 労使協定 */}
       <section className="mb-10">
         <h2 className="mb-3 text-base font-bold text-slate-800">
-          {t("careerTitle")}
+          {t("agreementTitle")}
         </h2>
-        <p className="mb-3 text-sm text-slate-600">{t("careerDesc")}</p>
+        <p className="mb-1 text-sm text-slate-600">
+          ※{t("agreementDesc")}
+        </p>
         <p className="text-sm text-slate-600">
-          {t("careerContact")}：{t("careerContactValue")}
+          {t("agreementScope")}
         </p>
       </section>
 
-      {/* 6. 福利厚生 */}
-      <section className="mb-10">
-        <h2 className="mb-3 text-base font-bold text-slate-800">
-          {t("welfareBenefitsTitle")}
-        </h2>
-        <p className="mb-3 text-sm text-slate-600">{t("welfareBenefitsDesc")}</p>
-        <ul className="list-disc pl-6 text-sm text-slate-600 space-y-1">
-          <li>{t("welfareBenefit1")}</li>
-          <li>{t("welfareBenefit2")}</li>
-          <li>{t("welfareBenefit3")}</li>
-        </ul>
-      </section>
+      <hr className="mb-6 border-slate-300" />
 
-      <hr className="mb-4 border-slate-300" />
-
-      <p className="text-right text-xs text-slate-400">
-        {t("updateDate")}：{t("updateDateValue")}
-      </p>
+      <div className="text-center text-sm text-slate-500">
+        <p>〒254-0807 神奈川県平塚市代官町7-29</p>
+        <p className="mt-1 font-bold text-slate-700">株式会社サントー</p>
+      </div>
     </div>
   );
 }
