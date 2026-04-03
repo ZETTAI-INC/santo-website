@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Briefcase, Building2 } from "lucide-react";
-import { LinkButton } from "@/components/LinkButton";
 import { TypeWriter } from "@/components/TypeWriter";
 import { useTranslations, useLocale } from "next-intl";
 

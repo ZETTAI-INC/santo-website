@@ -11,7 +11,6 @@ function AccordionSelect({
   options,
   selected,
   onSelect,
-  multiple,
   open,
   onToggleOpen,
   last,

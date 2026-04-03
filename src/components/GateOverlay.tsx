@@ -9,19 +9,20 @@ export function GateOverlay() {
   const t = useTranslations("Gate");
   const locale = useLocale();
   const router = useRouter();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return !sessionStorage.getItem("gate_dismissed");
+  });
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("gate_dismissed");
-    if (!dismissed) {
-      setVisible(true);
+    if (visible) {
       document.body.style.overflow = "hidden";
     }
     return () => {
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [visible]);
 
   const handleSelect = (path: string) => {
     setExiting(true);
