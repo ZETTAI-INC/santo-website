@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社沿革 - ブロック階段階層タイムライン</title>
+    <style>
+        /* ------------------------------
+     ベーススタイル＆フォント
+  ------------------------------ */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --color-primary: #1e3a8a;
+            /* 信頼のネイビー */
+            --color-secondary: #3b82f6;
+            /* 鮮やかなブルー */
+            --color-bg: #f8fafc;
+            /* 全体の背景色（極薄いグレー） */
+            --color-stair: #e2e8f0;
+            /* 階段ブロックの色（少し濃いめのグレーブルー） */
+            --color-text-main: #1e293b;
+            --color-text-muted: #64748b;
+            --line-width: 4px;
+            /* タイムラインの線の太さ */
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            padding-bottom: 100px;
+        }
+
+        /* スクロールアニメーション確認用のダミー余白 */
+        .dummy-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: var(--color-text-muted);
+            margin-bottom: 80px;
+        }
+
+        /* ------------------------------
+     沿革セクション共通
+  ------------------------------ */
+        .history-section {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .section-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section-ja {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        /* ------------------------------
+     階段レイアウト（PC用）
+     ※Flexboxの「下揃え(flex-end)」を利用し、
+     各ブロックの高さを変えることで階段を作る
+  ------------------------------ */
+        .stairs-timeline {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 100%;
+            height: 500px;
+            /* 階段全体の高さ */
+            position: relative;
+        }
+
+        .stair-block {
+            flex: 1;
+            position: relative;
+            background-color: var(--color-stair);
+            border-top: var(--line-width) solid var(--color-secondary);
+            box-shadow: -12px 0 30px rgba(0, 0, 0, 0.06);
+            /* 左側に影を落とすことで重なり（立体感）を表現 */
+            box-sizing: border-box;
+
+            /* アニメーション用の初期状態設定 */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* 画面に入った時のクラス */
+        .stair-block.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /*
+     各段の高さ設定
+     (DOM順は 1->2->3->4 で、後の要素ほど手前に描画されるため、
+      右側の高い段の影が、左側の低い段の上面に落ちて美しい立体感になる！)
+  */
+        .stair-block:nth-child(1) {
+            height: 260px;
+            z-index: 1;
+            transition-delay: 0s;
+        }
+
+        .stair-block:nth-child(2) {
+            height: 340px;
+            z-index: 2;
+            transition-delay: 0.15s;
+            border-left: 1px solid #cbd5e1;
+        }
+
+        .stair-block:nth-child(3) {
+            height: 420px;
+            z-index: 3;
+            transition-delay: 0.3s;
+            border-left: 1px solid #cbd5e1;
+        }
+
+        .stair-block:nth-child(4) {
+            height: 500px;
+            z-index: 4;
+            transition-delay: 0.45s;
+            border-left: 1px solid #cbd5e1;
+        }
+
+        /* 
+     青いライン（タイムライン）のつなぎ目
+     段差の部分（左側面）に縦の青いラインを引き、一つ下の段の上面のラインとつなげる
+     高さ差は80px。borderの太さ分(4px)を足して84pxにすると角がぴったり合う
+  */
+        .stair-block:not(:first-child)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            /* 自分の上面からスタート */
+            left: -1px;
+            /* 左側のフチにぴったり沿わせる（border-leftを覆い隠す） */
+            width: var(--line-width);
+            height: 84px;
+            /* 340 - 260 = 80px + 4px(border) */
+            background-color: var(--color-secondary);
+            z-index: 5;
+        }
+
+        /* ------------------------------
+     タイムラインの丸ポチ（ノード）
+  ------------------------------ */
+        .stair-node {
+            position: absolute;
+            /* box-sizing: border-box なので、親のtop枠は0〜4の内側。
+         20pxの丸の中心を2px(枠の中心)に合わせるため -8px に配置 */
+            top: -8px;
+            left: 40px;
+            /* 左から少し余白を取る */
+            width: 20px;
+            height: 20px;
+            background-color: #ffffff;
+            border: var(--line-width) solid var(--color-secondary);
+            border-radius: 50%;
+            z-index: 10;
+            box-sizing: border-box;
+            /* ちょっとした装飾（内側の点） */
+        }
+
+        .stair-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background-color: var(--color-secondary);
+            border-radius: 50%;
+        }
+
+        /* ------------------------------
+     テキストコンテンツ（ブロックの中へ配置）
+  ------------------------------ */
+        .stair-content {
+            padding: 40px 30px;
+            /* ノードの下に十分な余白を開けて配置 */
+        }
+
+        .content-year {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--color-secondary);
+            margin-bottom: 8px;
+        }
+
+        .content-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0 0 12px 0;
+            line-height: 1.4;
+        }
+
+        .content-desc {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+
+        /* ------------------------------
+     レスポンシブ（スマホ用）
+     縦に並べつつ、「下→右→下→右」と階段状に青いラインを引く
+  ------------------------------ */
+        @media (max-width: 900px) {
+            .history-section {
+                padding: 40px 20px;
+            }
+
+            .stairs-timeline {
+                flex-direction: column;
+                align-items: stretch;
+                /* 幅いっぱい */
+                height: auto;
+                box-shadow: none;
+            }
+
+            .stair-block {
+                width: 100%;
+                height: auto !important;
+                /* コンテンツの高さに合わせる */
+                background-color: transparent;
+                /* 背景色は一旦透明に */
+                box-shadow: none;
+
+                /* モバイルでは上面ではなく、"左側"に青いラインを引く */
+                border-top: none;
+                border-left: var(--line-width) solid var(--color-secondary);
+
+                /* 下に余白を設ける（ここに横の連結ラインが入る） */
+                padding-bottom: 30px;
+                margin-bottom: 0;
+                /* paddingで処理する */
+
+                /* アニメーションの方向を横からのフェードインに変更 */
+                transform: translateX(-20px);
+            }
+
+            .stair-block.is-visible {
+                transform: translateX(0);
+            }
+
+            /* 
+         階段状のインデント（少しずつ右へズラす）
+         ※ margin-left を使うことで、青い左ラインも一緒にズレる
+      */
+            .stair-block:nth-child(1) {
+                margin-left: 0;
+            }
+
+            .stair-block:nth-child(2) {
+                margin-left: 20px;
+            }
+
+            .stair-block:nth-child(3) {
+                margin-left: 40px;
+            }
+
+            .stair-block:nth-child(4) {
+                margin-left: 60px;
+            }
+
+            /* PC用の縦連結ラインは不要なので消す */
+            .stair-block:not(:first-child)::before {
+                display: none;
+            }
+
+            /* 
+         モバイル専用の連結ライン（横方向）
+         上の段の下端から、次の段の左端へつなぐ横線（ジグザグ階段の水平部分）
+         次の段のマージンが20pxなので、24pxの横線を引けばピタリと繋がる！
+      */
+            .stair-block:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: -4px;
+                /* 親の左ボーダーに重ねる */
+                width: 24px;
+                /* 20px(インデント分) + 4px(ボーダー太さ) */
+                height: var(--line-width);
+                background-color: var(--color-secondary);
+            }
+
+            /* 丸ポチの位置調整（左ラインの上端に配置） */
+            .stair-node {
+                top: 0;
+                left: -12px;
+                /* 4pxの線の中央(-2px)へ、20px幅の要素の中心(-10px)を合わせる */
+            }
+
+            /* スマホ用に、テキスト部分を独立した「白いカード」化して見やすくする */
+            .stair-content {
+                background-color: #ffffff;
+                padding: 24px 20px;
+                margin-left: 20px;
+                /* ブルーのラインから少し離す */
+                margin-top: -5px;
+                /* 丸ポチと高さを合わせる */
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dummy-hero">
+        <p>Scroll Down ↓</p>
+    </div>
+
+    <section class="history-section">
+        <div class="section-title-wrapper">
+            <span class="section-en">HISTORY</span>
+            <h2 class="section-ja">沿革</h2>
+        </div>
+
+        <div class="stairs-timeline" id="stairsTimeline">
+
+            <!-- ステップ1 -->
+            <div class="stair-block">
+                <div class="stair-node"></div>
+                <div class="stair-content">
+                    <div class="content-year">2015</div>
+                    <h3 class="content-title">株式会社サントー設立</h3>
+                    <p class="content-desc">東京にて株式会社サントーを設立。<br>地域密着型の人材派遣サービスを開始。</p>
+                </div>
+            </div>
+
+            <!-- ステップ2 -->
+            <div class="stair-block">
+                <div class="stair-node"></div>
+                <div class="stair-content">
+                    <div class="content-year">2018</div>
+                    <h3 class="content-title">新サービス開始</h3>
+                    <p class="content-desc">人材紹介サービスを本格稼働。<br>企業と求職者の架け橋を担う。</p>
+                </div>
+            </div>
+
+            <!-- ステップ3 -->
+            <div class="stair-block">
+                <div class="stair-node"></div>
+                <div class="stair-content">
+                    <div class="content-year">2022</div>
+                    <h3 class="content-title">本社移転</h3>
+                    <p class="content-desc">事業拡大に伴い本社を移転。<br>サポート体制をさらに強化。</p>
+                </div>
+            </div>
+
+            <!-- ステップ4 -->
+            <div class="stair-block">
+                <div class="stair-node"></div>
+                <div class="stair-content">
+                    <div class="content-year">2026</div>
+                    <h3 class="content-title">ホームページリニューアル</h3>
+                    <p class="content-desc">次世代に向けたデジタルトランスフォーメーションを推進。（現在に至る）</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- アニメーション用スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blocks = document.querySelectorAll('.stair-block');
+
+            // スクロール検知器の設定
+            const observer = new IntersectionObserver((entries, observerInstance) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 画角に入ったら表示用クラスを追加
+                        entry.target.classList.add('is-visible');
+                        // 一度表示したら監視を止める
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15, // 15%見えたら発火 
+                rootMargin: "0px 0px -50px 0px" // 少し下から生えるように
+            });
+
+            // 各要素を監視対象にセット
+            blocks.forEach(block => {
+                observer.observe(block);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

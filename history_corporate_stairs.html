@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社沿革 - 階段タイムライン</title>
+    <style>
+        /* ------------------------------
+     ベーススタイル
+  ------------------------------ */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --color-primary: #1e3a8a;
+            /* 信頼感のあるネイビー */
+            --color-secondary: #3b82f6;
+            /* アクセントのブルー */
+            --color-bg: #f8fafc;
+            --color-stair: #e2e8f0;
+            /* 階段のベース色 */
+            --color-stair-top: #cbd5e1;
+            /* 階段の上面色 */
+            --color-text-main: #1e293b;
+            --color-text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            /* スクロールアニメーション確認用に余白を少し設ける */
+            padding-bottom: 100px;
+        }
+
+        /* ダミーのヘッダー・ヒーロー領域（スクロール確認用） */
+        .dummy-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: var(--color-text-muted);
+            margin-bottom: 80px;
+        }
+
+        /* ------------------------------
+     沿革セクション
+  ------------------------------ */
+        .history-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section-ja {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-ja::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: var(--color-secondary);
+        }
+
+        /* ------------------------------
+     階段レイアウト（PC用）
+  ------------------------------ */
+        .stairs-timeline {
+            display: flex;
+            align-items: flex-end;
+            /* 下揃えにして高さを変えることで階段を作る */
+            justify-content: center;
+            width: 100%;
+            padding-top: 100px;
+            /* カードが突き出る分の余白 */
+        }
+
+        .stair-step {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            max-width: 250px;
+            position: relative;
+            /* アニメーションの初期状態（透明＋下へずらす） */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* 画面に入った時の状態 */
+        .stair-step.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 階段のブロック部分 */
+        .stair-block {
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 4px solid var(--color-secondary);
+            border-right: 1px solid var(--color-stair);
+            border-left: 1px solid var(--color-stair);
+            /* 少しずつ高くなるよう、インラインスタイルまたは nth-child で指定 */
+            transition: background-color 0.3s ease;
+            position: relative;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        /* 各段の高さ（1段につき +60px） */
+        .stair-step:nth-child(1) .stair-block {
+            height: 60px;
+        }
+
+        .stair-step:nth-child(2) .stair-block {
+            height: 120px;
+        }
+
+        .stair-step:nth-child(3) .stair-block {
+            height: 180px;
+        }
+
+        .stair-step:nth-child(4) .stair-block {
+            height: 240px;
+        }
+
+        /* アニメーションの時差（遅延） */
+        .stair-step.is-visible:nth-child(1) {
+            transition-delay: 0s;
+        }
+
+        .stair-step.is-visible:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .stair-step.is-visible:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        .stair-step.is-visible:nth-child(4) {
+            transition-delay: 0.6s;
+        }
+
+        /* ------------------------------
+     情報カード
+  ------------------------------ */
+        .stair-card {
+            background: #ffffff;
+            padding: 24px;
+            margin: 0 10px 20px 10px;
+            /* 階段の上に浮かせる */
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid var(--color-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stair-step:hover .stair-card {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+        }
+
+        .stair-step:hover .stair-block {
+            background-color: #f1f5f9;
+        }
+
+        /* ポイント（線とカードを結びつける点） */
+        .stair-card::after {
+            content: '';
+            position: absolute;
+            bottom: -26px;
+            /* カードの下突き出し */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 3px solid var(--color-secondary);
+            z-index: 11;
+        }
+
+        /* カードから点への縦線 */
+        .stair-card::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: var(--color-secondary);
+            opacity: 0.5;
+        }
+
+        .year {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: 4px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0 0 12px 0;
+        }
+
+        .desc {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ------------------------------
+     レスポンシブ（スマホ・タブレット用）
+  ------------------------------ */
+        @media (max-width: 768px) {
+            .stairs-timeline {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-top: 20px;
+                padding-left: 20px;
+                border-left: 3px solid var(--color-stair);
+            }
+
+            .stair-step {
+                width: 100%;
+                max-width: 1000px;
+                flex-direction: column;
+                /* モバイルでも階段感を残すため、左側に少しずつマージンを空ける（ジグザグ・階段状） */
+                margin-bottom: 40px;
+                /* アニメーションの動きを横からに変更 */
+                transform: translateX(40px);
+            }
+
+            .stair-step.is-visible {
+                transform: translateX(0);
+            }
+
+            /* スマホでは実際のブロックの高さは不要にし、横の線の表現に変える */
+            .stair-block {
+                display: none;
+            }
+
+            .stair-card {
+                margin: 0 0 0 30px;
+                padding: 20px;
+                width: calc(100% - 50px);
+            }
+
+            /* インデントで階段の登り感を表現 */
+            .stair-step:nth-child(1) {
+                margin-left: 0;
+            }
+
+            .stair-step:nth-child(2) {
+                margin-left: 10px;
+            }
+
+            .stair-step:nth-child(3) {
+                margin-left: 20px;
+            }
+
+            .stair-step:nth-child(4) {
+                margin-left: 30px;
+            }
+
+            /* モバイルでのポイントと線 */
+            .stair-card::after {
+                top: 20px;
+                left: -33px;
+                /* border-leftの位置に合わせる計算 */
+                bottom: auto;
+                transform: none;
+            }
+
+            .stair-card::before {
+                content: '';
+                position: absolute;
+                top: 25px;
+                left: -20px;
+                width: 20px;
+                height: 2px;
+                background-color: var(--color-secondary);
+                opacity: 0.3;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- スクロール確認用のダミー領域 -->
+    <div class="dummy-hero">
+        <p>Scroll Down ↓</p>
+    </div>
+
+    <!-- 沿革セクション -->
+    <section class="history-section">
+        <div class="section-title-wrapper">
+            <span class="section-en">HISTORY</span>
+            <h2 class="section-ja">沿革</h2>
+        </div>
+
+        <div class="stairs-timeline" id="stairsTimeline">
+
+            <!-- ステップ1 -->
+            <div class="stair-step">
+                <div class="stair-card">
+                    <div class="year">2015</div>
+                    <h3 class="title">会社設立</h3>
+                    <p class="desc">東京にて株式会社サントーを設立。<br>地域密着型のサービスを開始。</p>
+                </div>
+                <div class="stair-block"></div>
+            </div>
+
+            <!-- ステップ2 -->
+            <div class="stair-step">
+                <div class="stair-card">
+                    <div class="year">2018</div>
+                    <h3 class="title">新サービス開始</h3>
+                    <p class="desc">人材紹介サービスを本格稼働。<br>企業と求職者の架け橋を担う。</p>
+                </div>
+                <div class="stair-block"></div>
+            </div>
+
+            <!-- ステップ3 -->
+            <div class="stair-step">
+                <div class="stair-card">
+                    <div class="year">2022</div>
+                    <h3 class="title">本社移転</h3>
+                    <p class="desc">事業拡大に伴い本社を移転。<br>より広域なエリアでのサポート体制を確立。</p>
+                </div>
+                <div class="stair-block"></div>
+            </div>
+
+            <!-- ステップ4 -->
+            <div class="stair-step">
+                <div class="stair-card">
+                    <div class="year">2026</div>
+                    <h3 class="title">次の中期計画へ</h3>
+                    <p class="desc">コーポレートサイトをリニューアル。<br>次世代に向けたデジタルトランスフォーメーションを推進。</p>
+                </div>
+                <div class="stair-block"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- スクロールアニメーション用JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = document.querySelectorAll('.stair-step');
+
+            // Intersection Observerのオプション（画面の20%が見えたら発火）
+            const options = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 要素が画面に入ったら 'is-visible' クラスを付与
+                        entry.target.classList.add('is-visible');
+                        // 一度表示されたら監視を解除（スクロールで戻っても消えないようにする）
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            // 各ステップを監視対象に追加
+            steps.forEach(step => {
+                observer.observe(step);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

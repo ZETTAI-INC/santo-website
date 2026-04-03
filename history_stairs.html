@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沿革（階段風タイムライン）</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+        :root {
+            --primary: #3b82f6;
+            /* スカイブルー系 */
+            --primary-dark: #2563eb;
+            --bg-color: #f4f8fb;
+            /* サイトに合わせた極薄い水色 */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --stair-face: #ffffff;
+            /* 階段の上面 */
+            --stair-side: #e2e8f0;
+            /* 階段の側面（影） */
+            --stair-front: #f1f5f9;
+            /* 階段の正面 */
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 60px 20px;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .history-section {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* セクションヘッダー */
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-en {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-ja {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* 階段コンテナ */
+        .stairs-container {
+            position: relative;
+            width: 100%;
+            /* 階段を斜め上に登っていくように右上がりに配置するための高さを確保 */
+            height: 500px;
+            padding-top: 40px;
+        }
+
+        /* 個々の階段（ステップ） */
+        .stair-step {
+            position: absolute;
+            display: flex;
+            align-items: flex-end;
+            /* 階段の立体感を表現 */
+            transition: transform 0.3s ease;
+        }
+
+        .stair-step:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 階段のグラフィック部分（立体的なブロック） */
+        .stair-block {
+            position: relative;
+            width: 180px;
+            /* 階段の横幅 */
+            height: 40px;
+            /* 階段の厚み */
+            background-color: var(--stair-front);
+            border: 1px solid #cbd5e1;
+            border-top: none;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 階段の上面 */
+        .stair-block::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            /* 上面の奥行き */
+            left: 15px;
+            /* 斜めのズレ */
+            width: 100%;
+            height: 30px;
+            background-color: var(--stair-face);
+            border: 1px solid #cbd5e1;
+            border-bottom: none;
+            transform: skewX(-45deg);
+            /* ひし形にして奥行きを表現 */
+            transform-origin: bottom left;
+        }
+
+        /* 階段の右側面 */
+        .stair-block::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 30px;
+            height: 100%;
+            background-color: var(--stair-side);
+            border: 1px solid #cbd5e1;
+            border-left: none;
+            transform: skewY(-45deg);
+            transform-origin: top left;
+        }
+
+        /* 年月とテキストのコンテンツエリア */
+        .step-content {
+            position: absolute;
+            /* ブロックの上（上面の中央あたり）に配置 */
+            bottom: 60px;
+            left: 20px;
+            width: 200px;
+            z-index: 10;
+        }
+
+        .step-year {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 年月の横の丸いアクセント */
+        .step-year::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .step-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* -------------------------------------------
+     各ステップの配置（左下から右上へ登るように）
+  -------------------------------------------- */
+        /* ステップ1（一番左下） */
+        .step-1 {
+            left: 0;
+            bottom: 0;
+            z-index: 4;
+        }
+
+        /* ステップ2 */
+        .step-2 {
+            left: 170px;
+            /* 右へズラす */
+            bottom: 80px;
+            /* 上へズラす（ブロックの高さ+α） */
+            z-index: 3;
+        }
+
+        /* ステップ3 */
+        .step-3 {
+            left: 340px;
+            bottom: 160px;
+            z-index: 2;
+        }
+
+        /* ステップ4（一番右上） */
+        .step-4 {
+            left: 510px;
+            bottom: 240px;
+            z-index: 1;
+        }
+
+        /* 背景の装飾用の矢印（成長を示す） */
+        .growth-arrow {
+            position: absolute;
+            top: 150px;
+            left: 100px;
+            width: 600px;
+            height: 300px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* モバイル対応（画面が小さい時は縦並びにフォールバック） */
+        @media (max-width: 800px) {
+            .stairs-container {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 60px;
+                padding-top: 20px;
+                padding-left: 20px;
+            }
+
+            .stair-step {
+                position: relative;
+                left: auto !important;
+                bottom: auto !important;
+            }
+
+            .growth-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="history-section">
+        <div class="section-header">
+            <div class="section-en">History</div>
+            <h2 class="section-ja">沿革</h2>
+        </div>
+
+        <div class="stairs-container">
+
+            <!-- 背景の薄い巨大な右上がり矢印（成長を暗示） -->
+            <svg class="growth-arrow" viewBox="0 0 600 300">
+                <path d="M 0 300 Q 300 300 550 50 L 550 100 L 600 0 L 500 0 L 530 30 Q 250 250 0 250 Z"
+                    fill="#3b82f6" />
+            </svg>
+
+            <!-- ステップ1 -->
+            <div class="stair-step step-1">
+                <div class="stair-block"></div>
+                <div class="step-content">
+                    <div class="step-year">〇〇〇〇年</div>
+                    <div class="step-text">株式会社サントー設立</div>
+                </div>
+            </div>
+
+            <!-- ステップ2 -->
+            <div class="stair-step step-2">
+                <div class="stair-block"></div>
+                <div class="step-content">
+                    <div class="step-year">〇〇〇〇年</div>
+                    <div class="step-text">一般労働者派遣事業許可取得</div>
+                </div>
+            </div>
+
+            <!-- ステップ3 -->
+            <div class="stair-step step-3">
+                <div class="stair-block"></div>
+                <div class="step-content">
+                    <div class="step-year">〇〇〇〇年</div>
+                    <div class="step-text">事業拡大に伴い移転</div>
+                </div>
+            </div>
+
+            <!-- ステップ4 -->
+            <div class="stair-step step-4">
+                <div class="stair-block"></div>
+                <div class="step-content">
+                    <div class="step-year">〇〇〇〇年</div>
+                    <div class="step-text">ホームページリニューアル<br>（現在に至る）</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

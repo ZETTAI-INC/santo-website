@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沿革 - アイソメトリック階段</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+        }
+
+        /* 
+    背景画像を敷くコンテナ 
+    16:9のアスペクト比を維持しつつレスポンシブにする
+  */
+        .isometric-history-section {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 80px auto;
+            /* 背景画像のURL（生成した画像に合わせてください） */
+            background-image: url('file:///Users/mac4/.gemini/antigravity/brain/d98dc674-1998-4dbd-a424-c37da356c31a/history_isometric_stairs_bg_1773318846019.png');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+
+            /* アスペクト比16:9をキープ */
+            aspect-ratio: 16 / 9;
+
+            /* はみ出さないように */
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 
+    テキストカードのスタイル 
+    画像の中に浮かんでいるようなクリーンなデザイン
+  */
+        .history-text-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 20%;
+            /* 画面幅に対する相対サイズ */
+            min-width: 220px;
+            max-width: 260px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .history-text-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* アイソメトリックの階段に合わせて位置を絶対指定 (PC用) */
+        /* 左下から右上へ */
+        .card-1 {
+            bottom: 15%;
+            left: 8%;
+        }
+
+        .card-2 {
+            bottom: 30%;
+            left: 26%;
+        }
+
+        .card-3 {
+            bottom: 45%;
+            left: 44%;
+        }
+
+        .card-4 {
+            bottom: 60%;
+            left: 62%;
+        }
+
+        .card-5 {
+            bottom: 75%;
+            left: 80%;
+        }
+
+        /* タイトルの上の青い丸 (デザインのアクセント) */
+        .card-dots {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .card-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid var(--secondary);
+        }
+
+        /* テキストのスタイリング */
+        .card-year {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ------------------------------
+     レスポンシブ (スマホ向け) 
+     画像を背景にするのをやめて、普通の縦積みカードにする
+  ------------------------------ */
+        @media (max-width: 900px) {
+            .isometric-history-section {
+                background-image: none;
+                /* スマホでは背景画像を隠す */
+                background-color: transparent;
+                aspect-ratio: auto;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 20px;
+                margin: 40px auto;
+            }
+
+            .history-text-card {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                width: 100%;
+                max-width: 100%;
+                transform: translateY(20px);
+                /* 左側に青いラインの入ったデザインに切り替え */
+                border-left: 4px solid var(--secondary);
+                border-radius: 4px 12px 12px 4px;
+                background: #ffffff;
+                padding: 20px;
+            }
+
+            .history-text-card.is-visible {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- コンテナ（背景として3D階段画像が敷かれる） -->
+    <section class="isometric-history-section" id="historySection">
+
+        <!-- カード1 (一番左下) -->
+        <div class="history-text-card card-1">
+            <div class="card-dots">
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+            </div>
+            <div class="card-year">2015</div>
+            <h3 class="card-title">株式会社サントー設立</h3>
+            <p class="card-desc">地域密着型の人材派遣サービスを開始。</p>
+        </div>
+
+        <!-- カード2 -->
+        <div class="history-text-card card-2" style="transition-delay: 0.1s;">
+            <div class="card-dots">
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+            </div>
+            <div class="card-year">2018</div>
+            <h3 class="card-title">一般労働者派遣事業許可取得</h3>
+            <p class="card-desc">事業基盤を確立し、本格的にサービスを展開。</p>
+        </div>
+
+        <!-- カード3 -->
+        <div class="history-text-card card-3" style="transition-delay: 0.2s;">
+            <div class="card-dots">
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+            </div>
+            <div class="card-year">2022</div>
+            <h3 class="card-title">事業拡大に伴い移転</h3>
+            <p class="card-desc">より広域なエリアでのサポート体制を確立。</p>
+        </div>
+
+        <!-- カード4 -->
+        <div class="history-text-card card-4" style="transition-delay: 0.3s;">
+            <div class="card-dots">
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+            </div>
+            <div class="card-year">2026</div>
+            <h3 class="card-title">ホームページリニューアル</h3>
+            <p class="card-desc">次世代に向けたデジタルトランスフォーメーションを推進。</p>
+        </div>
+
+        <!-- カード5 (一番右上) -->
+        <div class="history-text-card card-5" style="transition-delay: 0.4s;">
+            <div class="card-dots">
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+                <div class="card-dot"></div>
+            </div>
+            <div class="card-year">FUTURE</div>
+            <h3 class="card-title">新たな挑戦へ</h3>
+            <p class="card-desc">地域と人々を繋ぐさらなるサービス展開を目指して。</p>
+        </div>
+
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.history-text-card');
+
+            // 画像が表示領域に入ったらカードをフワッと表示する
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        cards.forEach(card => card.classList.add('is-visible'));
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const section = document.getElementById('historySection');
+            if (section) observer.observe(section);
+        });
+    </script>
+
+</body>
+
+</html>

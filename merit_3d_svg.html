@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6つの強み - 3D SVG レイアウト</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --bg-color: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            /* 3D向けカラー定義 */
+            --hex-top: #eff6ff;
+            --hex-front: #dbeafe;
+            --hex-side: #bfdbfe;
+            --node-shadow: rgba(30, 58, 138, 0.15);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .layout-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 700px; /* 十分な高さを確保 */
+            margin: 0 auto;
+            /* 立体感を出すためのパースペクティブ */
+            perspective: 1200px;
+        }
+
+        /* 3D空間コンテナ */
+        .scene {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* テキスト選択用 */
+        }
+
+        /* 中央の3Dタイトルベース（HTMLで立体化） */
+        .center-base {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 280px;
+            height: 320px;
+            /* アイソメトリック変形 */
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px var(--node-shadow),
+                0 0 0 1px rgba(255,255,255,0.8) inset,
+                0 -4px 10px rgba(0,0,0,0.02) inset;
+            border: 2px solid #e0f2fe;
+            backdrop-filter: blur(10px);
+            pointer-events: auto;
+        }
+
+        /* タイトル装飾 */
+        /* SVGの六角形を重ねるなど */
+        .center-base::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px dashed #bfdbfe;
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+
+        .center-title {
+            text-align: center;
+        }
+
+        .center-title span {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .center-title h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* SVGレイヤー (配線とアイコン) */
+        .svg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .svg-line {
+            fill: none;
+            stroke: #cbd5e1;
+            stroke-width: 3;
+            /* 点線にして未来感を出す */
+            stroke-dasharray: 6 6;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+        }
+
+        /* マウスホバーで線が繋がるアニメーション用 */
+        .svg-line-active {
+            fill: none;
+            stroke: var(--secondary);
+            stroke-width: 3;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s linear alternate infinite;
+            filter: drop-shadow(0 0 8px rgba(37,99,235,0.4));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .item-group:hover .svg-line-active {
+            opacity: 1;
+        }
+
+        @keyframes dash {
+            from { stroke-dashoffset: 200; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        .svg-node {
+             /* 何もしない */
+        }
+
+        /* ノードの影（立体感用） */
+        .svg-node-shadow {
+            fill: rgba(30, 58, 138, 0.1);
+            transform: translateY(12px) scale(0.9);
+            filter: blur(8px);
+        }
+
+        .svg-node-bg {
+            fill: #ffffff;
+            stroke: #e2e8f0;
+            stroke-width: 2;
+        }
+
+        .svg-node-circle {
+            fill: var(--primary);
+        }
+
+        .svg-icon {
+            stroke: #ffffff;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* テキストボックス (3D空間に配置) */
+        .text-box {
+            position: absolute;
+            width: 240px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 
+                0 10px 25px rgba(0,0,0,0.05),
+                0 2px 5px rgba(0,0,0,0.02);
+            border: 1px solid #f1f5f9;
+            z-index: 10;
+            pointer-events: auto;
+            transform-origin: center center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ホバーで立体的に浮き上がる */
+        .text-box:hover {
+            transform: translate(-50%, -50%) translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 30px rgba(37,99,235,0.1),
+                0 0 0 2px var(--secondary) inset;
+            z-index: 20;
+        }
+
+        /* テキストボックス内の装飾 */
+        .text-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 12px 0 0 12px;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        .feature-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* 
+         座標系: 
+         SVG viewBox="0 0 1000 700" 
+         Center = (500, 350) 
+         R = 250 (SVG Nodes)
+         Text Offset 
+        */
+
+        .pos-1 { top: 12%; left: 50%; }
+        .text-pos-1 { top: 2%; left: 50%; text-align: center; }
+        .text-pos-1::before { display: none; }
+        .text-pos-1 { border-top: 4px solid var(--secondary); border-radius: 12px;}
+
+        .pos-2 { top: 31%; left: 71.6%; }
+        .text-pos-2 { top: 31%; left: 88%; }
+
+        .pos-3 { top: 69%; left: 71.6%; }
+        .text-pos-3 { top: 69%; left: 88%; }
+
+        .pos-4 { top: 88%; left: 50%; }
+        .text-pos-4 { top: 98%; left: 50%; text-align: center;}
+        .text-pos-4::before { display: none; }
+        .text-pos-4 { border-bottom: 4px solid var(--secondary); border-radius: 12px;}
+
+        .pos-5 { top: 69%; left: 28.4%; }
+        .text-pos-5 { top: 69%; left: 12%; text-align: right;}
+        .text-pos-5::before { right: 0; left: auto; border-radius: 0 12px 12px 0;}
+
+        .pos-6 { top: 31%; left: 28.4%; }
+        .text-pos-6 { top: 31%; left: 12%; text-align: right;}
+        .text-pos-6::before { right: 0; left: auto; border-radius: 0 12px 12px 0;}
+
+
+        /* レスポンシブ */
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                height: auto;
+                perspective: none;
+            }
+            .scene {
+                position: relative;
+                top: auto; left: auto; transform: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                pointer-events: auto;
+            }
+            .center-base {
+                position: relative;
+                top: auto; left: auto; transform: none;
+                margin-bottom: 30px;
+            }
+            .svg-layer { display: none; } /* スマホではSVG配線非表示 */
+            
+            .text-box {
+                position: relative;
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                width: 100%;
+                max-width: 400px;
+                text-align: left !important;
+            }
+            .text-box:hover {
+               transform: translateY(-5px) !important;
+            }
+            .text-box::before { display: block !important; left:0 !important; right:auto !important; border-radius: 12px 0 0 12px !important; border-top:none !important; border-bottom:none !important;}
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layout-wrapper">
+        <div class="scene">
+
+            <!-- 中央タイトル -->
+            <div class="center-base">
+                <div class="center-title">
+                    <span>MERIT</span>
+                    <h2>6つの強み</h2>
+                </div>
+            </div>
+
+            <!-- SVGラインとアイコン -->
+            <!-- 
+            Center=500,350
+            Radius=230
+            Node1: (500, 120)
+            Node2: (500 + 199, 350 - 115) = (699, 235)
+            Node3: (699, 465)
+            Node4: (500, 580)
+            Node5: (500 - 199, 465) = (301, 465)
+            Node6: (301, 235)
+            -->
+            <svg class="svg-layer" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+                
+                <!-- 線を背後に -->
+                <!-- 1 -->
+                <path class="svg-line" d="M500,350 L500,120 M500,350" />
+                <path class="svg-line-active" d="M500,350 L500,120" />
+                
+                <!-- 2 -->
+                <path class="svg-line" d="M500,350 L699,235" />
+                <path class="svg-line-active" d="M500,350 L699,235" />
+
+                <!-- 3 -->
+                <path class="svg-line" d="M500,350 L699,465" />
+                <path class="svg-line-active" d="M500,350 L699,465" />
+
+                <!-- 4 -->
+                <path class="svg-line" d="M500,350 L500,580" />
+                <path class="svg-line-active" d="M500,350 L500,580" />
+
+                <!-- 5 -->
+                <path class="svg-line" d="M500,350 L301,465" />
+                <path class="svg-line-active" d="M500,350 L301,465" />
+
+                <!-- 6 -->
+                <path class="svg-line" d="M500,350 L301,235" />
+                <path class="svg-line-active" d="M500,350 L301,235" />
+
+                <!-- ノード (シャドウ＋背景＋アイコン) -->
+                <!-- Node 1 -->
+                <g class="svg-node" transform="translate(500, 120)">
+                    <circle class="svg-node-shadow" cx="0" cy="0" r="30" />
+                    <circle class="svg-node-bg" cx="0" cy="0" r="28" />
+                    <circle class="svg-node-circle" cx="0" cy="0" r="22" />
+                    <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </g>
+
+                <!-- Node 2 -->
+                <g class="svg-node" transform="translate(699, 235)">
+                    <circle class="svg-node-shadow" cx="0" cy="0" r="30" />
+                    <circle class="svg-node-bg" cx="0" cy="0" r="28" />
+                    <circle class="svg-node-circle" cx="0" cy="0" r="22" />
+                    <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                        <path d="M9 22v-4h6v4"></path>
+                    </svg>
+                </g>
+
+                <!-- Node 3 -->
+                <g class="svg-node" transform="translate(699, 465)">
+                    <circle class="svg-node-shadow" cx="0" cy="0" r="30" />
+                    <circle class="svg-node-bg" cx="0" cy="0" r="28" />
+                    <circle class="svg-node-circle" cx="0" cy="0" r="22" />
+                    <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24" style="fill:#fff">
+                        <path stroke="none" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                    </svg>
+                </g>
+
+                <!-- Node 4 -->
+                <g class="svg-node" transform="translate(500, 580)">
+                    <circle class="svg-node-shadow" cx="0" cy="0" r="30" />
+                    <circle class="svg-node-bg" cx="0" cy="0" r="28" />
+                    <circle class="svg-node-circle" cx="0" cy="0" r="22" />
+                    <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </g>
+
+                <!-- Node 5 -->
+                <g class="svg-node" transform="translate(301, 465)">
+                    <circle class="svg-node-shadow" cx="0" cy="0" r="30" />
+                    <circle class="svg-node-bg" cx="0" cy="0" r="28" />
+                    <circle class="svg-node-circle" cx="0" cy="0" r="22" />
+                    <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    </svg>
+                </g>
+
+                <!-- Node 6 -->
+                <g class="svg-node" transform="translate(301, 235)">
+                    <circle class="svg-node-shadow" cx="0" cy="0" r="30" />
+                    <circle class="svg-node-bg" cx="0" cy="0" r="28" />
+                    <circle class="svg-node-circle" cx="0" cy="0" r="22" />
+                    <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                    </svg>
+                </g>
+            </svg>
+
+            <!-- HTML テキストボックス層 -->
+            <!-- 1: Top (希望に合ったお仕事) -->
+            <div class="text-box text-pos-1">
+                <h3 class="feature-title">希望に合ったお仕事</h3>
+                <p class="feature-desc">あなたのご希望をしっかりヒアリングし、最適なお仕事をご提案します。</p>
+            </div>
+
+            <!-- 2: Top Right (職場見学が可能) -->
+            <div class="text-box text-pos-2">
+                <h3 class="feature-title">職場見学が可能</h3>
+                <p class="feature-desc">実際の職場の雰囲気を事前に確認できるので安心です。</p>
+            </div>
+
+            <!-- 3: Bottom Right (手厚いフォロー) -->
+            <div class="text-box text-pos-3">
+                <h3 class="feature-title">手厚いフォロー</h3>
+                <p class="feature-desc">専任の担当者がいつでも相談に乗ります。</p>
+            </div>
+
+            <!-- 4: Bottom (社会保険・有給完備) -->
+            <div class="text-box text-pos-4">
+                <h3 class="feature-title">社会保険・有給完備</h3>
+                <p class="feature-desc">健康保険・厚生年金・雇用保険・有給休暇完備。</p>
+            </div>
+
+            <!-- 5: Bottom Left (未経験OKの仕事多数) -->
+            <div class="text-box text-pos-5">
+                <h3 class="feature-title">未経験OKの仕事多数</h3>
+                <p class="feature-desc">研修制度やサポート体制が整っています。</p>
+            </div>
+
+            <!-- 6: Top Left (多言語対応で安心) -->
+            <div class="text-box text-pos-6">
+                <h3 class="feature-title">多言語対応で安心</h3>
+                <p class="feature-desc">外国籍スタッフへの多言語サポートを行っています。</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

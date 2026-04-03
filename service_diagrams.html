@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービスモデル図（プレミアム・モダン版）</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            /* コーポレート向けの信頼感あるネイビーと洗練されたグレーベース */
+            --navy: #1e3a8a;
+            --navy-light: #2563eb;
+            --navy-pale: #eff6ff;
+            --accent: #d97706;
+            /* 控えめなゴールド/オレンジ系アクセント */
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            color: var(--text-dark);
+        }
+
+        /* カード全体のコンテナ */
+        .diagram-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            padding: 50px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 上部のさりげない装飾ライン */
+        .diagram-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-light), var(--navy));
+        }
+
+        /* ヘッダーエリア */
+        .header-area {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title-en {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--navy-light);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .title-ja {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0 0 20px 0;
+            letter-spacing: 1px;
+        }
+
+        .description {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--navy-pale);
+            padding: 16px 24px;
+            border-radius: 8px;
+            border-left: 3px solid var(--navy-light);
+        }
+
+        ul.feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 700px;
+            text-align: left;
+            background: var(--navy-pale);
+            padding: 24px 30px;
+            border-radius: 8px;
+            border-left: 3px solid var(--navy-light);
+        }
+
+        ul.feature-list li {
+            margin-bottom: 16px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        ul.feature-list li::before {
+            content: '・';
+            position: absolute;
+            left: 0;
+            color: var(--navy-light);
+            font-weight: bold;
+        }
+
+        ul.feature-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        ul.feature-list strong {
+            color: var(--navy);
+            font-size: 15px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+
+        /* 図解エリア全体 */
+        .diagram-stage {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            margin-top: 40px;
+        }
+
+        /* ノード（人物・企業を指す丸っこい図形） */
+        .node {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            width: 180px;
+            padding: 30px 0;
+            border-radius: 50%;
+            /* 完全な円に近い形 */
+            text-align: center;
+            box-shadow: 0 12px 30px -5px rgba(30, 58, 138, 0.08);
+            /* ネイビーがかった上品な影 */
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1;
+            transition: all 0.3s ease;
+        }
+
+        .node:hover {
+            box-shadow: 0 20px 40px -5px rgba(30, 58, 138, 0.12);
+            transform: translate(-50%, -52%);
+        }
+
+        /* ノード内のテキスト */
+        .node-role {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .node-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: 0.5px;
+        }
+
+        .node-name.highlight {
+            color: var(--accent);
+        }
+
+        /* お客様などの強調 */
+
+        /* SVG矢印レイヤー */
+        .arrow-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 関係性を示すラベル */
+        .relation-box {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 13px;
+            color: var(--text-dark);
+            z-index: 5;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(4px);
+        }
+
+        /* 契約名などの見出しタグ */
+        .relation-title {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--navy);
+            background: var(--navy-pale);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* 細かい説明テキスト */
+        .relation-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* 小さなタグ（雇用関係など） */
+        .status-tag {
+            display: inline-block;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            background: #ffffff;
+            margin: 2px;
+        }
+
+        /* 配置用のユーティリティクラス（中央、左下、右下） */
+        .pos-top {
+            left: 50%;
+            top: 80px;
+        }
+
+        .pos-bottom-left {
+            left: 22%;
+            top: 380px;
+        }
+
+        .pos-bottom-right {
+            left: 78%;
+            top: 380px;
+        }
+
+        /* 矢印を引くために調整した座標に合わせてCSS側も微調整 */
+        /*
+    ノード中心座標想定:
+    TOP(お客様): 390(50%), 80
+    BL(当社): 171(22%), 380
+    BR(スタッフ): 608(78%), 380
+  */
+    </style>
+</head>
+
+<body>
+
+    <!-- 共通SVGマーカー（矢印の先） -->
+    <svg style="width:0;height:0;position:absolute;">
+        <defs>
+            <!-- 双方向の点線矢印（薄いグレー） -->
+            <marker id="arrow-start-light" markerWidth="10" markerHeight="10" refX="2" refY="5"
+                orient="auto-start-reverse">
+                <path d="M10,0 L0,5 L10,10 Z" fill="#cbd5e1" />
+            </marker>
+            <marker id="arrow-end-light" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 Z" fill="#cbd5e1" />
+            </marker>
+            <!-- 双方向の太い点線（濃いグレー） -->
+            <marker id="arrow-start-dark" markerWidth="12" markerHeight="12" refX="2" refY="6"
+                orient="auto-start-reverse">
+                <path d="M12,0 L0,6 L12,12 Z" fill="#94a3b8" />
+            </marker>
+            <marker id="arrow-end-dark" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                <path d="M0,0 L12,6 L0,12 Z" fill="#94a3b8" />
+            </marker>
+        </defs>
+    </svg>
+
+
+    <!-- 1. 業務請負サービス -->
+    <div class="diagram-container">
+        <div class="header-area">
+            <div class="title-en">Contracting Service</div>
+            <h2 class="title-ja">業務請負サービス</h2>
+            <div class="description">
+                当社よりの生産管理責任者を置き、作業従事者が業務を遂行致します。
+            </div>
+        </div>
+
+        <div class="diagram-stage">
+            <!-- SVG Arrows -->
+            <svg class="arrow-layer" viewBox="0 0 780 480">
+                <!-- 上から左下へ（お客様→当社） -->
+                <line x1="360" y1="130" x2="200" y2="330" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8 6"
+                    marker-start="url(#arrow-start-light)" marker-end="url(#arrow-end-light)" />
+                <!-- 上から右下へ（お客様→スタッフ） -->
+                <line x1="420" y1="130" x2="580" y2="330" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8 6"
+                    marker-start="url(#arrow-start-light)" marker-end="url(#arrow-end-light)" />
+                <!-- 左下から右下へ（当社→スタッフ）太め -->
+                <line x1="270" y1="380" x2="510" y2="380" stroke="#94a3b8" stroke-width="5" stroke-dasharray="10 8"
+                    marker-start="url(#arrow-start-dark)" marker-end="url(#arrow-end-dark)" />
+            </svg>
+
+            <!-- 関係性ラベル -->
+            <div class="relation-box" style="left: 210px; top: 220px;">
+                <div class="relation-title">請負契約</div>
+                <div class="relation-text">業務品質管理</div>
+            </div>
+
+            <div class="relation-box"
+                style="left: 390px; top: 380px; padding: 10px; border: none; background: transparent; box-shadow: none;">
+                <div class="status-tag">雇用関係</div>
+                <div class="status-tag">指揮命令関係</div>
+            </div>
+
+            <!-- ノード（円形） -->
+            <div class="node pos-top">
+                <div class="node-role">注文主</div>
+                <div class="node-name highlight">お客様</div>
+            </div>
+            <div class="node pos-bottom-left">
+                <div class="node-role">請負業者</div>
+                <div class="node-name">当 社</div>
+            </div>
+            <div class="node pos-bottom-right">
+                <div class="node-name" style="margin-top: 10px;">請負スタッフ</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. 人材派遣サービス -->
+    <div class="diagram-container">
+        <div class="header-area">
+            <div class="title-en">Dispatch Service</div>
+            <h2 class="title-ja">人材派遣サービス</h2>
+            <div class="description">
+                雇用関係にあるスタッフがお客様（派遣先企業）に派遣され就業するシステムです。
+            </div>
+        </div>
+
+        <div class="diagram-stage">
+            <!-- SVG Arrows -->
+            <svg class="arrow-layer" viewBox="0 0 780 480">
+                <line x1="360" y1="130" x2="200" y2="330" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8 6"
+                    marker-start="url(#arrow-start-light)" marker-end="url(#arrow-end-light)" />
+                <line x1="420" y1="130" x2="580" y2="330" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8 6"
+                    marker-start="url(#arrow-start-light)" marker-end="url(#arrow-end-light)" />
+                <line x1="270" y1="380" x2="510" y2="380" stroke="#94a3b8" stroke-width="5" stroke-dasharray="10 8"
+                    marker-start="url(#arrow-start-dark)" marker-end="url(#arrow-end-dark)" />
+            </svg>
+
+            <!-- 関係性ラベル -->
+            <div class="relation-box" style="left: 200px; top: 220px; width: 170px;">
+                <div class="relation-title">派遣契約</div>
+                <div class="relation-text">お客様のニーズの<br>把握、契約内容<br>の確認</div>
+            </div>
+
+            <div class="relation-box" style="left: 580px; top: 220px; width: 180px;">
+                <div class="status-tag"
+                    style="margin-bottom:8px; border-color:#94a3b8; color:#1e293b; font-weight:bold;">指揮命令関係</div>
+                <div class="relation-text text-left">派遣スタッフは契約内容に基づく、お客様の指示で業務に従事します。</div>
+            </div>
+
+            <div class="relation-box"
+                style="left: 390px; top: 380px; background: transparent; border: none; box-shadow: none; padding:0;">
+                <div class="status-tag" style="display:block; margin:0 auto 6px auto; width:100px;">雇用関係</div>
+                <div class="relation-box"
+                    style="position:static; transform:none; padding:8px 16px; width:max-content; margin:0 auto;">
+                    給与の支払い<br>福利厚生・スタッフ管理
+                </div>
+            </div>
+
+            <!-- ノード（円形） -->
+            <div class="node pos-top">
+                <div class="node-role">派遣先</div>
+                <div class="node-name highlight">お客様</div>
+            </div>
+            <div class="node pos-bottom-left">
+                <div class="node-role">派遣元</div>
+                <div class="node-name">当 社</div>
+            </div>
+            <div class="node pos-bottom-right">
+                <div class="node-name" style="margin-top: 10px;">派遣スタッフ</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3. アウトソーシングサービス -->
+    <div class="diagram-container">
+        <div class="header-area">
+            <div class="title-en">Outsourcing Service</div>
+            <h2 class="title-ja">アウトソーシング（代行サービス）</h2>
+            <ul class="feature-list">
+                <li><strong>採用代行（応募時）</strong>面接・説明会への呼び込み・書類選考・面接代行・日程調整・合否連絡 等</li>
+                <li><strong>労務管理代行（採用後）</strong>入退社手続き・出勤状況把握（勤怠確認）・労務問題処理・給与計算・寮準備（管理）</li>
+                <li><strong>安全衛生管理代行</strong>健康チェック・作業チェック・職場自宅巡回・労災事務対応 等</li>
+            </ul>
+        </div>
+
+        <div class="diagram-stage" style="height: 500px;">
+            <!-- SVG Arrows -->
+            <svg class="arrow-layer" viewBox="0 0 780 500">
+                <line x1="360" y1="130" x2="200" y2="350" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8 6"
+                    marker-start="url(#arrow-start-light)" marker-end="url(#arrow-end-light)" />
+                <line x1="420" y1="130" x2="580" y2="350" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="8 6"
+                    marker-start="url(#arrow-start-light)" marker-end="url(#arrow-end-light)" />
+                <line x1="270" y1="400" x2="510" y2="400" stroke="#94a3b8" stroke-width="5" stroke-dasharray="10 8"
+                    marker-start="url(#arrow-start-dark)" marker-end="url(#arrow-end-dark)" />
+            </svg>
+
+            <!-- 関係性ラベル -->
+            <div class="relation-box" style="left: 200px; top: 230px; width: 170px;">
+                <div class="relation-title">労務管理委託契約</div>
+                <div class="relation-text">採用代行・給与計算<br>人材紹介</div>
+            </div>
+
+            <div class="relation-box"
+                style="left: 580px; top: 230px; border: none; background: transparent; box-shadow: none;">
+                <div class="status-tag" style="display:block; margin-bottom:4px;">雇用関係</div>
+                <div class="status-tag" style="display:block; margin-bottom:8px;">指揮命令関係</div>
+                <div class="relation-text">福利厚生・<br>給与支払い</div>
+            </div>
+
+            <div class="relation-box"
+                style="left: 390px; top: 400px; padding: 4px; border: none; background: transparent; box-shadow: none;">
+                <div class="relation-title"
+                    style="margin:0; font-size:15px; padding:6px 16px; background: #ffffff; border: 1px solid var(--border); box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    労務管理代行</div>
+            </div>
+
+            <!-- ノード（円形） -->
+            <div class="node pos-top" style="top: 80px;">
+                <div class="node-role">依頼主</div>
+                <div class="node-name highlight">お客様</div>
+            </div>
+            <div class="node pos-bottom-left" style="top: 400px;">
+                <div class="node-role">管理業者</div>
+                <div class="node-name">当 社</div>
+            </div>
+            <div class="node pos-bottom-right" style="top: 400px;">
+                <div class="node-name" style="margin-top: 10px;">契約スタッフ</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 補足：ブラウザを少し広げてご確認ください（推奨幅900px以上） -->
+</body>
+
+</html>

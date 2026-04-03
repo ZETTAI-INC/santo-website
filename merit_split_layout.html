@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サントーで働くメリット - 3つの強み</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            /* ネイビー */
+            --secondary: #3b82f6;
+            /* ブルー */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent-light: #eff6ff;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 80px 20px;
+            line-height: 1.6;
+        }
+
+        /* セクションコンテナ */
+        .merit-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* 左側のテキストエリア */
+        .merit-text-area {
+            flex: 1;
+            padding-right: 40px;
+        }
+
+        .merit-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .merit-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 24px 0;
+            line-height: 1.4;
+        }
+
+        .merit-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* 右側のアイコンリストエリア */
+        .merit-list-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* 個別のメリットカード */
+        .merit-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .merit-card:hover {
+            transform: translateY(-4px) translateX(4px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.08);
+            border-color: #e0e7ff;
+        }
+
+        /* ホバー時の背景アクセント */
+        .merit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--secondary);
+            transform: scaleY(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        .merit-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* アイコンデザイン（SVG） */
+        .merit-icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background-color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .merit-card:hover .merit-icon-box {
+            background-color: var(--secondary);
+        }
+
+        .merit-icon {
+            width: 32px;
+            height: 32px;
+            fill: none;
+            stroke: var(--secondary);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.3s ease;
+        }
+
+        .merit-card:hover .merit-icon {
+            stroke: #ffffff;
+        }
+
+        /* カード内のテキスト */
+        .merit-card-content {
+            flex: 1;
+        }
+
+        .merit-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        .merit-card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 900px) {
+            .merit-section {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .merit-text-area {
+                padding-right: 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .merit-card {
+                padding: 20px;
+                gap: 16px;
+            }
+
+            .merit-icon-box {
+                width: 56px;
+                height: 56px;
+            }
+
+            .merit-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .merit-card-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="merit-section">
+        <!-- 左側：セクション説明 -->
+        <div class="merit-text-area">
+            <span class="merit-subtitle">Why Choose Us</span>
+            <h2 class="merit-title">サントーで働く<br>3つのメリット</h2>
+            <p class="merit-desc">
+                私たちは、求職者様一人ひとりのキャリアに寄り添い、最適な職場環境をご提案します。初めての方でも安心なサポート体制や、多様な働き方に応える充実した制度を整えています。
+            </p>
+        </div>
+
+        <!-- 右側：3つのメリットリスト -->
+        <div class="merit-list-area">
+
+            <!-- メリット1 -->
+            <div class="merit-card">
+                <div class="merit-icon-box">
+                    <svg class="merit-icon" viewBox="0 0 24 24">
+                        <!-- Target / Match Icon -->
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </div>
+                <div class="merit-card-content">
+                    <h3 class="merit-card-title">希望に合ったお仕事</h3>
+                    <p class="merit-card-desc">あなたのご希望をしっかりヒアリングし、最適なお仕事をご提案します。</p>
+                </div>
+            </div>
+
+            <!-- メリット2 -->
+            <div class="merit-card">
+                <div class="merit-icon-box">
+                    <svg class="merit-icon" viewBox="0 0 24 24">
+                        <!-- Building / Search Icon -->
+                        <path d="M3 21h18"></path>
+                        <path d="M9 8h1"></path>
+                        <path d="M9 12h1"></path>
+                        <path d="M9 16h1"></path>
+                        <path d="M14 8h1"></path>
+                        <path d="M14 12h1"></path>
+                        <path d="M14 16h1"></path>
+                        <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                        <circle cx="19" cy="19" r="4" style="fill:#fff; stroke:var(--secondary);"></circle>
+                        <path d="m22 22-1.5-1.5"></path>
+                    </svg>
+                </div>
+                <div class="merit-card-content">
+                    <h3 class="merit-card-title">職場見学が可能</h3>
+                    <p class="merit-card-desc">実際の職場の雰囲気を事前に確認できるので安心です。</p>
+                </div>
+            </div>
+
+            <!-- メリット3 -->
+            <div class="merit-card">
+                <div class="merit-icon-box">
+                    <svg class="merit-icon" viewBox="0 0 24 24">
+                        <!-- Handshake / Heart Icon -->
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                        </path>
+                        <path
+                            d="M12 5 9.04 7.96a2.1 2.1 0 0 0 0 2.97l2.46 2.47a2.1 2.1 0 0 0 2.97 0l2.46-2.47a2.1 2.1 0 0 0 0-2.97L14 5">
+                        </path>
+                    </svg>
+                </div>
+                <div class="merit-card-content">
+                    <h3 class="merit-card-title">手厚いフォロー</h3>
+                    <p class="merit-card-desc">専任の担当者がいつでも相談に乗り、就業後もサポートします。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6つの強み - SVG ヘキサゴンレイアウト</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            /* 深いネイビー */
+            --secondary: #2563eb;
+            /* 鮮やかなブルー */
+            --bg-color: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --hex-fill: #e0f2fe;
+            /* 薄い水色 */
+            --hex-border: #bfdbfe;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* メインコンテナ */
+        .hex-layout-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 4 / 3;
+            /* 大まかな縦横比 */
+            margin: 0 auto;
+        }
+
+        /* 中央のSVGグラフィック */
+        .hex-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            /* テキストの選択を妨げない */
+        }
+
+        /* SVG内のスタイル */
+        .svg-hex {
+            fill: var(--hex-fill);
+            stroke: var(--secondary);
+            stroke-width: 2;
+            opacity: 0.7;
+        }
+
+        .svg-line {
+            stroke: var(--hex-border);
+            stroke-width: 2;
+        }
+
+        .svg-node-bg {
+            fill: #ffffff;
+            filter: drop-shadow(0 2px 8px rgba(37, 99, 235, 0.2));
+        }
+
+        .svg-node-circle {
+            fill: var(--primary);
+        }
+
+        .svg-icon {
+            stroke: #ffffff;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* テキストの配置領域 */
+        .text-box {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            width: 220px;
+            transform: translate(-50%, -50%);
+        }
+
+        /* アラインメント調整 */
+        .text-box.align-center {
+            text-align: center;
+            align-items: center;
+        }
+
+        .text-box.align-right {
+            text-align: right;
+            align-items: flex-end;
+            transform: translate(-100%, -50%);
+            padding-right: 20px;
+        }
+
+        .text-box.align-left {
+            text-align: left;
+            align-items: flex-start;
+            transform: translate(0, -50%);
+            padding-left: 20px;
+        }
+
+        .text-box.top-center {
+            transform: translate(-50%, -100%);
+            padding-bottom: 15px;
+        }
+
+        .text-box.bottom-center {
+            transform: translate(-50%, 0);
+            padding-top: 15px;
+        }
+
+        /* 各位置のパーセンテージ (.hex-svg の座標系と一致させる) */
+        /* SVG viewBox="0 0 800 600" Center=(400,300) */
+        .pos-1 {
+            top: 11.6%;
+            left: 50%;
+        }
+
+        /* Top */
+        .pos-2 {
+            top: 30.8%;
+            left: 78.1%;
+        }
+
+        /* Top Right */
+        .pos-3 {
+            top: 69.2%;
+            left: 78.1%;
+        }
+
+        /* Bottom Right */
+        .pos-4 {
+            top: 88.4%;
+            left: 50%;
+        }
+
+        /* Bottom */
+        .pos-5 {
+            top: 69.2%;
+            left: 21.9%;
+        }
+
+        /* Bottom Left */
+        .pos-6 {
+            top: 30.8%;
+            left: 21.9%;
+        }
+
+        /* Top Left */
+
+        /* 中央タイトル */
+        .center-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 5;
+        }
+
+        .center-title span {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+
+        .center-title h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* テキスト部分のスタイル */
+        .feature-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 6px 0;
+        }
+
+        .feature-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* レスポンシブ用のシンプルな縦並び切り替え */
+        @media (max-width: 800px) {
+            .hex-layout-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                aspect-ratio: auto;
+                gap: 30px;
+            }
+
+            .hex-svg {
+                display: none;
+            }
+
+            .center-title {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin-bottom: 20px;
+            }
+
+            .text-box {
+                position: relative;
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                width: 100%;
+                max-width: 400px;
+                text-align: left;
+                align-items: flex-start;
+                padding: 20px !important;
+                background: #f8fafc;
+                border-radius: 8px;
+                border-left: 4px solid var(--primary);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hex-layout-container">
+
+        <!-- 中央のテキスト -->
+        <div class="center-title">
+            <span>MERIT</span>
+            <h2>6つの強み</h2>
+        </div>
+
+        <!-- SVGグラフィックレイヤー -->
+        <!-- 
+      ViewBox: 800 x 600
+      Center(CX,CY): 400, 300
+      Hexagon R: 180
+      Hexagon Points:
+      1: (400, 120)
+      2: (400 + 155.88, 300 - 90) = (555.88, 210)
+      3: (555.88, 390)
+      4: (400, 480)
+      5: (400 - 155.88, 390) = (244.12, 390)
+      6: (244.12, 210)
+      
+      Node Centers (R=230):
+      1: (400, 70)
+      2: (400 + 199.18, 300 - 115) = (599.18, 185)
+      3: (599.18, 415)
+      4: (400, 530)
+      5: (400 - 199.18, 415) = (200.82, 415)
+      6: (200.82, 185)
+    -->
+        <svg class="hex-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+
+            <!-- ヘキサゴン本体とそこから伸びる線 -->
+            <!-- Center to Nodes Lines -->
+            <g class="svg-line">
+                <!-- 1 -->
+                <line x1="400" y1="120" x2="400" y2="70" />
+                <!-- 2 -->
+                <line x1="555.9" y1="210" x2="599.2" y2="185" />
+                <!-- 3 -->
+                <line x1="555.9" y1="390" x2="599.2" y2="415" />
+                <!-- 4 -->
+                <line x1="400" y1="480" x2="400" y2="530" />
+                <!-- 5 -->
+                <line x1="244.1" y1="390" x2="200.8" y2="415" />
+                <!-- 6 -->
+                <line x1="244.1" y1="210" x2="200.8" y2="185" />
+            </g>
+
+            <!-- ヘキサゴン -->
+            <polygon class="svg-hex" points="
+            400,120 
+            555.9,210 
+            555.9,390 
+            400,480 
+            244.1,390 
+            244.1,210
+        "></polygon>
+
+            <!-- Node 1: Top (希望に合ったお仕事 - 虫眼鏡) -->
+            <g transform="translate(400, 70)">
+                <circle class="svg-node-bg" cx="0" cy="0" r="26" />
+                <circle class="svg-node-circle" cx="0" cy="0" r="20" />
+                <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </g>
+
+            <!-- Node 2: Top Right (職場見学が可能 - ビル) -->
+            <g transform="translate(599.2, 185)">
+                <circle class="svg-node-bg" cx="0" cy="0" r="26" />
+                <circle class="svg-node-circle" cx="0" cy="0" r="20" />
+                <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                    <path d="M9 22v-4h6v4"></path>
+                    <path
+                        d="M8 6h.01 M16 6h.01 M12 6h.01 M12 10h.01 M16 10h.01 M8 10h.01 M8 14h.01 M12 14h.01 M16 14h.01">
+                    </path>
+                </svg>
+            </g>
+
+            <!-- Node 3: Bottom Right (手厚いフォロー - ハート) -->
+            <g transform="translate(599.2, 415)">
+                <circle class="svg-node-bg" cx="0" cy="0" r="26" />
+                <circle class="svg-node-circle" cx="0" cy="0" r="20" />
+                <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24" style="fill: #ffffff;">
+                    <path
+                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+                        stroke="none"></path>
+                </svg>
+            </g>
+
+            <!-- Node 4: Bottom (社会保険・有給完備 - 盾) -->
+            <g transform="translate(400, 530)">
+                <circle class="svg-node-bg" cx="0" cy="0" r="26" />
+                <circle class="svg-node-circle" cx="0" cy="0" r="20" />
+                <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </g>
+
+            <!-- Node 5: Bottom Left (未経験OKの仕事多数 - アカデミックキャップ/帽子) -->
+            <g transform="translate(200.8, 415)">
+                <circle class="svg-node-bg" cx="0" cy="0" r="26" />
+                <circle class="svg-node-circle" cx="0" cy="0" r="20" />
+                <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+            </g>
+
+            <!-- Node 6: Top Left (多言語対応で安心 - 地球儀) -->
+            <g transform="translate(200.8, 185)">
+                <circle class="svg-node-bg" cx="0" cy="0" r="26" />
+                <circle class="svg-node-circle" cx="0" cy="0" r="20" />
+                <svg x="-12" y="-12" width="24" height="24" class="svg-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                    </path>
+                </svg>
+            </g>
+        </svg>
+
+        <!-- HTMLのテキストボックス（絶対配置でSVGノードのそばに置く） -->
+
+        <!-- 1: Top (希望に合ったお仕事) -->
+        <div class="text-box align-center top-center pos-1">
+            <h3 class="feature-title">希望に合ったお仕事</h3>
+            <p class="feature-desc">あなたのご希望をしっかりヒアリングし、最適なお仕事をご提案します。</p>
+        </div>
+
+        <!-- 2: Top Right (職場見学が可能) -->
+        <div class="text-box align-left pos-2">
+            <h3 class="feature-title">職場見学が可能</h3>
+            <p class="feature-desc">実際の職場の雰囲気を事前に確認できるので安心です。</p>
+        </div>
+
+        <!-- 3: Bottom Right (手厚いフォロー) -->
+        <div class="text-box align-left pos-3">
+            <h3 class="feature-title">手厚いフォロー</h3>
+            <p class="feature-desc">専任の担当者がいつでも相談に乗ります。</p>
+        </div>
+
+        <!-- 4: Bottom (社会保険・有給完備) -->
+        <div class="text-box align-center bottom-center pos-4">
+            <h3 class="feature-title">社会保険・有給完備</h3>
+            <p class="feature-desc">健康保険・厚生年金・雇用保険・有給休暇完備。</p>
+        </div>
+
+        <!-- 5: Bottom Left (未経験OKの仕事多数) -->
+        <div class="text-box align-right pos-5">
+            <h3 class="feature-title">未経験OKの仕事多数</h3>
+            <p class="feature-desc">研修制度やサポート体制が整っています。</p>
+        </div>
+
+        <!-- 6: Top Left (多言語対応で安心) -->
+        <div class="text-box align-right pos-6">
+            <h3 class="feature-title">多言語対応で安心</h3>
+            <p class="feature-desc">外国籍スタッフへの多言語サポートを行っています。</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6つの強み - グラスモーフィズム</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --bg-color: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #ffffff;
+            color: var(--text-main);
+            margin: 0;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* 背景にうっすらとグラデーションの円を配置してガラス感を強調 */
+            background-image: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.05) 0%, transparent 40%);
+        }
+
+        .layout-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            aspect-ratio: 16 / 10;
+            margin: 0 auto;
+        }
+
+        /* 中央のグラスモーフィズム・ヘキサゴン */
+        .glass-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            /* SVGの代わりにCSSで六角形を作る */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(30, 58, 138, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* 六角形の枠線（疑似要素で表現） */
+        .glass-center::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(30, 58, 138, 0.05));
+            z-index: -1;
+        }
+
+        .center-title {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .center-title span {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .center-title h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* SVGレイヤー (装飾線) */
+        .svg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .svg-curve {
+            fill: none;
+            stroke: url(#gradientLine);
+            stroke-width: 2;
+            opacity: 0.6;
+            stroke-dasharray: 4 4;
+        }
+
+        /* コンテンツブロック */
+        .feature-box {
+            position: absolute;
+            width: 260px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 24px 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f1f5f9;
+            z-index: 5;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+            border-color: #dbeafe;
+        }
+
+        /* アイコンが浮いているようなデザイン */
+        .icon-wrapper {
+            position: absolute;
+            top: -24px;
+            left: 20px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+            transform: rotate(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-box:hover .icon-wrapper {
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .svg-icon {
+            stroke: #ffffff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            width: 24px;
+            height: 24px;
+        }
+
+        /* アイコン塗り用 */
+        .svg-icon-fill {
+            fill: #ffffff;
+            stroke: none;
+        }
+
+        .feature-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0 8px 0;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* 配置 (PC版) */
+        .pos-1 { top: 5%; left: 50%; transform: translateX(-50%); }
+        .pos-1 .icon-wrapper { left: 50%; transform: translateX(-50%) rotate(0deg); top: -24px;}
+        .pos-1:hover .icon-wrapper { transform: translateX(-50%) scale(1.1); }
+        .pos-1 { text-align: center; }
+
+        .pos-2 { top: 25%; right: 5%; }
+        .pos-3 { top: 60%; right: 5%; }
+
+        .pos-4 { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .pos-4 .icon-wrapper { left: 50%; transform: translateX(-50%) rotate(0deg); top: -24px;}
+        .pos-4:hover .icon-wrapper { transform: translateX(-50%) scale(1.1); }
+        .pos-4 { text-align: center; }
+
+        .pos-5 { top: 60%; left: 5%; }
+        .pos-6 { top: 25%; left: 5%; }
+
+
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 50px;
+                aspect-ratio: auto;
+                padding-top: 40px;
+            }
+            .glass-center {
+                position: relative;
+                top: auto; left: auto; transform: none;
+                margin-bottom: 20px;
+            }
+            .svg-layer { display: none; }
+            .feature-box {
+                position: relative;
+                top: auto !important; left: auto !important; right: auto !important; bottom: auto !important;
+                transform: none !important;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layout-wrapper">
+        
+        <!-- 中央のグラスモーフィズム -->
+        <div class="glass-center">
+            <div class="center-title">
+                <span>MERIT</span>
+                <h2>6つの強み</h2>
+            </div>
+        </div>
+
+        <!-- 背景の繋がりを示す曲線SVG -->
+        <svg class="svg-layer" viewBox="0 0 1000 625" preserveAspectRatio="xMidYMid meet">
+            <defs>
+                <linearGradient id="gradientLine" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#bfdbfe" />
+                    <stop offset="50%" stop-color="#3b82f6" />
+                    <stop offset="100%" stop-color="#1e3a8a" />
+                </linearGradient>
+            </defs>
+            <!-- 曲線のパス (ベジェ曲線で柔らかく繋ぐ) -->
+            <path class="svg-curve" d="M500,312.5 Q500,100 500,60" /> <!-- Top -->
+            <path class="svg-curve" d="M500,312.5 Q700,312.5 820,200" /> <!-- Top Right -->
+            <path class="svg-curve" d="M500,312.5 Q700,312.5 820,420" /> <!-- Bottom Right -->
+            <path class="svg-curve" d="M500,312.5 Q500,500 500,560" /> <!-- Bottom -->
+            <path class="svg-curve" d="M500,312.5 Q300,312.5 180,420" /> <!-- Bottom Left -->
+            <path class="svg-curve" d="M500,312.5 Q300,312.5 180,200" /> <!-- Top Left -->
+        </svg>
+
+        <!-- 1: 希望に合ったお仕事 -->
+        <div class="feature-box pos-1">
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24" class="svg-icon">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+            <h3 class="feature-heading">希望に合ったお仕事</h3>
+            <p class="feature-desc">あなたのご希望をしっかりヒアリングし、最適なお仕事をご提案します。</p>
+        </div>
+
+        <!-- 2: 職場見学が可能 -->
+        <div class="feature-box pos-2">
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24" class="svg-icon">
+                    <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                    <path d="M9 22v-4h6v4"></path>
+                </svg>
+            </div>
+            <h3 class="feature-heading">職場見学が可能</h3>
+            <p class="feature-desc">実際の職場の雰囲気を事前に確認できるので安心です。</p>
+        </div>
+
+        <!-- 3: 手厚いフォロー -->
+        <div class="feature-box pos-3">
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24" class="svg-icon svg-icon-fill">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                </svg>
+            </div>
+            <h3 class="feature-heading">手厚いフォロー</h3>
+            <p class="feature-desc">専任の担当者がいつでも相談に乗ります。</p>
+        </div>
+
+        <!-- 4: 社会保険・有給完備 -->
+        <div class="feature-box pos-4">
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24" class="svg-icon">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            </div>
+            <h3 class="feature-heading">社会保険・有給完備</h3>
+            <p class="feature-desc">健康保険・厚生年金・雇用保険・有給休暇など福利厚生を完備。</p>
+        </div>
+
+        <!-- 5: 未経験OKの仕事多数 -->
+        <div class="feature-box pos-5">
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24" class="svg-icon">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+            </div>
+            <h3 class="feature-heading">未経験OKの仕事多数</h3>
+            <p class="feature-desc">研修制度やサポート体制がしっかりと整っています。</p>
+        </div>
+
+        <!-- 6: 多言語対応で安心 -->
+        <div class="feature-box pos-6">
+            <div class="icon-wrapper">
+                <svg viewBox="0 0 24 24" class="svg-icon">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                </svg>
+            </div>
+            <h3 class="feature-heading">多言語対応で安心</h3>
+            <p class="feature-desc">外国籍スタッフへの多言語でのきめ細かなサポートを行っています。</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

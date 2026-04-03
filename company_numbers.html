@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字で見るサントー</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            /* ネイビー */
+            --secondary: #3b82f6;
+            /* ブルー */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 80px 20px;
+            line-height: 1.6;
+        }
+
+        .numbers-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* セクションタイトル */
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 60px 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--text-main);
+        }
+
+        /* グリッドレイアウト */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        /* カードデザイン */
+        .number-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+        }
+
+        /* テキスト部分 */
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 16px 0;
+        }
+
+        .card-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 56px;
+            font-weight: 400;
+            color: var(--secondary);
+            line-height: 1;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+        }
+
+        .card-unit {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            margin-left: 4px;
+            color: var(--secondary);
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: 20px 0 0 0;
+            text-align: left;
+            line-height: 1.5;
+            width: 100%;
+        }
+
+        /* -------------------------------------
+     チャート・グラフィック（スタイリッシュ化）
+  -------------------------------------- */
+        .chart-container {
+            width: 100%;
+            height: 80px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        /* 1. 棒グラフ（実績） */
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .bar {
+            flex: 1;
+            background-color: #bfdbfe;
+            border-radius: 2px 2px 0 0;
+            transform-origin: bottom;
+            transform: scaleY(0);
+            transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .bar:last-child {
+            background-color: var(--secondary);
+        }
+
+        /* JSで表示時に .is-visible を付与してアニメーションさせる */
+        .is-visible .bar {
+            transform: scaleY(1);
+        }
+
+        .is-visible .bar:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .is-visible .bar:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .is-visible .bar:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        .is-visible .bar:nth-child(4) {
+            transition-delay: 0.4s;
+        }
+
+        .is-visible .bar:nth-child(5) {
+            transition-delay: 0.5s;
+        }
+
+        .is-visible .bar:nth-child(6) {
+            transition-delay: 0.6s;
+        }
+
+        .is-visible .bar:nth-child(7) {
+            transition-delay: 0.7s;
+        }
+
+        /* 2. 折れ線/エリアグラフ（企業数） */
+        .area-chart {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .area-chart svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .area-path {
+            fill: url(#area-gradient);
+            stroke: none;
+        }
+
+        .area-line {
+            fill: none;
+            stroke: var(--secondary);
+            stroke-width: 2.5;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .is-visible .area-line {
+            stroke-dashoffset: 0;
+        }
+
+        .area-dot {
+            fill: var(--card-bg);
+            stroke: var(--secondary);
+            stroke-width: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease 1s;
+        }
+
+        .is-visible .area-dot {
+            opacity: 1;
+        }
+
+        /* 3. 円グラフ（スタッフ満足度） */
+        .circle-chart {
+            width: 72px;
+            height: 72px;
+            position: relative;
+        }
+
+        .circle-chart svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+            overflow: visible;
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: #f1f5f9;
+            stroke-width: 6;
+        }
+
+        .circle-progress {
+            fill: none;
+            stroke: var(--secondary);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 219.9;
+            /* 2 * PI * r(35) */
+            stroke-dashoffset: 219.9;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .is-visible .circle-progress {
+            stroke-dashoffset: 4.4;
+            /* 98% (219.9 * 0.02) */
+        }
+
+        /* 4. ゲージチャート（マッチング） */
+        .gauge-chart {
+            width: 100px;
+            height: 50px;
+            /* 半円 */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .gauge-chart svg {
+            width: 100px;
+            height: 100px;
+            overflow: visible;
+        }
+
+        .gauge-bg {
+            fill: none;
+            stroke: #f1f5f9;
+            stroke-width: 6;
+            stroke-linecap: round;
+        }
+
+        .gauge-progress {
+            fill: none;
+            stroke: var(--secondary);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 141.3;
+            /* PI * r(45) */
+            stroke-dashoffset: 141.3;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .is-visible .gauge-progress {
+            stroke-dashoffset: 50;
+            /* 任意のパーセンテージ */
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 1024px) {
+            .numbers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .numbers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .number-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="numbers-section">
+        <h2 class="section-title">数字で見るサントー</h2>
+
+        <div class="numbers-grid" id="numbersGrid">
+
+            <!-- 1: 累計紹介実績 -->
+            <div class="number-card">
+                <h3 class="card-title">累計紹介実績</h3>
+                <div class="card-value"><span class="counter" data-target="500">0</span><span
+                        class="card-unit">件+</span></div>
+                <div class="chart-container">
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 10%;"></div>
+                        <div class="bar" style="height: 15%;"></div>
+                        <div class="bar" style="height: 20%;"></div>
+                        <div class="bar" style="height: 35%;"></div>
+                        <div class="bar" style="height: 50%;"></div>
+                        <div class="bar" style="height: 70%;"></div>
+                        <div class="bar" style="height: 100%;"></div>
+                    </div>
+                </div>
+                <p class="card-desc">これまでに多くの求職者様を企業様へご紹介してまいりました。</p>
+            </div>
+
+            <!-- 2: 取引企業数 -->
+            <div class="number-card">
+                <h3 class="card-title">取引企業数</h3>
+                <div class="card-value"><span class="counter" data-target="150">0</span><span
+                        class="card-unit">社+</span></div>
+                <div class="chart-container">
+                    <div class="area-chart">
+                        <!-- SVGグラデーション定義 -->
+                        <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="area-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"></stop>
+                                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"></stop>
+                                </linearGradient>
+                            </defs>
+                            <!-- 塗りつぶし部分 -->
+                            <path class="area-path" d="M0,35 Q30,25 60,15 T100,5 L100,40 L0,40 Z"></path>
+                            <!-- アニメーションする線 -->
+                            <path class="area-line" d="M0,35 Q30,25 60,15 T100,5"></path>
+                            <!-- 終点のドット -->
+                            <circle class="area-dot" cx="100" cy="5" r="3"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">製造・物流・事務など幅広い業種の企業様とお取引しています。</p>
+            </div>
+
+            <!-- 3: スタッフ満足度 -->
+            <div class="number-card">
+                <h3 class="card-title">スタッフ満足度</h3>
+                <div class="card-value"><span class="counter" data-target="98">0</span><span class="card-unit">%</span>
+                </div>
+                <div class="chart-container" style="justify-content: center;">
+                    <div class="circle-chart">
+                        <svg viewBox="0 0 80 80">
+                            <circle class="circle-bg" cx="40" cy="40" r="35"></circle>
+                            <circle class="circle-progress" cx="40" cy="40" r="35"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">就業中のフォロー体制が評価され、高い満足度を維持しています。</p>
+            </div>
+
+            <!-- 4: 平均マッチング -->
+            <div class="number-card">
+                <h3 class="card-title">平均マッチング</h3>
+                <div class="card-value"><span class="counter" data-target="24">0</span><span class="card-unit">時間</span>
+                </div>
+                <div class="chart-container" style="justify-content: center; align-items: flex-end;">
+                    <div class="gauge-chart">
+                        <svg viewBox="0 0 100 100">
+                            <path class="gauge-bg" d="M10,50 A40,40 0 0,1 90,50"></path>
+                            <path class="gauge-progress" d="M10,50 A40,40 0 0,1 90,50"></path>
+                            <!-- 装飾の目盛りテキスト -->
+                            <text x="5" y="65" font-size="8" fill="#94a3b8" font-family="Montserrat">0h</text>
+                            <text x="85" y="65" font-size="8" fill="#94a3b8" font-family="Montserrat">48h</text>
+                        </svg>
+                    </div>
+                </div>
+                <p class="card-desc">お仕事のご提案までスピーディに対応いたします。</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- アニメーション用JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.number-card');
+            let animated = false;
+
+            // 数値のカウントアップ関数
+            const animateCounters = () => {
+                const counters = document.querySelectorAll('.counter');
+                const duration = 1500; // 1.5秒
+
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const startTimestamp = performance.now();
+
+                    const step = (timestamp) => {
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        // easeOutQuart ぽいイージング処理
+                        const easeOut = 1 - Math.pow(1 - progress, 4);
+
+                        counter.innerText = Math.floor(easeOut * target);
+
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                });
+            };
+
+            // スクロール検知器
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        // 全てのカードを一斉にアニメーション開始
+                        cards.forEach(card => card.classList.add('is-visible'));
+                        // 数値カウントアップ開始
+                        animateCounters();
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            observer.observe(document.getElementById('numbersGrid'));
+        });
+    </script>
+
+</body>
+
+</html>

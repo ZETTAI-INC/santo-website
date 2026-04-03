@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Metrics SVG</title>
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #60a5fa;
+            --bg-color: #f8fafc;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 700px; /* Larger for deluxe feel */
+            height: 700px;
+        }
+
+        /* Organic movement with easing */
+        @keyframes orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes counter-orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.1; }
+            50% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(0.95); opacity: 0.1; }
+        }
+
+        .orbit-group {
+            transform-origin: 350px 350px;
+            /* Slower, elegant 20s rotation with organic easing */
+            animation: orbit 20s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        }
+
+        .metric-node-container {
+            transform-origin: 0 0;
+            animation: counter-orbit 20s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        }
+
+        .float-group {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Decorative Rings for Deluxe feel */
+        .track-ring-base {
+            fill: none;
+            stroke: #2563eb;
+            stroke-width: 0.5;
+            opacity: 0.1;
+        }
+
+        .track-ring-pulse {
+            fill: none;
+            stroke: #2563eb;
+            stroke-width: 2;
+            animation: pulse-ring 6s ease-in-out infinite;
+        }
+
+        .comet-tail {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+            opacity: 0.7;
+        }
+
+        .metric-circle {
+            fill: white;
+            stroke: #2563eb;
+            stroke-width: 1;
+            filter: drop-shadow(0 25px 40px rgba(37, 99, 235, 0.18));
+        }
+
+        .metric-label {
+            fill: #475569;
+            font-size: 18px;
+            text-anchor: middle;
+            font-weight: 800;
+        }
+
+        .metric-value {
+            fill: #1e3a8a;
+            font-size: 44px; /* Even bigger impact */
+            font-weight: 900;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <svg viewBox="0 0 700 700">
+        <defs>
+            <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#eff6ff;stop-opacity:1" />
+            </linearGradient>
+            
+            <linearGradient id="tailGrad" gradientUnits="userSpaceOnUse" x1="350" y1="120" x2="450" y2="130">
+                <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0" />
+            </linearGradient>
+
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+        </defs>
+
+        <!-- Dynamic Decorative Background -->
+        <circle cx="350" cy="350" r="230" class="track-ring-base" />
+        <circle cx="350" cy="350" r="230" class="track-ring-pulse" />
+        <circle cx="350" cy="350" r="180" class="track-ring-base" style="opacity: 0.05;" />
+
+        <!-- Rotating Group -->
+        <g class="orbit-group">
+            
+            <!-- Deluxe Comet Tails -->
+            <path d="M 350 120 A 230 230 0 0 1 480 150" stroke="url(#tailGrad)" class="comet-tail" transform="rotate(-20, 350, 350)" filter="url(#glow)" />
+            <path d="M 350 120 A 230 230 0 0 1 480 150" stroke="url(#tailGrad)" class="comet-tail" transform="rotate(100, 350, 350)" filter="url(#glow)" />
+            <path d="M 350 120 A 230 230 0 0 1 480 150" stroke="url(#tailGrad)" class="comet-tail" transform="rotate(220, 350, 350)" filter="url(#glow)" />
+
+            <!-- Metric 1: 150+ Companies -->
+            <g transform="translate(350, 120)">
+                <g class="metric-node-container">
+                    <g class="float-group">
+                        <circle cx="0" cy="0" r="105" fill="url(#nodeGrad)" stroke="#2563eb" stroke-width="1.5" />
+                        <text y="-22" class="metric-label">取引企業先</text>
+                        <text y="35" class="metric-value">150社+</text>
+                    </g>
+                </g>
+            </g>
+
+            <!-- Metric 2: 98% Satisfaction -->
+            <g transform="translate(549, 465)">
+                <g class="metric-node-container">
+                    <g class="float-group" style="animation-delay: -1.3s;">
+                        <circle cx="0" cy="0" r="105" fill="url(#nodeGrad)" stroke="#2563eb" stroke-width="1.5" />
+                        <text y="-22" class="metric-label">満足度</text>
+                        <text y="35" class="metric-value">98%</text>
+                    </g>
+                </g>
+            </g>
+
+            <!-- Metric 3: 24h Match -->
+            <g transform="translate(151, 465)">
+                <g class="metric-node-container">
+                    <g class="float-group" style="animation-delay: -2.6s;">
+                        <circle cx="0" cy="0" r="105" fill="url(#nodeGrad)" stroke="#2563eb" stroke-width="1.5" />
+                        <text y="-22" class="metric-label">最短マッチング</text>
+                        <text y="35" class="metric-value">24h</text>
+                    </g>
+                </g>
+            </g>
+
+        </g>
+    </svg>
+</div>
+
+</body>
+</html>

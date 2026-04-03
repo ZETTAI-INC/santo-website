@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービスモデル図（インパクト案）</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .concept-header {
+            text-align: center;
+            margin: 60px 0 30px;
+        }
+
+        .concept-header h1 {
+            font-size: 28px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .concept-header p {
+            font-size: 15px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* ----------------------
+     案A: ソリッド・ボールド（面と太線で魅せる）
+  ----------------------- */
+        .concept-A .diagram-box {
+            background: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 4px solid #f8fafc;
+        }
+
+        .concept-A .title-area {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .concept-A .title-area h2 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1e3a8a;
+            letter-spacing: 2px;
+        }
+
+        .concept-A .stage {
+            position: relative;
+            height: 400px;
+        }
+
+        .concept-A .node {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .concept-A .node-sub {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .concept-A .node-main {
+            font-size: 24px;
+            font-weight: 900;
+        }
+
+        .ca-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e11d48;
+            /* Crimson */
+        }
+
+        .ca-left {
+            bottom: 0;
+            left: 18%;
+            transform: translateX(-50%);
+            background: #1e3a8a;
+            /* Navy */
+        }
+
+        .ca-right {
+            bottom: 0;
+            left: 82%;
+            transform: translateX(-50%);
+            background: #0ea5e9;
+            /* Sky */
+        }
+
+        .concept-A .label {
+            position: absolute;
+            background: #ffffff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 900;
+            color: #334155;
+            border: 3px solid #cbd5e1;
+            z-index: 5;
+        }
+
+        .ca-l-left {
+            top: 160px;
+            left: 34%;
+            transform: translate(-50%, -50%);
+            border-color: #1e3a8a;
+            color: #1e3a8a;
+        }
+
+        .ca-l-right {
+            top: 160px;
+            left: 66%;
+            transform: translate(-50%, -50%);
+            border-color: #e11d48;
+            color: #e11d48;
+        }
+
+        .ca-l-bottom {
+            bottom: 60px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-color: #0ea5e9;
+            color: #0ea5e9;
+        }
+
+        /* ----------------------
+     案B: ダーク・インパクト（高級感とコントラスト）
+  ----------------------- */
+        .concept-B .diagram-box {
+            background: #0f172a;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+            color: #f8fafc;
+        }
+
+        .concept-B .title-area {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .concept-B .title-area h2 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #f8fafc;
+            letter-spacing: 2px;
+        }
+
+        .concept-B .stage {
+            position: relative;
+            height: 400px;
+        }
+
+        .concept-B .node {
+            position: absolute;
+            width: 220px;
+            padding: 30px 0;
+            border-radius: 8px;
+            background: #1e293b;
+            border: 3px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .concept-B .node-sub {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .concept-B .node-main {
+            font-size: 26px;
+            font-weight: 900;
+        }
+
+        .cb-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-color: #38bdf8;
+        }
+
+        .cb-top .node-main {
+            color: #38bdf8;
+        }
+
+        .cb-left {
+            bottom: 0;
+            left: 22%;
+            transform: translateX(-50%);
+            border-color: #a78bfa;
+        }
+
+        .cb-left .node-main {
+            color: #a78bfa;
+        }
+
+        .cb-right {
+            bottom: 0;
+            left: 78%;
+            transform: translateX(-50%);
+            border-color: #34d399;
+        }
+
+        .cb-right .node-main {
+            color: #34d399;
+        }
+
+        .concept-B .label {
+            position: absolute;
+            background: #0f172a;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #f8fafc;
+            z-index: 5;
+        }
+
+        .cb-l-left {
+            top: 160px;
+            left: 36%;
+            transform: translate(-50%, -50%);
+            border-bottom: 3px solid #a78bfa;
+        }
+
+        .cb-l-right {
+            top: 160px;
+            left: 64%;
+            transform: translate(-50%, -50%);
+            border-bottom: 3px solid #38bdf8;
+        }
+
+        .cb-l-bottom {
+            bottom: 50px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-bottom: 3px solid #34d399;
+        }
+    </style>
+</head>
+
+<body>
+
+    <svg style="width:0;height:0;position:absolute;">
+        <defs>
+            <!-- 太い矢印用 -->
+            <marker id="arr-thick" markerWidth="14" markerHeight="14" refX="2" refY="7" orient="auto-start-reverse">
+                <polygon points="14,0 0,7 14,14" fill="#94a3b8" />
+            </marker>
+            <marker id="arr-thick-end" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+                <polygon points="0,0 14,7 0,14" fill="#94a3b8" />
+            </marker>
+            <marker id="arr-light" markerWidth="14" markerHeight="14" refX="2" refY="7" orient="auto-start-reverse">
+                <polygon points="14,0 0,7 14,14" fill="#475569" />
+            </marker>
+            <marker id="arr-light-end" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto">
+                <polygon points="0,0 14,7 0,14" fill="#475569" />
+            </marker>
+        </defs>
+    </svg>
+
+    <div class="concept-header">
+        <h1>案A：ソリッド・ボールド（視覚的な強さと極限のシンプルさ）</h1>
+        <p>円形を塗りつぶしの強い色（ネイビー・クリムゾン・空色）にし、コントラストを最大化。文字も極太で瞬時に目を引きます。</p>
+    </div>
+    <div class="concept-A">
+        <div class="diagram-box">
+            <div class="title-area">
+                <h2>人材派遣サービス</h2>
+            </div>
+            <div class="stage">
+                <svg style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+                    <line x1="450" y1="80" x2="160" y2="300" stroke="#cbd5e1" stroke-width="5"
+                        marker-start="url(#arr-thick)" marker-end="url(#arr-thick-end)" />
+                    <line x1="450" y1="80" x2="740" y2="300" stroke="#cbd5e1" stroke-width="5"
+                        marker-start="url(#arr-thick)" marker-end="url(#arr-thick-end)" />
+                    <line x1="200" y1="315" x2="700" y2="315" stroke="#94a3b8" stroke-width="8"
+                        marker-start="url(#arr-thick)" marker-end="url(#arr-thick-end)" />
+                </svg>
+                <div class="label ca-l-left">派遣契約</div>
+                <div class="label ca-l-right">指揮命令関係</div>
+                <div class="label ca-l-bottom">雇用関係</div>
+                <div class="node ca-top">
+                    <div class="node-sub">派遣先</div>
+                    <div class="node-main">お客様</div>
+                </div>
+                <div class="node ca-left">
+                    <div class="node-sub">派遣元</div>
+                    <div class="node-main">当 社</div>
+                </div>
+                <div class="node ca-right">
+                    <div class="node-main" style="margin-top:10px;">派遣スタッフ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept-header">
+        <h1>案B：ダーク・インパクト（圧倒的な高級感とダイナミックさ）</h1>
+        <p>背景を暗くし、ネオンのようなアクセントカラーで縁取ることで、BtoBの最新テック企業のような圧倒的なインパクトを出します。</p>
+    </div>
+    <div class="concept-B">
+        <div class="diagram-box">
+            <div class="title-area">
+                <h2>人材派遣サービス</h2>
+            </div>
+            <div class="stage">
+                <svg style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;">
+                    <line x1="450" y1="50" x2="200" y2="350" stroke="#334155" stroke-width="4" stroke-dasharray="8 8"
+                        marker-start="url(#arr-light)" marker-end="url(#arr-light-end)" />
+                    <line x1="450" y1="50" x2="700" y2="350" stroke="#334155" stroke-width="4" stroke-dasharray="8 8"
+                        marker-start="url(#arr-light)" marker-end="url(#arr-light-end)" />
+                    <line x1="250" y1="360" x2="650" y2="360" stroke="#475569" stroke-width="6"
+                        marker-start="url(#arr-light)" marker-end="url(#arr-light-end)" />
+                </svg>
+                <div class="label cb-l-left">派遣契約</div>
+                <div class="label cb-l-right">指揮命令関係</div>
+                <div class="label cb-l-bottom">雇用関係</div>
+                <div class="node cb-top">
+                    <div class="node-sub">派遣先</div>
+                    <div class="node-main">お客様</div>
+                </div>
+                <div class="node cb-left">
+                    <div class="node-sub">派遣元</div>
+                    <div class="node-main">当 社</div>
+                </div>
+                <div class="node cb-right">
+                    <div class="node-main" style="margin-top:10px;">派遣スタッフ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+</body>
+
+</html>

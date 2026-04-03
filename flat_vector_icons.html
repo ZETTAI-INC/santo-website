@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クリーンなベクターアイコン（純粋なSVG）</title>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+            margin: 0;
+        }
+
+        .header {
+            margin-bottom: 50px;
+            text-align: center;
+            color: #1e293b;
+        }
+
+        /* アイコンを縦に並べるためのコンテナ（スクリーンショットのタイムライン風） */
+        .icon-timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        /* 背景の縦線 */
+        .icon-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background-color: #bfdbfe;
+            /* 薄い青い線 */
+            z-index: 0;
+        }
+
+        /* アイコンの土台（丸） */
+        .icon-circle {
+            position: relative;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+            background-color: #ffffff;
+            border: 4px solid #1b64b3;
+            /* スクリーンショットに近い青 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            /* ほんのわずかな影 */
+        }
+
+        /* SVG自体のスタイル */
+        .icon-circle svg {
+            width: 48px;
+            height: 48px;
+            fill: none;
+            stroke: #1b64b3;
+            /* 枠線と同じ色 */
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* 横にテキストを置く場合用のラッパー */
+        .icon-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: 400px;
+        }
+
+        /* 偶数番目と奇数番目でテキストの位置を分ける（タイムライン風） */
+        .icon-wrapper:nth-child(odd) .text-content {
+            text-align: right;
+            flex: 1;
+            order: -1;
+            /* 左側にテキスト */
+        }
+
+        .icon-wrapper:nth-child(even) .text-content {
+            text-align: left;
+            flex: 1;
+        }
+
+        /* 奇数番目の空白（右側） */
+        .icon-wrapper:nth-child(odd)::after {
+            content: '';
+            flex: 1;
+        }
+
+        /* 偶数番目の空白（左側） */
+        .icon-wrapper:nth-child(even)::before {
+            content: '';
+            flex: 1;
+        }
+
+        .text-content h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #1e3a8a;
+        }
+
+        .text-content p {
+            margin: 0;
+            font-size: 13px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h2>クリーンな線画（ベクター）アイコン</h2>
+        <p>AI生成画像ではなく、完全にWebコード（SVG）で作成した最も綺麗で軽量なアイコンです。</p>
+    </div>
+
+    <div class="icon-timeline">
+
+        <!-- 1. カミナリ -->
+        <div class="icon-wrapper">
+            <div class="text-content">
+                <h3>迅速な対応</h3>
+                <p>スピーディな対応を表現したカミナリ</p>
+            </div>
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 2. 人物グループ（チーム） -->
+        <div class="icon-wrapper">
+            <div class="text-content">
+                <h3>チームワーク</h3>
+                <p>連携やユーザーを表す人物グループ</p>
+            </div>
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 3. ヘッドセット（サポート） -->
+        <div class="icon-wrapper">
+            <div class="text-content">
+                <h3>手厚いサポート</h3>
+                <p>いつでも相談に乗れる体制を示すヘッドセット</p>
+            </div>
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                    <path
+                        d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+                    </path>
+                    <line x1="14" y1="21" x2="16" y2="21"></line>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 4. ブタの貯金箱 -->
+        <div class="icon-wrapper">
+            <div class="text-content">
+                <h3>コスト・貯蓄</h3>
+                <p>スクリーンショットに合わせたブタの貯金箱</p>
+            </div>
+            <div class="icon-circle">
+                <svg viewBox="0 0 24 24">
+                    <!-- 貯金箱のボディ部分 -->
+                    <path
+                        d="M19 5c-1.5 0-2.8 1.4-3 3-2.5-.8-5.5-.8-8 0-.2-1.6-1.5-3-3-3-1.6 0-3 1.4-3 3v2c0 2.8 2.2 5 5 5h1c.5 1.7 2.1 3 4 3s3.5-1.3 4-3h1c2.8 0 5-2.2 5-5V8c0-1.6-1.4-3-3-3z">
+                    </path>
+                    <!-- 脚 -->
+                    <path d="M7 15v3h2v-3"></path>
+                    <path d="M15 15v3h2v-3"></path>
+                    <!-- しっぽ -->
+                    <path d="M3 10.5a1.5 1.5 0 0 0-3 0"></path>
+                    <!-- 鼻 -->
+                    <path d="M22 10.5a1.5 1.5 0 0 0-3 0"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- 5. 組織図（ネットワーク） -->
+        <div class="icon-wrapper">
+            <div class="text-content">
+                <h3>組織・広がり</h3>
+                <p>ネットワークや組織図を表す階層構造</p>
+            </div>
+            <div class="icon-circle">
+                <!-- シンプルな組織図アイコン -->
+                <svg viewBox="0 0 24 24">
+                    <rect x="9" y="3" width="6" height="6" rx="1"></rect>
+                    <path d="M12 9v4"></path>
+                    <path d="M6 13h12"></path>
+                    <path d="M6 13v2"></path>
+                    <path d="M18 13v2"></path>
+                    <rect x="3" y="15" width="6" height="6" rx="1"></rect>
+                    <rect x="15" y="15" width="6" height="6" rx="1"></rect>
+                </svg>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

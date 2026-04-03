@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サービスモデル図（デザイン案）</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --navy: #1e3a8a;
+            --navy-light: #2563eb;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-main: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-main);
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-dark);
+        }
+
+        .concept-header {
+            text-align: center;
+            margin: 80px 0 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #cbd5e1;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .concept-header h1 {
+            font-size: 24px;
+            color: var(--navy);
+            margin: 0 0 5px;
+        }
+
+        .concept-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* 共通の矢印表示用 */
+        .arrow-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* -----------------------------------------------------------
+     案1: モダン・ラウンド（前回の洗練版）
+  ----------------------------------------------------------- */
+        .concept-1 .diagram-box {
+            background: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            position: relative;
+        }
+
+        .concept-1 .title-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .concept-1 .title-area h2 {
+            font-size: 22px;
+            color: var(--navy);
+            margin: 0 0 10px;
+        }
+
+        .concept-1 .title-area p {
+            background: #f8fafc;
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .concept-1 .stage {
+            position: relative;
+            height: 400px;
+        }
+
+        .concept-1 .node {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            z-index: 10;
+        }
+
+        .concept-1 .node-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .concept-1 .node-main {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .concept-1 .node-main.red {
+            color: #ea580c;
+        }
+
+        .concept-1 .label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            z-index: 5;
+        }
+
+        /* 配置 */
+        .c1-n-top {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .c1-n-left {
+            bottom: 10px;
+            left: 20%;
+            transform: translateX(-50%);
+        }
+
+        .c1-n-right {
+            bottom: 10px;
+            left: 80%;
+            transform: translateX(-50%);
+        }
+
+        .c1-l-left {
+            top: 150px;
+            left: 30%;
+            transform: translate(-50%, -50%);
+        }
+
+        .c1-l-left strong {
+            display: block;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            color: var(--navy);
+        }
+
+        .c1-l-right {
+            top: 150px;
+            left: 70%;
+            transform: translate(-50%, -50%);
+            border: none;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .c1-l-right span {
+            display: block;
+            border: 1px solid #cbd5e1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            background: #fff;
+        }
+
+        .c1-l-bottom {
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .c1-l-bottom span {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin: 0 4px;
+            color: var(--text-muted);
+        }
+
+
+        /* -----------------------------------------------------------
+     案2: ミニマル・スクエア（直線的で極めてシンプル）
+  ----------------------------------------------------------- */
+        .concept-2 .diagram-box {
+            background: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid #e2e8f0;
+            padding: 40px 60px;
+        }
+
+        .concept-2 .title-area {
+            border-left: 4px solid var(--navy);
+            padding-left: 16px;
+            margin-bottom: 40px;
+        }
+
+        .concept-2 .title-area h2 {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin: 0 0 6px;
+        }
+
+        .concept-2 .title-area p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .concept-2 .stage {
+            position: relative;
+            height: 350px;
+        }
+
+        .concept-2 .node {
+            position: absolute;
+            width: 180px;
+            padding: 20px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .concept-2 .node-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .concept-2 .node-main {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .concept-2 .node-main.accent {
+            color: var(--navy-light);
+        }
+
+        .concept-2 .label {
+            position: absolute;
+            background: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            border: 1px solid #e2e8f0;
+            z-index: 5;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* 配置 */
+        .c2-n-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .c2-n-left {
+            bottom: 0;
+            left: 15%;
+            transform: translateX(-50%);
+            border-color: var(--navy-light);
+            background: #fff;
+        }
+
+        .c2-n-right {
+            bottom: 0;
+            left: 85%;
+            transform: translateX(-50%);
+        }
+
+        .c2-l-left {
+            top: 120px;
+            left: 32.5%;
+            transform: translate(-50%, -50%);
+            border-color: var(--navy-light);
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+
+        .c2-l-right {
+            top: 120px;
+            left: 67.5%;
+            transform: translate(-50%, -50%);
+        }
+
+        .c2-l-bottom {
+            bottom: 30px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        /* -----------------------------------------------------------
+     案3: グラスモーフィズム（柔らかく透明感のある次世代UI）
+  ----------------------------------------------------------- */
+        .concept-3 .wrapper {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdfa 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 940px;
+            margin: 0 auto;
+        }
+
+        .concept-3 .diagram-box {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        .concept-3 .title-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .concept-3 .title-area h2 {
+            font-size: 26px;
+            color: #0f172a;
+            margin: 0 0 10px;
+            font-weight: 700;
+        }
+
+        .concept-3 .title-area p {
+            font-size: 15px;
+            color: #475569;
+            margin: 0;
+        }
+
+        .concept-3 .stage {
+            position: relative;
+            height: 380px;
+        }
+
+        .concept-3 .node {
+            position: absolute;
+            width: 170px;
+            height: 110px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .concept-3 .node-sub {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .concept-3 .node-main {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-top: 2px;
+        }
+
+        .concept-3 .node-main.green {
+            color: #059669;
+        }
+
+        .concept-3 .label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            z-index: 5;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        /* 配置 */
+        .c3-n-top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .c3-n-left {
+            bottom: 0;
+            left: 20%;
+            transform: translateX(-50%);
+        }
+
+        .c3-n-right {
+            bottom: 0;
+            left: 80%;
+            transform: translateX(-50%);
+        }
+
+        .c3-l-left {
+            top: 140px;
+            left: 35%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            font-weight: 700;
+        }
+
+        .c3-l-right {
+            top: 140px;
+            left: 65%;
+            transform: translate(-50%, -50%);
+        }
+
+        .c3-l-bottom {
+            bottom: 40px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <svg style="width:0;height:0;position:absolute;">
+        <defs>
+            <marker id="arr-gray" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto-start-reverse">
+                <path d="M10,0 L0,5 L10,10 Z" fill="#cbd5e1" />
+            </marker>
+            <marker id="arr-gray-end" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 Z" fill="#cbd5e1" />
+            </marker>
+            <marker id="arr-navy" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto-start-reverse">
+                <path d="M10,0 L0,5 L10,10 Z" fill="#64748b" />
+            </marker>
+            <marker id="arr-navy-end" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                <path d="M0,0 L10,5 L0,10 Z" fill="#64748b" />
+            </marker>
+        </defs>
+    </svg>
+
+    <!-- ---------------------------------------
+  案1: モダン・ラウンド（前回の洗練版）
+---------------------------------------- -->
+    <div class="concept-header">
+        <h1>案1：モダン・ラウンド（親しみと信頼）</h1>
+        <p>完全な円で人を表現した、一番王道で親しみやすい現代的デザイン。影で立体感を出しています。</p>
+    </div>
+    <div class="concept-1">
+        <div class="diagram-box">
+            <div class="title-area">
+                <h2>人材派遣サービス</h2>
+                <p>雇用関係にあるスタッフがお客様（派遣先企業）に派遣され就業するシステムです。</p>
+            </div>
+
+            <div class="stage">
+                <svg class="arrow-layer" viewBox="0 0 820 400">
+                    <line x1="410" y1="85" x2="200" y2="310" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"
+                        marker-start="url(#arr-gray)" marker-end="url(#arr-gray-end)" />
+                    <line x1="410" y1="85" x2="620" y2="310" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"
+                        marker-start="url(#arr-gray)" marker-end="url(#arr-gray-end)" />
+                    <line x1="240" y1="310" x2="580" y2="310" stroke="#64748b" stroke-width="4" stroke-dasharray="8 6"
+                        marker-start="url(#arr-navy)" marker-end="url(#arr-navy-end)" />
+                </svg>
+
+                <div class="label c1-l-left"><strong>派遣契約</strong>ニーズ把握・契約確認</div>
+                <div class="label c1-l-right"><span>指揮命令関係</span>お客様の指示で業務</div>
+                <div class="label c1-l-bottom"><span>雇用関係</span><span>給与支給・福利厚生</span></div>
+
+                <div class="node c1-n-top">
+                    <div class="node-sub">派遣先</div>
+                    <div class="node-main red">お客様</div>
+                </div>
+                <div class="node c1-n-left">
+                    <div class="node-sub">派遣元</div>
+                    <div class="node-main">当社</div>
+                </div>
+                <div class="node c1-n-right">
+                    <div class="node-main" style="margin-top:8px;">派遣スタッフ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------------------------------------
+  案2: ミニマル・スクエア（直線的で極めてシンプル）
+---------------------------------------- -->
+    <div class="concept-header">
+        <h1>案2：ミニマル・スクエア（誠実とソリッド）</h1>
+        <p>余計な装飾を削ぎ落とし、カチッとした四角と直線で「契約の誠実さ」を強調したミニマルデザイン。</p>
+    </div>
+    <div class="concept-2">
+        <div class="diagram-box">
+            <div class="title-area">
+                <h2>人材派遣サービス</h2>
+                <p>雇用関係にあるスタッフがお客様（派遣先企業）に派遣され就業するシステムです。</p>
+            </div>
+
+            <div class="stage">
+                <svg class="arrow-layer" viewBox="0 0 780 350">
+                    <line x1="390" y1="65" x2="160" y2="280" stroke="#cbd5e1" stroke-width="2"
+                        marker-start="url(#arr-gray)" marker-end="url(#arr-gray-end)" />
+                    <line x1="390" y1="65" x2="620" y2="280" stroke="#cbd5e1" stroke-width="2"
+                        marker-start="url(#arr-gray)" marker-end="url(#arr-gray-end)" />
+                    <line x1="200" y1="310" x2="580" y2="310" stroke="#64748b" stroke-width="2" stroke-dasharray="4 4"
+                        marker-start="url(#arr-navy)" marker-end="url(#arr-navy-end)" />
+                </svg>
+
+                <div class="label c2-l-left">派遣契約</div>
+                <div class="label c2-l-right">指揮命令関係</div>
+                <div class="label c2-l-bottom">雇用関係</div>
+
+                <div class="node c2-n-top">
+                    <div class="node-sub">派遣先</div>
+                    <div class="node-main accent">お客様</div>
+                </div>
+                <div class="node c2-n-left">
+                    <div class="node-sub">派遣元</div>
+                    <div class="node-main">当 社</div>
+                </div>
+                <div class="node c2-n-right">
+                    <div class="node-main" style="margin-top:10px;">派遣スタッフ</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------------------------------------
+  案3: グラスモーフィズム（柔らかく透明感）
+---------------------------------------- -->
+    <div class="concept-header">
+        <h1>案3：グラスモーフィズム（透明感と先進性）</h1>
+        <p>背景に淡い色の変化を敷き、すりガラスのように透ける柔らかなカードを使った最新のデザインです。</p>
+    </div>
+    <div class="concept-3">
+        <div class="wrapper">
+            <div class="diagram-box">
+                <div class="title-area">
+                    <h2>人材派遣サービス</h2>
+                    <p>雇用関係にあるスタッフがお客様（派遣先企業）に派遣され就業するシステムです。</p>
+                </div>
+
+                <div class="stage">
+                    <svg class="arrow-layer" viewBox="0 0 860 380">
+                        <line x1="430" y1="55" x2="220" y2="300" stroke="#94a3b8" stroke-width="2"
+                            stroke-dasharray="5 5" marker-start="url(#arr-gray)" marker-end="url(#arr-gray-end)" />
+                        <line x1="430" y1="55" x2="640" y2="300" stroke="#94a3b8" stroke-width="2"
+                            stroke-dasharray="5 5" marker-start="url(#arr-gray)" marker-end="url(#arr-gray-end)" />
+                        <line x1="260" y1="325" x2="600" y2="325" stroke="#475569" stroke-width="3"
+                            stroke-dasharray="8 6" marker-start="url(#arr-navy)" marker-end="url(#arr-navy-end)" />
+                    </svg>
+
+                    <div class="label c3-l-left">派遣契約</div>
+                    <div class="label c3-l-right">指揮命令関係</div>
+                    <div class="label c3-l-bottom">雇用関係</div>
+
+                    <div class="node c3-n-top">
+                        <div class="node-sub">派遣先</div>
+                        <div class="node-main green">お客様</div>
+                    </div>
+                    <div class="node c3-n-left">
+                        <div class="node-sub">派遣元</div>
+                        <div class="node-main">当 社</div>
+                    </div>
+                    <div class="node c3-n-right">
+                        <div class="node-main" style="margin-top:10px;">派遣スタッフ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 100px;"></div>
+</body>
+
+</html>

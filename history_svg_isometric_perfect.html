@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沿革 - SVG アイソメトリック 完璧な再現</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+        :root {
+            --primary: #0f172a; /* 濃いネイビー（テキスト・タイトル） */
+            --secondary: #60a5fa; /* 淡いブルー（丸・ライン） */
+            --bg-color: #eff3f8; /* 背景（ごく薄い青灰色） */
+            --stair-top: #ffffff; /* ブロック上面 */
+            --stair-left: #d8e2ee; /* ブロック左面（光が当たる） */
+            --stair-right: #c1d1e4; /* ブロック右面（影） */
+            --text-main: #334155;
+            --line-color: #94a3b8; /* テキストに繋がるライン */
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .layout-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        /* タイトル部分 */
+        .section-title-wrapper {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 20;
+        }
+
+        .section-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section-ja {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+            margin-bottom: 12px;
+        }
+
+        .section-title-wrapper::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            margin: 0 auto;
+        }
+
+
+        /* SVGコンテナ */
+        .svg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* アイソメトリックブロックのCSS */
+        .iso-top { fill: var(--stair-top); transition: fill 0.3s; }
+        .iso-left { fill: var(--stair-left); transition: fill 0.3s; }
+        .iso-right { fill: var(--stair-right); transition: fill 0.3s; }
+
+        /* ホバーアクション（任意） */
+        .stair-group { cursor: pointer; }
+        .stair-group:hover .iso-top { fill: #f8fafc; }
+        .stair-group:hover .iso-left { fill: #e2e8f0; }
+        .stair-group:hover .iso-right { fill: #cbd5e1; }
+
+        /* テキストに繋がる垂直ライン */
+        .marker-line {
+            stroke: var(--line-color);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        /* 丸（ドーナツ型） */
+        .marker-circle {
+            stroke: var(--line-color);
+            stroke-width: 2;
+            fill: var(--bg-color);
+            r: 4;
+        }
+
+        /* HTML（テキスト）の透明オーバーレイ */
+        .html-overlays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none; /* 下のSVGをクリックできるように */
+        }
+
+        .text-node {
+            position: absolute;
+            width: 200px;
+            pointer-events: auto;
+        }
+
+        /* 4つの青い丸 */
+        .dots {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+        }
+
+        /* ダミーテキスト部分（ご要望通り「丸」○○○に） */
+        .dummy-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .dummy-desc {
+            font-size: 13px;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* 各テキストノードの位置（SVGのポイントに合わせて配置） */
+        /* ※ viewBox=0 0 1600 900, 画面中央(640, 750)周辺が基準 */
+        .pos-0 {
+            /* 左下の少し上 */
+            left: 14%;
+            top: 60%;
+        }
+
+        .pos-1 {
+            /* 1段目の上 */
+            left: 32%;
+            top: 45%;
+        }
+
+        .pos-2 {
+            /* 2段目の上 */
+            left: 50%;
+            top: 30%;
+        }
+
+        .pos-3 {
+            /* 3段目の上・右寄り */
+            left: 68%;
+            top: 15%;
+        }
+
+        /* モバイル用のざっくり調整 (本格対応時はSVGごと組み直すか非表示) */
+        @media (max-width: 900px) {
+            .layout-wrapper { display: none; }
+            body::before {
+                content: "スマートフォンでは別レイアウト（縦積み）を使用します。PC用レイアウト確認画面です。";
+                padding: 40px; text-align: center; color: var(--text-main);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layout-wrapper">
+        <div class="section-title-wrapper">
+            <span class="section-en">HISTORY</span>
+            <h2 class="section-ja">沿革</h2>
+        </div>
+
+        <svg class="svg-container" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
+            <!-- 影（全体の階段に落とす） -->
+            <defs>
+                <filter id="stair-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="-20" dy="30" stdDeviation="15" flood-color="#a0b0c0" flood-opacity="0.3" />
+                </filter>
+            </defs>
+
+            <!-- 
+                中心(X,Y): (640, 750) => 画面中央下寄りからスタート
+                dx = 140, dy = 80
+                h = 200, 320, 440, 560
+                Top-Center_j = ( j*140,  -j*80 - h_j )
+            -->
+            <g transform="translate(640, 750)">
+                <!-- 全体をシャドウフィルターで囲む -->
+                <g filter="url(#stair-shadow)">
+
+                    <!-- Step 3 (後ろから描画) -->
+                    <!-- bx=420, by=-240, h=560 -->
+                    <!-- Top-Center = (420, -800) -->
+                    <g class="step-group">
+                        <polygon class="iso-left" points="280,-800 420,-720 420,-160 280,-240" />
+                        <polygon class="iso-right" points="420,-720 560,-800 560,-240 420,-160" />
+                        <polygon class="iso-top" points="280,-800 420,-720 560,-800 420,-880" />
+                    </g>
+
+                    <!-- Step 2 -->
+                    <!-- bx=280, by=-160, h=440 -->
+                    <!-- Top-Center = (280, -600) -->
+                    <g class="step-group">
+                        <polygon class="iso-left" points="140,-600 280,-520 280,-80 140,-160" />
+                        <polygon class="iso-right" points="280,-520 420,-600 420,-160 280,-80" />
+                        <polygon class="iso-top" points="140,-600 280,-520 420,-600 280,-680" />
+                    </g>
+
+                    <!-- Step 1 -->
+                    <!-- bx=140, by=-80, h=320 -->
+                    <!-- Top-Center = (140, -400) -->
+                    <g class="step-group">
+                        <polygon class="iso-left" points="0,-400 140,-320 140,0 0,-80" />
+                        <polygon class="iso-right" points="140,-320 280,-400 280,-80 140,0" />
+                        <polygon class="iso-top" points="0,-400 140,-320 280,-400 140,-480" />
+                    </g>
+
+                    <!-- Step 0 (一番手前) -->
+                    <!-- bx=0, by=0, h=200 -->
+                    <!-- Top-Center = (0, -200) -->
+                    <g class="step-group">
+                        <polygon class="iso-left" points="-140,-200 0,-120 0,80 -140,0" />
+                        <polygon class="iso-right" points="0,-120 140,-200 140,0 0,80" />
+                        <polygon class="iso-top" points="-140,-200 0,-120 140,-200 0,-280" />
+                    </g>
+                </g>
+
+                <!-- マーカーとライン（影より上に描画） -->
+                
+                <!-- Line 0 (テキスト: pos-0 => 約 left:14%, top:60%) -->
+                <!-- テキストは (-360, -220) 付近。円は Step 0 の左端 (-140, -200) 当たり -->
+                <circle class="marker-circle" cx="-140" cy="-200" />
+                <line class="marker-line" x1="-140" y1="-200" x2="-140" y2="-280" />
+                <!-- 折れ線（テキストの位置へ） -->
+                <line class="marker-line" x1="-140" y1="-280" x2="-220" y2="-280" />
+
+                <!-- Line 1 (テキスト: pos-1 => 約 left:32%, top:45%) -->
+                <!-- 円は Step 0 の Top-Center (0, -200) -->
+                <!-- テキストは (-60, -400) 付近 -->
+                <circle class="marker-circle" cx="0" cy="-200" />
+                <line class="marker-line" x1="0" y1="-200" x2="0" y2="-360" />
+                <line class="marker-line" x1="0" y1="-360" x2="-60" y2="-360" />
+
+                <!-- Line 2 (テキスト: pos-2 => 約 left:50%, top:30%) -->
+                <!-- 円は Step 1 の Top-Center (140, -400) -->
+                <circle class="marker-circle" cx="140" cy="-400" />
+                <line class="marker-line" x1="140" y1="-400" x2="140" y2="-560" />
+                <line class="marker-line" x1="140" y1="-560" x2="80" y2="-560" />
+
+                <!-- Line 3 (テキスト: pos-3 => 約 left:68%, top:15%) -->
+                <!-- 円は Step 2 の Top-Center (280, -600) -->
+                <!-- 画像に合わせて、ここは右側に線を伸ばす -->
+                <circle class="marker-circle" cx="280" cy="-600" />
+                <line class="marker-line" x1="280" y1="-600" x2="280" y2="-720" />
+                <line class="marker-line" x1="280" y1="-720" x2="340" y2="-720" />
+
+            </g>
+        </svg>
+
+        <!-- HTMLで描くテキストコンテナ（"まる"で埋めたダミー配置） -->
+        <div class="html-overlays">
+            
+            <div class="text-node pos-0">
+                <div class="dots">
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div>
+                </div>
+                <div class="dummy-title">○○○○○○○○</div>
+                <p class="dummy-desc">○○○○○○○○○○○○<br>○○○○○○○○</p>
+            </div>
+
+            <div class="text-node pos-1">
+                <div class="dots">
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div>
+                </div>
+                <div class="dummy-title">○○○○○○○○</div>
+                <p class="dummy-desc">○○○○○○○○○○○○<br>○○○○○○○○</p>
+            </div>
+
+            <div class="text-node pos-2">
+                <div class="dots">
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div>
+                </div>
+                <div class="dummy-title">○○○○○○○○○○</div>
+                <p class="dummy-desc">○○○○○○○○○○○○<br>○○○○○○○○</p>
+            </div>
+
+            <div class="text-node pos-3">
+                <div class="dots">
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div>
+                </div>
+                <div class="dummy-title">○○○○○○○○</div>
+                <p class="dummy-desc">○○○○○○○○○○○○<br>○○○○○○○○</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

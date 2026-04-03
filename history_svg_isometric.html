@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沿革 - SVG アイソメトリック</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --bg-color: #f0f4f8; /* 薄いブルーグレー */
+            --stair-top: #e2e8f0; /* ブロック上面（明るい） */
+            --stair-left: #cbd5e1; /* ブロック左面（中間） */
+            --stair-right: #94a3b8; /* ブロック右面（暗い） */
+            --text-main: #1e293b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .layout-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        /* タイトル部分 */
+        .section-title-wrapper {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 20;
+        }
+
+        .section-en {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section-ja {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        /* SVGコンテナ */
+        .svg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* アイソメトリックブロックのCSS */
+        .iso-top { fill: var(--stair-top); transition: fill 0.3s; }
+        .iso-left { fill: var(--stair-left); transition: fill 0.3s; }
+        .iso-right { fill: var(--stair-right); transition: fill 0.3s; }
+
+        /* ホバーエフェクト（ブロック全体） */
+        .stair-group { cursor: pointer; }
+        .stair-group:hover .iso-top { fill: #ffffff; }
+        .stair-group:hover .iso-left { fill: #e2e8f0; }
+        .stair-group:hover .iso-right { fill: #cbd5e1; }
+
+        /* 縦線 */
+        .iso-line {
+            stroke: var(--secondary);
+            stroke-width: 2;
+            stroke-dasharray: 4 4;
+            fill: none;
+        }
+
+        /* html上のテキストプレースホルダー（円形マーカー） */
+        .html-overlays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none; /* 下のSVGをクリックできるように */
+        }
+
+        .text-node {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            padding: 16px;
+            width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            pointer-events: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .text-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        /* 文章が入る予定の場所を示す「丸いプレースホルダー」 */
+        .circle-placeholders {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .circle-placeholder {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--stair-top);
+            border: 1px dashed var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 10px;
+        }
+
+        .node-year {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .node-line {
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .node-text {
+            font-size: 13px;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        /* 位置の調整 (SVGの座標とリンク) */
+        .pos-1 { left: 10%; bottom: 15%; } /* Step 1 */
+        .pos-2 { left: 35%; bottom: 35%; } /* Step 2 */
+        .pos-3 { left: 60%; bottom: 55%; } /* Step 3 */
+        .pos-4 { left: 85%; bottom: 75%; } /* Step 4 */
+
+    </style>
+</head>
+
+<body>
+
+    <div class="layout-wrapper">
+        <div class="section-title-wrapper">
+            <span class="section-en">HISTORY</span>
+            <h2 class="section-ja">沿革</h2>
+        </div>
+
+        <!-- SVGでアイソメトリックな階段を描画 -->
+        <svg class="svg-container" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet">
+            
+            <!-- 
+                アイソメトリックの基本単位:
+                dx = 160 (幅の半分), dy = 80 (高さの半分)
+                中心(Top): (0,0), 右(Right): (160,80), 下(Bottom): (0,160), 左(Left): (-160,80)
+                高さを表すZ軸(下方向): dz = 120
+            -->
+            
+            <g id="isometric-stairs" transform="translate(400, 750)">
+                
+                <!-- 階段全体を包むグループ。全体を少し右上に動かす -->
+                
+                <!-- 後ろのブロック (Step 4) -->
+                <!-- x,yシフト: +160*3= +480, -80*3= -240. 高さシフト: -100*3= -300 -->
+                <g class="stair-group" transform="translate(600, -360)">
+                    <title>2026年</title>
+                    <!-- 立体線(アンテナ) -->
+                    <line x1="0" y1="0" x2="0" y2="-120" class="iso-line" />
+                    <circle cx="0" cy="-120" r="4" fill="#3b82f6" />
+                    
+                    <!-- Top -->
+                    <polygon class="iso-top" points="0,0 120,60 0,120 -120,60" />
+                    <!-- Left -->
+                    <polygon class="iso-left" points="-120,60 0,120 0,360 -120,300" />
+                    <!-- Right -->
+                    <polygon class="iso-right" points="0,120 120,60 120,300 0,360" />
+                </g>
+
+                <!-- Step 3 -->
+                <g class="stair-group" transform="translate(400, -240)">
+                    <title>2022年</title>
+                    <line x1="0" y1="0" x2="0" y2="-120" class="iso-line" />
+                    <circle cx="0" cy="-120" r="4" fill="#3b82f6" />
+                    
+                    <polygon class="iso-top" points="0,0 120,60 0,120 -120,60" />
+                    <polygon class="iso-left" points="-120,60 0,120 0,240 -120,180" />
+                    <polygon class="iso-right" points="0,120 120,60 120,180 0,240" />
+                </g>
+
+                <!-- Step 2 -->
+                <g class="stair-group" transform="translate(200, -120)">
+                    <title>2018年</title>
+                    <line x1="0" y1="0" x2="0" y2="-120" class="iso-line" />
+                    <circle cx="0" cy="-120" r="4" fill="#3b82f6" />
+                    
+                    <polygon class="iso-top" points="0,0 120,60 0,120 -120,60" />
+                    <polygon class="iso-left" points="-120,60 0,120 0,180 -120,120" />
+                    <polygon class="iso-right" points="0,120 120,60 120,120 0,180" />
+                </g>
+
+                <!-- 手前のブロック (Step 1) -->
+                <g class="stair-group" transform="translate(0, 0)">
+                    <title>2015年</title>
+                    <!-- 縦線 -->
+                    <line x1="0" y1="0" x2="0" y2="-120" class="iso-line" />
+                    <circle cx="0" cy="-120" r="4" fill="#3b82f6" />
+                    
+                    <polygon class="iso-top" points="0,0 120,60 0,120 -120,60" />
+                    <polygon class="iso-left" points="-120,60 0,120 0,120 -120,60" />
+                    <!-- ↑高さが0の場合は平面になるので修正。高さを100に設定 -->
+                    <polygon class="iso-left" points="-120,60 0,120 0,200 -120,140" />
+                    <polygon class="iso-right" points="0,120 120,60 120,140 0,200" />
+                </g>
+
+            </g>
+        </svg>
+
+        <!-- 丸いプレースホルダーとテキストボックス -->
+        <div class="html-overlays">
+            <!-- Step 1 Text -->
+            <div class="text-node pos-1">
+                <!-- 丸いプレースホルダーの連続 -->
+                <div class="circle-placeholders">
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                </div>
+                <div class="node-year">2015</div>
+                <div class="node-line"></div>
+                <div class="node-text">
+                    ここに後から文章を追加できるプレースホルダー領域です。見出しや説明文が入ります。
+                </div>
+            </div>
+
+            <!-- Step 2 Text -->
+            <div class="text-node pos-2">
+                <div class="circle-placeholders">
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                </div>
+                <div class="node-year">2018</div>
+                <div class="node-line"></div>
+                <div class="node-text">
+                    ここに後から文章を追加できるプレースホルダー領域です。事業拡大の歴史を記載します。
+                </div>
+            </div>
+
+            <!-- Step 3 Text -->
+            <div class="text-node pos-3">
+                <div class="circle-placeholders">
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                </div>
+                <div class="node-year">2022</div>
+                <div class="node-line"></div>
+                <div class="node-text">
+                    ここに後から文章を追加できるプレースホルダー領域です。本社移転などの出来事が入ります。
+                </div>
+            </div>
+
+            <!-- Step 4 Text -->
+            <div class="text-node pos-4">
+                <div class="circle-placeholders">
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                    <div class="circle-placeholder">文字</div>
+                </div>
+                <div class="node-year">2026</div>
+                <div class="node-line"></div>
+                <div class="node-text">
+                    ここに後から文章を追加できるプレースホルダー領域です。デジタルトランスフォーメーションについての記述など。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

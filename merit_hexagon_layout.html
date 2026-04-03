@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6つの強み - ヘキサゴンレイアウト</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@500;700&display=swap');
+
+        :root {
+            --primary: #1e3a8a;
+            /* ネイビー */
+            --primary-light: #2563eb;
+            --bg-color: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* コンテナ：中央を基準に絶対配置するためのベース */
+        .merit-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 700px;
+            /* PCでの十分な高さを確保 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 中央のヘキサゴン */
+        .center-hexagon {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary), #373b5e);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+            /* drop-shadow は clip-path に効かないため親に当てるかfilterを使う */
+            filter: drop-shadow(0px 10px 20px rgba(30, 58, 138, 0.4));
+        }
+
+        .merit-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .merit-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 0.05em;
+        }
+
+        /* 周囲のテキストブロック（共通） */
+        .feature-box {
+            position: absolute;
+            width: 260px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f1f5f9;
+            z-index: 5;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+            border-color: #bfdbfe;
+        }
+
+        /* 番号の丸アイコン（写真の青い丸アイコンをイメージ） */
+        .feature-icon {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .feature-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ----------------------------------
+     配置（PC Radial Layout）
+  ----------------------------------- */
+
+        /* 1. 上（Top） */
+        .box-1 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .box-1 .feature-icon {
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .box-1:hover {
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* 2. 右上（Top-Right） */
+        .box-2 {
+            top: 120px;
+            right: 0;
+        }
+
+        .box-2 .feature-icon {
+            top: 50%;
+            left: -18px;
+            transform: translateY(-50%);
+        }
+
+        /* 3. 右下（Bottom-Right） */
+        .box-3 {
+            bottom: 120px;
+            right: 0;
+        }
+
+        .box-3 .feature-icon {
+            top: 50%;
+            left: -18px;
+            transform: translateY(-50%);
+        }
+
+        /* 4. 下（Bottom） */
+        .box-4 {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .box-4 .feature-icon {
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .box-4:hover {
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* 5. 左下（Bottom-Left） */
+        .box-5 {
+            bottom: 120px;
+            left: 0;
+            text-align: right;
+        }
+
+        .box-5 .feature-icon {
+            top: 50%;
+            right: -18px;
+            transform: translateY(-50%);
+        }
+
+        /* 6. 左上（Top-Left） */
+        .box-6 {
+            top: 120px;
+            left: 0;
+            text-align: right;
+        }
+
+        .box-6 .feature-icon {
+            top: 50%;
+            right: -18px;
+            transform: translateY(-50%);
+        }
+
+
+        /* ----------------------------------
+     レスポンシブ（タブレット〜スマホ）
+  ----------------------------------- */
+        @media (max-width: 900px) {
+            .merit-container {
+                height: auto;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .center-hexagon {
+                position: relative;
+                margin-bottom: 40px;
+            }
+
+            .feature-box {
+                position: relative;
+                width: 100%;
+                max-width: 500px;
+                top: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                transform: none !important;
+                text-align: left !important;
+                display: flex;
+                align-items: center;
+                padding-left: 60px;
+                /* アイコン分の余白 */
+            }
+
+            .feature-box:hover {
+                transform: translateY(-3px) !important;
+            }
+
+            /* アイコンをすべて左側に固定 */
+            .feature-icon {
+                left: -18px !important;
+                right: auto !important;
+                top: 50% !important;
+                bottom: auto !important;
+                transform: translateY(-50%) !important;
+            }
+
+            .feature-text-wrapper {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="merit-container">
+        <!-- 中央のヘキサゴン -->
+        <div class="center-hexagon">
+            <span class="merit-subtitle">MERIT</span>
+            <h2 class="merit-title">6つの強み</h2>
+        </div>
+
+        <!-- 1: 希望に合ったお仕事 -->
+        <div class="feature-box box-1">
+            <div class="feature-icon">1</div>
+            <div class="feature-text-wrapper">
+                <h3 class="feature-heading">希望に合ったお仕事</h3>
+                <p class="feature-desc">あなたのご希望をしっかりヒアリングし、最適なお仕事をご提案します。</p>
+            </div>
+        </div>
+
+        <!-- 2: 職場見学が可能 -->
+        <div class="feature-box box-2">
+            <div class="feature-icon">2</div>
+            <div class="feature-text-wrapper">
+                <h3 class="feature-heading">職場見学が可能</h3>
+                <p class="feature-desc">実際の職場の雰囲気を事前に確認できるので安心です。</p>
+            </div>
+        </div>
+
+        <!-- 3: 手厚いフォロー -->
+        <div class="feature-box box-3">
+            <div class="feature-icon">3</div>
+            <div class="feature-text-wrapper">
+                <h3 class="feature-heading">手厚いフォロー</h3>
+                <p class="feature-desc">専任の担当者がいつでも相談に乗ります。</p>
+            </div>
+        </div>
+
+        <!-- 4: 社会保険・有給完備 -->
+        <div class="feature-box box-4">
+            <div class="feature-icon">4</div>
+            <div class="feature-text-wrapper">
+                <h3 class="feature-heading">社会保険・有給完備</h3>
+                <p class="feature-desc">健康保険・厚生年金・雇用保険・有給休暇など福利厚生を完備。</p>
+            </div>
+        </div>
+
+        <!-- 5: 未経験OKの仕事多数 -->
+        <div class="feature-box box-5">
+            <div class="feature-icon">5</div>
+            <div class="feature-text-wrapper">
+                <h3 class="feature-heading">未経験OKの仕事多数</h3>
+                <p class="feature-desc">研修制度やサポート体制がしっかりと整っています。</p>
+            </div>
+        </div>
+
+        <!-- 6: 多言語対応で安心 -->
+        <div class="feature-box box-6">
+            <div class="feature-icon">6</div>
+            <div class="feature-text-wrapper">
+                <h3 class="feature-heading">多言語対応で安心</h3>
+                <p class="feature-desc">外国籍スタッフへの多言語でのきめ細かなサポートを行っています。</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
