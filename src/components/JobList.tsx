@@ -15,80 +15,27 @@ export function JobList() {
   const toggleFav = (id: number) =>
     setFavorites((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
 
-  const jobs = [
-    {
-      id: 1,
-      company: t("job1Company"),
-      title: t("job1Title"),
-      image: "/images/job_types_mixed_photo.png",
-      salary: t("job1Salary"),
-      type: t("job1Type"),
-      shift: t("job1Shift"),
-      access: t("job1Access"),
-      isNew: true,
-      daysLeft: 7,
-    },
-    {
-      id: 2,
-      company: t("job2Company"),
-      title: t("job2Title"),
-      image: "/images/jobseekers_hero.png",
-      salary: t("job2Salary"),
-      type: t("job2Type"),
-      shift: t("job2Shift"),
-      access: t("job2Access"),
-      isNew: true,
-      daysLeft: 5,
-    },
-    {
-      id: 3,
-      company: t("job3Company"),
-      title: t("job3Title"),
-      image: "/images/job_types_mixed_photo.png",
-      salary: t("job3Salary"),
-      type: t("job3Type"),
-      shift: t("job3Shift"),
-      access: t("job3Access"),
-      isNew: false,
-      daysLeft: 3,
-    },
-    {
-      id: 4,
-      company: t("job4Company"),
-      title: t("job4Title"),
-      image: "/images/jobseekers_hero.png",
-      salary: t("job4Salary"),
-      type: t("job4Type"),
-      shift: t("job4Shift"),
-      access: t("job4Access"),
-      isNew: false,
-      daysLeft: 10,
-    },
-    {
-      id: 5,
-      company: t("job5Company"),
-      title: t("job5Title"),
-      image: "/images/job_types_mixed_photo.png",
-      salary: t("job5Salary"),
-      type: t("job5Type"),
-      shift: t("job5Shift"),
-      access: t("job5Access"),
-      isNew: true,
-      daysLeft: 14,
-    },
-    {
-      id: 6,
-      company: t("job6Company"),
-      title: t("job6Title"),
-      image: "/images/jobseekers_hero.png",
-      salary: t("job6Salary"),
-      type: t("job6Type"),
-      shift: t("job6Shift"),
-      access: t("job6Access"),
-      isNew: false,
-      daysLeft: 4,
-    },
-  ];
+  const JOB_COUNT = 16;
+  const NEW_IDS = new Set([1, 2, 3, 10, 14, 16]);
+  const DAYS_LEFT: Record<number, number> = {
+    1: 7, 2: 5, 3: 10, 4: 12, 5: 8, 6: 6, 7: 14, 8: 9,
+    9: 11, 10: 7, 11: 13, 12: 10, 13: 5, 14: 7, 15: 9, 16: 12,
+  };
+  const jobs = Array.from({ length: JOB_COUNT }, (_, i) => {
+    const id = i + 1;
+    return {
+      id,
+      company: t(`job${id}Company` as never) as string,
+      title: t(`job${id}Title` as never) as string,
+      image: id % 2 === 1 ? "/images/job_types_mixed_photo.png" : "/images/jobseekers_hero.png",
+      salary: t(`job${id}Salary` as never) as string,
+      type: t(`job${id}Type` as never) as string,
+      shift: t(`job${id}Shift` as never) as string,
+      access: t(`job${id}Access` as never) as string,
+      isNew: NEW_IDS.has(id),
+      daysLeft: DAYS_LEFT[id] ?? 7,
+    };
+  });
 
   // 検索パラメータ表示
   const activeFilters: string[] = [];

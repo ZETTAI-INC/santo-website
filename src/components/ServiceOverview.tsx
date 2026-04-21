@@ -111,7 +111,7 @@ export function ServiceOverview() {
 
   const services = [
     {
-      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg` : `/images/services/dispatch_structure${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg` : locale === "en" ? `/images/services/dispatch_structure_en_v2.jpg` : locale === "zh" ? `/images/services/dispatch_structure_zh_v2.jpg` : `/images/services/dispatch_structure${imgSuffix}${imgExt}`,
       label: "01",
       title: t("diagramTitle"),
       subtitle: "Staffing Structure",
@@ -119,7 +119,7 @@ export function ServiceOverview() {
       bg: "bg-white",
     },
     {
-      img: locale === "ja" ? `/images/services/dispatch_service_v3.jpg` : `/images/services/dispatch_service${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/dispatch_service_v4.jpg` : locale === "en" ? `/images/services/dispatch_service_en_v4.jpg` : locale === "zh" ? `/images/services/dispatch_service_zh_v4.jpg` : locale === "es" ? `/images/services/dispatch_service_es_v4.jpg` : locale === "pt" ? `/images/services/dispatch_service_pt_v4.jpg` : `/images/services/dispatch_service${imgSuffix}${imgExt}`,
       label: "02",
       title: t("dispatchTitle"),
       subtitle: "Staffing Service",
@@ -127,7 +127,7 @@ export function ServiceOverview() {
       bg: "bg-[#f4f7fb]",
     },
     {
-      img: locale === "ja" ? `/images/services/outsourcing_service_v2.png` : `/images/services/outsourcing_service${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v4.jpg` : locale === "en" ? `/images/services/outsourcing_service_en_v4.jpg` : locale === "zh" ? `/images/services/outsourcing_service_zh_v4.jpg` : locale === "es" ? `/images/services/outsourcing_service_es_v4.jpg` : locale === "pt" ? `/images/services/outsourcing_service_pt_v4.jpg` : `/images/services/outsourcing_service${imgSuffix}${imgExt}`,
       label: "03",
       title: t("outsourcingTitle"),
       subtitle: "Outsourcing Service",

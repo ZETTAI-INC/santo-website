@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Phone, ArrowRight } from "lucide-react";
 
-const JOB_IDS = ["1", "2", "3", "4", "5", "6"];
+const JOB_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"];
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -256,9 +256,7 @@ export default async function JobDetailPage({
         {/* ══════ Company Info ══════ */}
         <SectionHeading>{d("companyInfoTitle")}</SectionHeading>
         <div className="py-[12px]">
-          <InfoRow label={d("companyNameLabel")}>{job.company}</InfoRow>
-          <InfoRow label={d("licenseLabel")}>{d("licenseValue")}</InfoRow>
-          <InfoRow label={d("businessTypeLabel")} border={false}>{d("businessTypeValue")}</InfoRow>
+          <InfoRow label={d("companyNameLabel")} border={false}>{job.company}</InfoRow>
         </div>
 
         {/* ══════ CTA Buttons (bottom) ══════ */}

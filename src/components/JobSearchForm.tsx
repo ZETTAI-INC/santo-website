@@ -160,14 +160,14 @@ export function JobSearchForm() {
   ];
 
   const jobTypeOptions = [
-    { key: "manufacturing", label: t("jtManufacturing") },
+    { key: "assembly", label: t("jtAssembly") },
     { key: "inspection", label: t("jtInspection") },
-    { key: "forklift", label: t("jtForklift") },
+    { key: "press", label: t("jtPress") },
+    { key: "welding", label: t("jtWelding") },
     { key: "machine", label: t("jtMachine") },
-    { key: "office", label: t("jtOffice") },
-    { key: "logistics", label: t("jtLogistics") },
-    { key: "picking", label: t("jtPicking") },
-    { key: "driver", label: t("jtDriver") },
+    { key: "forklift", label: t("jtForklift") },
+    { key: "line", label: t("jtLine") },
+    { key: "plc", label: t("jtPlc") },
   ];
 
   const salaryTypeOptions = [
