@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 
 export default function ContactPage() {
   const t = useTranslations("Contact");
+  const locale = useLocale();
   const [submitted, setSubmitted] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState("");
   const linkRef = useRef<HTMLAnchorElement>(null);
@@ -38,7 +40,7 @@ export default function ContactPage() {
       .filter(Boolean)
       .join("\n");
 
-    const url = `mailto:santo@santo-hp.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const url = `mailto:santo@santo-ho.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setMailtoUrl(url);
     setSubmitted(true);
   };
@@ -250,9 +252,9 @@ export default function ContactPage() {
                         className="mt-1 rounded border-slate-300"
                       />
                       <span>
-                        <a href="#" className="font-bold text-santo-blue underline">
+                        <Link href={`/${locale}/privacy`} className="font-bold text-santo-blue underline">
                           {t("privacyLink")}
-                        </a>
+                        </Link>
                         {t("privacyConsent")}
                       </span>
                     </label>

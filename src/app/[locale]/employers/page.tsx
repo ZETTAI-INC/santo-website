@@ -58,7 +58,20 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/employers_factory_boss_wide.png" largeSubtitle>
+      <PageHeader
+        label={t("pageLabel")}
+        title={t("pageTitle")}
+        subtitle={t.rich("pageSubtitle", {
+          em: (chunks) => (
+            <span className="text-[19px] font-black sm:text-[26px] lg:text-[28px]">
+              {chunks}
+            </span>
+          ),
+          br: () => <br />,
+        })}
+        image="/images/employers_factory_boss_wide.png"
+        largeSubtitle
+      >
         <div className="mt-8">
           <LinkButton
             href={`/${locale}/contact`}
@@ -81,7 +94,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                 {t("leadLabel")}
               </p>
               <h2 className="mb-6 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-                {t("leadTitle1")}<span className="text-santo-blue">{t("leadTitle2")}</span><br />{t("leadTitle3")}
+                {t("leadTitle1")}<span className="text-santo-blue text-3xl sm:text-5xl lg:text-6xl">{t("leadTitle2")}</span>{t("leadTitle3")}<br /><span className="text-santo-blue text-3xl sm:text-5xl lg:text-6xl">{t("leadTitle4")}</span>{t("leadTitle5")}
               </h2>
               <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
               <p className="text-[15px] font-bold leading-[2.2] text-slate-600 sm:text-[17px]">

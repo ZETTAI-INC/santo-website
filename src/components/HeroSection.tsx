@@ -61,9 +61,9 @@ export function HeroSection() {
               <p className="text-[13px] font-black leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
                 <span className="sm:whitespace-nowrap">{t("heroSub1")}</span>
                 <br />
-                <span className="sm:whitespace-nowrap"><span className="text-[15px] font-black sm:text-[26px]" style={{ color: "#0a1628", textShadow: "none" }}>{t("heroSub2")}</span>{t("heroSub3")}</span>
+                <span className="sm:whitespace-nowrap"><span className="text-[15px] font-black sm:text-[26px]" style={{ color: "#0a1628", textShadow: "none" }}>{t("heroSub2")}</span></span>
                 <br />
-                <span className="sm:whitespace-nowrap">{t("heroSub4")}</span>
+                <span className="sm:whitespace-nowrap">{t("heroSub3")}{t("heroSub4")}</span>
               </p>
             </div>
 

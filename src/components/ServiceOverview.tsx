@@ -111,7 +111,9 @@ export function ServiceOverview() {
 
   const services = [
     {
-      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg` : locale === "en" ? `/images/services/dispatch_structure_en_v2.jpg` : locale === "zh" ? `/images/services/dispatch_structure_zh_v2.jpg` : `/images/services/dispatch_structure${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg`
+         : (locale === "en" || locale === "zh") ? `/images/services/dispatch_structure${imgSuffix}_v2.jpg`
+         : `/images/services/dispatch_structure${imgSuffix}.jpg`,
       label: "01",
       title: t("diagramTitle"),
       subtitle: "Staffing Structure",
@@ -119,7 +121,7 @@ export function ServiceOverview() {
       bg: "bg-white",
     },
     {
-      img: locale === "ja" ? `/images/services/dispatch_service_v4.jpg` : locale === "en" ? `/images/services/dispatch_service_en_v4.jpg` : locale === "zh" ? `/images/services/dispatch_service_zh_v4.jpg` : locale === "es" ? `/images/services/dispatch_service_es_v4.jpg` : locale === "pt" ? `/images/services/dispatch_service_pt_v4.jpg` : `/images/services/dispatch_service${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/dispatch_service_v5.jpg` : `/images/services/dispatch_service${imgSuffix}_v5.jpg`,
       label: "02",
       title: t("dispatchTitle"),
       subtitle: "Staffing Service",
@@ -127,7 +129,7 @@ export function ServiceOverview() {
       bg: "bg-[#f4f7fb]",
     },
     {
-      img: locale === "ja" ? `/images/services/outsourcing_service_v4.jpg` : locale === "en" ? `/images/services/outsourcing_service_en_v4.jpg` : locale === "zh" ? `/images/services/outsourcing_service_zh_v4.jpg` : locale === "es" ? `/images/services/outsourcing_service_es_v4.jpg` : locale === "pt" ? `/images/services/outsourcing_service_pt_v4.jpg` : `/images/services/outsourcing_service${imgSuffix}${imgExt}`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v6.jpg` : `/images/services/outsourcing_service${imgSuffix}_v6.jpg`,
       label: "03",
       title: t("outsourcingTitle"),
       subtitle: "Outsourcing Service",
@@ -150,7 +152,7 @@ export function ServiceOverview() {
             </h2>
             <div className="mx-auto mt-2 h-1 rounded-full bg-santo-navy" style={{ width: "557px", maxWidth: "100%" }} />
             <p className="mx-auto mt-4 max-w-3xl text-[15px] leading-[1.9] text-slate-500 sm:text-[18px]">
-              {t("subtitlePre1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight1")}</span>{t("subtitleMid1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight2")}</span>{t("subtitleMid2")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-navy">{t("subtitleHighlight3")}</span>{t("subtitlePost1")}{t("subtitle2Pre")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight1")}</span>{t("subtitle2Mid")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight2")}</span>{t("subtitle2Post")}
+              {t("subtitlePre1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight1")}</span>{t("subtitleMid1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight2")}</span>{t("subtitleMid2")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-navy">{t("subtitleHighlight3")}</span>{t("subtitlePost1")}<br />{t("subtitle2Pre")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight1")}</span>{t("subtitle2Mid")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight2")}</span>{t("subtitle2Post")}
             </p>
           </div>
         </div>

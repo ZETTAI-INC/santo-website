@@ -1,7 +1,7 @@
 type PageHeaderProps = {
   label: string;
   title: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
   image?: string;
   imagePosition?: string;
   imageLayout?: "background" | "right";

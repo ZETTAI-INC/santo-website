@@ -59,7 +59,7 @@ export function Footer() {
               </p>
               <p className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-santo-accent" />
-                info@santo-hp.co.jp
+                santo@santo-ho.co.jp
               </p>
             </div>
           </div>
@@ -98,6 +98,7 @@ export function Footer() {
                 { name: tHeader("access"), href: "/access" },
                 { name: tHeader("contact"), href: "/contact" },
                 { name: t("laborInfo"), href: "/labor-info" },
+                { name: t("privacy"), href: "/privacy" },
               ].map((item) => (
                 <li key={item.name}>
                   <Link

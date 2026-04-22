@@ -255,10 +255,10 @@ export default async function HomeSimple({ params }: { params: Promise<{ locale:
                   MAIL
                 </p>
                 <a
-                  href="mailto:santo@santo-hp.co.jp"
+                  href="mailto:santo@santo-ho.co.jp"
                   className="text-lg font-black tracking-wider text-white"
                 >
-                  info@santo-hp.co.jp
+                  santo@santo-ho.co.jp
                 </a>
               </div>
             </div>
