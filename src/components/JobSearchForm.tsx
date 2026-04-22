@@ -138,25 +138,28 @@ export function JobSearchForm() {
   const [features, setFeatures] = useState<string[]>([]);
 
   const areaOptions = [
+    { key: "atsugi", label: t("areaAtsugi") },
+    { key: "ota", label: t("areaOta") },
+    { key: "sagamihara", label: t("areaSagamihara") },
+    { key: "koto", label: t("areaKoto") },
+    { key: "hadano", label: t("areaHadano") },
+    { key: "ayase", label: t("areaAyase") },
+    { key: "samukawa", label: t("areaSamukawa") },
+    { key: "yokohama", label: t("areaYokohama") },
+    { key: "kawasaki", label: t("areaKawasaki") },
     { key: "hiratsuka", label: t("areaHiratsuka") },
     { key: "fujisawa", label: t("areaFujisawa") },
     { key: "chigasaki", label: t("areaChigasaki") },
-    { key: "atsugi", label: t("areaAtsugi") },
     { key: "isehara", label: t("areaIsehara") },
-    { key: "hadano", label: t("areaHadano") },
-    { key: "odawara", label: t("areaOdawara") },
-    { key: "yokohama", label: t("areaYokohama") },
+    { key: "ebina", label: t("areaEbina") },
+    { key: "zama", label: t("areaZama") },
   ];
 
   const lineOptions = [
     { key: "jr_east", label: t("lineJREast") },
-    { key: "jr_central", label: t("lineJRCentral") },
     { key: "odakyu", label: t("lineOdakyu") },
     { key: "keikyu", label: t("lineKeikyu") },
-    { key: "yokohama_subway", label: t("lineYokohamaSubway") },
     { key: "sagami", label: t("lineSagami") },
-    { key: "hakone_tozan", label: t("lineHakoneTozan") },
-    { key: "izuhakone", label: t("lineIzuhakone") },
   ];
 
   const jobTypeOptions = [
