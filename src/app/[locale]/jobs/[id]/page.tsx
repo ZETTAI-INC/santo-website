@@ -2,7 +2,8 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Phone, ArrowRight } from "lucide-react";
+import { Phone } from "lucide-react";
+import { JobApplyModal } from "@/components/JobApplyModal";
 
 const JOB_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"];
 
@@ -75,7 +76,7 @@ export default async function JobDetailPage({
     id: jobIndex,
     company: t(`${prefix}Company` as never),
     title: t(`${prefix}Title` as never),
-    image: jobIndex % 2 === 1 ? "/images/job_types_mixed_photo.png" : "/images/jobseekers_hero.png",
+    image: `/images/jobs/job${String(jobIndex).padStart(2, "0")}.png`,
     salary: t(`${prefix}Salary` as never),
     type: t(`${prefix}Type` as never),
     shift: t(`${prefix}Shift` as never),
@@ -190,14 +191,13 @@ export default async function JobDetailPage({
         {/* ══════ CTA Buttons (mid) ══════ */}
         <div className="py-[20px]">
           <div className="flex gap-[10px]">
-            <Link
-              href={`/${locale}/contact`}
-              className="flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-santo-navy py-[16px] text-[16px] font-bold text-white transition hover:bg-santo-blue"
-              style={{ minHeight: 60 }}
-            >
-              {d("ctaButton")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <JobApplyModal
+              locale={locale}
+              jobId={id}
+              jobTitle={job.title}
+              jobCompany={job.company}
+              buttonLabel={d("ctaButton")}
+            />
             <a
               href="tel:0463-00-0000"
               className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
@@ -262,14 +262,13 @@ export default async function JobDetailPage({
         {/* ══════ CTA Buttons (bottom) ══════ */}
         <div className="py-[20px]">
           <div className="flex gap-[10px]">
-            <Link
-              href={`/${locale}/contact`}
-              className="flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-santo-navy py-[16px] text-[16px] font-bold text-white transition hover:bg-santo-blue"
-              style={{ minHeight: 60 }}
-            >
-              {d("ctaButton")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <JobApplyModal
+              locale={locale}
+              jobId={id}
+              jobTitle={job.title}
+              jobCompany={job.company}
+              buttonLabel={d("ctaButton")}
+            />
             <a
               href="tel:0463-00-0000"
               className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"

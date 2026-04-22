@@ -6,6 +6,38 @@ import { useSearchParams } from "next/navigation";
 import { ArrowLeft, Star } from "lucide-react";
 import Link from "next/link";
 
+// 各求人のフィルタ用メタデータ（言語非依存）
+// area/line/jobType のキーは JobSearchForm と一致させている
+type JobMeta = {
+  area: string[];        // areaOptions keys
+  line: string[];        // lineOptions keys
+  jobType: string[];     // jobTypeOptions keys
+  hourlyMin: number;     // 時給下限（円）
+  salaryTypes: string[]; // 支給区分（hourly/daily/monthly）
+  employment: string[];  // 雇用形態
+  period: string[];      // 勤務期間
+  features: string[];    // 特徴
+};
+
+const JOB_META: Record<number, JobMeta> = {
+  1:  { area: [], line: ["jr_east"], jobType: ["assembly"], hourlyMin: 1600, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  2:  { area: ["atsugi"], line: ["odakyu"], jobType: ["forklift"], hourlyMin: 1600, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation"] },
+  3:  { area: [], line: ["keikyu"], jobType: ["inspection"], hourlyMin: 1800, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  4:  { area: [], line: ["keikyu"], jobType: ["assembly","inspection"], hourlyMin: 1400, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  5:  { area: ["hadano"], line: ["odakyu"], jobType: ["press"], hourlyMin: 1300, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  6:  { area: [], line: ["keikyu"], jobType: ["press"], hourlyMin: 1300, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  7:  { area: ["atsugi"], line: ["odakyu","sagami"], jobType: ["plc"], hourlyMin: 2300, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation"] },
+  8:  { area: ["atsugi"], line: ["odakyu","sagami"], jobType: ["press","assembly"], hourlyMin: 1400, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  9:  { area: [], line: ["keikyu"], jobType: ["press","assembly"], hourlyMin: 1350, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  10: { area: ["atsugi"], line: ["odakyu"], jobType: ["assembly"], hourlyMin: 1600, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience","dormitory"] },
+  11: { area: [], line: ["jr_east"], jobType: ["line"], hourlyMin: 1400, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  12: { area: [], line: ["jr_east"], jobType: ["machine","line"], hourlyMin: 1600, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  13: { area: [], line: ["jr_east"], jobType: ["machine","line"], hourlyMin: 1400, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  14: { area: [], line: ["jr_east"], jobType: ["machine","line"], hourlyMin: 1600, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  15: { area: [], line: ["sagami"], jobType: ["welding","assembly"], hourlyMin: 1400, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation","no_experience"] },
+  16: { area: [], line: ["jr_east"], jobType: ["inspection","line"], hourlyMin: 1900, salaryTypes: ["hourly","monthly"], employment: ["dispatch"], period: ["long"], features: ["transportation"] },
+};
+
 export function JobList() {
   const t = useTranslations("Jobs");
   const locale = useLocale();
@@ -21,13 +53,13 @@ export function JobList() {
     1: 7, 2: 5, 3: 10, 4: 12, 5: 8, 6: 6, 7: 14, 8: 9,
     9: 11, 10: 7, 11: 13, 12: 10, 13: 5, 14: 7, 15: 9, 16: 12,
   };
-  const jobs = Array.from({ length: JOB_COUNT }, (_, i) => {
+  const allJobs = Array.from({ length: JOB_COUNT }, (_, i) => {
     const id = i + 1;
     return {
       id,
       company: t(`job${id}Company` as never) as string,
       title: t(`job${id}Title` as never) as string,
-      image: id % 2 === 1 ? "/images/job_types_mixed_photo.png" : "/images/jobseekers_hero.png",
+      image: `/images/jobs/job${String(id).padStart(2, "0")}.png`,
       salary: t(`job${id}Salary` as never) as string,
       type: t(`job${id}Type` as never) as string,
       shift: t(`job${id}Shift` as never) as string,
@@ -37,16 +69,70 @@ export function JobList() {
     };
   });
 
-  // 検索パラメータ表示
+  // 検索パラメータをパース（カンマ区切り、no_preference は無視）
+  const parseParam = (name: string) =>
+    (searchParams.get(name) || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s && s !== "no_preference");
+
+  const selArea = parseParam("area");
+  const selLine = parseParam("line");
+  const selJobType = parseParam("jobType");
+  const selSalaryType = parseParam("salaryType");
+  const selSalary = parseParam("salary");
+  const selEmployment = parseParam("employment");
+  const selPeriod = parseParam("period");
+  const selFeatures = parseParam("features");
+  const q = searchParams.get("q")?.trim() || "";
+
   const activeFilters: string[] = [];
-  const area = searchParams.get("area");
-  const line = searchParams.get("line");
-  const jobType = searchParams.get("jobType");
-  const q = searchParams.get("q");
-  if (area) activeFilters.push(area);
-  if (line) activeFilters.push(line);
-  if (jobType) activeFilters.push(jobType);
+  if (selArea.length) activeFilters.push(...selArea);
+  if (selLine.length) activeFilters.push(...selLine);
+  if (selJobType.length) activeFilters.push(...selJobType);
+  if (selSalaryType.length) activeFilters.push(...selSalaryType);
+  if (selSalary.length) activeFilters.push(...selSalary);
+  if (selEmployment.length) activeFilters.push(...selEmployment);
+  if (selPeriod.length) activeFilters.push(...selPeriod);
+  if (selFeatures.length) activeFilters.push(...selFeatures);
   if (q) activeFilters.push(q);
+
+  // 各フィールドでの絞り込み: 各フィールド内は OR、フィールド間は AND
+  const jobs = allJobs.filter((job) => {
+    const meta = JOB_META[job.id];
+    if (!meta) return false;
+
+    const anyIn = (selected: string[], pool: string[]) =>
+      selected.length === 0 || selected.some((s) => pool.includes(s));
+
+    if (!anyIn(selArea, meta.area)) return false;
+    if (!anyIn(selLine, meta.line)) return false;
+    if (!anyIn(selJobType, meta.jobType)) return false;
+    if (!anyIn(selSalaryType, meta.salaryTypes)) return false;
+    if (!anyIn(selEmployment, meta.employment)) return false;
+    if (!anyIn(selPeriod, meta.period)) return false;
+    if (!anyIn(selFeatures, meta.features)) return false;
+
+    // 給与レンジ: 選択された最小閾値以上の時給なら OK
+    if (selSalary.length > 0) {
+      const thresholds = selSalary.map((s) => parseInt(s, 10)).filter((n) => !isNaN(n));
+      if (thresholds.length > 0) {
+        const minThreshold = Math.min(...thresholds);
+        if (meta.hourlyMin < minThreshold) return false;
+      }
+    }
+
+    // フリーワード: 表示フィールドを連結して部分一致（大文字小文字無視、スペース区切りで AND）
+    if (q) {
+      const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+      if (terms.length > 0) {
+        const hay = `${job.company} ${job.title} ${job.salary} ${job.type} ${job.shift} ${job.access}`.toLowerCase();
+        if (!terms.every((term) => hay.includes(term))) return false;
+      }
+    }
+
+    return true;
+  });
 
   return (
     <section className="py-10 sm:py-14">
@@ -69,6 +155,13 @@ export function JobList() {
             )}
           </p>
         </div>
+
+        {/* 未ヒット時 */}
+        {jobs.length === 0 && (
+          <div className="rounded-xl border border-slate-200 bg-white px-6 py-12 text-center text-[14px] text-slate-500">
+            {t("noResults")}
+          </div>
+        )}
 
         {/* 求人カード一覧 */}
         <div className="flex flex-col gap-5">
@@ -160,7 +253,7 @@ export function JobList() {
               <div className="border-t border-slate-200 px-5 py-3 sm:px-6">
                 <div className="flex items-center gap-3">
                   <Link
-                    href={`/${locale}/contact`}
+                    href={`/${locale}/jobs/${job.id}#apply`}
                     className="flex-1 rounded-lg bg-santo-navy py-2.5 text-center text-[13px] font-bold tracking-wide text-white transition hover:bg-santo-blue"
                   >
                     {t("apply")}
