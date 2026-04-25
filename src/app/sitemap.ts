@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const BASE = "https://santo-hp.co.jp";
+const BASE = "https://santo-ho.co.jp";
 const LOCALES = ["ja", "en", "es", "pt", "zh"] as const;
 const DEFAULT_LOCALE = "ja";
 

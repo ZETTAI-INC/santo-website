@@ -99,7 +99,7 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
       .join("\n");
 
     const subject = t("mailSubject", { jobId, jobTitle });
-    const url = `mailto:santo@santo-hp.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const url = `mailto:santo@santo-ho.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setMailBody(body);
     setMailtoUrl(url);
     setSubmitting(true);

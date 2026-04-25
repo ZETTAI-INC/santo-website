@@ -932,7 +932,12 @@
     "qualificationsPlaceholder": "保有資格、運転免許、PCスキル、言語スキルなど",
     "preferredStartDateLabel": "希望勤務開始日",
     "optionalLabel": "（任意）",
-    "submitError": "送信に失敗しました。しばらくしてから再度お試しください。"
+    "submitError": "送信に失敗しました。しばらくしてから再度お試しください。",
+    "mailFallbackTitle": "メールアプリを起動しました",
+    "mailFallbackBody": "もし起動しない場合は、お電話 (0463-24-1722) または santo@santo-ho.co.jp まで直接ご連絡ください。",
+    "copyButton": "送信内容をコピー",
+    "copiedLabel": "コピーしました",
+    "goToThanks": "応募完了ページへ進む"
   },
   "JobThanks": {
     "pageLabel": "THANK YOU",

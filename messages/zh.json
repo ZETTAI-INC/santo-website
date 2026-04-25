@@ -932,7 +932,12 @@
     "qualificationsPlaceholder": "持有资格、驾驶执照、电脑技能、语言能力等",
     "preferredStartDateLabel": "希望开始工作日期",
     "optionalLabel": "（选填）",
-    "submitError": "提交失败，请稍后再试。"
+    "submitError": "提交失败，请稍后再试。",
+    "mailFallbackTitle": "邮件应用已启动",
+    "mailFallbackBody": "如未自动打开，请直接致电 +81-463-24-1722 或邮件 santo@santo-ho.co.jp 与我们联系。",
+    "copyButton": "复制申请内容",
+    "copiedLabel": "已复制",
+    "goToThanks": "前往申请完成页面"
   },
   "JobThanks": {
     "pageLabel": "THANK YOU",

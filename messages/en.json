@@ -932,7 +932,12 @@
     "qualificationsPlaceholder": "Certifications, driver's license, PC skills, language skills, etc.",
     "preferredStartDateLabel": "Preferred Start Date",
     "optionalLabel": " (optional)",
-    "submitError": "Failed to submit. Please try again later."
+    "submitError": "Failed to submit. Please try again later.",
+    "mailFallbackTitle": "Your email app should have opened",
+    "mailFallbackBody": "If it didn't launch, please contact us directly at +81-463-24-1722 or santo@santo-ho.co.jp.",
+    "copyButton": "Copy application text",
+    "copiedLabel": "Copied",
+    "goToThanks": "Go to confirmation page"
   },
   "JobThanks": {
     "pageLabel": "THANK YOU",

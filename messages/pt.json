@@ -932,7 +932,12 @@
     "qualificationsPlaceholder": "Certificações, carteira de motorista, informática, idiomas, etc.",
     "preferredStartDateLabel": "Data de início preferida",
     "optionalLabel": " (opcional)",
-    "submitError": "Falha no envio. Por favor tente novamente mais tarde."
+    "submitError": "Falha no envio. Por favor tente novamente mais tarde.",
+    "mailFallbackTitle": "Seu aplicativo de e-mail foi aberto",
+    "mailFallbackBody": "Se não abriu, entre em contato conosco diretamente pelo +81-463-24-1722 ou santo@santo-ho.co.jp.",
+    "copyButton": "Copiar texto da candidatura",
+    "copiedLabel": "Copiado",
+    "goToThanks": "Ir para a página de confirmação"
   },
   "JobThanks": {
     "pageLabel": "THANK YOU",

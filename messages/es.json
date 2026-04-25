@@ -932,7 +932,12 @@
     "qualificationsPlaceholder": "Certificaciones, licencia de conducir, informática, idiomas, etc.",
     "preferredStartDateLabel": "Fecha de inicio preferida",
     "optionalLabel": " (opcional)",
-    "submitError": "Error al enviar. Por favor intente nuevamente más tarde."
+    "submitError": "Error al enviar. Por favor intente nuevamente más tarde.",
+    "mailFallbackTitle": "Se ha abierto su aplicación de correo",
+    "mailFallbackBody": "Si no se inició, póngase en contacto con nosotros directamente al +81-463-24-1722 o santo@santo-ho.co.jp.",
+    "copyButton": "Copiar texto de la solicitud",
+    "copiedLabel": "Copiado",
+    "goToThanks": "Ir a la página de confirmación"
   },
   "JobThanks": {
     "pageLabel": "THANK YOU",
