@@ -1,26 +1,30 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 import { Wrench, Monitor, Package, ChevronRight } from "lucide-react";
 
 export function JobCategories() {
   const t = useTranslations("JobCategories");
+  const locale = useLocale();
   const [active, setActive] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
+  // 各ジョブの遷移先 jobType フィルタキー
+  // JobSearchForm.tsx の jobTypeOptions と一致させること
   const categories = [
     {
       id: "manufacturing",
       label: t("cat1"),
       icon: Wrench,
       jobs: [
-        { title: t("cat1_job1"), desc: t("cat1_job1Desc") },
-        { title: t("cat1_job2"), desc: t("cat1_job2Desc") },
-        { title: t("cat1_job3"), desc: t("cat1_job3Desc") },
-        { title: t("cat1_job4"), desc: t("cat1_job4Desc") },
+        { title: t("cat1_job1"), desc: t("cat1_job1Desc"), jobType: "assembly" },
+        { title: t("cat1_job2"), desc: t("cat1_job2Desc"), jobType: "inspection" },
+        { title: t("cat1_job3"), desc: t("cat1_job3Desc"), jobType: "press" },
+        { title: t("cat1_job4"), desc: t("cat1_job4Desc"), jobType: "welding" },
       ],
     },
     {
@@ -28,10 +32,10 @@ export function JobCategories() {
       label: t("cat2"),
       icon: Monitor,
       jobs: [
-        { title: t("cat2_job1"), desc: t("cat2_job1Desc") },
-        { title: t("cat2_job2"), desc: t("cat2_job2Desc") },
-        { title: t("cat2_job3"), desc: t("cat2_job3Desc") },
-        { title: t("cat2_job4"), desc: t("cat2_job4Desc") },
+        { title: t("cat2_job1"), desc: t("cat2_job1Desc"), jobType: "line" },
+        { title: t("cat2_job2"), desc: t("cat2_job2Desc"), jobType: "line" },
+        { title: t("cat2_job3"), desc: t("cat2_job3Desc"), jobType: "line" },
+        { title: t("cat2_job4"), desc: t("cat2_job4Desc"), jobType: "line" },
       ],
     },
     {
@@ -39,10 +43,10 @@ export function JobCategories() {
       label: t("cat3"),
       icon: Package,
       jobs: [
-        { title: t("cat3_job1"), desc: t("cat3_job1Desc") },
-        { title: t("cat3_job2"), desc: t("cat3_job2Desc") },
-        { title: t("cat3_job3"), desc: t("cat3_job3Desc") },
-        { title: t("cat3_job4"), desc: t("cat3_job4Desc") },
+        { title: t("cat3_job1"), desc: t("cat3_job1Desc"), jobType: "forklift" },
+        { title: t("cat3_job2"), desc: t("cat3_job2Desc"), jobType: "forklift" },
+        { title: t("cat3_job3"), desc: t("cat3_job3Desc"), jobType: "forklift" },
+        { title: t("cat3_job4"), desc: t("cat3_job4Desc"), jobType: "forklift" },
       ],
     },
   ];
@@ -126,8 +130,9 @@ export function JobCategories() {
               }}
             >
               {current.jobs.map((job) => (
-                <div
+                <Link
                   key={job.title}
+                  href={`/${locale}/jobs?jobType=${encodeURIComponent(job.jobType)}`}
                   className="group flex items-center gap-4 rounded-xl border border-slate-100 bg-santo-sky/30 px-5 py-4 transition-all duration-200 hover:border-santo-light/50 hover:bg-santo-sky"
                 >
                   <ChevronRight className="h-4 w-4 shrink-0 text-santo-navy transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -139,7 +144,7 @@ export function JobCategories() {
                       {job.desc}
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

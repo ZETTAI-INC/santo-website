@@ -125,7 +125,7 @@ export function JobSearchForm() {
   const [visible, setVisible] = useState(false);
 
   const [openField, setOpenField] = useState<string | null>(null);
-  const [freeword, setFreeword] = useState("");
+  const [freeword, setFreeword] = useState<string>("");
 
   // 各フィールドの選択値
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
@@ -136,6 +136,36 @@ export function JobSearchForm() {
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
   const [workPeriods, setWorkPeriods] = useState<string[]>([]);
   const [features, setFeatures] = useState<string[]>([]);
+
+  // URL パラメータから初期値を復元（クライアントマウント後に1回だけ実行）
+  // useSearchParams ではなく window.location.search を使うことで
+  // 静的エクスポート時の SSR bailout を回避している。
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const sp = new URLSearchParams(window.location.search);
+    const splitParam = (name: string) => {
+      const v = sp.get(name);
+      return v ? v.split(",").map((s) => s.trim()).filter(Boolean) : [];
+    };
+    const a = splitParam("area");
+    const l = splitParam("line");
+    const j = splitParam("jobType");
+    const st = splitParam("salaryType");
+    const sr = splitParam("salary");
+    const e = splitParam("employment");
+    const p = splitParam("period");
+    const f = splitParam("features");
+    const q = sp.get("q") ?? "";
+    if (a.length) setSelectedAreas(a);
+    if (l.length) setSelectedLines(l);
+    if (j.length) setSelectedJobTypes(j);
+    if (st.length) setSalaryType(st);
+    if (sr.length) setSalaryRange(sr);
+    if (e.length) setEmploymentTypes(e);
+    if (p.length) setWorkPeriods(p);
+    if (f.length) setFeatures(f);
+    if (q) setFreeword(q);
+  }, []);
 
   const areaOptions = [
     { key: "atsugi", label: t("areaAtsugi") },

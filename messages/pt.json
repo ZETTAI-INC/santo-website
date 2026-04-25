@@ -28,6 +28,8 @@
     "copyright": "SANTO Co., Ltd. Todos os direitos reservados."
   },
   "Home": {
+    "metaTitle": "SANTO CO., LTD. | Recursos Humanos e Recrutamento em Kanagawa, Japão",
+    "metaDescription": "A SANTO é uma empresa de RH sediada em Hiratsuka, Kanagawa, conectando candidatos a empresas nos setores de manufatura, logística e administrativo.",
     "heroLine1": "Conectando Pessoas",
     "heroLine2": "e Empresas.",
     "heroSub1": "Unindo candidatos",
@@ -328,6 +330,8 @@
     "cat3_job4Desc": "Processamento de produtos de vidro e operação de empilhadeira em armazéns de bebidas"
   },
   "About": {
+    "metaTitle": "Sobre Nós | SANTO CO., LTD.",
+    "metaDescription": "Perfil corporativo da SANTO CO., LTD. Conheça nossa filosofia, a mensagem do diretor e nossa história.",
     "pageLabel": "EMPRESA",
     "pageTitle": "Sobre Nós",
     "pageSubtitle": "Construindo pontes entre pessoas e empresas com confiança e resultados comprovados.",
@@ -379,6 +383,8 @@
     "historyDesc": "Um histórico comprovado construído com foco na comunidade."
   },
   "Jobseekers": {
+    "metaTitle": "Para Candidatos | SANTO CO., LTD.",
+    "metaDescription": "Encontre o emprego ideal com a SANTO. Conheça as vagas disponíveis e o processo de cadastro.",
     "pageLabel": "PARA CANDIDATOS",
     "pageTitle": "Para Candidatos",
     "pageSubtitle": "Vamos encontrar o trabalho perfeito para você, juntos.",
@@ -430,6 +436,8 @@
     "step4Desc": "Continuamos a apoiá-lo após o início."
   },
   "Employers": {
+    "metaTitle": "Para Empresas | SANTO CO., LTD.",
+    "metaDescription": "Serviços de recursos humanos da SANTO para empresas. Propomos o talento ideal de acordo com as necessidades do seu negócio.",
     "pageLabel": "PARA EMPRESAS",
     "pageTitle": "Para Empresas",
     "pageSubtitle": "Propomos rapidamente o talento ideal para sua empresa.",
@@ -473,6 +481,8 @@
     "ctaButton": "Fale Conosco"
   },
   "Access": {
+    "metaTitle": "Acesso | SANTO CO., LTD.",
+    "metaDescription": "Como chegar à SANTO CO., LTD. Localização: 7-29 Daikan-cho, Hiratsuka, Kanagawa 254-0807, Japão. A 3 minutos a pé da Estação Hiratsuka (JR).",
     "pageLabel": "ACESSO",
     "pageTitle": "Acesso",
     "pageSubtitle": "Sinta-se à vontade para nos visitar.",
@@ -490,6 +500,8 @@
     "hoursNote": "* Fechado nos finais de semana e feriados"
   },
   "Contact": {
+    "metaTitle": "Fale Conosco | SANTO CO., LTD.",
+    "metaDescription": "Entre em contato com a SANTO CO., LTD. Atendemos consultas sobre busca de emprego ou serviços de RH.",
     "pageLabel": "CONTATO",
     "pageTitle": "Fale Conosco",
     "pageSubtitle": "Seja para buscar emprego ou talentos, sinta-se à vontade para entrar em contato.",
@@ -526,6 +538,8 @@
     "submitButton": "Enviar"
   },
   "Jobs": {
+    "metaTitle": "Vagas de Emprego | SANTO CO., LTD.",
+    "metaDescription": "Vagas atuais na SANTO CO., LTD.: manufatura, logística, administrativo e mais.",
     "pageLabel": "LISTA DE VAGAS",
     "pageTitle": "Vagas de Emprego",
     "pageSubtitle": "Encontre o trabalho certo para você",
@@ -933,6 +947,8 @@
     "callButton": "Ligar"
   },
   "LaborInfo": {
+    "metaTitle": "Divulgação sob a Lei de Despacho de Trabalhadores | SANTO CO., LTD.",
+    "metaDescription": "Informações divulgadas conforme o Artigo 23(5) da Lei Japonesa de Despacho de Trabalhadores: taxa de margem, formação e consultoria de carreira.",
     "pageLabel": "DIVULGAÇÃO",
     "pageTitle": "Divulgação de Informações sobre Serviços de Trabalho Temporário",
     "pageSubtitle": "Informações fornecidas conforme o Artigo 23, Parágrafo 5 da Lei de Envio de Trabalhadores",
@@ -1024,6 +1040,8 @@
     "agreementScope": "Âmbito do acordo: Todos os funcionários enviados"
   },
   "Privacy": {
+    "metaTitle": "Política de Privacidade | SANTO CO., LTD.",
+    "metaDescription": "Política de privacidade da SANTO CO., LTD. Saiba como tratamos e protegemos as informações pessoais.",
     "pageLabel": "PRIVACY POLICY",
     "pageTitle": "Política de Privacidade",
     "pageSubtitle": "Sobre o tratamento de informações pessoais",

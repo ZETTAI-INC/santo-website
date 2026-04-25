@@ -28,6 +28,8 @@
     "copyright": "SANTO Co., Ltd. All rights reserved."
   },
   "Home": {
+    "metaTitle": "株式会社SANTO | 神奈川县人才派遣与招聘服务",
+    "metaDescription": "株式会社SANTO是位于神奈川县平塚市的人才派遣公司，提供制造、物流、文职等岗位的求职信息以及面向企业的人才解决方案。",
     "heroLine1": "连接人才与企业，",
     "heroLine2": "创造未来。",
     "heroSub1": "架起求职者",
@@ -328,6 +330,8 @@
     "cat3_job4Desc": "玻璃制品加工及饮料仓库叉车作业"
   },
   "About": {
+    "metaTitle": "公司概况 | 株式会社SANTO",
+    "metaDescription": "株式会社SANTO的公司概况、企业理念、社长致辞与发展沿革介绍。",
     "pageLabel": "COMPANY",
     "pageTitle": "公司概况",
     "pageSubtitle": "以信赖和实绩，架起人与企业的桥梁。",
@@ -379,6 +383,8 @@
     "historyDesc": "扎根地区，稳步前行的确实业绩。"
   },
   "Jobseekers": {
+    "metaTitle": "求职者 | 株式会社SANTO",
+    "metaDescription": "在株式会社SANTO找到适合您的工作。了解派遣岗位信息及登录流程。",
     "pageLabel": "FOR JOB SEEKERS",
     "pageTitle": "求职者",
     "pageSubtitle": "让我们一起为您找到最合适的工作。",
@@ -430,6 +436,8 @@
     "step4Desc": "入职后我们也会持续提供支持。"
   },
   "Employers": {
+    "metaTitle": "企业客户 | 株式会社SANTO",
+    "metaDescription": "株式会社SANTO面向企业的人才派遣服务。我们将根据贵司需求提案合适的人才。",
     "pageLabel": "FOR EMPLOYERS",
     "pageTitle": "企业客户",
     "pageSubtitle": "为贵公司快速推荐最合适的人才。",
@@ -473,6 +481,8 @@
     "ctaButton": "联系我们"
   },
   "Access": {
+    "metaTitle": "交通指南 | 株式会社SANTO",
+    "metaDescription": "前往株式会社SANTO的交通指南。地址：神奈川县平塚市代官町7-29，从JR平塚站步行3分钟。",
     "pageLabel": "ACCESS",
     "pageTitle": "交通指南",
     "pageSubtitle": "欢迎随时来访。",
@@ -490,6 +500,8 @@
     "hoursNote": "※周末及节假日休息"
   },
   "Contact": {
+    "metaTitle": "联系我们 | 株式会社SANTO",
+    "metaDescription": "联系株式会社SANTO。无论是求职咨询还是企业用人需求，欢迎随时联络我们。",
     "pageLabel": "CONTACT",
     "pageTitle": "联系我们",
     "pageSubtitle": "无论求职还是人才咨询，欢迎随时联系。",
@@ -526,6 +538,8 @@
     "submitButton": "提交"
   },
   "Jobs": {
+    "metaTitle": "职位列表 | 株式会社SANTO",
+    "metaDescription": "株式会社SANTO的招聘职位列表，涵盖制造、物流、文职等多种岗位，欢迎查询适合您的工作。",
     "pageLabel": "JOB LIST",
     "pageTitle": "职位列表",
     "pageSubtitle": "寻找适合您的工作",
@@ -933,6 +947,8 @@
     "callButton": "致电"
   },
   "LaborInfo": {
+    "metaTitle": "劳务派遣事业信息公开 | 株式会社SANTO",
+    "metaDescription": "依据日本《劳动者派遣法》第23条第5项进行的信息公开，包括毛利率、教育培训和职业咨询等内容。",
     "pageLabel": "DISCLOSURE",
     "pageTitle": "劳务派遣事业信息公开",
     "pageSubtitle": "根据《劳动者派遣法》第23条第5项提供的信息",
@@ -1024,6 +1040,8 @@
     "agreementScope": "协定劳动者范围：全体派遣员工"
   },
   "Privacy": {
+    "metaTitle": "隐私政策 | 株式会社SANTO",
+    "metaDescription": "株式会社SANTO的隐私政策。请了解我们关于个人信息保护与处理的基本方针。",
     "pageLabel": "PRIVACY POLICY",
     "pageTitle": "隐私政策",
     "pageSubtitle": "关于个人信息的处理",

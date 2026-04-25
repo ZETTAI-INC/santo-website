@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "改正派遣法に基づくマージン率の公開",
-  description:
-    "労働者派遣法第23条5項に基づく情報提供。マージン率、教育訓練、キャリアコンサルティング等の情報を公開しています。",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "LaborInfo" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  };
+}
 
 export default async function LaborInfoPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

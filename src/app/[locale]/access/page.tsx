@@ -3,10 +3,14 @@ import { MapPin, Train, Car, Clock, Phone } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "アクセス",
-  description: "株式会社サントーへのアクセス方法をご案内します。",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Access" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  };
+}
 
 export default async function AccessPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -45,21 +49,25 @@ export default async function AccessPage({ params }: { params: Promise<{ locale:
                     icon: MapPin,
                     label: t("addressLabel"),
                     content: t("addressValue"),
+                    isTel: false,
                   },
                   {
                     icon: Phone,
                     label: t("telLabel"),
                     content: t("telValue"),
+                    isTel: true,
                   },
                   {
                     icon: Train,
                     label: t("trainLabel"),
                     content: t("trainValue"),
+                    isTel: false,
                   },
                   {
                     icon: Car,
                     label: t("carLabel"),
                     content: t("carValue"),
+                    isTel: false,
                   },
                 ].map((item) => (
                   <div
@@ -73,9 +81,20 @@ export default async function AccessPage({ params }: { params: Promise<{ locale:
                       <p className="mb-1 text-[11px] font-black tracking-[0.15em] text-santo-light">
                         {item.label}
                       </p>
-                      <p className="text-[13px] font-bold leading-[1.9] text-slate-600 whitespace-pre-line">
-                        {item.content}
-                      </p>
+                      {item.isTel ? (
+                        <p className="text-[13px] font-bold leading-[1.9] text-slate-600 whitespace-pre-line">
+                          <a
+                            href="tel:0463-24-1722"
+                            className="text-santo-blue underline hover:text-santo-navy"
+                          >
+                            {item.content}
+                          </a>
+                        </p>
+                      ) : (
+                        <p className="text-[13px] font-bold leading-[1.9] text-slate-600 whitespace-pre-line">
+                          {item.content}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}

@@ -28,6 +28,8 @@
     "copyright": "SANTO Co., Ltd. Todos los derechos reservados."
   },
   "Home": {
+    "metaTitle": "SANTO CO., LTD. | Personal Temporal y Reclutamiento en Kanagawa, Japón",
+    "metaDescription": "SANTO es una empresa de personal con sede en Hiratsuka, Kanagawa, que conecta a buscadores de empleo con empresas en manufactura, logística y administración.",
     "heroLine1": "Conectando Personas",
     "heroLine2": "y Empresas.",
     "heroSub1": "Uniendo a buscadores de empleo",
@@ -328,6 +330,8 @@
     "cat3_job4Desc": "Procesamiento de productos de vidrio y operación de montacargas en almacenes de bebidas"
   },
   "About": {
+    "metaTitle": "Sobre Nosotros | SANTO CO., LTD.",
+    "metaDescription": "Perfil corporativo de SANTO CO., LTD. Conozca nuestra filosofía, el mensaje del director y nuestra historia.",
     "pageLabel": "COMPANY",
     "pageTitle": "Sobre Nosotros",
     "pageSubtitle": "Construyendo puentes entre personas y empresas con confianza y resultados comprobados.",
@@ -379,6 +383,8 @@
     "historyDesc": "Una trayectoria comprobada basada en el enfoque comunitario."
   },
   "Jobseekers": {
+    "metaTitle": "Para Buscadores de Empleo | SANTO CO., LTD.",
+    "metaDescription": "Encuentre el trabajo ideal con SANTO. Conozca las ofertas disponibles y el proceso de registro.",
     "pageLabel": "FOR JOB SEEKERS",
     "pageTitle": "Para Buscadores de Empleo",
     "pageSubtitle": "Encontremos juntos el trabajo perfecto para usted.",
@@ -430,6 +436,8 @@
     "step4Desc": "Continuamos apoyándole después de que comience."
   },
   "Employers": {
+    "metaTitle": "Para Empresas | SANTO CO., LTD.",
+    "metaDescription": "Servicios de personal de SANTO para empresas. Proponemos el talento adecuado según las necesidades de su empresa.",
     "pageLabel": "FOR EMPLOYERS",
     "pageTitle": "Para Empresas",
     "pageSubtitle": "Proponemos rápidamente el talento óptimo para su empresa.",
@@ -473,6 +481,8 @@
     "ctaButton": "Contáctenos"
   },
   "Access": {
+    "metaTitle": "Acceso | SANTO CO., LTD.",
+    "metaDescription": "Cómo llegar a SANTO CO., LTD. Ubicación: 7-29 Daikan-cho, Hiratsuka, Kanagawa 254-0807, Japón. A 3 minutos a pie de la estación Hiratsuka (JR).",
     "pageLabel": "ACCESS",
     "pageTitle": "Acceso",
     "pageSubtitle": "No dude en visitarnos.",
@@ -490,6 +500,8 @@
     "hoursNote": "* Cerrado los fines de semana y días festivos"
   },
   "Contact": {
+    "metaTitle": "Contáctenos | SANTO CO., LTD.",
+    "metaDescription": "Comuníquese con SANTO CO., LTD. Atendemos consultas sobre búsqueda de empleo o servicios de personal.",
     "pageLabel": "CONTACT",
     "pageTitle": "Contáctenos",
     "pageSubtitle": "Ya sea que busque empleo o talento, no dude en comunicarse.",
@@ -526,6 +538,8 @@
     "submitButton": "Enviar"
   },
   "Jobs": {
+    "metaTitle": "Lista de Empleos | SANTO CO., LTD.",
+    "metaDescription": "Vacantes actuales en SANTO CO., LTD.: manufactura, logística, administración y más.",
     "pageLabel": "JOB LIST",
     "pageTitle": "Lista de Empleos",
     "pageSubtitle": "Encuentre el trabajo ideal para usted",
@@ -933,6 +947,8 @@
     "callButton": "Llamar"
   },
   "LaborInfo": {
+    "metaTitle": "Divulgación bajo la Ley de Despacho de Trabajadores | SANTO CO., LTD.",
+    "metaDescription": "Información divulgada conforme al Artículo 23(5) de la Ley Japonesa de Despacho de Trabajadores: tasa de margen, formación y consultoría profesional.",
     "pageLabel": "DISCLOSURE",
     "pageTitle": "Divulgación de Información del Negocio de Personal",
     "pageSubtitle": "Información proporcionada conforme al Artículo 23, Párrafo 5 de la Ley de Despacho de Trabajadores",
@@ -1024,6 +1040,8 @@
     "agreementScope": "Alcance del acuerdo: Todos los empleados despachados"
   },
   "Privacy": {
+    "metaTitle": "Política de Privacidad | SANTO CO., LTD.",
+    "metaDescription": "Política de privacidad de SANTO CO., LTD. Conozca cómo tratamos y protegemos la información personal.",
     "pageLabel": "PRIVACY POLICY",
     "pageTitle": "Política de Privacidad",
     "pageSubtitle": "Sobre el manejo de información personal",

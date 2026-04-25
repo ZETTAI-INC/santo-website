@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Send } from "lucide-react";
+import { Send, Copy, Check, ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,6 +35,9 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState("");
+  const [mailBody, setMailBody] = useState("");
+  const [showFallback, setShowFallback] = useState(false);
+  const [copied, setCopied] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -97,6 +100,7 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
 
     const subject = t("mailSubject", { jobId, jobTitle });
     const url = `mailto:santo@santo-hp.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setMailBody(body);
     setMailtoUrl(url);
     setSubmitting(true);
   };
@@ -104,12 +108,23 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
   useEffect(() => {
     if (submitting && mailtoUrl && linkRef.current) {
       linkRef.current.click();
-      const timer = setTimeout(() => {
-        router.push(`/${locale}/jobs/${jobId}/thanks`);
-      }, 300);
-      return () => clearTimeout(timer);
+      setShowFallback(true);
     }
-  }, [submitting, mailtoUrl, router, locale, jobId]);
+  }, [submitting, mailtoUrl]);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(mailBody);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard may be unavailable; silently ignore.
+    }
+  };
+
+  const handleGoToThanks = () => {
+    router.push(`/${locale}/jobs/${jobId}/thanks`);
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
@@ -310,13 +325,52 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
         <label className="flex items-start gap-3 text-[13px] text-slate-600">
           <input type="checkbox" required className="mt-1 rounded border-slate-300" />
           <span>
-            <a href="#" className="font-bold text-santo-blue underline">
+            <a
+              href={`/${locale}/privacy`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-santo-blue underline"
+            >
               {t("privacyLink")}
             </a>
             {t("privacyConsent")}
           </span>
         </label>
       </div>
+
+      {showFallback && (
+        <div className="rounded border border-santo-blue/30 bg-santo-sky/40 p-4 sm:p-5">
+          <p className="text-[14px] font-black tracking-wider text-santo-navy sm:text-[15px]">
+            {t("mailFallbackTitle")}
+          </p>
+          <p className="mt-2 text-[13px] leading-[1.8] text-slate-600">
+            {t("mailFallbackBody")}
+          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleCopy}
+              className="h-11 border-santo-navy text-santo-navy hover:bg-santo-sky"
+            >
+              {copied ? (
+                <Check className="h-4 w-4" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+              {copied ? t("copiedLabel") : t("copyButton")}
+            </Button>
+            <Button
+              type="button"
+              onClick={handleGoToThanks}
+              className="h-11 bg-santo-navy text-sm font-black tracking-wider hover:bg-santo-blue"
+            >
+              {t("goToThanks")}
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      )}
 
       <Button
         type="submit"

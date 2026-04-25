@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   ArrowRight,
 } from "lucide-react";
@@ -6,6 +7,15 @@ import { FeatureCards } from "@/components/FeatureCards";
 import { HeroSection } from "@/components/HeroSection";
 import { ServiceOverview } from "@/components/ServiceOverview";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Home" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  };
+}
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -167,7 +177,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   {t("ctaJobseekersPrompt")}
                 </p>
                 <LinkButton
-                  href={`/${locale}/jobseekers`}
+                  href={`/${locale}/jobseekers/`}
                   size="xl"
                   className="mt-2 w-full justify-center bg-santo-navy text-white hover:bg-santo-blue"
                 >
@@ -202,7 +212,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   {t("ctaEmployersPrompt")}
                 </p>
                 <LinkButton
-                  href={`/${locale}/employers`}
+                  href={`/${locale}/employers/`}
                   size="xl"
                   className="mt-2 w-full justify-center bg-slate-800 text-white hover:bg-slate-700"
                 >
@@ -236,7 +246,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </p>
           <div className="flex flex-col items-center gap-6">
             <LinkButton
-              href={`/${locale}/contact`}
+              href={`/${locale}/contact/`}
               size="xl"
               className="animate-shimmer relative overflow-hidden bg-white px-8 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:px-12"
             >

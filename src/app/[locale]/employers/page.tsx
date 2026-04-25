@@ -9,14 +9,16 @@ import {
 import { LinkButton } from "@/components/LinkButton";
 import { PageHeader } from "@/components/PageHeader";
 import { StrengthTimeline } from "@/components/StrengthTimeline";
-import { EmployerIndustries } from "@/components/EmployerIndustries";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "人材をお探しの企業様",
-  description:
-    "株式会社サントーの人材派遣サービスのご案内。貴社のニーズに合った最適な人材をご提案いたします。",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Employers" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  };
+}
 
 export default async function EmployersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -93,8 +95,8 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
                 {t("leadLabel")}
               </p>
-              <h2 className="mb-6 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-                {t("leadTitle1")}<span className="text-santo-blue text-3xl sm:text-5xl lg:text-6xl">{t("leadTitle2")}</span>{t("leadTitle3")}<br /><span className="text-santo-blue text-3xl sm:text-5xl lg:text-6xl">{t("leadTitle4")}</span>{t("leadTitle5")}
+              <h2 className="mb-6 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl">
+                {t("leadTitle1")}<span className="text-santo-blue text-3xl sm:text-5xl">{t("leadTitle2")}</span>{t("leadTitle3")}<br /><span className="whitespace-nowrap"><span className="text-santo-blue text-3xl sm:text-5xl">{t("leadTitle4")}</span>{t("leadTitle5")}</span>
               </h2>
               <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
               <p className="text-[15px] font-bold leading-[2.2] text-slate-600 sm:text-[17px]">
@@ -303,52 +305,39 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
         </div>
       </section>
 
-      {/* 対応業種 */}
-      <section className="border-t border-slate-200 bg-santo-gray py-20 sm:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
-            {t("industryLabel")}
-          </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-slate-900 sm:text-4xl lg:text-5xl">
-            {t("industryTitle")}
-          </h2>
-          <EmployerIndustries />
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="relative overflow-hidden py-16 sm:py-28 min-h-[380px] sm:min-h-[480px] lg:min-h-[560px]">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat"
-          style={{ backgroundImage: "url('/images/trustworthy_woman_blurred_man.png')", backgroundPosition: "center 30%" }}
+          style={{ backgroundImage: "url('/images/employers_cta_bg_v2.png')", backgroundPosition: "center 30%" }}
         />
         <div className="absolute inset-0 bg-santo-navy/55" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             {t("ctaLabel")}
           </p>
-          <h2 className="mb-4 text-2xl font-black tracking-wider text-white sm:text-3xl lg:text-4xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl lg:text-5xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-8 max-w-md text-[15px] font-bold leading-[1.9] text-white/80 sm:mb-10 sm:text-[18px]">
-            {t("ctaDesc")}
+          <p className="mx-auto mb-8 max-w-3xl text-[17px] font-black leading-[1.9] text-white/90 sm:mb-10 sm:text-[22px] lg:text-[24px]">
+            {t.rich("ctaDesc", { br: () => <br /> })}
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <LinkButton
               href={`/${locale}/contact`}
               size="xl"
-              className="animate-shimmer relative overflow-hidden bg-white px-12 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100"
+              className="animate-shimmer relative overflow-hidden bg-white px-14 py-5 text-xl font-black text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:text-2xl"
             >
               {t("ctaButton")}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-5 w-5" />
             </LinkButton>
             <div className="flex flex-col items-center">
-              <p className="text-[10px] font-bold tracking-widest text-white/60">
+              <p className="text-[13px] font-black tracking-widest text-white/80">
                 TEL
               </p>
               <a
                 href="tel:0463-24-1722"
-                className="flex items-center gap-2 text-2xl font-black tracking-wider text-white"
+                className="flex items-center gap-2 text-3xl font-black tracking-wider text-white sm:text-4xl"
               >
                 0463-24-1722
               </a>

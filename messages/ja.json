@@ -28,6 +28,8 @@
     "copyright": "SANTO Co., Ltd. All rights reserved."
   },
   "Home": {
+    "metaTitle": "株式会社サントー｜神奈川の人材派遣・採用支援",
+    "metaDescription": "神奈川県平塚市の人材派遣会社サントー。製造・物流・事務などの求人情報や、企業様向けの人材ご提案を行っています。",
     "heroLine1": "人と企業をつなぎ,",
     "heroLine2": "未来をつくる。",
     "heroSub1": "求職者と企業の皆様を結ぶ",
@@ -328,6 +330,8 @@
     "cat3_job4Desc": "ガラス製品の加工・飲料倉庫でのフォーク作業"
   },
   "About": {
+    "metaTitle": "会社概要 | 株式会社サントー",
+    "metaDescription": "株式会社サントーの会社概要、企業理念、代表挨拶、沿革をご紹介します。",
     "pageLabel": "COMPANY",
     "pageTitle": "会社概要",
     "pageSubtitle": "信頼と実績で、人と企業の架け橋となります。",
@@ -379,6 +383,8 @@
     "historyDesc": "地域密着で歩んできた、確かな実績。"
   },
   "Jobseekers": {
+    "metaTitle": "仕事をお探しの方 | 株式会社サントー",
+    "metaDescription": "株式会社サントーで、あなたに合ったお仕事を見つけませんか？派遣のお仕事情報や登録の流れをご案内します。",
     "pageLabel": "FOR JOB SEEKERS",
     "pageTitle": "仕事をお探しの方",
     "pageSubtitle": "あなたにぴったりのお仕事を、一緒に見つけましょう。",
@@ -430,6 +436,8 @@
     "step4Desc": "就業後もしっかりサポートいたします。"
   },
   "Employers": {
+    "metaTitle": "人材をお探しの企業様 | 株式会社サントー",
+    "metaDescription": "株式会社サントーの人材派遣サービスのご案内。貴社のニーズに合った最適な人材をご提案いたします。",
     "pageLabel": "FOR EMPLOYERS",
     "pageTitle": "人材をお探しの企業様",
     "pageSubtitle": "貴社に<em>最適</em>な人材を、<br></br><em>迅速</em>にご提案いたします。",
@@ -468,11 +476,13 @@
     "industryLabel": "INDUSTRY",
     "industryTitle": "対応業種・職種",
     "ctaLabel": "CONTACT",
-    "ctaTitle": "人材に関するご相談はお気軽にどうぞ",
-    "ctaDesc": "まずは貴社の課題をお聞かせください。最適なプランをご提案いたします。",
+    "ctaTitle": "どんな業種でも、全力で挑みます！",
+    "ctaDesc": "たとえ実績のない業種でも、<br></br>サントーは気合いと熱意で真正面からお応えします。",
     "ctaButton": "お問い合わせ"
   },
   "Access": {
+    "metaTitle": "アクセス | 株式会社サントー",
+    "metaDescription": "株式会社サントーへのアクセス方法をご案内します。神奈川県平塚市代官町7-29、JR平塚駅より徒歩3分。",
     "pageLabel": "ACCESS",
     "pageTitle": "アクセス",
     "pageSubtitle": "お気軽にお越しください。",
@@ -490,6 +500,8 @@
     "hoursNote": "※土日祝日はお休みをいただいております"
   },
   "Contact": {
+    "metaTitle": "お問い合わせ | 株式会社サントー",
+    "metaDescription": "株式会社サントーへのお問い合わせはこちらから。お仕事探し・人材のご相談、お気軽にご連絡ください。",
     "pageLabel": "CONTACT",
     "pageTitle": "お問い合わせ",
     "pageSubtitle": "お仕事探し・人材のご相談、何でもお気軽にどうぞ。",
@@ -526,6 +538,8 @@
     "submitButton": "送信する"
   },
   "Jobs": {
+    "metaTitle": "仕事一覧 | 株式会社サントー",
+    "metaDescription": "株式会社サントーの求人一覧。製造・物流・事務など、神奈川県内で募集中のお仕事をご紹介します。",
     "pageLabel": "JOB LIST",
     "pageTitle": "仕事一覧",
     "pageSubtitle": "あなたに合ったお仕事をお探しください",
@@ -933,6 +947,8 @@
     "callButton": "電話する"
   },
   "LaborInfo": {
+    "metaTitle": "労働者派遣法に基づく情報提供 | 株式会社サントー",
+    "metaDescription": "労働者派遣法第23条5項に基づく情報提供。マージン率、教育訓練、キャリアコンサルティング等の情報を公開しています。",
     "pageLabel": "DISCLOSURE",
     "pageTitle": "改正派遣法に基づくマージン率の公開",
     "pageSubtitle": "労働者派遣法第23条5項に基づき、下記の情報を公開いたします。",
@@ -1024,6 +1040,8 @@
     "agreementScope": "協定労働者の範囲（派遣従業員全員）"
   },
   "Privacy": {
+    "metaTitle": "プライバシーポリシー | 株式会社サントー",
+    "metaDescription": "株式会社サントーの個人情報保護方針について。当社における個人情報の取り扱いに関する基本方針をご案内します。",
     "pageLabel": "PRIVACY POLICY",
     "pageTitle": "プライバシーポリシー",
     "pageSubtitle": "個人情報の取り扱いについて",

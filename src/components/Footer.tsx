@@ -53,14 +53,14 @@ export function Footer() {
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-santo-accent" />
                 {t("address")}
               </p>
-              <p className="flex items-center gap-2.5">
+              <a href="tel:0463-24-1722" className="flex items-center gap-2.5 hover:opacity-80">
                 <Phone className="h-4 w-4 shrink-0 text-santo-accent" />
                 TEL: 0463-24-1722
-              </p>
-              <p className="flex items-center gap-2.5">
+              </a>
+              <a href="mailto:santo@santo-ho.co.jp" className="flex items-center gap-2.5 hover:opacity-80">
                 <Mail className="h-4 w-4 shrink-0 text-santo-accent" />
                 santo@santo-ho.co.jp
-              </p>
+              </a>
             </div>
           </div>
 

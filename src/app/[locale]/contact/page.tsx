@@ -23,6 +23,7 @@ export default function ContactPage() {
     const data = new FormData(form);
     const name = data.get("name") as string;
     const company = data.get("company") as string;
+    const email = data.get("email") as string;
     const phone = data.get("phone") as string;
     const type = data.get("type") as string;
     const message = data.get("message") as string;
@@ -31,6 +32,7 @@ export default function ContactPage() {
     const body = [
       `${t("nameLabel")}: ${name}`,
       company ? `${t("companyLabel")}: ${company}` : "",
+      `${t("emailFormLabel")}: ${email}`,
       phone ? `${t("phoneFormLabel")}: ${phone}` : "",
       `${t("typeLabel")}: ${type}`,
       "",
@@ -248,6 +250,7 @@ export default function ContactPage() {
                     <label className="flex items-start gap-3 text-[13px] text-slate-600">
                       <input
                         type="checkbox"
+                        name="privacyConsent"
                         required
                         className="mt-1 rounded border-slate-300"
                       />

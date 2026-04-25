@@ -28,6 +28,8 @@
     "copyright": "SANTO Co., Ltd. All rights reserved."
   },
   "Home": {
+    "metaTitle": "SANTO CO., LTD. | Staffing & Recruitment in Kanagawa, Japan",
+    "metaDescription": "SANTO is a staffing company based in Hiratsuka, Kanagawa, connecting job seekers with employers across manufacturing, logistics and administration.",
     "heroLine1": "Connecting People",
     "heroLine2": "and Businesses.",
     "heroSub1": "Bridging job seekers",
@@ -328,6 +330,8 @@
     "cat3_job4Desc": "Glass product processing and beverage warehouse forklift work"
   },
   "About": {
+    "metaTitle": "About Us | SANTO CO., LTD.",
+    "metaDescription": "Company profile of SANTO CO., LTD. Learn about our philosophy, message from the CEO and corporate history.",
     "pageLabel": "COMPANY",
     "pageTitle": "About Us",
     "pageSubtitle": "Building bridges between people and companies with trust and proven results.",
@@ -379,6 +383,8 @@
     "historyDesc": "A proven track record built on community focus."
   },
   "Jobseekers": {
+    "metaTitle": "For Job Seekers | SANTO CO., LTD.",
+    "metaDescription": "Find a job that fits you with SANTO. Discover dispatch positions and learn about our registration process.",
     "pageLabel": "FOR JOB SEEKERS",
     "pageTitle": "For Job Seekers",
     "pageSubtitle": "Let's find the perfect job for you, together.",
@@ -430,6 +436,8 @@
     "step4Desc": "We continue to support you after you start."
   },
   "Employers": {
+    "metaTitle": "For Employers | SANTO CO., LTD.",
+    "metaDescription": "SANTO's staffing services for businesses. We propose the right talent that matches your company's needs.",
     "pageLabel": "FOR EMPLOYERS",
     "pageTitle": "For Employers",
     "pageSubtitle": "We quickly propose the optimal talent for your company.",
@@ -473,6 +481,8 @@
     "ctaButton": "Contact Us"
   },
   "Access": {
+    "metaTitle": "Access | SANTO CO., LTD.",
+    "metaDescription": "Directions to SANTO CO., LTD. Located at 7-29 Daikan-cho, Hiratsuka, Kanagawa 254-0807, Japan; 3-minute walk from JR Hiratsuka Station.",
     "pageLabel": "ACCESS",
     "pageTitle": "Access",
     "pageSubtitle": "Feel free to visit us.",
@@ -490,6 +500,8 @@
     "hoursNote": "* Closed on weekends and public holidays"
   },
   "Contact": {
+    "metaTitle": "Contact Us | SANTO CO., LTD.",
+    "metaDescription": "Get in touch with SANTO CO., LTD. Inquiries about job seeking or staffing solutions are welcome.",
     "pageLabel": "CONTACT",
     "pageTitle": "Contact Us",
     "pageSubtitle": "Whether you're looking for work or talent, feel free to reach out.",
@@ -526,6 +538,8 @@
     "submitButton": "Submit"
   },
   "Jobs": {
+    "metaTitle": "Job Listings | SANTO CO., LTD.",
+    "metaDescription": "Browse current openings at SANTO CO., LTD. — manufacturing, logistics, administrative and more.",
     "pageLabel": "JOB LIST",
     "pageTitle": "Job Listings",
     "pageSubtitle": "Find the right job for you",
@@ -933,6 +947,8 @@
     "callButton": "Call Us"
   },
   "LaborInfo": {
+    "metaTitle": "Worker Dispatching Disclosure | SANTO CO., LTD.",
+    "metaDescription": "Disclosure under Article 23(5) of Japan's Worker Dispatching Act, including margin rate, training and career consultation information.",
     "pageLabel": "DISCLOSURE",
     "pageTitle": "Margin Rate Disclosure under the Amended Dispatching Act",
     "pageSubtitle": "The following information is disclosed pursuant to Article 23, Paragraph 5 of the Worker Dispatching Act.",
@@ -1024,6 +1040,8 @@
     "agreementScope": "Scope of agreement: All dispatched employees"
   },
   "Privacy": {
+    "metaTitle": "Privacy Policy | SANTO CO., LTD.",
+    "metaDescription": "SANTO CO., LTD.'s privacy policy. Learn how we handle and protect personal information.",
     "pageLabel": "PRIVACY POLICY",
     "pageTitle": "Privacy Policy",
     "pageSubtitle": "Handling of Personal Information",
