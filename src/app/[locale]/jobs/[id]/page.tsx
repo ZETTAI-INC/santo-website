@@ -96,8 +96,6 @@ export default async function JobDetailPage({
     { num: 2, title: d("flowStep2Title"), desc: d("flowStep2Desc") },
     { num: 3, title: d("flowStep3Title"), desc: d("flowStep3Desc") },
     { num: 4, title: d("flowStep4Title"), desc: d("flowStep4Desc") },
-    { num: 5, title: d("flowStep5Title"), desc: d("flowStep5Desc") },
-    { num: 6, title: d("flowStep6Title"), desc: d("flowStep6Desc") },
   ];
 
   return (
