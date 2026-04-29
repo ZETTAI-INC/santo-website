@@ -126,15 +126,10 @@ export function JobSearchForm() {
 
   const [openField, setOpenField] = useState<string | null>(null);
   const [freeword, setFreeword] = useState<string>("");
-
-  // 各フィールドの選択値
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
   const [selectedLines, setSelectedLines] = useState<string[]>([]);
   const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([]);
-  const [salaryType, setSalaryType] = useState<string[]>([]);
-  const [salaryRange, setSalaryRange] = useState<string[]>([]);
-  const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
-  const [workPeriods, setWorkPeriods] = useState<string[]>([]);
+  const [selectedSalaries, setSelectedSalaries] = useState<string[]>([]);
   const [features, setFeatures] = useState<string[]>([]);
 
   // URL パラメータから初期値を復元（クライアントマウント後に1回だけ実行）
@@ -150,19 +145,13 @@ export function JobSearchForm() {
     const a = splitParam("area");
     const l = splitParam("line");
     const j = splitParam("jobType");
-    const st = splitParam("salaryType");
-    const sr = splitParam("salary");
-    const e = splitParam("employment");
-    const p = splitParam("period");
+    const s = splitParam("salary");
     const f = splitParam("features");
     const q = sp.get("q") ?? "";
     if (a.length) setSelectedAreas(a);
     if (l.length) setSelectedLines(l);
     if (j.length) setSelectedJobTypes(j);
-    if (st.length) setSalaryType(st);
-    if (sr.length) setSalaryRange(sr);
-    if (e.length) setEmploymentTypes(e);
-    if (p.length) setWorkPeriods(p);
+    if (s.length) setSelectedSalaries(s);
     if (f.length) setFeatures(f);
     if (q) setFreeword(q);
   }, []);
@@ -203,35 +192,13 @@ export function JobSearchForm() {
     { key: "plc", label: t("jtPlc") },
   ];
 
-  const salaryTypeOptions = [
-    { key: "no_preference", label: t("salaryNoPreference") },
-    { key: "hourly", label: t("salaryHourly") },
-    { key: "daily", label: t("salaryDaily") },
-    { key: "monthly", label: t("salaryMonthly") },
-  ];
-
-  const salaryRangeOptions = [
-    { key: "no_preference", label: t("salaryNoPreference") },
-    { key: "1000", label: "¥1,000〜" },
-    { key: "1200", label: "¥1,200〜" },
-    { key: "1500", label: "¥1,500〜" },
-    { key: "2000", label: "¥2,000〜" },
-  ];
-
-  const employmentOptions = [
-    { key: "parttime", label: t("empParttime") },
-    { key: "fulltime", label: t("empFulltime") },
-    { key: "contract", label: t("empContract") },
-    { key: "dispatch", label: t("empDispatch") },
-    { key: "permanent_dispatch", label: t("empPermanentDispatch") },
-    { key: "temp_to_perm", label: t("empTempToPerm") },
-    { key: "outsource", label: t("empOutsource") },
-  ];
-
-  const workPeriodOptions = [
-    { key: "no_preference", label: t("salaryNoPreference") },
-    { key: "long", label: t("wpLong") },
-    { key: "medium", label: t("wpMedium") },
+  // 給与: 時給下限の閾値（円）
+  const salaryOptions = [
+    { key: "1200", label: t("salaryFrom1200") },
+    { key: "1400", label: t("salaryFrom1400") },
+    { key: "1600", label: t("salaryFrom1600") },
+    { key: "1800", label: t("salaryFrom1800") },
+    { key: "2000", label: t("salaryFrom2000") },
   ];
 
   const featureOptions = [
@@ -246,10 +213,6 @@ export function JobSearchForm() {
 
   const toggleList = (list: string[], key: string) =>
     list.includes(key) ? list.filter((k) => k !== key) : [...list, key];
-
-  // 単一選択用（同じキーで解除可能）
-  const toggleSingle = (prev: string[], key: string) =>
-    prev.includes(key) ? [] : [key];
 
   const handleToggle = (field: string) => {
     setOpenField((prev) => (prev === field ? null : field));
@@ -309,37 +272,13 @@ export function JobSearchForm() {
           onToggleOpen={() => handleToggle("jobType")}
         />
         <AccordionSelect
-          label={t("salaryType")}
-          options={salaryTypeOptions}
-          selected={salaryType}
-          onSelect={(key) => { setSalaryType((p) => toggleSingle(p, key)); setOpenField(null); }}
-          open={openField === "salaryType"}
-          onToggleOpen={() => handleToggle("salaryType")}
-        />
-        <AccordionSelect
           label={t("salary")}
-          options={salaryRangeOptions}
-          selected={salaryRange}
-          onSelect={(key) => { setSalaryRange((p) => toggleSingle(p, key)); setOpenField(null); }}
+          options={salaryOptions}
+          selected={selectedSalaries}
+          onSelect={(key) => setSelectedSalaries((p) => toggleList(p, key))}
+          multiple
           open={openField === "salary"}
           onToggleOpen={() => handleToggle("salary")}
-        />
-        <AccordionSelect
-          label={t("employmentType")}
-          options={employmentOptions}
-          selected={employmentTypes}
-          onSelect={(key) => setEmploymentTypes((p) => toggleList(p, key))}
-          multiple
-          open={openField === "employment"}
-          onToggleOpen={() => handleToggle("employment")}
-        />
-        <AccordionSelect
-          label={t("workPeriod")}
-          options={workPeriodOptions}
-          selected={workPeriods}
-          onSelect={(key) => { setWorkPeriods((p) => toggleSingle(p, key)); setOpenField(null); }}
-          open={openField === "workPeriod"}
-          onToggleOpen={() => handleToggle("workPeriod")}
         />
         <AccordionSelect
           label={t("features")}
@@ -371,10 +310,7 @@ export function JobSearchForm() {
                 if (selectedAreas.length) params.set("area", selectedAreas.join(","));
                 if (selectedLines.length) params.set("line", selectedLines.join(","));
                 if (selectedJobTypes.length) params.set("jobType", selectedJobTypes.join(","));
-                if (salaryType.length) params.set("salaryType", salaryType.join(","));
-                if (salaryRange.length) params.set("salary", salaryRange.join(","));
-                if (employmentTypes.length) params.set("employment", employmentTypes.join(","));
-                if (workPeriods.length) params.set("period", workPeriods.join(","));
+                if (selectedSalaries.length) params.set("salary", selectedSalaries.join(","));
                 if (features.length) params.set("features", features.join(","));
                 if (freeword.trim()) params.set("q", freeword.trim());
                 const qs = params.toString();

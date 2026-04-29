@@ -43,6 +43,7 @@ export function JobList() {
   const locale = useLocale();
   const searchParams = useSearchParams();
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
   const toggleFav = (id: number) =>
     setFavorites((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
@@ -79,10 +80,7 @@ export function JobList() {
   const selArea = parseParam("area");
   const selLine = parseParam("line");
   const selJobType = parseParam("jobType");
-  const selSalaryType = parseParam("salaryType");
   const selSalary = parseParam("salary");
-  const selEmployment = parseParam("employment");
-  const selPeriod = parseParam("period");
   const selFeatures = parseParam("features");
   const q = searchParams.get("q")?.trim() || "";
 
@@ -90,17 +88,18 @@ export function JobList() {
   if (selArea.length) activeFilters.push(...selArea);
   if (selLine.length) activeFilters.push(...selLine);
   if (selJobType.length) activeFilters.push(...selJobType);
-  if (selSalaryType.length) activeFilters.push(...selSalaryType);
   if (selSalary.length) activeFilters.push(...selSalary);
-  if (selEmployment.length) activeFilters.push(...selEmployment);
-  if (selPeriod.length) activeFilters.push(...selPeriod);
   if (selFeatures.length) activeFilters.push(...selFeatures);
   if (q) activeFilters.push(q);
 
   // 各フィールドでの絞り込み: 各フィールド内は OR、フィールド間は AND
+  // 注: salaryTypes/employment/period は現在のデータセットで全件同値のため
+  //     UI からも除外し、ここでも絞り込み対象にしない
   const jobs = allJobs.filter((job) => {
     const meta = JOB_META[job.id];
     if (!meta) return false;
+
+    if (showFavoritesOnly && !favorites.includes(job.id)) return false;
 
     const anyIn = (selected: string[], pool: string[]) =>
       selected.length === 0 || selected.some((s) => pool.includes(s));
@@ -108,9 +107,6 @@ export function JobList() {
     if (!anyIn(selArea, meta.area)) return false;
     if (!anyIn(selLine, meta.line)) return false;
     if (!anyIn(selJobType, meta.jobType)) return false;
-    if (!anyIn(selSalaryType, meta.salaryTypes)) return false;
-    if (!anyIn(selEmployment, meta.employment)) return false;
-    if (!anyIn(selPeriod, meta.period)) return false;
     if (!anyIn(selFeatures, meta.features)) return false;
 
     // 給与レンジ: 選択された最小閾値以上の時給なら OK
@@ -137,7 +133,7 @@ export function JobList() {
   return (
     <section className="py-10 sm:py-14">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        {/* 戻る + 件数 */}
+        {/* 戻る + 件数 + お気に入り絞り込み */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href={`/${locale}/jobseekers`}
@@ -146,20 +142,39 @@ export function JobList() {
             <ArrowLeft className="h-4 w-4" />
             {t("backToSearch")}
           </Link>
-          <p className="text-[14px] text-slate-500">
-            {t("resultCount", { count: jobs.length })}
-            {activeFilters.length > 0 && (
-              <span className="ml-2 text-slate-400">
-                ({activeFilters.join(", ")})
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={() => setShowFavoritesOnly((v) => !v)}
+              className={`inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-[13px] font-bold tracking-wide transition ${
+                showFavoritesOnly
+                  ? "border-orange-400 bg-orange-400 text-white hover:bg-orange-500"
+                  : "border-slate-200 bg-white text-slate-600 hover:border-orange-300 hover:text-orange-500"
+              }`}
+            >
+              <Star
+                className="h-4 w-4"
+                fill={showFavoritesOnly ? "currentColor" : "none"}
+              />
+              {showFavoritesOnly ? t("showAll") : t("favoritesOnly")}
+              <span className={`ml-1 rounded-full px-1.5 text-[11px] ${showFavoritesOnly ? "bg-white/20" : "bg-slate-100 text-slate-500"}`}>
+                {favorites.length}
               </span>
-            )}
-          </p>
+            </button>
+            <p className="text-[14px] text-slate-500">
+              {t("resultCount", { count: jobs.length })}
+              {activeFilters.length > 0 && (
+                <span className="ml-2 text-slate-400">
+                  ({activeFilters.join(", ")})
+                </span>
+              )}
+            </p>
+          </div>
         </div>
 
         {/* 未ヒット時 */}
         {jobs.length === 0 && (
           <div className="rounded-xl border border-slate-200 bg-white px-6 py-12 text-center text-[14px] text-slate-500">
-            {t("noResults")}
+            {showFavoritesOnly ? t("favoritesEmpty") : t("noResults")}
           </div>
         )}
 

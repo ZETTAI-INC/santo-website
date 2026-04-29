@@ -653,7 +653,10 @@
     "job16Type": "Dispatch",
     "job16Shift": "7:00-15:00 / 15:00-23:00 / 23:00-7:00 (3-shift rotation)",
     "job16Access": "Samukawa Station, 10min by car / 30min walk",
-    "noResults": "No jobs matched your search. Try different keywords."
+    "noResults": "No jobs matched your search. Try different keywords.",
+    "favoritesOnly": "Favorites only",
+    "showAll": "Show all",
+    "favoritesEmpty": "You haven't favorited any jobs yet. Tap the star on a listing to add it."
   },
   "JobDetail": {
     "callButton": "Call",
@@ -929,8 +932,8 @@
     "preferredStartDateLabel": "Preferred Start Date",
     "optionalLabel": " (optional)",
     "submitError": "Failed to submit. Please try again later.",
-    "mailFallbackTitle": "Your email app should have opened",
-    "mailFallbackBody": "If it didn't launch, please contact us directly at +81-463-24-1722 or santo@santo-ho.co.jp.",
+    "mailFallbackTitle": "Your email app should now be open",
+    "mailFallbackBody": "If it did not open, please contact us directly by phone (0463-24-1722) or email santo@santo-ho.co.jp.",
     "copyButton": "Copy application text",
     "copiedLabel": "Copied",
     "goToThanks": "Go to confirmation page"

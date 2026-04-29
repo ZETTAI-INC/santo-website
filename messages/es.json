@@ -653,7 +653,10 @@
     "job16Type": "Despacho/Haken",
     "job16Shift": "7:00-15:00 / 15:00-23:00 / 23:00-7:00 (3 turnos)",
     "job16Access": "Estación de Samukawa, 10 min en auto / 30 min a pie",
-    "noResults": "No se encontraron empleos que coincidan con la búsqueda. Prueba con otras palabras clave."
+    "noResults": "No se encontraron empleos que coincidan con la búsqueda. Prueba con otras palabras clave.",
+    "favoritesOnly": "Solo favoritos",
+    "showAll": "Mostrar todos",
+    "favoritesEmpty": "Aún no has marcado ningún empleo como favorito. Toca la estrella en cualquier anuncio para agregarlo."
   },
   "JobDetail": {
     "callButton": "Llamar",
@@ -929,9 +932,9 @@
     "preferredStartDateLabel": "Fecha de inicio preferida",
     "optionalLabel": " (opcional)",
     "submitError": "Error al enviar. Por favor intente nuevamente más tarde.",
-    "mailFallbackTitle": "Se ha abierto su aplicación de correo",
-    "mailFallbackBody": "Si no se inició, póngase en contacto con nosotros directamente al +81-463-24-1722 o santo@santo-ho.co.jp.",
-    "copyButton": "Copiar texto de la solicitud",
+    "mailFallbackTitle": "Su aplicación de correo debería estar abierta",
+    "mailFallbackBody": "Si no se abrió, por favor contáctenos directamente por teléfono (0463-24-1722) o por correo santo@santo-ho.co.jp.",
+    "copyButton": "Copiar contenido de la solicitud",
     "copiedLabel": "Copiado",
     "goToThanks": "Ir a la página de confirmación"
   },

@@ -22,7 +22,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     { label: t("infoEnName"), value: t("infoEnNameValue") },
     { label: t("infoCeo"), value: t("infoCeoValue") },
     { label: t("infoFounded"), value: t("infoFoundedValue") },
-    { label: t("infoCapital"), value: t("infoCapitalValue") },
     { label: t("infoBusiness"), value: t("infoBusinessValue") },
     { label: t("infoLicense"), value: t("infoLicenseValue") },
     { label: t("infoAddress"), value: t("infoAddressValue") },
@@ -96,7 +95,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {t("philosophyText3")}<span className="text-santo-blue">{t("philosophyHighlight2")}</span>{t("philosophyText4")}<span className="text-santo-blue">{t("philosophyHighlight3")}</span>{t("philosophyText5")}
             </p>
           </div>
-          <p className="mx-auto max-w-2xl whitespace-pre-line text-[16px] font-bold leading-[2] text-slate-600 sm:text-[20px] lg:text-[22px]">
+          <p className="mx-auto max-w-5xl whitespace-pre-line text-[16px] font-bold leading-[2] text-slate-600 sm:text-[20px] lg:text-[22px]">
             {t("philosophyDesc")}
           </p>
         </div>

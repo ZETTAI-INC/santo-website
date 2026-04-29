@@ -653,7 +653,10 @@
     "job16Type": "派遣",
     "job16Shift": "7:00-15:00 / 15:00-23:00 / 23:00-7:00（三班倒）",
     "job16Access": "寒川站 车程10分钟·步行30分钟",
-    "noResults": "未找到符合条件的职位。请尝试其他关键词。"
+    "noResults": "未找到符合条件的职位。请尝试其他关键词。",
+    "favoritesOnly": "仅收藏",
+    "showAll": "显示全部",
+    "favoritesEmpty": "您还没有收藏任何职位。点击职位上的星标即可收藏。"
   },
   "JobDetail": {
     "callButton": "电话咨询",
@@ -930,7 +933,7 @@
     "optionalLabel": "（选填）",
     "submitError": "提交失败，请稍后再试。",
     "mailFallbackTitle": "邮件应用已启动",
-    "mailFallbackBody": "如未自动打开，请直接致电 +81-463-24-1722 或邮件 santo@santo-ho.co.jp 与我们联系。",
+    "mailFallbackBody": "如果未能启动，请直接致电 (0463-24-1722) 或发送邮件至 santo@santo-ho.co.jp 与我们联系。",
     "copyButton": "复制申请内容",
     "copiedLabel": "已复制",
     "goToThanks": "前往申请完成页面"

@@ -64,11 +64,6 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
         label={t("pageLabel")}
         title={t("pageTitle")}
         subtitle={t.rich("pageSubtitle", {
-          em: (chunks) => (
-            <span className="text-[19px] font-black sm:text-[26px] lg:text-[28px]">
-              {chunks}
-            </span>
-          ),
           br: () => <br />,
         })}
         image="/images/employers_factory_boss_wide.png"
@@ -311,7 +306,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{ backgroundImage: "url('/images/employers_cta_bg_v2.png')", backgroundPosition: "center 30%" }}
         />
-        <div className="absolute inset-0 bg-santo-navy/55" />
+        <div className="absolute inset-0 bg-santo-navy/25" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
           <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
             {t("ctaLabel")}
