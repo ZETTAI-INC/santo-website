@@ -102,7 +102,7 @@ export function Footer() {
               ].map((item) => (
                 <li key={item.name}>
                   <Link
-                    href={item.href === "#" ? item.href : localePath(item.href)}
+                    href={localePath(item.href)}
                     className="text-[13px] font-bold text-slate-300 transition-colors hover:text-white"
                   >
                     {item.name}

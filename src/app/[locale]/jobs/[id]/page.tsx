@@ -204,7 +204,7 @@ export default async function JobDetailPage({
               buttonLabel={d("ctaButton")}
             />
             <a
-              href="tel:0463-00-0000"
+              href="tel:0463-24-1722"
               className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
               style={{ minHeight: 60 }}
             >
@@ -275,7 +275,7 @@ export default async function JobDetailPage({
               buttonLabel={d("ctaButton")}
             />
             <a
-              href="tel:0463-00-0000"
+              href="tel:0463-24-1722"
               className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
               style={{ minHeight: 60 }}
             >

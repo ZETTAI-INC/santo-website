@@ -75,17 +75,16 @@ export function NewsScroller() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {newsList.map((news, i) => (
-          <a
+          <div
             key={i}
-            href="#"
-            className="group w-64 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            className="group w-64 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white"
           >
             <div className="aspect-[16/10] overflow-hidden bg-santo-sky">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={news.img}
                 alt={news.title}
-                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-full object-cover"
               />
             </div>
             <div className="p-4">
@@ -104,7 +103,7 @@ export function NewsScroller() {
                 {news.desc}
               </p>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </div>
