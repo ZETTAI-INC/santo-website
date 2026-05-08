@@ -82,10 +82,10 @@ export function Header() {
               );
             })}
           </nav>
-          {/* Language Switcher */}
+          {/* Language Switcher (full reload to avoid stale client-side i18n cache) */}
           <div className="ml-2 flex items-center gap-1 border-l border-slate-200 pl-3">
             {languages.map((lang) => (
-              <Link
+              <a
                 key={lang.code}
                 href={switchLocaleHref(lang.code)}
                 className={`flex flex-col items-center rounded px-2 py-1 transition-colors ${
@@ -96,7 +96,7 @@ export function Header() {
               >
                 <span className="text-[11px] font-bold whitespace-nowrap">{lang.label}</span>
                 <span className="text-[28px] leading-none">{lang.flag}</span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -142,10 +142,9 @@ export function Header() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {languages.map((lang) => (
-                    <Link
+                    <a
                       key={lang.code}
                       href={switchLocaleHref(lang.code)}
-                      onClick={() => setOpen(false)}
                       className={`flex flex-col items-center rounded px-3 py-1.5 ${
                         locale === lang.code
                           ? "bg-santo-navy text-white"
@@ -154,7 +153,7 @@ export function Header() {
                     >
                       <span className="text-xs font-bold">{lang.label}</span>
                       <span className="text-[30px] leading-none">{lang.flag}</span>
-                    </Link>
+                    </a>
                   ))}
                 </div>
                 <a

@@ -123,7 +123,7 @@ export function Footer() {
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <Globe className="h-4 w-4 shrink-0 text-slate-400" />
               {languages.map((lang) => (
-                <Link
+                <a
                   key={lang.code}
                   href={switchLocaleHref(lang.code)}
                   className={`rounded px-2.5 py-1 text-xs font-bold whitespace-nowrap transition-colors sm:px-3 sm:py-1.5 ${
@@ -133,7 +133,7 @@ export function Footer() {
                   }`}
                 >
                   {lang.label}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
