@@ -32,7 +32,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/jobseekers_hero.png" imagePosition="35%" tall largeSubtitle />
+      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t.rich("pageSubtitle", { br: () => <br className="sm:hidden" /> })} image="/images/jobseekers_hero.png" imagePosition="35%" tall largeSubtitle />
 
       {/* 代表挨拶 */}
       <section className="py-10 sm:py-14">

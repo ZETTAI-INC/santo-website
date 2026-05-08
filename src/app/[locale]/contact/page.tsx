@@ -72,7 +72,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t("pageSubtitle")} image="/images/contact_hero.png" largeSubtitle />
+      <PageHeader label={t("pageLabel")} title={t("pageTitle")} subtitle={t.rich("pageSubtitle", { br: () => <br className="sm:hidden" /> })} image="/images/contact_hero.png" largeSubtitle />
 
       <section className="py-8 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
