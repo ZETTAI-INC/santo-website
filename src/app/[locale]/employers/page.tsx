@@ -308,14 +308,17 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
         />
         <div className="absolute inset-0 bg-santo-navy/25" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
-          <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
+          <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/90 [text-shadow:0_2px_6px_rgba(0,0,0,0.95),0_0_14px_rgba(0,0,0,0.8)]">
             {t("ctaLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-white [text-shadow:0_4px_14px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_22px_rgba(0,0,0,0.7)] sm:text-4xl lg:text-5xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-8 max-w-3xl text-[17px] font-black leading-[1.9] text-white/90 sm:mb-10 sm:text-[22px] lg:text-[24px]">
-            {t.rich("ctaDesc", { br: () => <br /> })}
+          <p className="mx-auto mb-8 max-w-none text-[20px] font-black leading-[1.9] text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_20px_rgba(0,0,0,0.7)] sm:mb-10 sm:text-[28px] lg:text-[32px]">
+            {t.rich("ctaDesc", {
+              br: () => <br />,
+              nowrap: (chunks) => <span className="inline-block whitespace-nowrap">{chunks}</span>,
+            })}
           </p>
           <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
             <LinkButton
@@ -327,12 +330,12 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               <ArrowRight className="h-5 w-5" />
             </LinkButton>
             <div className="flex flex-col items-center">
-              <p className="text-[13px] font-black tracking-widest text-white/80">
+              <p className="text-[13px] font-black tracking-widest text-white/90 [text-shadow:0_2px_6px_rgba(0,0,0,0.95),0_0_14px_rgba(0,0,0,0.8)]">
                 TEL
               </p>
               <a
                 href="tel:0463-24-1722"
-                className="flex items-center gap-2 text-3xl font-black tracking-wider text-white sm:text-4xl"
+                className="flex items-center gap-2 text-3xl font-black tracking-wider text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_20px_rgba(0,0,0,0.7)] sm:text-4xl"
               >
                 0463-24-1722
               </a>
