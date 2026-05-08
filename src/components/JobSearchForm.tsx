@@ -127,9 +127,7 @@ export function JobSearchForm() {
   const [openField, setOpenField] = useState<string | null>(null);
   const [freeword, setFreeword] = useState<string>("");
   const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
-  const [selectedLines, setSelectedLines] = useState<string[]>([]);
   const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([]);
-  const [selectedSalaries, setSelectedSalaries] = useState<string[]>([]);
   const [features, setFeatures] = useState<string[]>([]);
 
   // URL パラメータから初期値を復元（クライアントマウント後に1回だけ実行）
@@ -143,15 +141,11 @@ export function JobSearchForm() {
       return v ? v.split(",").map((s) => s.trim()).filter(Boolean) : [];
     };
     const a = splitParam("area");
-    const l = splitParam("line");
     const j = splitParam("jobType");
-    const s = splitParam("salary");
     const f = splitParam("features");
     const q = sp.get("q") ?? "";
     if (a.length) setSelectedAreas(a);
-    if (l.length) setSelectedLines(l);
     if (j.length) setSelectedJobTypes(j);
-    if (s.length) setSelectedSalaries(s);
     if (f.length) setFeatures(f);
     if (q) setFreeword(q);
   }, []);
@@ -174,13 +168,6 @@ export function JobSearchForm() {
     { key: "zama", label: t("areaZama") },
   ];
 
-  const lineOptions = [
-    { key: "jr_east", label: t("lineJREast") },
-    { key: "odakyu", label: t("lineOdakyu") },
-    { key: "keikyu", label: t("lineKeikyu") },
-    { key: "sagami", label: t("lineSagami") },
-  ];
-
   const jobTypeOptions = [
     { key: "assembly", label: t("jtAssembly") },
     { key: "inspection", label: t("jtInspection") },
@@ -190,15 +177,6 @@ export function JobSearchForm() {
     { key: "forklift", label: t("jtForklift") },
     { key: "line", label: t("jtLine") },
     { key: "plc", label: t("jtPlc") },
-  ];
-
-  // 給与: 時給下限の閾値（円）
-  const salaryOptions = [
-    { key: "1200", label: t("salaryFrom1200") },
-    { key: "1400", label: t("salaryFrom1400") },
-    { key: "1600", label: t("salaryFrom1600") },
-    { key: "1800", label: t("salaryFrom1800") },
-    { key: "2000", label: t("salaryFrom2000") },
   ];
 
   const featureOptions = [
@@ -254,15 +232,6 @@ export function JobSearchForm() {
           onToggleOpen={() => handleToggle("area")}
         />
         <AccordionSelect
-          label={t("line")}
-          options={lineOptions}
-          selected={selectedLines}
-          onSelect={(key) => setSelectedLines((p) => toggleList(p, key))}
-          multiple
-          open={openField === "line"}
-          onToggleOpen={() => handleToggle("line")}
-        />
-        <AccordionSelect
           label={t("jobType")}
           options={jobTypeOptions}
           selected={selectedJobTypes}
@@ -270,15 +239,6 @@ export function JobSearchForm() {
           multiple
           open={openField === "jobType"}
           onToggleOpen={() => handleToggle("jobType")}
-        />
-        <AccordionSelect
-          label={t("salary")}
-          options={salaryOptions}
-          selected={selectedSalaries}
-          onSelect={(key) => setSelectedSalaries((p) => toggleList(p, key))}
-          multiple
-          open={openField === "salary"}
-          onToggleOpen={() => handleToggle("salary")}
         />
         <AccordionSelect
           label={t("features")}
@@ -308,9 +268,7 @@ export function JobSearchForm() {
               onClick={() => {
                 const params = new URLSearchParams();
                 if (selectedAreas.length) params.set("area", selectedAreas.join(","));
-                if (selectedLines.length) params.set("line", selectedLines.join(","));
                 if (selectedJobTypes.length) params.set("jobType", selectedJobTypes.join(","));
-                if (selectedSalaries.length) params.set("salary", selectedSalaries.join(","));
                 if (features.length) params.set("features", features.join(","));
                 if (freeword.trim()) params.set("q", freeword.trim());
                 const qs = params.toString();

@@ -482,7 +482,7 @@
     "industryTitle": "対応業種・職種",
     "ctaLabel": "CONTACT",
     "ctaTitle": "どんな業種でも、全力で挑みます！",
-    "ctaDesc": "たとえ実績のない業種でも、<br></br>サントーは気合いと熱意で真正面からお応えします。",
+    "ctaDesc": "<nowrap>たとえ実績のない業種でも、</nowrap><br></br><nowrap>サントーは気合いと熱意で真正面からお応えします。</nowrap>",
     "ctaButton": "お問い合わせ"
   },
   "Access": {
@@ -540,7 +540,10 @@
     "privacyConsent": "に同意の上、送信してください。",
     "mailSubject": "【お問い合わせ】{type}",
     "openMailApp": "メールアプリを開く",
-    "submitButton": "送信する"
+    "submitButton": "送信する",
+    "submitMailAppButton": "メールアプリで送る",
+    "submitGmailButton": "Gmailで送る",
+    "submitChoiceHint": "ご利用のメール環境に合わせて選択してください。Gmailアプリ／Gmail Web をお使いの方は「Gmailで送る」、メール.app／Outlook など標準メールアプリの方は「メールアプリで送る」をお選びください。"
   },
   "Jobs": {
     "metaTitle": "仕事一覧 | 株式会社サントー",
@@ -890,6 +893,9 @@
     "privacyLink": "プライバシーポリシー",
     "privacyConsent": "に同意の上、送信します。",
     "submitButton": "応募を送信する",
+    "submitMailAppButton": "メールアプリで送る",
+    "submitGmailButton": "Gmailで送る",
+    "submitChoiceHint": "ご利用のメール環境に合わせて選択してください。Gmailアプリ／Gmail Web をお使いの方は「Gmailで送る」、メール.app／Outlook など標準メールアプリの方は「メールアプリで送る」をお選びください。",
     "submittingButton": "送信中...",
     "backToJob": "求人詳細に戻る",
     "mailSubject": "【応募】[求人ID:{jobId}] {jobTitle}",

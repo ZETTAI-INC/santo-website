@@ -2,12 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Send, Copy, Check, ArrowRight } from "lucide-react";
+import { Send, Copy, Check, ArrowRight, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+
+const SANTO_EMAIL = "santo@santo-ho.co.jp";
 
 type Props = {
   locale: string;
@@ -34,14 +36,19 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
   const t = useTranslations("JobApply");
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [pendingTarget, setPendingTarget] = useState<"mail" | "gmail" | null>(null);
   const [mailtoUrl, setMailtoUrl] = useState("");
+  const [gmailUrl, setGmailUrl] = useState("");
   const [mailBody, setMailBody] = useState("");
   const [showFallback, setShowFallback] = useState(false);
   const [copied, setCopied] = useState(false);
-  const linkRef = useRef<HTMLAnchorElement>(null);
+  const mailLinkRef = useRef<HTMLAnchorElement>(null);
+  const gmailLinkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const target = submitter?.value === "gmail" ? "gmail" : "mail";
     const form = e.currentTarget;
     const data = new FormData(form);
     const get = (key: string) => ((data.get(key) as string) || "").trim();
@@ -99,18 +106,31 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
       .join("\n");
 
     const subject = t("mailSubject", { jobId, jobTitle });
-    const url = `mailto:santo@santo-ho.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const encSubject = encodeURIComponent(subject);
+    const encBody = encodeURIComponent(body);
+    const mailto = `mailto:${SANTO_EMAIL}?subject=${encSubject}&body=${encBody}`;
+    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SANTO_EMAIL)}&su=${encSubject}&body=${encBody}`;
     setMailBody(body);
-    setMailtoUrl(url);
+    setMailtoUrl(mailto);
+    setGmailUrl(gmail);
+    setPendingTarget(target);
     setSubmitting(true);
   };
 
   useEffect(() => {
-    if (submitting && mailtoUrl && linkRef.current) {
-      linkRef.current.click();
+    if (!submitting || !pendingTarget) return;
+    if (pendingTarget === "gmail" && gmailUrl && gmailLinkRef.current) {
+      gmailLinkRef.current.click();
       setShowFallback(true);
+      setPendingTarget(null);
+      setSubmitting(false);
+    } else if (pendingTarget === "mail" && mailtoUrl && mailLinkRef.current) {
+      mailLinkRef.current.click();
+      setShowFallback(true);
+      setPendingTarget(null);
+      setSubmitting(false);
     }
-  }, [submitting, mailtoUrl]);
+  }, [submitting, pendingTarget, mailtoUrl, gmailUrl]);
 
   const handleCopy = async () => {
     try {
@@ -372,17 +392,36 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
         </div>
       )}
 
-      <Button
-        type="submit"
-        size="lg"
-        disabled={submitting}
-        className="h-12 w-full bg-santo-navy px-8 text-sm font-black tracking-wider hover:bg-santo-blue sm:w-auto"
-      >
-        <Send className="h-4 w-4" />
-        {submitting ? t("submittingButton") : t("submitButton")}
-      </Button>
+      <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+        <Button
+          type="submit"
+          name="action"
+          value="mail"
+          size="lg"
+          disabled={submitting}
+          className="h-12 w-full bg-santo-navy px-6 text-sm font-black tracking-wider hover:bg-santo-blue sm:flex-1"
+        >
+          <Mail className="h-4 w-4" />
+          {submitting && pendingTarget === "mail" ? t("submittingButton") : t("submitMailAppButton")}
+        </Button>
+        <Button
+          type="submit"
+          name="action"
+          value="gmail"
+          size="lg"
+          disabled={submitting}
+          className="h-12 w-full border-2 border-santo-blue bg-white px-6 text-sm font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
+        >
+          <Send className="h-4 w-4" />
+          {submitting && pendingTarget === "gmail" ? t("submittingButton") : t("submitGmailButton")}
+        </Button>
+      </div>
+      <p className="text-[12px] leading-[1.8] text-slate-500">
+        {t("submitChoiceHint")}
+      </p>
 
-      <a ref={linkRef} href={mailtoUrl} className="hidden" />
+      <a ref={mailLinkRef} href={mailtoUrl} className="hidden" />
+      <a ref={gmailLinkRef} href={gmailUrl} target="_blank" rel="noopener noreferrer" className="hidden" />
     </form>
   );
 }

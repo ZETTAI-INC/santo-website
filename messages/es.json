@@ -540,7 +540,10 @@
     "privacyConsent": " y enviar.",
     "mailSubject": "Consulta - {type}",
     "openMailApp": "Abrir correo",
-    "submitButton": "Enviar"
+    "submitButton": "Enviar",
+    "submitMailAppButton": "Enviar con la app de correo",
+    "submitGmailButton": "Enviar con Gmail",
+    "submitChoiceHint": "Elija la opción que se ajuste a su configuración de correo. Use \"Enviar con Gmail\" si utiliza la app de Gmail o Gmail web; use \"Enviar con la app de correo\" si utiliza Mail.app, Outlook u otra aplicación de correo predeterminada."
   },
   "Jobs": {
     "metaTitle": "Lista de Empleos | SANTO CO., LTD.",
@@ -890,6 +893,9 @@
     "privacyLink": "Política de Privacidad",
     "privacyConsent": " — acepto y deseo enviar.",
     "submitButton": "Enviar solicitud",
+    "submitMailAppButton": "Enviar con la app de correo",
+    "submitGmailButton": "Enviar con Gmail",
+    "submitChoiceHint": "Elija la opción que se ajuste a su configuración de correo. Use \"Enviar con Gmail\" si utiliza la app de Gmail o Gmail web; use \"Enviar con la app de correo\" si utiliza Mail.app, Outlook u otra aplicación de correo predeterminada.",
     "submittingButton": "Enviando...",
     "backToJob": "Volver al detalle",
     "mailSubject": "[Solicitud] Puesto #{jobId} — {jobTitle}",

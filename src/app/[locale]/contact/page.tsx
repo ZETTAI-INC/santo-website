@@ -10,15 +10,22 @@ import { Label } from "@/components/ui/label";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 
+const SANTO_EMAIL = "santo@santo-ho.co.jp";
+
 export default function ContactPage() {
   const t = useTranslations("Contact");
   const locale = useLocale();
   const [submitted, setSubmitted] = useState(false);
+  const [pendingTarget, setPendingTarget] = useState<"mail" | "gmail" | null>(null);
   const [mailtoUrl, setMailtoUrl] = useState("");
-  const linkRef = useRef<HTMLAnchorElement>(null);
+  const [gmailUrl, setGmailUrl] = useState("");
+  const mailLinkRef = useRef<HTMLAnchorElement>(null);
+  const gmailLinkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const target = submitter?.value === "gmail" ? "gmail" : "mail";
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = data.get("name") as string;
@@ -42,16 +49,26 @@ export default function ContactPage() {
       .filter(Boolean)
       .join("\n");
 
-    const url = `mailto:santo@santo-ho.co.jp?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setMailtoUrl(url);
+    const encSubject = encodeURIComponent(subject);
+    const encBody = encodeURIComponent(body);
+    const mailto = `mailto:${SANTO_EMAIL}?subject=${encSubject}&body=${encBody}`;
+    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SANTO_EMAIL)}&su=${encSubject}&body=${encBody}`;
+    setMailtoUrl(mailto);
+    setGmailUrl(gmail);
+    setPendingTarget(target);
     setSubmitted(true);
   };
 
   useEffect(() => {
-    if (submitted && mailtoUrl && linkRef.current) {
-      linkRef.current.click();
+    if (!submitted || !pendingTarget) return;
+    if (pendingTarget === "gmail" && gmailUrl && gmailLinkRef.current) {
+      gmailLinkRef.current.click();
+      setPendingTarget(null);
+    } else if (pendingTarget === "mail" && mailtoUrl && mailLinkRef.current) {
+      mailLinkRef.current.click();
+      setPendingTarget(null);
     }
-  }, [submitted, mailtoUrl]);
+  }, [submitted, pendingTarget, mailtoUrl, gmailUrl]);
 
   return (
     <>
@@ -130,7 +147,8 @@ export default function ContactPage() {
                   <p className="text-[13px] leading-[1.8] text-green-700">
                     {t("thankYouDesc")}
                   </p>
-                  <a ref={linkRef} href={mailtoUrl} className="hidden" />
+                  <a ref={mailLinkRef} href={mailtoUrl} className="hidden" />
+                  <a ref={gmailLinkRef} href={gmailUrl} target="_blank" rel="noopener noreferrer" className="hidden" />
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
@@ -263,14 +281,31 @@ export default function ContactPage() {
                     </label>
                   </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="h-12 w-full bg-santo-navy px-8 text-sm font-black tracking-wider hover:bg-santo-blue sm:w-auto"
-                  >
-                    <Send className="h-4 w-4" />
-                    {t("submitButton")}
-                  </Button>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+                    <Button
+                      type="submit"
+                      name="action"
+                      value="mail"
+                      size="lg"
+                      className="h-12 w-full bg-santo-navy px-6 text-sm font-black tracking-wider hover:bg-santo-blue sm:flex-1"
+                    >
+                      <Mail className="h-4 w-4" />
+                      {t("submitMailAppButton")}
+                    </Button>
+                    <Button
+                      type="submit"
+                      name="action"
+                      value="gmail"
+                      size="lg"
+                      className="h-12 w-full border-2 border-santo-blue bg-white px-6 text-sm font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
+                    >
+                      <Send className="h-4 w-4" />
+                      {t("submitGmailButton")}
+                    </Button>
+                  </div>
+                  <p className="text-[12px] leading-[1.8] text-slate-500">
+                    {t("submitChoiceHint")}
+                  </p>
                 </form>
               )}
             </div>

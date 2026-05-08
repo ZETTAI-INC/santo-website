@@ -540,7 +540,10 @@
     "privacyConsent": " and submit.",
     "mailSubject": "Contact Inquiry - {type}",
     "openMailApp": "Open Mail App",
-    "submitButton": "Submit"
+    "submitButton": "Submit",
+    "submitMailAppButton": "Send via Email App",
+    "submitGmailButton": "Send via Gmail",
+    "submitChoiceHint": "Choose the option that matches your email setup. Use \"Send via Gmail\" if you use the Gmail app or Gmail web; use \"Send via Email App\" if you use Mail.app, Outlook, or another default mail client."
   },
   "Jobs": {
     "metaTitle": "Job Listings | SANTO CO., LTD.",
@@ -890,6 +893,9 @@
     "privacyLink": "Privacy Policy",
     "privacyConsent": " — I agree and wish to submit.",
     "submitButton": "Submit Application",
+    "submitMailAppButton": "Send via Email App",
+    "submitGmailButton": "Send via Gmail",
+    "submitChoiceHint": "Choose the option that matches your email setup. Use \"Send via Gmail\" if you use the Gmail app or Gmail web; use \"Send via Email App\" if you use Mail.app, Outlook, or another default mail client.",
     "submittingButton": "Submitting...",
     "backToJob": "Back to Job Details",
     "mailSubject": "[Application] Job #{jobId} — {jobTitle}",
