@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Send, Copy, Check, ArrowRight, Mail } from "lucide-react";
+import { Send, Copy, Check, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -383,10 +383,9 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
             <Button
               type="button"
               onClick={handleGoToThanks}
-              className="h-11 bg-santo-navy text-sm font-black tracking-wider hover:bg-santo-blue"
+              className="h-11 bg-santo-navy font-black tracking-wider hover:bg-santo-blue"
             >
               {t("goToThanks")}
-              <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -399,7 +398,7 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
           value="mail"
           size="lg"
           disabled={submitting}
-          className="h-12 w-full bg-santo-navy px-6 text-sm font-black tracking-wider hover:bg-santo-blue sm:flex-1"
+          className="h-12 w-full bg-santo-navy px-6 font-black tracking-wider hover:bg-santo-blue sm:flex-1"
         >
           <Mail className="h-4 w-4" />
           {submitting && pendingTarget === "mail" ? t("submittingButton") : t("submitMailAppButton")}
@@ -410,7 +409,7 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
           value="gmail"
           size="lg"
           disabled={submitting}
-          className="h-12 w-full border-2 border-santo-blue bg-white px-6 text-sm font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
+          className="h-12 w-full border-2 border-santo-blue bg-white px-6 font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
         >
           <Send className="h-4 w-4" />
           {submitting && pendingTarget === "gmail" ? t("submittingButton") : t("submitGmailButton")}

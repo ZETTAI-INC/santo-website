@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  ArrowRight,
   Phone,
   FileSearch,
   Handshake,
@@ -76,7 +75,6 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
             className="bg-white text-santo-navy shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:bg-slate-100"
           >
             {t("leadButton")}
-            <ArrowRight className="h-5 w-5" />
           </LinkButton>
         </div>
       </PageHeader>
@@ -104,7 +102,6 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
                   className="bg-santo-navy px-14 text-white hover:bg-santo-blue"
                 >
                   {t("leadButton")}
-                  <ArrowRight className="h-4 w-4" />
                 </LinkButton>
               </div>
             </div>
@@ -327,7 +324,6 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               className="animate-shimmer relative overflow-hidden bg-white px-14 py-5 text-xl font-black text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:text-2xl"
             >
               {t("ctaButton")}
-              <ArrowRight className="h-5 w-5" />
             </LinkButton>
             <div className="flex flex-col items-center">
               <p className="text-[13px] font-black tracking-widest text-white/90 [text-shadow:0_2px_6px_rgba(0,0,0,0.95),0_0_14px_rgba(0,0,0,0.8)]">

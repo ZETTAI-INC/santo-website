@@ -205,7 +205,7 @@ export default async function JobDetailPage({
             />
             <a
               href="tel:0463-24-1722"
-              className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
+              className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[17px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
               style={{ minHeight: 60 }}
             >
               <Phone className="h-4 w-4" />
@@ -276,7 +276,7 @@ export default async function JobDetailPage({
             />
             <a
               href="tel:0463-24-1722"
-              className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
+              className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[17px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
               style={{ minHeight: 60 }}
             >
               <Phone className="h-4 w-4" />

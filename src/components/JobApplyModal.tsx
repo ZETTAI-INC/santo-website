@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { JobApplyForm } from "./JobApplyForm";
 
@@ -45,11 +45,10 @@ export function JobApplyModal({ locale, jobId, jobTitle, jobCompany, buttonLabel
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-santo-navy py-[16px] text-[16px] font-bold text-white transition hover:bg-santo-blue"
+        className="flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-santo-navy py-[16px] text-[17px] font-bold text-white transition hover:bg-santo-blue"
         style={{ minHeight: 60 }}
       >
         {buttonLabel}
-        <ArrowRight className="h-4 w-4" />
       </button>
 
       {open ? (

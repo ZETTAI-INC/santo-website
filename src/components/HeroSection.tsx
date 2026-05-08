@@ -78,7 +78,7 @@ export function HeroSection() {
             >
               <a
                 href={localePath("/jobseekers")}
-                className="group flex items-center gap-3 rounded-xl bg-white px-7 py-4 text-[16px] font-black tracking-wider text-santo-navy transition-all duration-300 hover:-translate-y-1 hover:bg-santo-navy hover:text-white sm:px-9 sm:py-5 sm:text-[18px]"
+                className="group flex items-center gap-3 rounded-xl bg-white px-7 py-4 text-[17px] font-black tracking-wider text-santo-navy transition-all duration-300 hover:-translate-y-1 hover:bg-santo-navy hover:text-white sm:px-9 sm:py-5 sm:text-[19px]"
                 style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.35)" }}
               >
                 <Briefcase className="h-6 w-6 transition group-hover:scale-110" />
@@ -86,7 +86,7 @@ export function HeroSection() {
               </a>
               <a
                 href={localePath("/employers")}
-                className="group flex items-center gap-3 rounded-xl bg-white px-7 py-4 text-[16px] font-black tracking-wider text-santo-navy transition-all duration-300 hover:-translate-y-1 hover:bg-santo-navy hover:text-white sm:px-9 sm:py-5 sm:text-[18px]"
+                className="group flex items-center gap-3 rounded-xl bg-white px-7 py-4 text-[17px] font-black tracking-wider text-santo-navy transition-all duration-300 hover:-translate-y-1 hover:bg-santo-navy hover:text-white sm:px-9 sm:py-5 sm:text-[19px]"
                 style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.35)" }}
               >
                 <Building2 className="h-6 w-6 transition group-hover:scale-110" />

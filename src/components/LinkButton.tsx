@@ -10,7 +10,7 @@ type LinkButtonProps = {
 };
 
 const base =
-  "inline-flex shrink-0 items-center justify-center rounded text-sm font-bold tracking-wide whitespace-nowrap transition-all";
+  "inline-flex shrink-0 items-center justify-center rounded text-[15px] font-bold tracking-wide whitespace-nowrap transition-all";
 
 const variants = {
   default: "bg-primary text-primary-foreground hover:bg-primary/80",
@@ -20,8 +20,8 @@ const variants = {
 
 const sizes = {
   default: "h-10 gap-2 px-5",
-  lg: "h-12 gap-2 px-6 text-sm",
-  xl: "h-14 gap-2.5 px-8 text-base",
+  lg: "h-12 gap-2 px-6",
+  xl: "h-14 gap-2.5 px-8 text-[17px]",
 };
 
 export function LinkButton({

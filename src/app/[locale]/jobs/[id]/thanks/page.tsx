@@ -2,7 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
+import { CheckCircle2, Phone } from "lucide-react";
 
 const JOB_IDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"];
 
@@ -79,15 +79,14 @@ export default async function JobThanksPage({
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
             href={`/${locale}/jobs`}
-            className="flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-santo-navy py-[16px] text-[15px] font-bold text-white transition hover:bg-santo-blue"
+            className="flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-santo-navy py-[16px] text-[16px] font-bold text-white transition hover:bg-santo-blue"
             style={{ minHeight: 56 }}
           >
             {th("backToJobs")}
-            <ArrowRight className="h-4 w-4" />
           </Link>
           <a
             href="tel:0463-24-1722"
-            className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[15px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
+            className="flex flex-1 items-center justify-center gap-2 rounded-[10px] border-2 border-santo-navy py-[16px] text-[16px] font-bold text-santo-navy transition hover:bg-santo-navy hover:text-white"
             style={{ minHeight: 56 }}
           >
             <Phone className="h-4 w-4" />

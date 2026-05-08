@@ -111,29 +111,29 @@ export function ServiceOverview() {
 
   const services = [
     {
-      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg`
-         : (locale === "en" || locale === "zh") ? `/images/services/dispatch_structure${imgSuffix}_v2.jpg`
-         : `/images/services/dispatch_structure${imgSuffix}.jpg`,
-      label: "01",
-      title: t("diagramTitle"),
-      subtitle: "Staffing Structure",
-      description: t("diagramDesc"),
-      bg: "bg-white",
-    },
-    {
       img: locale === "ja" ? `/images/services/dispatch_service_v5.jpg` : `/images/services/dispatch_service${imgSuffix}_v5.jpg`,
-      label: "02",
+      label: "01",
       title: t("dispatchTitle"),
       subtitle: "Staffing Service",
       description: t("dispatchDesc"),
-      bg: "bg-[#f4f7fb]",
+      bg: "bg-white",
     },
     {
       img: locale === "ja" ? `/images/services/outsourcing_service_v6.jpg` : `/images/services/outsourcing_service${imgSuffix}_v6.jpg`,
-      label: "03",
+      label: "02",
       title: t("outsourcingTitle"),
       subtitle: "Outsourcing Service",
       description: t("outsourcingDesc"),
+      bg: "bg-[#f4f7fb]",
+    },
+    {
+      img: locale === "ja" ? `/images/services/outsourcing_service_v3.jpg`
+         : (locale === "en" || locale === "zh") ? `/images/services/dispatch_structure${imgSuffix}_v2.jpg`
+         : `/images/services/dispatch_structure${imgSuffix}.jpg`,
+      label: "03",
+      title: t("diagramTitle"),
+      subtitle: "Staffing Structure",
+      description: t("diagramDesc"),
       bg: "bg-white",
     },
   ];

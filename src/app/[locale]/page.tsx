@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-} from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import { FeatureCards } from "@/components/FeatureCards";
 import { HeroSection } from "@/components/HeroSection";
@@ -112,19 +109,17 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               href="https://haken-matching.jp/haken-comparison/kanagawa/196/#:~:text=株式会社%20サントー"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-santo-navy px-8 py-4 text-[15px] font-bold tracking-wide text-white shadow-sm transition hover:bg-santo-blue sm:px-10 sm:text-[17px]"
+              className="inline-flex items-center gap-2 rounded-lg bg-santo-navy px-8 py-4 text-[16px] font-bold tracking-wide text-white shadow-sm transition hover:bg-santo-blue sm:px-10 sm:text-[18px]"
             >
               {t("trustedButtonMatching")}
-              <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="https://find-bestwork.com/chiiki/kanagawa/100006/#:~:text=株式会社サントー"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#e89b0c] px-8 py-4 text-[15px] font-bold tracking-wide text-white shadow-sm transition hover:bg-[#d08a0a] sm:px-10 sm:text-[17px]"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#e89b0c] px-8 py-4 text-[16px] font-bold tracking-wide text-white shadow-sm transition hover:bg-[#d08a0a] sm:px-10 sm:text-[18px]"
             >
               {t("trustedButtonShushoku")}
-              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -182,7 +177,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   className="mt-2 w-full justify-center bg-santo-navy text-white hover:bg-santo-blue"
                 >
                   {t("ctaJobseekersButton")}
-                  <ArrowRight className="h-4 w-4" />
                 </LinkButton>
               </div>
             </div>
@@ -217,7 +211,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   className="mt-2 w-full justify-center bg-slate-800 text-white hover:bg-slate-700"
                 >
                   {t("ctaEmployersButton")}
-                  <ArrowRight className="h-4 w-4" />
                 </LinkButton>
               </div>
             </div>
@@ -251,7 +244,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               className="animate-shimmer relative overflow-hidden bg-white px-8 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:px-12"
             >
               {t("contactButton")}
-              <ArrowRight className="h-5 w-5" />
             </LinkButton>
             <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
               <div className="flex flex-col items-center">

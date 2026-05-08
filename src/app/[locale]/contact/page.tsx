@@ -287,7 +287,7 @@ export default function ContactPage() {
                       name="action"
                       value="mail"
                       size="lg"
-                      className="h-12 w-full bg-santo-navy px-6 text-sm font-black tracking-wider hover:bg-santo-blue sm:flex-1"
+                      className="h-12 w-full bg-santo-navy px-6 font-black tracking-wider hover:bg-santo-blue sm:flex-1"
                     >
                       <Mail className="h-4 w-4" />
                       {t("submitMailAppButton")}
@@ -297,7 +297,7 @@ export default function ContactPage() {
                       name="action"
                       value="gmail"
                       size="lg"
-                      className="h-12 w-full border-2 border-santo-blue bg-white px-6 text-sm font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
+                      className="h-12 w-full border-2 border-santo-blue bg-white px-6 font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
                     >
                       <Send className="h-4 w-4" />
                       {t("submitGmailButton")}

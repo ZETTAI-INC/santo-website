@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  ArrowRight,
   ClipboardList,
   MessageSquare,
   Briefcase,
@@ -268,7 +267,6 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
             className="bg-santo-navy text-white hover:bg-santo-blue"
           >
             {t("ctaButton")}
-            <ArrowRight className="h-4 w-4" />
           </LinkButton>
         </div>
       </section>
