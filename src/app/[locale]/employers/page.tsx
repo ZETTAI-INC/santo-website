@@ -5,6 +5,7 @@ import {
   Handshake,
   UserCheck,
 } from "lucide-react";
+import { EmployerFlowMobile } from "@/components/EmployerFlowMobile";
 import { LinkButton } from "@/components/LinkButton";
 import { PageHeader } from "@/components/PageHeader";
 import { StrengthTimeline } from "@/components/StrengthTimeline";
@@ -29,19 +30,19 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
       icon: Phone,
       num: "01",
       title: t("step1Title"),
-      desc: t("step1Desc"),
+      desc: t.rich("step1Desc", { br: () => <br className="lg:hidden" /> }),
     },
     {
       icon: FileSearch,
       num: "02",
       title: t("step2Title"),
-      desc: t("step2Desc"),
+      desc: t.rich("step2Desc", { br: () => <br className="lg:hidden" /> }),
     },
     {
       icon: Handshake,
       num: "03",
       title: t("step3Title"),
-      desc: t("step3Desc"),
+      desc: t.rich("step3Desc", { br: () => <br className="lg:hidden" /> }),
     },
     {
       icon: UserCheck,
@@ -88,8 +89,8 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
               <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-santo-light">
                 {t("leadLabel")}
               </p>
-              <h2 className="mb-6 text-2xl font-black tracking-wider text-slate-900 sm:text-4xl">
-                {t("leadTitle1")}<span className="text-santo-blue text-3xl sm:text-5xl">{t("leadTitle2")}</span>{t("leadTitle3")}<br /><span className="whitespace-nowrap"><span className="text-santo-blue text-3xl sm:text-5xl">{t("leadTitle4")}</span>{t("leadTitle5")}</span>
+              <h2 className="mb-6 break-keep text-2xl font-black tracking-wider text-slate-900 [text-wrap:balance] sm:text-4xl">
+                <span className="inline-block whitespace-nowrap">{t("leadTitle1")}<span className="text-santo-blue text-3xl sm:text-5xl">{t("leadTitle2")}</span>{t("leadTitle3")}</span><br /><span className="inline-block whitespace-nowrap"><span className="text-santo-blue text-3xl sm:text-5xl">{t("leadTitle4")}</span>{t("leadTitle5")}</span>
               </h2>
               <div className="mb-6 h-1 w-14 rounded-full bg-santo-navy" />
               <p className="text-[15px] font-bold leading-[2.2] text-slate-600 sm:text-[17px]">
@@ -210,26 +211,9 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
             {t("flowTitle")}
           </h2>
           {/* モバイル: 横スクロール */}
-          <div className="-mx-4 px-4 lg:hidden">
-            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2">
-              {steps.map((step) => (
-                <div key={step.title} className="flex w-[200px] shrink-0 snap-start flex-col rounded-xl bg-white p-4">
-                  <span className="text-[28px] font-light leading-none text-santo-navy/20">
-                    {step.num}
-                  </span>
-                  <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1 text-[12px] font-bold leading-[1.7] text-slate-500">
-                    {step.desc}
-                  </p>
-                  <div className="mt-auto flex justify-end pt-2">
-                    <step.icon className="h-8 w-8 text-slate-300" strokeWidth={1} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <EmployerFlowMobile
+            steps={steps.map(({ num, title, desc }) => ({ num, title, desc }))}
+          />
           {/* デスクトップ: 矢印型横並び */}
           <div className="hidden lg:flex items-stretch">
             {steps.map((step, i) => {
@@ -301,7 +285,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
       <section className="relative overflow-hidden py-16 sm:py-28 min-h-[380px] sm:min-h-[480px] lg:min-h-[560px]">
         <div
           className="absolute inset-0 bg-cover bg-no-repeat"
-          style={{ backgroundImage: "url('/images/employers_cta_bg_v2.png')", backgroundPosition: "center 30%" }}
+          style={{ backgroundImage: "url('/images/employers_cta_bg_v2.png')", backgroundPosition: "center 15%" }}
         />
         <div className="absolute inset-0 bg-santo-navy/25" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
@@ -309,9 +293,9 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
             {t("ctaLabel")}
           </p>
           <h2 className="mb-4 text-3xl font-black tracking-wider text-white [text-shadow:0_4px_14px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_22px_rgba(0,0,0,0.7)] sm:text-4xl lg:text-5xl">
-            {t("ctaTitle")}
+            {t.rich("ctaTitle", { br: () => <br /> })}
           </h2>
-          <p className="mx-auto mb-8 max-w-none text-[20px] font-black leading-[1.9] text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_20px_rgba(0,0,0,0.7)] sm:mb-10 sm:text-[28px] lg:text-[32px]">
+          <p className="mx-auto mb-8 max-w-none text-[16px] font-black leading-[1.9] text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_20px_rgba(0,0,0,0.7)] sm:mb-10 sm:text-[28px] lg:text-[32px]">
             {t.rich("ctaDesc", {
               br: () => <br />,
               nowrap: (chunks) => <span className="inline-block whitespace-nowrap">{chunks}</span>,

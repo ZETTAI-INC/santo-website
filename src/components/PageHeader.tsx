@@ -53,15 +53,15 @@ export function PageHeader({ label, title, subtitle, image, imagePosition = "cen
         <div className={`flex items-center ${hasRightImage ? "justify-between gap-8" : ""}`}>
           {/* テキスト */}
           <div className={tall ? "py-24 sm:py-32 lg:py-40" : "py-16 sm:py-24 lg:py-28"}>
-            <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-white/70">
+            <p className="mb-3 text-[14px] font-black tracking-[0.3em] text-white/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.7),0_0_14px_rgba(0,0,0,0.5)]">
               {label}
             </p>
-            <h1 className="text-3xl font-black tracking-wider text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-black tracking-wider text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.7),0_0_22px_rgba(0,0,0,0.5)] sm:text-5xl lg:text-6xl">
               {title}
             </h1>
             <div className="mt-5 h-1 w-16 rounded-full bg-santo-accent" />
             {subtitle && (
-              <p className={`mt-5 max-w-lg font-bold leading-[2] text-white/70 drop-shadow-md ${largeSubtitle ? "text-[16px] sm:text-[22px] lg:text-[24px]" : "text-[15px] sm:text-[18px]"}`}>
+              <p className={`mt-5 max-w-lg font-bold leading-[2] text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.7),0_0_18px_rgba(0,0,0,0.5)] ${largeSubtitle ? "text-[16px] sm:text-[22px] lg:text-[24px]" : "text-[15px] sm:text-[18px]"}`}>
                 {subtitle}
               </p>
             )}

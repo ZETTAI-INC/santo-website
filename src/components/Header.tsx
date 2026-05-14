@@ -5,7 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useTranslations } from "next-intl";
-import { Menu, Phone } from "lucide-react";
+import { Menu, Phone, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -19,6 +19,7 @@ const languages = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations("Header");
@@ -101,15 +102,32 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger
-            className="lg:hidden"
-            render={<Button variant="ghost" size="icon" />}
+        {/* Mobile: Globe (language) + Hamburger */}
+        <div className="mr-8 flex items-center gap-1 sm:mr-14 lg:hidden lg:mr-0">
+          {/* Language Accordion Trigger */}
+          <Button
+            variant="ghost"
+            onClick={() => {
+              setLangOpen((v) => !v);
+              if (open) setOpen(false);
+            }}
+            aria-expanded={langOpen}
+            aria-controls="mobile-lang-panel"
+            className="h-10 gap-1.5 px-2 text-santo-navy"
           >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">{t("menu")}</span>
-          </SheetTrigger>
+            <Globe className="h-5 w-5" />
+            <span className="text-xs font-black tracking-wider">
+              {locale.toUpperCase()}
+            </span>
+            <span className="sr-only">{t("language")}</span>
+          </Button>
+
+          {/* Hamburger Menu */}
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger render={<Button variant="ghost" size="icon" />}>
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">{t("menu")}</span>
+            </SheetTrigger>
           <SheetContent side="right" className="w-80 p-0">
             <div className="flex h-full flex-col">
               <div className="border-b border-slate-100 p-5">
@@ -137,28 +155,9 @@ export function Header() {
                 })}
               </nav>
               <div className="border-t border-slate-100 p-5">
-                <p className="mb-2 text-[10px] font-bold tracking-widest text-slate-400">
-                  {t("language")}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {languages.map((lang) => (
-                    <a
-                      key={lang.code}
-                      href={switchLocaleHref(lang.code)}
-                      className={`flex flex-col items-center rounded px-3 py-1.5 ${
-                        locale === lang.code
-                          ? "bg-santo-navy text-white"
-                          : "bg-slate-100 text-slate-600 hover:bg-santo-sky hover:text-santo-navy"
-                      }`}
-                    >
-                      <span className="text-xs font-bold">{lang.label}</span>
-                      <span className="text-[30px] leading-none">{lang.flag}</span>
-                    </a>
-                  ))}
-                </div>
                 <a
                   href="tel:0463-24-1722"
-                  className="mt-4 flex items-center gap-2 text-sm font-black text-santo-navy"
+                  className="flex items-center gap-2 text-sm font-black text-santo-navy"
                 >
                   <Phone className="h-4 w-4" />
                   0463-24-1722
@@ -166,7 +165,39 @@ export function Header() {
               </div>
             </div>
           </SheetContent>
-        </Sheet>
+          </Sheet>
+        </div>
+      </div>
+
+      {/* Mobile Language Accordion Panel */}
+      <div
+        id="mobile-lang-panel"
+        className={`overflow-hidden border-t border-slate-100 bg-white transition-[max-height,opacity] duration-300 ease-out lg:hidden ${
+          langOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+          <p className="mb-3 text-[11px] font-black tracking-[0.3em] text-slate-400">
+            {t("language")}
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            {languages.map((lang) => (
+              <a
+                key={lang.code}
+                href={switchLocaleHref(lang.code)}
+                onClick={() => setLangOpen(false)}
+                className={`flex items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
+                  locale === lang.code
+                    ? "bg-santo-navy text-white"
+                    : "bg-slate-100 text-slate-700 hover:bg-santo-sky hover:text-santo-navy"
+                }`}
+              >
+                <span className="text-[26px] leading-none">{lang.flag}</span>
+                <span className="text-sm font-bold">{lang.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </header>
   );

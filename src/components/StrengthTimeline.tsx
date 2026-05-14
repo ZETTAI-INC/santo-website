@@ -248,7 +248,7 @@ export function StrengthTimeline() {
           <TitleAccent>{t("title5Accent")}</TitleAccent>{t("title5Rest")}
         </>
       ),
-      desc: t("desc5"),
+      desc: t.rich("desc5", { br: () => <br /> }),
     },
     {
       icon: ShieldCheck,
@@ -257,7 +257,7 @@ export function StrengthTimeline() {
           <TitleAccent>{t("title6Accent")}</TitleAccent>{t("title6Rest")}
         </>
       ),
-      desc: t("desc6"),
+      desc: t.rich("desc6", { br: () => <br /> }),
     },
   ];
 

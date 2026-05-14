@@ -113,7 +113,7 @@ export default async function JobDetailPage({
       <div className="mx-auto max-w-[768px] px-[15px] pb-[40px]">
         {/* ══════ Title ══════ */}
         <div className="pb-[10px] pt-[25px]">
-          <h1 className="text-[20px] font-bold leading-[1.5] text-santo-blue sm:text-[24px]">
+          <h1 className="text-[20px] font-bold leading-[1.5] text-santo-blue [text-wrap:balance] break-keep sm:text-[24px]">
             {job.title}
           </h1>
         </div>

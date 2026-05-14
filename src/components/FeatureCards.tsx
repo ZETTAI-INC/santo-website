@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { ChevronRight } from "lucide-react";
 
 function FeatureRow({
   feature,
@@ -11,7 +12,7 @@ function FeatureRow({
     problem: string;
     problemImg: string;
     title: string;
-    solution: string;
+    solution: ReactNode;
     img: string;
   };
   index: number;
@@ -124,6 +125,9 @@ function FeatureRow({
 
 export function FeatureCards() {
   const t = useTranslations("FeatureCards");
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const features = [
     {
@@ -137,7 +141,7 @@ export function FeatureCards() {
       problem: t("problem2"),
       problemImg: "/images/features/problem02.svg",
       title: t("solution2Title"),
-      solution: t("solution2Desc"),
+      solution: t.rich("solution2Desc", { br: () => <br className="md:hidden" /> }),
       img: "/images/features/quick_response.svg",
     },
     {
@@ -149,38 +153,100 @@ export function FeatureCards() {
     },
   ];
 
+  // 表示中のカード index を追跡（ドットとシェブロン制御に使用）
+  useEffect(() => {
+    const root = scrollerRef.current;
+    if (!root) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            const idx = Number(entry.target.getAttribute("data-idx"));
+            if (!Number.isNaN(idx)) setActiveIndex(idx);
+          }
+        });
+      },
+      { root, threshold: [0.6] }
+    );
+    cardRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToCard = (i: number) => {
+    const card = cardRefs.current[i];
+    const root = scrollerRef.current;
+    if (!card || !root) return;
+    // カードの中心がスクローラの中心と一致するようにスクロール
+    const target = card.offsetLeft + card.offsetWidth / 2 - root.clientWidth / 2;
+    root.scrollTo({ left: target, behavior: "smooth" });
+  };
+
+  const isLast = activeIndex >= features.length - 1;
+
   return (
     <>
-      {/* モバイル: 横スクロール */}
-      <div className="md:hidden -mx-4 px-4">
-        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
-          {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="w-[280px] shrink-0 snap-start"
-            >
-              <div className="rounded-t-2xl border border-b-0 border-slate-200 bg-slate-100 px-4 py-2">
-                <div className="flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/extracted_curly_line_straight.png" alt="" className="h-12 w-12 object-contain" />
+      {/* モバイル: 横スクロール（中央スナップ） */}
+      <div className="md:hidden">
+        <div className="relative -mx-4">
+          <div
+            ref={scrollerRef}
+            className="flex gap-4 overflow-x-auto px-[calc((100vw-280px)/2)] pb-4 snap-x snap-mandatory scrollbar-hide"
+          >
+            {features.map((feature, i) => (
+              <div
+                key={feature.title}
+                ref={(el) => { cardRefs.current[i] = el; }}
+                data-idx={i}
+                className="w-[280px] shrink-0 snap-center"
+              >
+                <div className="rounded-t-2xl border border-b-0 border-slate-200 bg-slate-100 px-4 py-2">
+                  <div className="flex justify-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/images/extracted_curly_line_straight.png" alt="" className="h-12 w-12 object-contain" />
+                  </div>
+                  <p className="whitespace-pre-line text-center text-[14px] font-bold leading-[1.6] text-slate-700">
+                    {feature.problem}
+                  </p>
                 </div>
-                <p className="whitespace-pre-line text-center text-[14px] font-bold leading-[1.6] text-slate-700">
-                  {feature.problem}
-                </p>
-              </div>
-              <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-white p-4">
-                <div className="mb-3 flex justify-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={feature.img} alt={feature.title} className="h-20 w-20 object-contain" />
+                <div className="rounded-b-2xl border border-t-0 border-slate-200 bg-white p-4">
+                  <div className="mb-3 flex justify-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={feature.img} alt={feature.title} className="h-20 w-20 object-contain" />
+                  </div>
+                  <h3 className="mb-1 text-center text-[15px] font-black tracking-wider text-santo-navy">
+                    {feature.title}
+                  </h3>
+                  <p className="text-center text-[13px] font-bold leading-[1.8] text-slate-600">
+                    {feature.solution}
+                  </p>
                 </div>
-                <h3 className="mb-1 text-center text-[15px] font-black tracking-wider text-santo-navy">
-                  {feature.title}
-                </h3>
-                <p className="text-center text-[13px] font-bold leading-[1.8] text-slate-600">
-                  {feature.solution}
-                </p>
               </div>
-            </div>
+            ))}
+          </div>
+
+          {/* 右端の「もっと見る」シェブロン（最後のカードでフェードアウト） */}
+          <div
+            className={`pointer-events-none absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-md transition-opacity duration-300 ${
+              isLast ? "opacity-0" : "opacity-100 animate-pulse"
+            }`}
+            aria-hidden="true"
+          >
+            <ChevronRight className="h-6 w-6 text-santo-navy" />
+          </div>
+        </div>
+
+        {/* ページネーションドット */}
+        <div className="mt-2 flex justify-center gap-2">
+          {features.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => scrollToCard(i)}
+              aria-label={`カード ${i + 1} を表示`}
+              className={`h-2 rounded-full transition-all ${
+                activeIndex === i ? "w-6 bg-santo-navy" : "w-2 bg-santo-navy/25"
+              }`}
+            />
           ))}
         </div>
       </div>

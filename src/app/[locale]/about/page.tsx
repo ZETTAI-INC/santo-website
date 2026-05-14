@@ -89,14 +89,18 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </h2>
           <div className="mx-auto h-1 w-14 rounded-full bg-slate-800/30" />
           <div className="mx-auto max-w-4xl py-12 sm:py-16">
-            <p className={`font-black leading-[1.8] text-slate-800 drop-shadow-lg ${isJa ? "text-2xl tracking-[0.1em] sm:text-4xl lg:text-6xl" : "text-xl tracking-wide sm:text-3xl lg:text-4xl"}`}>
-              {t("philosophyText1")}<span className="text-santo-blue">{t("philosophyHighlight1")}</span>{t("philosophyText2")}
+            <p className={`break-keep font-black leading-[1.8] text-slate-800 drop-shadow-lg [text-wrap:balance] ${isJa ? "text-2xl tracking-[0.05em] sm:text-4xl sm:tracking-[0.1em] lg:text-6xl" : "text-xl tracking-wide sm:text-3xl lg:text-4xl"}`}>
+              <span className="inline-block">
+                {t("philosophyText1")}<span className="text-santo-blue">{t("philosophyHighlight1")}</span>{t("philosophyText2")}
+              </span>
               <br />
-              {t("philosophyText3")}<span className="text-santo-blue">{t("philosophyHighlight2")}</span>{t("philosophyText4")}<span className="text-santo-blue">{t("philosophyHighlight3")}</span>{t("philosophyText5")}
+              <span className="inline-block">
+                {t("philosophyText3")}<span className="text-santo-blue">{t("philosophyHighlight2")}</span>{t("philosophyText4")}<span className="text-santo-blue">{t("philosophyHighlight3")}</span>{t("philosophyText5")}
+              </span>
             </p>
           </div>
-          <p className="mx-auto max-w-5xl whitespace-pre-line text-[16px] font-bold leading-[2] text-slate-600 sm:text-[20px] lg:text-[22px]">
-            {t("philosophyDesc")}
+          <p className="mx-auto max-w-5xl break-keep text-[16px] font-bold leading-[2] text-slate-600 [text-wrap:balance] sm:whitespace-pre-line sm:text-[20px] lg:text-[22px]">
+            {t("philosophyDesc").replace(/\n/g, "")}
           </p>
         </div>
       </section>

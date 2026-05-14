@@ -38,8 +38,13 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
           {t("marginFormulaTitle")}
         </h2>
         <div className="mb-4 rounded bg-slate-50 px-4 py-3">
-          <p className="text-center text-sm font-semibold text-slate-700">
-            {t("marginFormulaDesc")}
+          <p className="text-center text-sm font-semibold text-slate-700 [text-wrap:balance] break-keep">
+            {t.rich("marginFormulaDesc", {
+              br: () => <br className="sm:hidden" />,
+              nowrap: (chunks) => (
+                <span className="inline-block whitespace-nowrap">{chunks}</span>
+              ),
+            })}
           </p>
         </div>
 
@@ -58,7 +63,14 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
               </div>
               {/* その他の経費 */}
               <div className="flex flex-[35] items-center justify-center bg-emerald-100 px-1 text-center">
-                <span className="text-[10px] font-semibold text-emerald-800 sm:text-xs">{t("marginChartOtherExpenses")}</span>
+                <span className="text-[10px] font-semibold leading-tight text-emerald-800 break-keep sm:text-xs">
+                  {t.rich("marginChartOtherExpenses", {
+                    br: () => <br />,
+                    nowrap: (chunks) => (
+                      <span className="inline-block whitespace-nowrap">{chunks}</span>
+                    ),
+                  })}
+                </span>
               </div>
               {/* 営業利益 */}
               <div className="flex flex-[25] items-center justify-center bg-rose-100 px-1 text-center">
@@ -84,43 +96,48 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
         <table className="w-full border-collapse border border-slate-300 text-sm">
           <tbody>
             <tr className="border-b border-slate-300">
-              <th className="w-3/5 border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="w-1/2 break-keep border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:w-3/5 sm:px-4">
                 {t("dispatchWorkers")}
               </th>
               <td className="px-4 py-3 text-right font-semibold text-slate-800">{t("dispatchWorkersValue")}</td>
             </tr>
             <tr className="border-b border-slate-300">
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="break-keep border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:px-4">
                 {t("dispatchDestinations")}
               </th>
-              <td className="px-4 py-3 text-right font-semibold text-slate-800">{t("dispatchDestinationsValue")}</td>
+              <td className="px-3 py-3 text-right font-semibold text-slate-800 sm:px-4">{t("dispatchDestinationsValue")}</td>
             </tr>
             <tr className="border-b border-slate-300">
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="break-keep border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:px-4">
                 {t("avgFee")}
-                <span className="block text-xs font-normal text-slate-500">{t("avgFeeNote")}</span>
+                <span className="block text-xs font-normal text-slate-500 break-keep">{t("avgFeeNote")}</span>
               </th>
-              <td className="px-4 py-3 text-right font-semibold text-slate-800">{t("avgFeeValue")}</td>
+              <td className="px-3 py-3 text-right font-semibold text-slate-800 sm:px-4">{t("avgFeeValue")}</td>
             </tr>
             <tr className="border-b border-slate-300">
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="break-keep border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:px-4">
                 {t("avgWage")}
-                <span className="block text-xs font-normal text-slate-500">{t("avgWageNote")}</span>
+                <span className="block text-xs font-normal text-slate-500 break-keep">{t("avgWageNote")}</span>
               </th>
-              <td className="px-4 py-3 text-right font-semibold text-slate-800">{t("avgWageValue")}</td>
+              <td className="px-3 py-3 text-right font-semibold text-slate-800 sm:px-4">{t("avgWageValue")}</td>
             </tr>
             <tr className="border-b border-slate-300">
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
+              <th className="break-keep border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:px-4">
                 {t("marginRate")}
-                <span className="block text-xs font-normal text-slate-500">{t("marginRateDesc")}</span>
+                <span className="mt-1 block text-xs font-normal leading-relaxed text-slate-500 break-keep [text-wrap:pretty]">{t("marginRateDesc")}</span>
               </th>
-              <td className="px-4 py-3 text-right text-lg font-bold text-slate-900">{t("marginRateValue")}</td>
+              <td className="px-3 py-3 text-right text-lg font-bold text-slate-900 sm:px-4">{t("marginRateValue")}</td>
             </tr>
             <tr>
-              <th className="border-r border-slate-300 bg-slate-100 px-4 py-3 text-left font-semibold text-slate-700">
-                {t("careerContact")}
+              <th className="break-keep border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:px-4">
+                {t.rich("careerContact", {
+                  br: () => <br className="sm:hidden" />,
+                  nowrap: (chunks) => (
+                    <span className="inline-block whitespace-nowrap">{chunks}</span>
+                  ),
+                })}
               </th>
-              <td className="px-4 py-3 text-right text-slate-600">{t("careerContactValue")}</td>
+              <td className="px-3 py-3 text-right text-slate-600 sm:px-4">{t("careerContactValue")}</td>
             </tr>
           </tbody>
         </table>

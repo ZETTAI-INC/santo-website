@@ -159,12 +159,12 @@ export function CountUpStats() {
             {t("title")}
           </h2>
           <div className="mt-3 h-1 w-16 rounded-full bg-santo-navy sm:mt-6" />
-          <p className="mt-3 text-[13px] font-bold leading-[1.9] text-slate-500 sm:mt-8 sm:text-[17px] sm:leading-[2.2]">
-            <span className="sm:whitespace-nowrap">{t("desc1")}</span>
-            <br className="hidden sm:block" />
-            <span className="sm:whitespace-nowrap">{t("desc2")}</span>
-            <br className="hidden sm:block" />
-            <span className="sm:whitespace-nowrap">{t("desc3")}</span>
+          <p className="mt-3 text-[13px] font-bold leading-[1.9] text-slate-500 [text-wrap:balance] break-keep sm:mt-8 sm:text-[17px] sm:leading-[2.2]">
+            <span className="whitespace-nowrap">{t("desc1")}</span>
+            <br />
+            <span className="whitespace-nowrap">{t("desc2")}</span>
+            <br />
+            <span className="whitespace-nowrap">{t("desc3")}</span>
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

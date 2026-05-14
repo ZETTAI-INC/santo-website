@@ -104,12 +104,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </a>
             </div>
           </div>
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <div className="mt-6 flex flex-row items-stretch justify-center gap-2 sm:gap-4">
             <a
               href="https://haken-matching.jp/haken-comparison/kanagawa/196/#:~:text=株式会社%20サントー"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-santo-navy px-8 py-4 text-[16px] font-bold tracking-wide text-white shadow-sm transition hover:bg-santo-blue sm:px-10 sm:text-[18px]"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-santo-navy px-3 py-3 text-center text-[13px] font-bold tracking-wide text-white shadow-sm transition hover:bg-santo-blue sm:flex-none sm:px-10 sm:py-4 sm:text-[18px]"
             >
               {t("trustedButtonMatching")}
             </a>
@@ -117,7 +117,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               href="https://find-bestwork.com/chiiki/kanagawa/100006/#:~:text=株式会社サントー"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#e89b0c] px-8 py-4 text-[16px] font-bold tracking-wide text-white shadow-sm transition hover:bg-[#d08a0a] sm:px-10 sm:text-[18px]"
+              className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#e89b0c] px-3 py-3 text-center text-[13px] font-bold tracking-wide text-white shadow-sm transition hover:bg-[#d08a0a] sm:flex-none sm:px-10 sm:py-4 sm:text-[18px]"
             >
               {t("trustedButtonShushoku")}
             </a>
@@ -135,10 +135,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           />
           <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/70 via-santo-navy/50 to-santo-navy/30" />
           <div className="relative mx-auto max-w-4xl text-center">
-            <h2 className="text-2xl font-black leading-[1.5] tracking-wider text-white drop-shadow-lg sm:text-4xl lg:text-6xl">
+            <h2 className="text-2xl font-black leading-[1.5] tracking-wider text-white drop-shadow-lg sm:text-4xl lg:text-7xl">
               {t("ctaTitle")}
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-[16px] font-bold leading-[2] text-white drop-shadow-md sm:text-[24px]">
+            <p className="mx-auto mt-6 max-w-2xl text-[18px] font-bold leading-[2] text-white drop-shadow-md sm:text-[28px] lg:max-w-5xl lg:text-[36px]">
               {t("ctaDesc")}
             </p>
           </div>
@@ -228,43 +228,43 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         />
         <div className="absolute inset-0 bg-santo-navy/55" />
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
-          <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/70">
+          <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/80 lg:text-[14px]">
             {t("contactLabel")}
           </p>
-          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-white sm:text-4xl lg:text-6xl">
             {t("contactTitle")}
           </h2>
-          <p className="mx-auto mb-8 max-w-md text-[13px] font-bold leading-[1.9] text-white/70 sm:mb-10 sm:text-[14px]">
+          <p className="mx-auto mb-8 max-w-md text-[14px] font-bold leading-[1.9] text-white/90 sm:mb-10 sm:max-w-xl sm:text-[17px] lg:max-w-3xl lg:text-[22px]">
             {t("contactDesc")}
           </p>
           <div className="flex flex-col items-center gap-6">
             <LinkButton
               href={`/${locale}/contact/`}
               size="xl"
-              className="animate-shimmer relative overflow-hidden bg-white px-8 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:px-12"
+              className="animate-shimmer relative overflow-hidden bg-white px-8 py-4 text-lg text-santo-navy shadow-lg shadow-white/20 hover:bg-slate-100 sm:px-12 sm:text-xl lg:px-16 lg:py-5 lg:text-2xl"
             >
               {t("contactButton")}
             </LinkButton>
             <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
               <div className="flex flex-col items-center">
-                <p className="text-[10px] font-bold tracking-widest text-white/60">
+                <p className="text-[10px] font-bold tracking-widest text-white/70 lg:text-[12px]">
                   TEL
                 </p>
                 <a
                   href="tel:0463-24-1722"
-                  className="text-2xl font-black tracking-wider text-white"
+                  className="text-2xl font-black tracking-wider text-white sm:text-3xl lg:text-4xl"
                 >
                   0463-24-1722
                 </a>
               </div>
-              <div className="hidden h-10 w-px bg-white/30 sm:block" />
+              <div className="hidden h-10 w-px bg-white/30 sm:block lg:h-14" />
               <div className="flex flex-col items-center">
-                <p className="text-[10px] font-bold tracking-widest text-white/60">
+                <p className="text-[10px] font-bold tracking-widest text-white/70 lg:text-[12px]">
                   MAIL
                 </p>
                 <a
                   href="mailto:santo@santo-ho.co.jp"
-                  className="text-lg font-black tracking-wider text-white"
+                  className="text-lg font-black tracking-wider text-white sm:text-xl lg:text-2xl"
                 >
                   santo@santo-ho.co.jp
                 </a>

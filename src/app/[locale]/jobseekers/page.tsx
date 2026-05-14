@@ -106,14 +106,14 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
             {t("meritTitle1")}<span className="relative inline-block text-santo-blue" style={{ backgroundImage: "linear-gradient(transparent 70%, #bfdbfe 70%)", backgroundRepeat: "no-repeat" }}>{t("meritTitle2")}</span>
           </h2>
           <div className="mt-5 h-1 w-14 rounded-full bg-santo-navy" />
-          <p className="mt-5 mb-8 text-[18px] font-bold leading-[1.8] tracking-wide text-slate-500 sm:text-[26px] lg:text-[34px] lg:whitespace-nowrap">
+          <p className="mt-5 mb-8 break-keep text-[18px] font-bold leading-[1.8] tracking-wide text-slate-500 [text-wrap:balance] sm:text-[26px] lg:text-[34px] lg:whitespace-nowrap">
             {t("meritDesc")}
           </p>
           <HexMerits />
           <div className="mt-10 flex flex-col items-center text-center">
             <div className="h-[2px] w-12 rounded-full bg-santo-blue" />
-            <p className="mt-5 text-[20px] font-bold leading-[1.8] tracking-wide text-slate-700 sm:text-[34px] lg:whitespace-nowrap lg:text-[40px]">
-              {t("meritCta1")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight1")}</span>{t("meritCta2")}<br />{t("meritCta3")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight2")}</span>{t("meritCta4")}
+            <p className="mt-5 break-keep text-[20px] font-bold leading-[1.8] tracking-wide text-slate-700 [text-wrap:balance] sm:text-[34px] lg:whitespace-nowrap lg:text-[40px]">
+              {t("meritCta1")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight1")}</span>{t("meritCta2")}<br className="hidden sm:block" />{t("meritCta3")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight2")}</span>{t("meritCta4")}
             </p>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
                   <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-[12px] font-bold leading-[1.7] text-slate-500">
+                  <p className="mt-1 break-keep text-[12px] font-bold leading-[1.7] text-slate-500 [text-wrap:balance]">
                     {step.desc}
                   </p>
                   <div className="mt-auto flex justify-end pt-2">
@@ -250,21 +250,26 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
       </section>
 
       {/* CTA */}
-      <section className="bg-[#dce8f5] py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
-          <p className="mb-3 text-[11px] font-black tracking-[0.25em] text-santo-blue">
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat"
+          style={{ backgroundImage: "url('/images/trustworthy_woman_blurred_man.png')", backgroundPosition: "center 30%" }}
+        />
+        <div className="absolute inset-0 bg-santo-navy/55" />
+        <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6">
+          <p className="mb-3 text-[12px] font-black tracking-[0.3em] text-white/80 [text-shadow:0_2px_8px_rgba(0,0,0,0.7),0_0_14px_rgba(0,0,0,0.5)]">
             {t("ctaLabel")}
           </p>
-          <h2 className="mb-4 text-2xl font-black tracking-wider text-slate-800 sm:text-3xl">
+          <h2 className="mb-4 text-3xl font-black tracking-wider text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.7),0_0_22px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-10 max-w-md text-[13px] font-bold leading-[1.9] text-slate-500">
+          <p className="mx-auto mb-10 max-w-2xl text-[15px] font-bold leading-[1.9] text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.7)] sm:text-[18px]">
             {t("ctaDesc")}
           </p>
           <LinkButton
             href={`/${locale}/contact`}
             size="xl"
-            className="bg-santo-navy text-white hover:bg-santo-blue"
+            className="bg-white text-santo-navy shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:bg-slate-100"
           >
             {t("ctaButton")}
           </LinkButton>

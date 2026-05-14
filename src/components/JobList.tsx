@@ -202,7 +202,7 @@ export function JobList() {
                   {/* タイトル */}
                   <Link
                     href={`/${locale}/jobs/${job.id}`}
-                    className="text-[14px] font-bold leading-[1.7] text-[#1a6dcc] hover:underline sm:text-[15px]"
+                    className="text-[14px] font-bold leading-[1.7] text-[#1a6dcc] [text-wrap:balance] break-keep hover:underline sm:text-[15px]"
                   >
                     {job.title}
                   </Link>
@@ -211,41 +211,41 @@ export function JobList() {
                   <div className="-mx-4 mt-3 border-t border-slate-100 text-[13px] sm:mx-0">
                     {/* 給与 */}
                     <div className="flex border-b border-slate-100">
-                      <div className="flex w-[80px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
+                      <div className="flex w-[72px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
                         <span className="hidden text-[12px] text-slate-400 sm:inline">$</span>
                         <span className="font-bold text-slate-600">{t("labelSalary")}</span>
                       </div>
-                      <div className="flex-1 px-3 py-2 text-slate-700">
+                      <div className="min-w-0 flex-1 px-3 py-2 text-slate-700 [text-wrap:balance] break-keep">
                         {job.salary}
                       </div>
                     </div>
                     {/* 雇用形態 */}
                     <div className="flex border-b border-slate-100">
-                      <div className="flex w-[80px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
+                      <div className="flex w-[72px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
                         <span className="hidden text-[12px] text-slate-400 sm:inline">&#9776;</span>
                         <span className="font-bold text-slate-600">{t("labelType")}</span>
                       </div>
-                      <div className="flex-1 px-3 py-2 text-slate-700">
+                      <div className="min-w-0 flex-1 px-3 py-2 text-slate-700 [text-wrap:balance] break-keep">
                         {job.type}
                       </div>
                     </div>
                     {/* シフト */}
                     <div className="flex border-b border-slate-100">
-                      <div className="flex w-[80px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
+                      <div className="flex w-[72px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
                         <span className="hidden text-[12px] text-slate-400 sm:inline">&#9776;</span>
                         <span className="font-bold text-slate-600">{t("labelShift")}</span>
                       </div>
-                      <div className="flex-1 px-3 py-2 text-slate-700">
+                      <div className="min-w-0 flex-1 px-3 py-2 text-slate-700 [text-wrap:balance] break-keep">
                         {job.shift}
                       </div>
                     </div>
                     {/* アクセス */}
                     <div className="flex">
-                      <div className="flex w-[80px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
+                      <div className="flex w-[72px] shrink-0 items-center whitespace-nowrap border-r border-slate-100 bg-slate-50/80 px-2 py-2 sm:w-[100px] sm:gap-1.5 sm:px-3">
                         <span className="hidden text-[12px] text-slate-400 sm:inline">&#9737;</span>
                         <span className="font-bold text-slate-600">{t("labelAccess")}</span>
                       </div>
-                      <div className="flex-1 px-3 py-2 text-slate-700">
+                      <div className="min-w-0 flex-1 px-3 py-2 text-slate-700 [text-wrap:balance] break-keep">
                         {job.access}
                       </div>
                     </div>

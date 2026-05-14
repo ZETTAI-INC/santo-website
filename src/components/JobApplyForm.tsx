@@ -363,8 +363,13 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
           <p className="text-[14px] font-black tracking-wider text-santo-navy sm:text-[15px]">
             {t("mailFallbackTitle")}
           </p>
-          <p className="mt-2 text-[13px] leading-[1.8] text-slate-600">
-            {t("mailFallbackBody")}
+          <p className="mt-2 text-[13px] leading-[1.8] text-slate-600 [text-wrap:pretty]">
+            {t.rich("mailFallbackBody", {
+              br: () => <br className="sm:hidden" />,
+              nowrap: (chunks) => (
+                <span className="inline-block whitespace-nowrap">{chunks}</span>
+              ),
+            })}
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <Button
@@ -415,8 +420,13 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
           {submitting && pendingTarget === "gmail" ? t("submittingButton") : t("submitGmailButton")}
         </Button>
       </div>
-      <p className="text-[12px] leading-[1.8] text-slate-500">
-        {t("submitChoiceHint")}
+      <p className="text-[12px] leading-[1.8] text-slate-500 [text-wrap:pretty]">
+        {t.rich("submitChoiceHint", {
+          br: () => <br className="sm:hidden" />,
+          nowrap: (chunks) => (
+            <span className="inline-block whitespace-nowrap">{chunks}</span>
+          ),
+        })}
       </p>
 
       <a ref={mailLinkRef} href={mailtoUrl} className="hidden" />

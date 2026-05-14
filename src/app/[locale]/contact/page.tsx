@@ -303,8 +303,13 @@ export default function ContactPage() {
                       {t("submitGmailButton")}
                     </Button>
                   </div>
-                  <p className="text-[12px] leading-[1.8] text-slate-500">
-                    {t("submitChoiceHint")}
+                  <p className="text-[12px] leading-[1.8] text-slate-500 [text-wrap:pretty]">
+                    {t.rich("submitChoiceHint", {
+                      br: () => <br className="sm:hidden" />,
+                      nowrap: (chunks) => (
+                        <span className="inline-block whitespace-nowrap">{chunks}</span>
+                      ),
+                    })}
                   </p>
                 </form>
               )}

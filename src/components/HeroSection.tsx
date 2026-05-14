@@ -29,7 +29,7 @@ export function HeroSection() {
         <div>
           <div className="max-w-3xl">
             {/* タイプライターキャッチコピー */}
-            <h1 className="relative mb-6 font-black leading-[1.2] tracking-wider text-white drop-shadow-lg">
+            <h1 className="relative mb-6 font-black leading-[1.2] tracking-wider text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.7),0_0_22px_rgba(0,0,0,0.5)]">
               <TypeWriter
                 texts={[t("heroLine1"), t("heroLine2")]}
                 lineClasses={[
@@ -58,12 +58,18 @@ export function HeroSection() {
               }}
             >
               <div className="w-[3px] shrink-0 rounded-full bg-santo-accent" />
-              <p className="text-[13px] font-black leading-[1.8] text-white sm:text-[22px]" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>
-                <span className="sm:whitespace-nowrap">{t("heroSub1")}</span>
+              <p className="text-[13px] font-black leading-[2.4] text-white [text-wrap:balance] break-keep sm:text-[22px]">
+                <span className="box-decoration-clone whitespace-nowrap rounded bg-santo-navy/75 px-2 py-1 sm:rounded-none sm:bg-transparent sm:px-0 sm:py-0 sm:[text-shadow:0_2px_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.7),0_0_18px_rgba(0,0,0,0.5)]">
+                  {t("heroSub1")}
+                </span>
                 <br />
-                <span className="sm:whitespace-nowrap"><span className="text-[15px] font-black sm:text-[26px]" style={{ color: "#0a1628", textShadow: "none" }}>{t("heroSub2")}</span></span>
+                <span className="box-decoration-clone whitespace-nowrap rounded bg-santo-navy/75 px-2 py-1 text-[15px] font-black sm:rounded-none sm:bg-transparent sm:px-0 sm:py-0 sm:text-[26px] sm:[text-shadow:0_3px_12px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.7),0_0_22px_rgba(0,0,0,0.5)]">
+                  {t("heroSub2")}
+                </span>
                 <br />
-                <span className="sm:whitespace-nowrap">{t("heroSub3")}{t("heroSub4")}</span>
+                <span className="box-decoration-clone whitespace-nowrap rounded bg-santo-navy/75 px-2 py-1 sm:rounded-none sm:bg-transparent sm:px-0 sm:py-0 sm:[text-shadow:0_2px_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.7),0_0_18px_rgba(0,0,0,0.5)]">
+                  {t("heroSub3")}{t("heroSub4")}
+                </span>
               </p>
             </div>
 
