@@ -293,7 +293,7 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
             {t("ctaLabel")}
           </p>
           <h2 className="mb-4 text-3xl font-black tracking-wider text-white [text-shadow:0_4px_14px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_22px_rgba(0,0,0,0.7)] sm:text-4xl lg:text-5xl">
-            {t.rich("ctaTitle", { br: () => <br /> })}
+            {t.rich("ctaTitle", { br: () => <br className="lg:hidden" /> })}
           </h2>
           <p className="mx-auto mb-8 max-w-none text-[16px] font-black leading-[1.9] text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.95),0_2px_6px_rgba(0,0,0,0.9),0_0_20px_rgba(0,0,0,0.7)] sm:mb-10 sm:text-[28px] lg:text-[32px]">
             {t.rich("ctaDesc", {

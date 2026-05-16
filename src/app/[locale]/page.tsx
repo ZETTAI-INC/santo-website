@@ -134,11 +134,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             style={{ backgroundImage: "url('/images/cta-bg-v2.png')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-santo-navy/70 via-santo-navy/50 to-santo-navy/30" />
-          <div className="relative mx-auto max-w-4xl text-center">
+          <div className="relative mx-auto max-w-4xl text-center lg:max-w-none">
             <h2 className="text-2xl font-black leading-[1.5] tracking-wider text-white drop-shadow-lg sm:text-4xl lg:text-7xl">
               {t("ctaTitle")}
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-[18px] font-bold leading-[2] text-white drop-shadow-md sm:text-[28px] lg:max-w-5xl lg:text-[36px]">
+            <p className="mx-auto mt-6 max-w-2xl text-[18px] font-bold leading-[2] text-white drop-shadow-md sm:text-[28px] lg:max-w-none lg:whitespace-nowrap lg:text-[36px]">
               {t("ctaDesc")}
             </p>
           </div>

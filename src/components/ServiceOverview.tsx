@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -14,7 +14,7 @@ function ServiceRow({
     label: string;
     title: string;
     subtitle: string;
-    description: string;
+    description: ReactNode;
     bg: string;
   };
   index: number;
@@ -94,7 +94,7 @@ function ServiceRow({
               </h3>
             </div>
             <div className="mb-3 h-1 w-14 rounded-full bg-santo-navy" />
-            <p className="text-[16px] font-bold leading-[2.2] text-slate-600 [text-wrap:pretty] break-keep sm:text-[20px]">
+            <p className="text-[16px] font-bold leading-[2.2] text-slate-600 [text-wrap:pretty] sm:text-[20px]">
               {service.description}
             </p>
           </div>
@@ -136,15 +136,15 @@ export function ServiceOverview() {
       label: "01",
       title: t("dispatchTitle"),
       subtitle: "Staffing Service",
-      description: t("dispatchDesc"),
+      description: t.rich("dispatchDesc", { br: () => <br className="hidden md:block" /> }),
       bg: "bg-white",
     },
     {
-      img: locale === "ja" ? `/images/services/outsourcing_service_v6.jpg` : `/images/services/outsourcing_service${imgSuffix}_v6.jpg`,
+      img: locale === "ja" ? `/images/services/outsourcing_service_v7.png` : `/images/services/outsourcing_service${imgSuffix}_v7.png`,
       label: "02",
       title: t("outsourcingTitle"),
       subtitle: "Outsourcing Service",
-      description: t("outsourcingDesc"),
+      description: t.rich("outsourcingDesc", { br: () => <br className="hidden md:block" /> }),
       bg: "bg-[#f4f7fb]",
     },
     {
@@ -154,7 +154,7 @@ export function ServiceOverview() {
       label: "03",
       title: t("diagramTitle"),
       subtitle: "Staffing Structure",
-      description: t("diagramDesc"),
+      description: t.rich("diagramDesc", { br: () => <br className="hidden md:block" /> }),
       bg: "bg-white",
     },
   ];

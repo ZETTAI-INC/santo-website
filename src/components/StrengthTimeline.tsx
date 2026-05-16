@@ -45,7 +45,7 @@ function TimelineItem({
       <div className={`${isLeft ? "pr-8 text-right" : ""}`}>
         {isLeft && (
           <div
-            className="ml-auto max-w-sm"
+            className="ml-auto max-w-md"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateX(0)" : "translateX(-40px)",
@@ -58,7 +58,7 @@ function TimelineItem({
             <h3 className="mt-2 text-[26px] font-black tracking-wider text-slate-900">
               {item.title}
             </h3>
-            <p className="mt-3 text-[18px] font-bold leading-[2] text-slate-600">
+            <p className="mt-3 text-left text-[18px] font-bold leading-[2] text-slate-600">
               {item.desc}
             </p>
           </div>
@@ -108,7 +108,7 @@ function TimelineItem({
       <div className={`${!isLeft ? "pl-8" : ""}`}>
         {!isLeft && (
           <div
-            className="max-w-sm"
+            className="max-w-md"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateX(0)" : "translateX(40px)",
@@ -121,7 +121,7 @@ function TimelineItem({
             <h3 className="mt-2 text-[26px] font-black tracking-wider text-slate-900">
               {item.title}
             </h3>
-            <p className="mt-3 text-[18px] font-bold leading-[2] text-slate-600">
+            <p className="mt-3 text-left text-[18px] font-bold leading-[2] text-slate-600">
               {item.desc}
             </p>
           </div>
@@ -212,7 +212,7 @@ export function StrengthTimeline() {
           <TitleAccent>{t("title1Accent")}</TitleAccent>{t("title1Rest")}
         </>
       ),
-      desc: t("desc1"),
+      desc: t.rich("desc1", { br: () => <br /> }),
     },
     {
       icon: Users,
@@ -221,7 +221,7 @@ export function StrengthTimeline() {
           <TitleAccent>{t("title2Accent")}</TitleAccent>{t("title2Rest")}
         </>
       ),
-      desc: t("desc2"),
+      desc: t.rich("desc2", { br: () => <br /> }),
     },
     {
       icon: HeadphonesIcon,
@@ -239,7 +239,7 @@ export function StrengthTimeline() {
           <TitleAccent>{t("title4Accent")}</TitleAccent>{t("title4Rest")}
         </>
       ),
-      desc: t("desc4"),
+      desc: t.rich("desc4", { br: () => <br /> }),
     },
     {
       icon: Network,

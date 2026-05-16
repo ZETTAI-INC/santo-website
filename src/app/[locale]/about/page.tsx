@@ -45,12 +45,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </h2>
           <div className="grid gap-6 lg:grid-cols-5">
             <div className="flex items-start justify-center lg:col-span-2">
-              <div className="h-64 w-64 shrink-0 overflow-hidden rounded-full sm:h-72 sm:w-72">
+              <div className="aspect-[3/4] w-64 shrink-0 overflow-hidden rounded-2xl shadow-xl sm:w-72">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/ceo_photo_face.png"
+                  src="/images/ceo_photo_portrait.jpg"
                   alt={t("messageName")}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-cover object-top"
                 />
               </div>
             </div>
@@ -99,8 +99,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </span>
             </p>
           </div>
-          <p className="mx-auto max-w-5xl break-keep text-[16px] font-bold leading-[2] text-slate-600 [text-wrap:balance] sm:whitespace-pre-line sm:text-[20px] lg:text-[22px]">
-            {t("philosophyDesc").replace(/\n/g, "")}
+          <p className="mx-auto max-w-5xl break-keep whitespace-pre-line text-[16px] font-bold leading-[2] text-slate-600 [text-wrap:balance] sm:text-[20px] lg:text-[22px]">
+            {t("philosophyDesc")}
           </p>
         </div>
       </section>

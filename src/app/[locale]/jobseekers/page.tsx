@@ -263,7 +263,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
           <h2 className="mb-4 text-3xl font-black tracking-wider text-white [text-shadow:0_3px_12px_rgba(0,0,0,0.85),0_2px_6px_rgba(0,0,0,0.7),0_0_22px_rgba(0,0,0,0.5)] sm:text-4xl lg:text-5xl">
             {t("ctaTitle")}
           </h2>
-          <p className="mx-auto mb-10 max-w-2xl text-[15px] font-bold leading-[1.9] text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.7)] sm:text-[18px]">
+          <p className="mx-auto mb-10 max-w-2xl text-[16px] font-bold leading-[1.9] text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.8),0_2px_6px_rgba(0,0,0,0.7)] sm:text-[20px] lg:max-w-none lg:whitespace-nowrap lg:text-[22px]">
             {t("ctaDesc")}
           </p>
           <LinkButton
