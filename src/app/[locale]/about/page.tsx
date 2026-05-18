@@ -45,7 +45,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </h2>
           <div className="grid gap-6 lg:grid-cols-5">
             <div className="flex items-start justify-center lg:col-span-2">
-              <div className="aspect-[3/4] w-64 shrink-0 overflow-hidden rounded-2xl shadow-xl sm:w-72">
+              <div className="aspect-[4/5] w-64 shrink-0 overflow-hidden rounded-2xl sm:w-72">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/ceo_photo_portrait.jpg"
@@ -99,8 +99,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </span>
             </p>
           </div>
-          <p className="mx-auto max-w-5xl break-keep whitespace-pre-line text-[16px] font-bold leading-[2] text-slate-600 [text-wrap:balance] sm:text-[20px] lg:text-[22px]">
-            {t("philosophyDesc")}
+          <p className={`mx-auto max-w-5xl text-[16px] font-bold leading-[2] text-slate-600 [text-wrap:balance] sm:text-[20px] lg:text-[22px] ${isJa ? "break-keep" : ""}`}>
+            {t.rich("philosophyDesc", { wbr: () => <wbr /> })}
           </p>
         </div>
       </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type ReactNode } from "react";
+import { useLocale } from "next-intl";
 import {
   ChevronLeft,
   ChevronRight,
@@ -19,6 +20,7 @@ type Step = {
 };
 
 export function EmployerFlowMobile({ steps }: { steps: Step[] }) {
+  const locale = useLocale();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -69,7 +71,7 @@ export function EmployerFlowMobile({ steps }: { steps: Step[] }) {
                 <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
                   {step.title}
                 </h3>
-                <p className="mt-1 text-[12px] font-bold leading-[1.7] text-slate-500 [text-wrap:pretty]">
+                <p className={`mt-1 text-[12px] font-bold leading-[1.7] text-slate-500 [text-wrap:pretty] ${locale === "ja" ? "break-keep" : ""}`}>
                   {step.desc}
                 </p>
                 <div className="mt-auto flex justify-end pt-2">

@@ -65,7 +65,7 @@ export function Footer() {
           </div>
 
           {/* MENU + OTHER: モバイルでは横2カラム / lg では親グリッド直参加 */}
-          <div className="grid grid-cols-2 gap-4 lg:contents">
+          <div className="grid grid-cols-[2fr_3fr] gap-4 lg:contents">
             {/* Navigation */}
             <div className="lg:col-span-2">
               <h3 className="mb-1.5 text-[10px] font-black tracking-[0.2em] text-slate-400 sm:mb-2">

@@ -31,6 +31,8 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Jobseekers");
+  // 日本語は指定の3行をモバイルでも維持。他言語は従来どおりモバイルで自然折り返し（sm以上のみ改行）。
+  const ctaBr = () => <br className={locale === "ja" ? undefined : "hidden sm:block"} />;
 
   const steps = [
     {
@@ -107,13 +109,13 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
           </h2>
           <div className="mt-5 h-1 w-14 rounded-full bg-santo-navy" />
           <p className="mt-5 mb-8 break-keep text-[18px] font-bold leading-[1.8] tracking-wide text-slate-500 [text-wrap:balance] sm:text-[26px] lg:text-[34px] lg:whitespace-nowrap">
-            {t("meritDesc")}
+            {t.rich("meritDesc", { wbr: () => <wbr /> })}
           </p>
           <HexMerits />
           <div className="mt-10 flex flex-col items-center text-center">
             <div className="h-[2px] w-12 rounded-full bg-santo-blue" />
-            <p className="mt-5 break-keep text-[20px] font-bold leading-[1.8] tracking-wide text-slate-700 [text-wrap:balance] sm:text-[34px] lg:whitespace-nowrap lg:text-[40px]">
-              {t("meritCta1")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight1")}</span>{t("meritCta2")}<br className="hidden sm:block" />{t("meritCta3")}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight2")}</span>{t("meritCta4")}
+            <p className="mt-5 sm:break-keep text-[20px] font-bold leading-[1.8] tracking-wide text-slate-700 [text-wrap:balance] sm:text-[34px] lg:whitespace-nowrap lg:text-[40px]">
+              {t.rich("meritCta1", { br: ctaBr })}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight1")}</span>{t("meritCta2")}{t.rich("meritCta3", { br: ctaBr })}<span className="text-[1.1em] font-black text-santo-blue">{t("meritCtaHighlight2")}</span>{t("meritCta4")}
             </p>
           </div>
         </div>
@@ -146,7 +148,7 @@ export default async function JobseekersPage({ params }: { params: Promise<{ loc
                   <h3 className="mt-1 text-[14px] font-black tracking-wider text-slate-900">
                     {step.title}
                   </h3>
-                  <p className="mt-1 break-keep text-[12px] font-bold leading-[1.7] text-slate-500 [text-wrap:balance]">
+                  <p className="mt-1 break-words text-[12px] font-bold leading-[1.7] text-slate-500">
                     {step.desc}
                   </p>
                   <div className="mt-auto flex justify-end pt-2">

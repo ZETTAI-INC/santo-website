@@ -30,25 +30,25 @@ export default async function EmployersPage({ params }: { params: Promise<{ loca
       icon: Phone,
       num: "01",
       title: t("step1Title"),
-      desc: t.rich("step1Desc", { br: () => <br className="lg:hidden" /> }),
+      desc: t.rich("step1Desc", { wbr: () => <wbr /> }),
     },
     {
       icon: FileSearch,
       num: "02",
       title: t("step2Title"),
-      desc: t.rich("step2Desc", { br: () => <br className="lg:hidden" /> }),
+      desc: t.rich("step2Desc", { wbr: () => <wbr /> }),
     },
     {
       icon: Handshake,
       num: "03",
       title: t("step3Title"),
-      desc: t.rich("step3Desc", { br: () => <br className="lg:hidden" /> }),
+      desc: t.rich("step3Desc", { wbr: () => <wbr /> }),
     },
     {
       icon: UserCheck,
       num: "04",
       title: t("step4Title"),
-      desc: t("step4Desc"),
+      desc: t.rich("step4Desc", { wbr: () => <wbr /> }),
     },
   ];
 
