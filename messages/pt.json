@@ -541,6 +541,7 @@
     "mailSubject": "Consulta - {type}",
     "openMailApp": "Abrir e-mail",
     "submitButton": "Enviar",
+    "submitHint": "Ao tocar em enviar, o Gmail ou o aplicativo de e-mail do seu dispositivo será aberto conforme o e-mail que você informou.",
     "submitMailAppButton": "Enviar pelo app de e-mail",
     "submitGmailButton": "Enviar pelo Gmail",
     "submitChoiceHint": "Escolha a opção que corresponde à sua configuração de e-mail. Use \"Enviar pelo Gmail\" se você usa o app Gmail ou o Gmail Web; use \"Enviar pelo app de e-mail\" se você usa Mail.app, Outlook ou outro aplicativo de e-mail padrão."

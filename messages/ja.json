@@ -541,6 +541,7 @@
     "mailSubject": "【お問い合わせ】{type}",
     "openMailApp": "メールアプリを開く",
     "submitButton": "送信する",
+    "submitHint": "送信ボタンを押すと、ご入力のメールアドレスに合わせて Gmail またはお使いのメールアプリが起動します。",
     "submitMailAppButton": "メールアプリで送る",
     "submitGmailButton": "Gmailで送る",
     "submitChoiceHint": "ご利用のメール環境に合わせて選択してください。<br></br><nowrap>Gmailアプリ／Gmail Web</nowrap>をお使いの方は「Gmailで送る」、<br></br><nowrap>メール.app／Outlook</nowrap>など標準メールアプリの方は「メールアプリで送る」をお選びください。"

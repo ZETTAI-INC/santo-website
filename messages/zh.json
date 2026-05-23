@@ -541,6 +541,7 @@
     "mailSubject": "咨询 - {type}",
     "openMailApp": "打开邮件应用",
     "submitButton": "提交",
+    "submitHint": "点击提交后，将根据您输入的邮箱地址打开 Gmail 或您设备的邮件应用。",
     "submitMailAppButton": "通过邮件应用发送",
     "submitGmailButton": "通过 Gmail 发送",
     "submitChoiceHint": "请根据您的邮件环境选择。使用 Gmail 应用或 Gmail 网页版的用户请选择「通过 Gmail 发送」；使用邮件 App、Outlook 等系统默认邮件应用的用户请选择「通过邮件应用发送」。"

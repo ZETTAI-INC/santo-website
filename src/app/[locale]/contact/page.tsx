@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Phone, Mail, Clock, Send } from "lucide-react";
+import { Phone, Mail, Clock } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,16 +16,14 @@ export default function ContactPage() {
   const t = useTranslations("Contact");
   const locale = useLocale();
   const [submitted, setSubmitted] = useState(false);
-  const [pendingTarget, setPendingTarget] = useState<"mail" | "gmail" | null>(null);
   const [mailtoUrl, setMailtoUrl] = useState("");
   const [gmailUrl, setGmailUrl] = useState("");
+  const [useGmail, setUseGmail] = useState(false);
   const mailLinkRef = useRef<HTMLAnchorElement>(null);
   const gmailLinkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
-    const target = submitter?.value === "gmail" ? "gmail" : "mail";
     const form = e.currentTarget;
     const data = new FormData(form);
     const name = data.get("name") as string;
@@ -51,24 +49,26 @@ export default function ContactPage() {
 
     const encSubject = encodeURIComponent(subject);
     const encBody = encodeURIComponent(body);
-    const mailto = `mailto:${SANTO_EMAIL}?subject=${encSubject}&body=${encBody}`;
-    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SANTO_EMAIL)}&su=${encSubject}&body=${encBody}`;
-    setMailtoUrl(mailto);
-    setGmailUrl(gmail);
-    setPendingTarget(target);
+    const isGmailUser = /@(gmail|googlemail)\.com\s*$/i.test(email.trim());
+
+    setMailtoUrl(`mailto:${SANTO_EMAIL}?subject=${encSubject}&body=${encBody}`);
+    setGmailUrl(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+        SANTO_EMAIL
+      )}&su=${encSubject}&body=${encBody}`
+    );
+    setUseGmail(isGmailUser);
     setSubmitted(true);
   };
 
   useEffect(() => {
-    if (!submitted || !pendingTarget) return;
-    if (pendingTarget === "gmail" && gmailUrl && gmailLinkRef.current) {
+    if (!submitted) return;
+    if (useGmail && gmailUrl && gmailLinkRef.current) {
       gmailLinkRef.current.click();
-      setPendingTarget(null);
-    } else if (pendingTarget === "mail" && mailtoUrl && mailLinkRef.current) {
+    } else if (mailtoUrl && mailLinkRef.current) {
       mailLinkRef.current.click();
-      setPendingTarget(null);
     }
-  }, [submitted, pendingTarget, mailtoUrl, gmailUrl]);
+  }, [submitted, useGmail, mailtoUrl, gmailUrl]);
 
   return (
     <>
@@ -281,35 +281,16 @@ export default function ContactPage() {
                     </label>
                   </div>
 
-                  <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-                    <Button
-                      type="submit"
-                      name="action"
-                      value="mail"
-                      size="lg"
-                      className="h-12 w-full bg-santo-navy px-6 font-black tracking-wider hover:bg-santo-blue sm:flex-1"
-                    >
-                      <Mail className="h-4 w-4" />
-                      {t("submitMailAppButton")}
-                    </Button>
-                    <Button
-                      type="submit"
-                      name="action"
-                      value="gmail"
-                      size="lg"
-                      className="h-12 w-full border-2 border-santo-blue bg-white px-6 font-black tracking-wider text-santo-blue hover:bg-santo-sky sm:flex-1"
-                    >
-                      <Send className="h-4 w-4" />
-                      {t("submitGmailButton")}
-                    </Button>
-                  </div>
-                  <p className="text-[12px] leading-[1.8] text-slate-500 [text-wrap:pretty]">
-                    {t.rich("submitChoiceHint", {
-                      br: () => <br className="sm:hidden" />,
-                      nowrap: (chunks) => (
-                        <span className="inline-block whitespace-nowrap">{chunks}</span>
-                      ),
-                    })}
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="h-12 w-full bg-santo-navy px-6 font-black tracking-wider hover:bg-santo-blue"
+                  >
+                    <Mail className="h-4 w-4" />
+                    {t("submitButton")}
+                  </Button>
+                  <p className="text-[12px] leading-[1.8] text-slate-500">
+                    {t("submitHint")}
                   </p>
                 </form>
               )}

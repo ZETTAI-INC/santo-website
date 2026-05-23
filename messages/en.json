@@ -541,6 +541,7 @@
     "mailSubject": "Contact Inquiry - {type}",
     "openMailApp": "Open Mail App",
     "submitButton": "Submit",
+    "submitHint": "Tapping submit will open Gmail or your device's mail app based on the email address you entered.",
     "submitMailAppButton": "Send via Email App",
     "submitGmailButton": "Send via Gmail",
     "submitChoiceHint": "Choose the option that matches your email setup. Use \"Send via Gmail\" if you use the Gmail app or Gmail web; use \"Send via Email App\" if you use Mail.app, Outlook, or another default mail client."
