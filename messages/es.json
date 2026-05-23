@@ -344,7 +344,7 @@
     "messageTitle": "Mensaje del Presidente",
     "messagePhoto": "Foto del Presidente",
     "messageP1": "Gracias por visitar el sitio web de SANTO Co., Ltd.",
-    "messageP2": "Nuestra empresa se ha dedicado a servir como puente entre buscadores de empleo y empresas a través de nuestros servicios de personal. Al valorar la personalidad y las habilidades de cada individuo, logramos una combinación óptima que contribuye al desarrollo profesional satisfactorio y al crecimiento empresarial.",
+    "messageP2": "Servimos como puente entre buscadores de empleo y empresas, valorando las habilidades de cada persona para lograr la combinación óptima que impulse el desarrollo profesional y el crecimiento empresarial.",
     "messageP3": "Continuaremos esforzándonos por brindar servicios de confianza. Gracias por su continuo apoyo.",
     "messageRole": "Presidente y Director General",
     "messageName": "Shintaro Mitsuhashi",
@@ -513,7 +513,7 @@
     "phoneLabel": "Teléfono",
     "phoneValue": "0463-24-1722",
     "emailLabel": "Correo Electrónico",
-    "emailValue": "santo@santo-ho.co.jp",
+    "emailValue": "santo@santo-hp.co.jp",
     "hoursLabel": "Horario de Atención",
     "hoursValue": "Lun–Vie 8:00–17:00",
     "hoursNote": "* Cerrado los fines de semana y días festivos",
@@ -944,7 +944,7 @@
     "optionalLabel": " (opcional)",
     "submitError": "Error al enviar. Por favor intente nuevamente más tarde.",
     "mailFallbackTitle": "Su aplicación de correo debería estar abierta",
-    "mailFallbackBody": "Si no se abrió, por favor contáctenos directamente por teléfono (0463-24-1722) o por correo santo@santo-ho.co.jp.",
+    "mailFallbackBody": "Si no se abrió, por favor contáctenos directamente por teléfono (0463-24-1722) o por correo santo@santo-hp.co.jp.",
     "copyButton": "Copiar contenido de la solicitud",
     "copiedLabel": "Copiado",
     "goToThanks": "Ir a la página de confirmación"
@@ -1082,6 +1082,6 @@
     "contactCompany": "SANTO Co., Ltd.",
     "contactAddress": "7-29 Daikancho, Hiratsuka, Kanagawa 254-0807, Japón",
     "contactTel": "TEL: 0463-24-1722",
-    "contactEmail": "Correo: santo@santo-ho.co.jp"
+    "contactEmail": "Correo: santo@santo-hp.co.jp"
   }
 }

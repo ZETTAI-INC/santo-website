@@ -216,7 +216,7 @@ export function FeatureCards() {
                   <h3 className="mb-1 text-center text-[15px] font-black tracking-wider text-santo-navy">
                     {feature.title}
                   </h3>
-                  <p className="text-center text-[13px] font-bold leading-[1.8] text-slate-600">
+                  <p className="text-left text-[13px] font-bold leading-[1.8] text-slate-600">
                     {feature.solution}
                   </p>
                 </div>

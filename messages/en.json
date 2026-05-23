@@ -344,7 +344,7 @@
     "messageTitle": "Message from the President",
     "messagePhoto": "President's Photo",
     "messageP1": "Thank you for visiting the SANTO Co., Ltd. website.",
-    "messageP2": "Our company has been dedicated to serving as a bridge between job seekers and companies through our staffing services. By valuing each individual's personality and skills, we achieve optimal matching to contribute to fulfilling career development and company growth.",
+    "messageP2": "We serve as a bridge between job seekers and companies, valuing each person's skills to deliver optimal matches that support career growth and business success.",
     "messageP3": "We will continue striving to provide trustworthy services. Thank you for your continued support.",
     "messageRole": "President & CEO",
     "messageName": "Shintaro Mitsuhashi",
@@ -513,7 +513,7 @@
     "phoneLabel": "Phone",
     "phoneValue": "0463-24-1722",
     "emailLabel": "Email",
-    "emailValue": "santo@santo-ho.co.jp",
+    "emailValue": "santo@santo-hp.co.jp",
     "hoursLabel": "Business Hours",
     "hoursValue": "Mon–Fri 8:00–17:00",
     "hoursNote": "* Closed on weekends & holidays",
@@ -944,7 +944,7 @@
     "optionalLabel": " (optional)",
     "submitError": "Failed to submit. Please try again later.",
     "mailFallbackTitle": "Your email app should now be open",
-    "mailFallbackBody": "If it did not open, please contact us directly by phone (0463-24-1722) or email santo@santo-ho.co.jp.",
+    "mailFallbackBody": "If it did not open, please contact us directly by phone (0463-24-1722) or email santo@santo-hp.co.jp.",
     "copyButton": "Copy application text",
     "copiedLabel": "Copied",
     "goToThanks": "Go to confirmation page"
@@ -1082,6 +1082,6 @@
     "contactCompany": "SANTO Co., Ltd.",
     "contactAddress": "7-29 Daikancho, Hiratsuka, Kanagawa 254-0807, Japan",
     "contactTel": "TEL: 0463-24-1722",
-    "contactEmail": "Email: santo@santo-ho.co.jp"
+    "contactEmail": "Email: santo@santo-hp.co.jp"
   }
 }

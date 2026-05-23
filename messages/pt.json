@@ -344,7 +344,7 @@
     "messageTitle": "Mensagem do Presidente",
     "messagePhoto": "Foto do Presidente",
     "messageP1": "Obrigado por visitar o site da SANTO Co., Ltd.",
-    "messageP2": "Nossa empresa tem se dedicado a servir como ponte entre candidatos e empresas através de nossos serviços de trabalho temporário. Valorizando a personalidade e as habilidades de cada indivíduo, realizamos a combinação ideal para contribuir com o desenvolvimento profissional e o crescimento das empresas.",
+    "messageP2": "Servimos como ponte entre candidatos e empresas, valorizando as habilidades de cada pessoa para alcançar a combinação ideal que impulsiona o desenvolvimento profissional e o crescimento empresarial.",
     "messageP3": "Continuaremos nos esforçando para oferecer serviços dignos de confiança. Agradecemos pelo seu apoio contínuo.",
     "messageRole": "Presidente e CEO",
     "messageName": "Shintaro Mitsuhashi",
@@ -513,7 +513,7 @@
     "phoneLabel": "Telefone",
     "phoneValue": "0463-24-1722",
     "emailLabel": "E-mail",
-    "emailValue": "santo@santo-ho.co.jp",
+    "emailValue": "santo@santo-hp.co.jp",
     "hoursLabel": "Horário de Funcionamento",
     "hoursValue": "Seg–Sex 8:00–17:00",
     "hoursNote": "* Fechado nos finais de semana e feriados",
@@ -944,7 +944,7 @@
     "optionalLabel": " (opcional)",
     "submitError": "Falha no envio. Por favor tente novamente mais tarde.",
     "mailFallbackTitle": "Seu aplicativo de e-mail deve estar aberto",
-    "mailFallbackBody": "Se não abriu, entre em contato diretamente por telefone (0463-24-1722) ou e-mail santo@santo-ho.co.jp.",
+    "mailFallbackBody": "Se não abriu, entre em contato diretamente por telefone (0463-24-1722) ou e-mail santo@santo-hp.co.jp.",
     "copyButton": "Copiar conteúdo da candidatura",
     "copiedLabel": "Copiado",
     "goToThanks": "Ir para a página de confirmação"
@@ -1082,6 +1082,6 @@
     "contactCompany": "SANTO Co., Ltd.",
     "contactAddress": "7-29 Daikancho, Hiratsuka, Kanagawa 254-0807, Japão",
     "contactTel": "TEL: 0463-24-1722",
-    "contactEmail": "E-mail: santo@santo-ho.co.jp"
+    "contactEmail": "E-mail: santo@santo-hp.co.jp"
   }
 }

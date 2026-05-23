@@ -285,7 +285,7 @@ export function JobList() {
 
         {/* CTA */}
         <div className="mt-12 rounded-2xl bg-[#dce8f5] p-8 text-center sm:p-12">
-          <h2 className="text-xl font-black tracking-wider text-slate-800 sm:text-2xl">
+          <h2 className="whitespace-nowrap text-lg font-black tracking-wider text-slate-800 sm:whitespace-normal sm:text-2xl">
             {t("ctaTitle")}
           </h2>
           <p className="mx-auto mt-3 max-w-md text-[13px] leading-[1.9] text-slate-500">

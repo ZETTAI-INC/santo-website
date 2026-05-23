@@ -344,7 +344,7 @@
     "messageTitle": "代表致辞",
     "messagePhoto": "代表照片",
     "messageP1": "感谢您访问株式会社SANTO的官方网站。",
-    "messageP2": "本公司通过人才派遣事业，致力于为求职者和企业搭建桥梁。我们珍视每一位的个性和技能，通过实现最佳匹配，为劳动者的职业发展和企业的发展做出贡献。",
+    "messageP2": "本公司通过人才派遣，为求职者与企业搭建桥梁。珍视每个人的技能，以最佳匹配助力职业发展与企业成长。",
     "messageP3": "今后我们将继续努力提供值得信赖的服务，敬请多多关照。",
     "messageRole": "代表董事",
     "messageName": "三桥 慎太朗",
@@ -513,7 +513,7 @@
     "phoneLabel": "电话",
     "phoneValue": "0463-24-1722",
     "emailLabel": "邮箱",
-    "emailValue": "santo@santo-ho.co.jp",
+    "emailValue": "santo@santo-hp.co.jp",
     "hoursLabel": "营业时间",
     "hoursValue": "周一至周五 8:00〜17:00",
     "hoursNote": "※周末及节假日休息",
@@ -944,7 +944,7 @@
     "optionalLabel": "（选填）",
     "submitError": "提交失败，请稍后再试。",
     "mailFallbackTitle": "邮件应用已启动",
-    "mailFallbackBody": "如果未能启动，请直接致电 (0463-24-1722) 或发送邮件至 santo@santo-ho.co.jp 与我们联系。",
+    "mailFallbackBody": "如果未能启动，请直接致电 (0463-24-1722) 或发送邮件至 santo@santo-hp.co.jp 与我们联系。",
     "copyButton": "复制申请内容",
     "copiedLabel": "已复制",
     "goToThanks": "前往申请完成页面"
@@ -1082,6 +1082,6 @@
     "contactCompany": "株式会社SANTO",
     "contactAddress": "〒254-0807 神奈川県平塚市代官町7-29",
     "contactTel": "TEL: 0463-24-1722",
-    "contactEmail": "邮箱: santo@santo-ho.co.jp"
+    "contactEmail": "邮箱: santo@santo-hp.co.jp"
   }
 }

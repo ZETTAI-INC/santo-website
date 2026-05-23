@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-const SANTO_EMAIL = "santo@santo-ho.co.jp";
+const SANTO_EMAIL = "santo@santo-hp.co.jp";
 
 type Props = {
   locale: string;

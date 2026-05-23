@@ -235,7 +235,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             {t("contactTitle")}
           </h2>
           <p className="mx-auto mb-8 max-w-md text-[14px] font-bold leading-[1.9] text-white/90 sm:mb-10 sm:max-w-xl sm:text-[17px] lg:max-w-3xl lg:text-[22px]">
-            {t("contactDesc")}
+            {t.rich("contactDesc", { br: () => <br className="sm:hidden" /> })}
           </p>
           <div className="flex flex-col items-center gap-6">
             <LinkButton
@@ -263,10 +263,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   MAIL
                 </p>
                 <a
-                  href="mailto:santo@santo-ho.co.jp"
+                  href="mailto:santo@santo-hp.co.jp"
                   className="text-lg font-black tracking-wider text-white sm:text-xl lg:text-2xl"
                 >
-                  santo@santo-ho.co.jp
+                  santo@santo-hp.co.jp
                 </a>
               </div>
             </div>

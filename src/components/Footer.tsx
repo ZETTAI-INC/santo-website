@@ -57,9 +57,9 @@ export function Footer() {
                 <Phone className="h-4 w-4 shrink-0 text-santo-accent" />
                 TEL: 0463-24-1722
               </a>
-              <a href="mailto:santo@santo-ho.co.jp" className="flex items-center gap-2.5 hover:opacity-80">
+              <a href="mailto:santo@santo-hp.co.jp" className="flex items-center gap-2.5 hover:opacity-80">
                 <Mail className="h-4 w-4 shrink-0 text-santo-accent" />
-                santo@santo-ho.co.jp
+                santo@santo-hp.co.jp
               </a>
             </div>
           </div>

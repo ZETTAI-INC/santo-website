@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 function ServiceRow({
   service,
@@ -109,26 +109,9 @@ export function ServiceOverview() {
   const locale = useLocale();
   const imgSuffix = locale === "ja" ? "" : locale === "zh" ? "_zh" : locale === "es" ? "_es" : locale === "pt" ? "_pt" : "_en";
   const imgExt = locale === "ja" ? ".png" : ".jpg";
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleScroll = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const center = el.scrollLeft + el.clientWidth / 2;
-    const cards = Array.from(el.querySelectorAll<HTMLElement>("[data-card]"));
-    let nearest = 0;
-    let minDist = Infinity;
-    cards.forEach((card, i) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(center - cardCenter);
-      if (dist < minDist) {
-        minDist = dist;
-        nearest = i;
-      }
-    });
-    if (nearest !== activeIndex) setActiveIndex(nearest);
-  };
 
   const services = [
     {
@@ -159,6 +142,34 @@ export function ServiceOverview() {
     },
   ];
 
+  useEffect(() => {
+    const root = scrollerRef.current;
+    if (!root) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            const idx = Number(entry.target.getAttribute("data-idx"));
+            if (!Number.isNaN(idx)) setActiveIndex(idx);
+          }
+        });
+      },
+      { root, threshold: [0.6] }
+    );
+    cardRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToCard = (i: number) => {
+    const card = cardRefs.current[i];
+    const root = scrollerRef.current;
+    if (!card || !root) return;
+    const target = card.offsetLeft + card.offsetWidth / 2 - root.clientWidth / 2;
+    root.scrollTo({ left: target, behavior: "smooth" });
+  };
+
+  const isLast = activeIndex >= services.length - 1;
+
   return (
     <div>
       {/* セクションヘッダー */}
@@ -180,39 +191,20 @@ export function ServiceOverview() {
       </section>
 
       {/* モバイル: 横スクロールカード（中央スナップ） */}
-      <div className="md:hidden bg-white py-6">
+      <div className="md:hidden bg-white py-6 px-4">
         <div className="relative -mx-4">
-          {/* 左シェブロン */}
           <div
-            aria-hidden
-            className={`pointer-events-none absolute left-0 top-1/2 z-10 -translate-y-1/2 transition-opacity ${
-              activeIndex === 0 ? "opacity-25" : "opacity-60"
-            }`}
+            ref={scrollerRef}
+            className="flex gap-4 overflow-x-auto px-[calc((100vw-280px)/2)] pb-4 snap-x snap-mandatory scrollbar-hide"
           >
-            <ChevronLeft className="h-8 w-8 text-santo-navy" strokeWidth={1.5} />
-          </div>
-          {/* 右シェブロン */}
-          <div
-            aria-hidden
-            className={`pointer-events-none absolute right-0 top-1/2 z-10 -translate-y-1/2 transition-opacity ${
-              activeIndex === services.length - 1 ? "opacity-25" : "opacity-60"
-            }`}
-          >
-            <ChevronRight className="h-8 w-8 text-santo-navy" strokeWidth={1.5} />
-          </div>
-
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="overflow-x-auto px-6 pb-3 snap-x snap-mandatory scrollbar-hide"
-          >
-            <div className="flex gap-3">
-              {services.map((service) => (
-                <div
-                  key={service.title}
-                  data-card
-                  className="flex w-[calc(100vw-3rem)] max-w-[360px] shrink-0 snap-center flex-col overflow-hidden rounded-xl border border-slate-200 bg-white"
-                >
+            {services.map((service, i) => (
+              <div
+                key={service.title}
+                ref={(el) => { cardRefs.current[i] = el; }}
+                data-idx={i}
+                className="w-[280px] shrink-0 snap-center"
+              >
+                <div className="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white">
                   {/* 画像 */}
                   <div className="flex items-center justify-center bg-slate-50/60 px-2 py-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -236,22 +228,36 @@ export function ServiceOverview() {
                       </h3>
                     </div>
                     <div className="mt-2 mb-2 h-[2px] w-10 rounded-full bg-santo-navy" />
-                    <p className="text-[13px] font-bold leading-[1.9] text-slate-600 [text-wrap:pretty]">
+                    <p className="text-[13px] font-bold leading-[1.9] text-slate-600">
                       {service.description}
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 右端の「もっと見る」シェブロン（最後のカードでフェードアウト） */}
+          <div
+            className={`pointer-events-none absolute right-2 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-md transition-opacity duration-300 ${
+              isLast ? "opacity-0" : "opacity-100 animate-pulse"
+            }`}
+            aria-hidden="true"
+          >
+            <ChevronRight className="h-6 w-6 text-santo-navy" />
           </div>
         </div>
+
         {/* ページネーションドット */}
         <div className="mt-2 flex justify-center gap-2">
-          {services.map((service, i) => (
-            <span
-              key={service.title}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === activeIndex ? "w-6 bg-santo-navy" : "w-2 bg-santo-navy/25"
+          {services.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => scrollToCard(i)}
+              aria-label={`カード ${i + 1} を表示`}
+              className={`h-2 rounded-full transition-all ${
+                activeIndex === i ? "w-6 bg-santo-navy" : "w-2 bg-santo-navy/25"
               }`}
             />
           ))}

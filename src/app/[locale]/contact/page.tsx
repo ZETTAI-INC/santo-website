@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 
-const SANTO_EMAIL = "santo@santo-ho.co.jp";
+const SANTO_EMAIL = "santo@santo-hp.co.jp";
 
 export default function ContactPage() {
   const t = useTranslations("Contact");
