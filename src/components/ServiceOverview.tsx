@@ -131,9 +131,7 @@ export function ServiceOverview() {
       bg: "bg-[#f4f7fb]",
     },
     {
-      img: locale === "zh"
-         ? `/images/services/dispatch_structure_zh_v2.jpg`
-         : `/images/services/labor_management_${locale}.png`,
+      img: `/images/services/labor_management_${locale}.png`,
       label: "03",
       title: t("diagramTitle"),
       subtitle: "Staffing Structure",
