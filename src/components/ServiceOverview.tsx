@@ -184,7 +184,11 @@ export function ServiceOverview() {
             </h2>
             <div className="mx-auto mt-2 h-1 rounded-full bg-santo-navy" style={{ width: "557px", maxWidth: "100%" }} />
             <p className="mx-auto mt-4 max-w-3xl text-[15px] leading-[1.9] text-slate-500 [text-wrap:pretty] sm:text-[18px]">
-              {t("subtitlePre1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight1")}</span>{t("subtitleMid1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight2")}</span>{t("subtitleMid2")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-navy">{t("subtitleHighlight3")}</span>{t("subtitlePost1")}<br />{t("subtitle2Pre")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight1")}</span>{t("subtitle2Mid")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight2")}</span>{t("subtitle2Post")}
+              {t("subtitlePre1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight1")}</span>{t("subtitleMid1")}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-blue">{t("subtitleHighlight2")}</span>{(() => {
+                const mid2 = t("subtitleMid2");
+                const m = mid2.match(/^([^、，]*[、，])(.*)$/);
+                return m ? <>{m[1]}<br className="sm:hidden" />{m[2]}</> : mid2;
+              })()}<span className="whitespace-nowrap text-[1.15em] font-bold text-santo-navy">{t("subtitleHighlight3")}</span>{t("subtitlePost1")}<br />{t("subtitle2Pre")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight1")}</span>{t("subtitle2Mid")}<span className="whitespace-nowrap font-bold text-slate-700">{t("subtitle2Highlight2")}</span>{t("subtitle2Post")}
             </p>
           </div>
         </div>
