@@ -189,10 +189,10 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
         <table className="w-full border-collapse border border-slate-300 text-sm">
           <tbody>
             <tr className="border-b border-slate-300">
-              <th className="w-1/2 border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:w-3/5 sm:break-keep sm:px-4">
+              <th className="w-1/2 border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:w-[55%] sm:break-keep sm:px-4">
                 ①派遣労働者の数（1日平均）
               </th>
-              <td className="px-4 py-3 text-right font-semibold text-slate-800">89名</td>
+              <td className="px-3 py-3 text-right font-semibold text-slate-800 sm:px-4">89名</td>
             </tr>
             <tr className="border-b border-slate-300">
               <th className="border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:break-keep sm:px-4">
@@ -228,7 +228,7 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
               <th className="border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:break-keep sm:px-4">
                 ⑥派遣労働者のキャリア形成相談窓口
               </th>
-              <td className="px-3 py-3 text-right text-slate-600 sm:px-4">TEL：0463-24-1722</td>
+              <td className="whitespace-nowrap px-3 py-3 text-right font-semibold text-slate-800 sm:px-4">TEL：0463-24-1722</td>
             </tr>
           </tbody>
         </table>
@@ -276,7 +276,7 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
           ⑦派遣労働者の待遇の決定に係る労使協定を締結しているか否かの別
         </h2>
         <p className="mb-1 text-sm text-slate-600">
-          ※労使協定を締結している（有効期間終期：2025年3月）
+          ※労使協定を締結している（有効期間終期：2027年3月）
         </p>
         <p className="text-sm text-slate-600">
           協定労働者の範囲（派遣従業員全員）
