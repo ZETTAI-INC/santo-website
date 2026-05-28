@@ -220,7 +220,7 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
             </tr>
             <tr className="border-b border-slate-300">
               <th className="border-r border-slate-300 bg-slate-100 px-3 py-3 text-left font-semibold text-slate-700 sm:break-keep sm:px-4">
-                ⑤労働者派遣に関する料金の平均額から派遣労働者の賃金の平均額を控除した額を当該労働者派遣に関する料金の平均額で除して得た割合
+                ⑤労働者派遣に関する料金の平均額から派遣労働者の賃金の平均額を控除した額を<br />当該労働者派遣に関する料金の平均額で除して得た割合
               </th>
               <td className="px-3 py-3 text-right text-lg font-bold text-slate-900 sm:px-4">28.1％</td>
             </tr>
