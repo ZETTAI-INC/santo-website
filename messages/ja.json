@@ -991,7 +991,7 @@
     "avgWageNote": "（1日当たり8時間労働として計算）",
     "marginRate": "⑤マージン率",
     "marginRateValue": "28.1％",
-    "marginRateDesc": "労働者派遣に関する料金の平均額から派遣労働者の賃金の平均額を控除した額を、当該労働者派遣に関する料金の平均額で除して得た割合",
+    "marginRateDesc": "⑤労働者派遣に関する料金の平均額から派遣労働者の賃金の平均額を控除した額を<br></br>当該労働者派遣に関する料金の平均額で除して得た割合",
     "careerContact": "<nowrap>⑥派遣労働者の</nowrap><br></br><nowrap>キャリア形成相談窓口</nowrap>",
     "careerContactValue": "TEL：0463-24-1722",
     "trainingTitle": "教育訓練",
