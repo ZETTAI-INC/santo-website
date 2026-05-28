@@ -237,32 +237,29 @@ export default async function LaborInfoPage({ params }: { params: Promise<{ loca
       {/* 教育訓練 */}
       <section className="mb-10">
         <h2 className="mb-4 text-base font-bold text-slate-800">教育訓練</h2>
-        <p className="mb-2 text-xs text-slate-500 sm:hidden">
-          ※ 表は横にスクロールできます
-        </p>
-        <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          <table className="w-full min-w-[640px] border-collapse border border-slate-300 text-xs sm:text-sm">
+        <div>
+          <table className="w-full border-collapse border border-slate-300 text-[11px] sm:text-sm">
             <thead>
               <tr className="bg-slate-100">
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">対象者</th>
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">内容</th>
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">方法</th>
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">主体</th>
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">費用負担</th>
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">賃金支給</th>
-                <th className="whitespace-nowrap border border-slate-300 px-2 py-2 text-left font-semibold text-slate-700 sm:px-3">平均時間</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">対象者</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">内容</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">方法</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">主体</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">費用負担</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">賃金支給</th>
+                <th className="border border-slate-300 px-1 py-2 text-left font-semibold text-slate-700 sm:px-3">平均時間</th>
               </tr>
             </thead>
             <tbody>
               {trainingRows.map((row, i) => (
                 <tr key={i} className="border-b border-slate-300 odd:bg-white even:bg-slate-50/60">
-                  <td className="whitespace-nowrap border-r border-slate-300 px-2 py-2 text-slate-600 sm:px-3">{row.target}</td>
-                  <td className="whitespace-nowrap border-r border-slate-300 px-2 py-2 text-slate-600 sm:px-3">{row.content}</td>
-                  <td className="whitespace-nowrap border-r border-slate-300 px-2 py-2 text-slate-600 sm:px-3">{row.method}</td>
-                  <td className="whitespace-nowrap border-r border-slate-300 px-2 py-2 text-slate-600 sm:px-3">{row.provider}</td>
-                  <td className="whitespace-nowrap border-r border-slate-300 px-2 py-2 text-slate-600 sm:px-3">{row.cost}</td>
-                  <td className="whitespace-nowrap border-r border-slate-300 px-2 py-2 text-slate-600 sm:px-3">{row.wage}</td>
-                  <td className="whitespace-nowrap px-2 py-2 text-slate-600 sm:px-3">{row.hours}</td>
+                  <td className="border-r border-slate-300 px-1 py-2 text-slate-600 sm:px-3">{row.target}</td>
+                  <td className="border-r border-slate-300 px-1 py-2 text-slate-600 sm:px-3">{row.content}</td>
+                  <td className="border-r border-slate-300 px-1 py-2 text-slate-600 sm:px-3">{row.method}</td>
+                  <td className="border-r border-slate-300 px-1 py-2 text-slate-600 sm:px-3">{row.provider}</td>
+                  <td className="border-r border-slate-300 px-1 py-2 text-slate-600 sm:px-3">{row.cost}</td>
+                  <td className="border-r border-slate-300 px-1 py-2 text-slate-600 sm:px-3">{row.wage}</td>
+                  <td className="px-1 py-2 text-slate-600 sm:px-3">{row.hours}</td>
                 </tr>
               ))}
             </tbody>
