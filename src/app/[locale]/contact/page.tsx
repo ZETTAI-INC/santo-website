@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Phone, Mail, Clock } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
@@ -18,9 +18,6 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState("");
   const [gmailUrl, setGmailUrl] = useState("");
-  const [useGmail, setUseGmail] = useState(false);
-  const mailLinkRef = useRef<HTMLAnchorElement>(null);
-  const gmailLinkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,24 +48,20 @@ export default function ContactPage() {
     const encBody = encodeURIComponent(body);
     const isGmailUser = /@(gmail|googlemail)\.com\s*$/i.test(email.trim());
 
-    setMailtoUrl(`mailto:${SANTO_EMAIL}?subject=${encSubject}&body=${encBody}`);
-    setGmailUrl(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    const nextMailtoUrl = `mailto:${SANTO_EMAIL}?subject=${encSubject}&body=${encBody}`;
+    const nextGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
         SANTO_EMAIL
-      )}&su=${encSubject}&body=${encBody}`
-    );
-    setUseGmail(isGmailUser);
-    setSubmitted(true);
-  };
+      )}&su=${encSubject}&body=${encBody}`;
 
-  useEffect(() => {
-    if (!submitted) return;
-    if (useGmail && gmailUrl && gmailLinkRef.current) {
-      gmailLinkRef.current.click();
-    } else if (mailtoUrl && mailLinkRef.current) {
-      mailLinkRef.current.click();
+    setMailtoUrl(nextMailtoUrl);
+    setGmailUrl(nextGmailUrl);
+    setSubmitted(true);
+    if (isGmailUser) {
+      window.open(nextGmailUrl, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = nextMailtoUrl;
     }
-  }, [submitted, useGmail, mailtoUrl, gmailUrl]);
+  };
 
   return (
     <>
@@ -140,15 +133,29 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-2">
               {submitted ? (
-                <div className="rounded border-2 border-green-200 bg-green-50 p-10 text-center">
-                  <h2 className="mb-3 text-xl font-black tracking-wider text-green-800">
+                <div className="rounded border-2 border-santo-blue/30 bg-santo-sky/40 p-6 text-center sm:p-10">
+                  <h2 className="mb-3 text-xl font-black tracking-wider text-santo-navy">
                     {t("thankYouTitle")}
                   </h2>
-                  <p className="text-[13px] leading-[1.8] text-green-700">
+                  <p className="text-[13px] leading-[1.8] text-slate-700">
                     {t("thankYouDesc")}
                   </p>
-                  <a ref={mailLinkRef} href={mailtoUrl} className="hidden" />
-                  <a ref={gmailLinkRef} href={gmailUrl} target="_blank" rel="noopener noreferrer" className="hidden" />
+                  <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
+                    <a
+                      href={mailtoUrl}
+                      className="inline-flex h-11 items-center justify-center rounded bg-santo-navy px-5 text-[13px] font-black tracking-wider text-white transition hover:bg-santo-blue"
+                    >
+                      {t("submitButton")}
+                    </a>
+                    <a
+                      href={gmailUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-11 items-center justify-center rounded border-2 border-santo-blue bg-white px-5 text-[13px] font-black tracking-wider text-santo-blue transition hover:bg-santo-sky"
+                    >
+                      Gmail
+                    </a>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">

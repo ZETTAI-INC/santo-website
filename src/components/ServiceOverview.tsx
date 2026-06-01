@@ -108,7 +108,6 @@ export function ServiceOverview() {
   const t = useTranslations("ServiceOverview");
   const locale = useLocale();
   const imgSuffix = locale === "ja" ? "" : locale === "zh" ? "_zh" : locale === "es" ? "_es" : locale === "pt" ? "_pt" : "_en";
-  const imgExt = locale === "ja" ? ".png" : ".jpg";
   const scrollerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);

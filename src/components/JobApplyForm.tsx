@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Send, Copy, Check, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
@@ -34,7 +33,6 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
   const t = useTranslations("JobApply");
-  const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [pendingTarget, setPendingTarget] = useState<"mail" | "gmail" | null>(null);
   const [mailtoUrl, setMailtoUrl] = useState("");
@@ -42,8 +40,6 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
   const [mailBody, setMailBody] = useState("");
   const [showFallback, setShowFallback] = useState(false);
   const [copied, setCopied] = useState(false);
-  const mailLinkRef = useRef<HTMLAnchorElement>(null);
-  const gmailLinkRef = useRef<HTMLAnchorElement>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -115,22 +111,17 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
     setGmailUrl(gmail);
     setPendingTarget(target);
     setSubmitting(true);
-  };
 
-  useEffect(() => {
-    if (!submitting || !pendingTarget) return;
-    if (pendingTarget === "gmail" && gmailUrl && gmailLinkRef.current) {
-      gmailLinkRef.current.click();
-      setShowFallback(true);
-      setPendingTarget(null);
-      setSubmitting(false);
-    } else if (pendingTarget === "mail" && mailtoUrl && mailLinkRef.current) {
-      mailLinkRef.current.click();
-      setShowFallback(true);
-      setPendingTarget(null);
-      setSubmitting(false);
+    if (target === "gmail") {
+      window.open(gmail, "_blank", "noopener,noreferrer");
+    } else {
+      window.location.href = mailto;
     }
-  }, [submitting, pendingTarget, mailtoUrl, gmailUrl]);
+
+    setShowFallback(true);
+    setPendingTarget(null);
+    setSubmitting(false);
+  };
 
   const handleCopy = async () => {
     try {
@@ -140,10 +131,6 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
     } catch {
       // Clipboard may be unavailable; silently ignore.
     }
-  };
-
-  const handleGoToThanks = () => {
-    router.push(`/${locale}/jobs/${jobId}/thanks`);
   };
 
   return (
@@ -385,13 +372,20 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
               )}
               {copied ? t("copiedLabel") : t("copyButton")}
             </Button>
-            <Button
-              type="button"
-              onClick={handleGoToThanks}
-              className="h-11 bg-santo-navy font-black tracking-wider hover:bg-santo-blue"
+            <a
+              href={mailtoUrl}
+              className="inline-flex h-11 items-center justify-center rounded bg-santo-navy px-4 text-[13px] font-black tracking-wider text-white transition hover:bg-santo-blue"
             >
-              {t("goToThanks")}
-            </Button>
+              {t("submitMailAppButton")}
+            </a>
+            <a
+              href={gmailUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center justify-center rounded border-2 border-santo-blue bg-white px-4 text-[13px] font-black tracking-wider text-santo-blue transition hover:bg-santo-sky"
+            >
+              {t("submitGmailButton")}
+            </a>
           </div>
         </div>
       )}
@@ -428,9 +422,6 @@ export function JobApplyForm({ locale, jobId, jobTitle, jobCompany }: Props) {
           ),
         })}
       </p>
-
-      <a ref={mailLinkRef} href={mailtoUrl} className="hidden" />
-      <a ref={gmailLinkRef} href={gmailUrl} target="_blank" rel="noopener noreferrer" className="hidden" />
     </form>
   );
 }

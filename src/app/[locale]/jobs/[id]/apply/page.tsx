@@ -1,4 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -14,6 +15,7 @@ export function generateStaticParams() {
 }
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
@@ -21,6 +23,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
   const { locale, id } = await params;
+  if (!JOB_IDS.includes(id)) {
+    notFound();
+  }
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "Jobs" });
   const a = await getTranslations({ locale, namespace: "JobApply" });
@@ -33,6 +38,9 @@ export default async function JobApplyPage({
   params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
+  if (!JOB_IDS.includes(id)) {
+    notFound();
+  }
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "Jobs" });

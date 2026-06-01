@@ -27,20 +27,22 @@ function MarginPieChart({ legendLabels }: { legendLabels: { key: string; node: R
   const cy = 110;
   const r = 95;
 
-  let currentDeg = 0;
-  const slices = pieSegments.map((seg) => {
-    const startDeg = currentDeg;
+  const slices = pieSegments.reduce<Array<(typeof pieSegments)[number] & {
+    path: string;
+    labelPos: { x: number; y: number };
+  }>>((acc, seg) => {
+    const startDeg = acc.reduce((sum, slice) => sum + (slice.percent / 100) * 360, 0);
     const sweep = (seg.percent / 100) * 360;
-    const endDeg = currentDeg + sweep;
+    const endDeg = startDeg + sweep;
     const start = polarToCartesian(cx, cy, r, startDeg);
     const end = polarToCartesian(cx, cy, r, endDeg);
     const largeArc = sweep > 180 ? 1 : 0;
     const path = `M ${cx} ${cy} L ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y} Z`;
     const midDeg = startDeg + sweep / 2;
     const labelPos = polarToCartesian(cx, cy, r * seg.labelRadius, midDeg);
-    currentDeg = endDeg;
-    return { ...seg, path, labelPos };
-  });
+    acc.push({ ...seg, path, labelPos });
+    return acc;
+  }, []);
 
   return (
     <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:justify-center sm:gap-8">

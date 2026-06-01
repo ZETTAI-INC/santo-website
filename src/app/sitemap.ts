@@ -67,12 +67,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // Job detail and apply pages (thanks pages are intentionally excluded)
+  // Job detail pages. Apply and thanks pages are intentionally excluded.
   for (const id of JOB_IDS) {
     const detailPath = `/jobs/${id}`;
-    const applyPath = `/jobs/${id}/apply`;
     const detailAlternates = buildAlternates(detailPath);
-    const applyAlternates = buildAlternates(applyPath);
 
     for (const locale of LOCALES) {
       entries.push({
@@ -81,13 +79,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: "weekly",
         priority: 0.8,
         alternates: { languages: detailAlternates },
-      });
-      entries.push({
-        url: buildUrl(locale, applyPath),
-        lastModified,
-        changeFrequency: "monthly",
-        priority: 0.6,
-        alternates: { languages: applyAlternates },
       });
     }
   }

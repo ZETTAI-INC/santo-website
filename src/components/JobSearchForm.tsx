@@ -8,6 +8,7 @@ import { Search, ChevronDown, Check } from "lucide-react";
 /* ── 共通アコーディオンドロップダウン ── */
 function AccordionSelect({
   label,
+  emptyLabel,
   options,
   selected,
   onSelect,
@@ -16,6 +17,7 @@ function AccordionSelect({
   last,
 }: {
   label: string;
+  emptyLabel: string;
   options: { key: string; label: string }[];
   selected: string[];
   onSelect: (key: string) => void;
@@ -74,7 +76,7 @@ function AccordionSelect({
             className="flex w-full items-center justify-between px-5 py-2 text-left transition hover:bg-slate-50/60 sm:px-6"
           >
             <span className={`truncate text-[13px] sm:text-[14px] ${selected.length > 0 ? "font-medium text-slate-800" : "text-slate-400"}`}>
-              {displayLabel || "未選択"}
+              {displayLabel || emptyLabel}
             </span>
             <ChevronDown
               className={`ml-2 h-4 w-4 shrink-0 text-slate-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -117,6 +119,30 @@ function AccordionSelect({
 
 /* ══════════════════════════════════ MAIN ══════════════════════════════════ */
 
+function getInitialSearchState() {
+  if (typeof window === "undefined") {
+    return {
+      freeword: "",
+      selectedAreas: [] as string[],
+      selectedJobTypes: [] as string[],
+      features: [] as string[],
+    };
+  }
+
+  const sp = new URLSearchParams(window.location.search);
+  const splitParam = (name: string) => {
+    const v = sp.get(name);
+    return v ? v.split(",").map((s) => s.trim()).filter(Boolean) : [];
+  };
+
+  return {
+    freeword: sp.get("q") ?? "",
+    selectedAreas: splitParam("area"),
+    selectedJobTypes: splitParam("jobType"),
+    features: splitParam("features"),
+  };
+}
+
 export function JobSearchForm() {
   const t = useTranslations("JobSearch");
   const locale = useLocale();
@@ -125,30 +151,11 @@ export function JobSearchForm() {
   const [visible, setVisible] = useState(false);
 
   const [openField, setOpenField] = useState<string | null>(null);
-  const [freeword, setFreeword] = useState<string>("");
-  const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
-  const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([]);
-  const [features, setFeatures] = useState<string[]>([]);
-
-  // URL パラメータから初期値を復元（クライアントマウント後に1回だけ実行）
-  // useSearchParams ではなく window.location.search を使うことで
-  // 静的エクスポート時の SSR bailout を回避している。
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const sp = new URLSearchParams(window.location.search);
-    const splitParam = (name: string) => {
-      const v = sp.get(name);
-      return v ? v.split(",").map((s) => s.trim()).filter(Boolean) : [];
-    };
-    const a = splitParam("area");
-    const j = splitParam("jobType");
-    const f = splitParam("features");
-    const q = sp.get("q") ?? "";
-    if (a.length) setSelectedAreas(a);
-    if (j.length) setSelectedJobTypes(j);
-    if (f.length) setFeatures(f);
-    if (q) setFreeword(q);
-  }, []);
+  const initialSearchState = getInitialSearchState();
+  const [freeword, setFreeword] = useState<string>(initialSearchState.freeword);
+  const [selectedAreas, setSelectedAreas] = useState<string[]>(initialSearchState.selectedAreas);
+  const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>(initialSearchState.selectedJobTypes);
+  const [features, setFeatures] = useState<string[]>(initialSearchState.features);
 
   const areaOptions = [
     { key: "atsugi", label: t("areaAtsugi") },
@@ -224,6 +231,7 @@ export function JobSearchForm() {
       <div className="overflow-hidden rounded-xl bg-white shadow-sm sm:rounded-2xl sm:shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
         <AccordionSelect
           label={t("area")}
+          emptyLabel={t("notSelected")}
           options={areaOptions}
           selected={selectedAreas}
           onSelect={(key) => setSelectedAreas((p) => toggleList(p, key))}
@@ -233,6 +241,7 @@ export function JobSearchForm() {
         />
         <AccordionSelect
           label={t("jobType")}
+          emptyLabel={t("notSelected")}
           options={jobTypeOptions}
           selected={selectedJobTypes}
           onSelect={(key) => setSelectedJobTypes((p) => toggleList(p, key))}
@@ -242,6 +251,7 @@ export function JobSearchForm() {
         />
         <AccordionSelect
           label={t("features")}
+          emptyLabel={t("notSelected")}
           options={featureOptions}
           selected={features}
           onSelect={(key) => setFeatures((p) => toggleList(p, key))}
