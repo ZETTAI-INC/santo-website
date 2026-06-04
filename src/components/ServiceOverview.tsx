@@ -114,7 +114,7 @@ export function ServiceOverview() {
 
   const services = [
     {
-      img: locale === "ja" ? `/images/services/dispatch_service_v5.jpg` : `/images/services/dispatch_service${imgSuffix}_v5.jpg`,
+      img: locale === "ja" ? `/images/services/dispatch_service_v6.png` : `/images/services/dispatch_service${imgSuffix}_v6.png`,
       label: "01",
       title: t("dispatchTitle"),
       subtitle: "Staffing Service",
